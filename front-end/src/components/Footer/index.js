@@ -1,4 +1,4 @@
-import { FaWhatsapp, FaTelegramPlane, FaLinkedinIn}  from 'react-icons/fa';
+import { FaWhatsapp, FaTelegramPlane, FaLinkedinIn }  from 'react-icons/fa';
 
 import styles from './styles.module.css'
 
