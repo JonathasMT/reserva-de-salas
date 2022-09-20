@@ -8,16 +8,16 @@ export const Container = styled.div`
     align-items: center;
 
     > svg {
-        position: fixed;
-        color: white;
+        // position: fixed;
         width: 30px;
         height: 30px;
         margin-left: 10px;
         color: #454D56;
         cursor: pointer;
     }
+`;
 
-    > texto {
-        justify-content: center;
-    }
+export const Texto = styled.div`
+    justify-content: center;
+    color: red;
 `;

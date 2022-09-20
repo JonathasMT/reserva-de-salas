@@ -11,7 +11,7 @@ const Header = () => {
     return(
         <Container>
             <FaBars onClick={showSidebar} />
-            <div  className="texto">
+            <div>
                 <h1>Faculdade Delta</h1>
                 <p>Reserva de salas</p>
             </div>

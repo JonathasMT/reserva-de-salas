@@ -8,6 +8,8 @@ import Home from './pages/Home';
 import MinhasReservas from './pages/MinhasReservas';
 import Configuracoes from './pages/Config';
 
+import './App.css';
+
 function App() {
   return (
     <Router>
