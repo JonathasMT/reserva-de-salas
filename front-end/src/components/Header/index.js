@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { Container } from './styles';
+import { Container, ContainerInstituicao } from './styles';
 import { FaBars } from "react-icons/fa";
 //import Sidebar from '../Sidebar';
 
@@ -11,10 +11,10 @@ const Header = () => {
     return(
         <Container>
             <FaBars onClick={showSidebar} />
-            <div>
+            <ContainerInstituicao>
                 <h1>Faculdade Delta</h1>
                 <p>Reserva de salas</p>
-            </div>
+            </ContainerInstituicao>
         </Container>
     )
 }
