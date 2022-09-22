@@ -2,15 +2,17 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     height: 70px;
-    display: inline-flex;
+    display: flex;
     flex-direction: row;
-    width: 100vw;
     align-items: center;
+    justify-content: center;
+    width: 100vw;
     background-color: #F4F5FC;
     box-shadow: 0 0 4px 0;
 
     > svg {
-        // position: fixed;
+        position: fixed;
+        left: 0;
         width: 30px;
         height: 30px;
         margin-left: 10px;
@@ -20,5 +22,8 @@ export const Container = styled.div`
 `;
 
 export const ContainerInstituicao = styled.div`
-    color: red;
+    color: #454D56;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `;

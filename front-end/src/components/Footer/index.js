@@ -4,7 +4,7 @@ import styles from './styles.module.css'
 
 function Footer() {
     return(
-        <footer>
+        <footer className={styles.footer}>
             <div className={styles.social_list}>
                 <li>
                     <FaWhatsapp />
