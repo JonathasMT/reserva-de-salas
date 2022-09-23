@@ -20,9 +20,9 @@ const Sidebar = ({active}) => {
     }
     return (
         <Container sidebar={active}>
-            <FaTimes onclick={closeSidebar} />
+            <FaTimes onClick={closeSidebar} />
             <Content>
-                <SidebarItem Icon={FaHome} Text='Home' />
+                <SidebarItem Icon={FaRegCalendarAlt} Text='INÍCIO' />
             </Content>
         </Container>
     )

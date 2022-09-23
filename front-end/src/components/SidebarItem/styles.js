@@ -3,9 +3,9 @@ import styled from 'styled-components';
 export const Container = styled.div`
     display: flex;
     align-items: center;
-    background-color: #1A202C;
-    font-size: 20px;
-    color: white;
+    color: #418EE2;
+    font-weight: bold;
+    font-size: 24px;
     padding: 10px;
     cursor: pointer;
     border-radius: 10px;
@@ -13,9 +13,13 @@ export const Container = styled.div`
 
     > svg {
         margin: 0 20px;
+        color: #418EE2;
+        height: 32px;
+        width: 32px;
     }
 
     &:hover {
+        margin: 5px;
         background-color: black;
     }
 `;
