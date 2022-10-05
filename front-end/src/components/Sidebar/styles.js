@@ -33,5 +33,23 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-    margin-top: 100px;
+    margin-top: 50px;
 `;
+
+export const PerfilContainer = styled.div`
+    background-color: black;
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    > img {
+        height: 100%;
+        border-radius: 100%;
+        border: 5px solid white;
+    }
+`;
+
