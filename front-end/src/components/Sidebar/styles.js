@@ -33,23 +33,43 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-    margin-top: 50px;
+    margin-top: 20px;
 `;
 
-export const PerfilContainer = styled.div`
-    background-color: black;
+export const ProfileContainer = styled.div`
+    padding-top: 20px;
     width: 100%;
-    height: 100px;
+    height: 17%;
     overflow: hidden;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 
     > img {
-        height: 100%;
+        position:relative;
+        height: auto;
+        width: 40%;
         border-radius: 100%;
         border: 5px solid white;
+    }
+`;
+
+export const NameContainer = styled.div`
+    display: flex;
+    flex-direction:row;
+    font-weight: bold;
+    font-size: 18px;
+    justify-content: center;
+    align-items: center;
+    color: #454D56;
+    cursor: pointer;
+
+    > svg {
+        margin-left: 10px;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
     }
 `;
 

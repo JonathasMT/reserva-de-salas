@@ -1,5 +1,5 @@
-import React from 'react';
-import { Container, Content, PerfilContainer } from './styles';
+import React, { useEffect}from 'react';
+import { Container, Content, ProfileContainer, NameContainer } from './styles';
 import {
     FaTimes,
     // FaHome,
@@ -9,26 +9,32 @@ import {
     // FaIdCardAlt,
     // FaRegFileAlt,
     FaRegCalendarAlt,
-    // FaChartBar
+    // FaChartBar,
+    FaAngleDown,
 } from 'react-icons/fa';
 
 import SidebarItem from '../SidebarItem';
 import imgPerfil from '../../person.jpg';
 
 const Sidebar = ({active}) => {
-    const perfil = '../../person.jpg'
-    const closeSidebar = () => {
-        active(false)
-    }
+    const closeSidebar = () => {active(false)};
+
     return (
-        <Container sidebar={active}>
-            <PerfilContainer>
-                //aki
+        <Container sidebar={active} id="container">
+            <ProfileContainer>
                 <img src={imgPerfil} />
-                <FaTimes onClick={closeSidebar} />
-            </PerfilContainer>
+                {/* <FaTimes onClick={closeSidebar} /> */}
+                <NameContainer>
+                    <p>Nome Sobrenome</p>
+                    <FaAngleDown />
+                </NameContainer>
+            </ProfileContainer>
             <Content>
                 <SidebarItem Icon={FaRegCalendarAlt} Text='INÍCIO' />
+                <SidebarItem Icon={FaRegCalendarAlt} Text='MINHAS RESERVAS' />
+                <SidebarItem Icon={FaRegCalendarAlt} Text='USUÁRIOS' />
+                <SidebarItem Icon={FaRegCalendarAlt} Text='CONFIGURAÇÕES' />
+                <SidebarItem Icon={FaRegCalendarAlt} Text='SAIR' />
             </Content>
         </Container>
     )

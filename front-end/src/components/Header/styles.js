@@ -8,7 +8,7 @@ export const Container = styled.div`
     justify-content: center;
     width: 100vw;
     background-color: #F4F5FC;
-    box-shadow: 0 0 4px 0;
+    box-shadow: 0 0px 2px 0;
 
     > svg {
         position: fixed;
