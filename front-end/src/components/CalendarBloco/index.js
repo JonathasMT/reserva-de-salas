@@ -1,10 +1,9 @@
 import React from "react";
 import { Container } from './styles';
 
-const CalendarBloco = ({dia, cor}) => {
+const CalendarBloco = () => {
     return(
         <Container>
-            {dia}
         </Container>
     )
 }

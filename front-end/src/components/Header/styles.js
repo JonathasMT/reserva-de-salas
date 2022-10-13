@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+    width: 100%;
     height: 70px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 100vw;
     background-color: #F4F5FC;
-    box-shadow: 0 0px 2px 0;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 
     > svg {
         position: fixed;

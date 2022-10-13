@@ -22,7 +22,6 @@ function App() {
         <Route path='/configuracoes' element={<Configuracoes/>}/>
         <Route path='/login' element={<Login/>}/>
       </Routes> */}
-      <Footer/>
     </Router>
   );
 }

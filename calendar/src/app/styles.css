@@ -1,0 +1,42 @@
+:root {
+    --black: rgb(58, 58, 58);
+    --grey: rgb(205, 205, 205);
+    --white: rgb(240, 240, 240);
+    --red: rgb(206, 36, 36);
+    --light-blue: rgb(102, 193, 255);
+    /* --font-light: "AirbnbCerealLight", sans-serif;
+    --font-book: "AirbnbCerealBook", sans-serif;
+    --font-black: "AirbnbCerealBlack", sans-serif; */
+    color: var(--black);
+    /* font-family: var(--font-light); */
+    font-size: 16px;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smooting: grayscale;
+    -font-smooting: antialiased;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* @font-face {
+    font-family: "AirbnbCerealLight";
+    src: url(/fonts/AirbnbCereakLight.woff);
+}
+
+@font-face {
+    font-family: "AirbnbCerealBook";
+    src: url(/fonts/AirbnbCereakBook.woff);
+}
+
+@font-face {
+    font-family: "AirbnbCerealMedium";
+    src: url(/fonts/AirbnbCereakMedium.woff);
+}
+
+@font-face {
+    font-family: "AirbnbCerealBold";
+    src: url(/fonts/AirbnbCereakBold.woff);
+}
+
+@font-face {
+    font-family: "AirbnbCerealBlack";
+    src: url(/fonts/AirbnbCereakBlack.woff);
+} */
