@@ -1,48 +1,56 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
+
+const theme = {
+    background: '#FDFCFF',
+    border: '#F4F5FC',
+    textWeekDays: '#8F959E',
+    textCalendarDays: '#9EA9BA'
+};
 
 export const Container = styled.div`
-box-sizing: border-box;
 font-size: 20px;
-min-width: 1295px;
-min-height: 700px;
-padding: 20px;
-`;
+width: 1800px;
+height: 972px;
+margin: 20px;
 
-export const CalendarBloco = styled.div`
-position: relative;
-width: calc(100% / 7);
-height: 130px;
-display: inline-block;
-background-color: #FDFCFF;
-border: 2px solid #F4F5FC;
-color: #9EA9BA;
-font-weight: bold;
-text-align: right;
-padding: 5px;
-cursor: pointer;
-`;
+    > calendarHeader {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    border: 2px solid ${theme.border};
+    background-color: ${theme.background};
+    border-radius: 10px 10px 0px 0px;
+    align-items: center;
 
-export const CalendarHeader = styled.div`
-border: 2px solid #F4F5FC;
-`;
+        > days {
+        width: calc(100% / 7);
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 20px;
+        font-weight: bold;
+        color: ${theme.textWeekDays};
+        }
+    }
 
-export const CalendarHeaderNames = styled.div`
-background-color: #FDFCFF;
-border-radius: 10px 10px 0px 0px;
-display: flex;
-flex-wrap: wrap;
-width: 100%;
-margin: 0 auto;
-align-items: center;
-`;
+    > weeks {
+    width: 100%;
+    display: flex;
+    flex-direction:row;
+    background-color: ${theme.background};
+    border-left: 2px solid ${theme.border};
+    border-right: 2px solid ${theme.border};
 
-export const CalendarHeaderBloco = styled.div`
-width: calc(100% / 7);
-height: 40px;
-line-height: 40px;
-text-align: center;
-text-transform: uppercase;
-font-size: 20px;
-color: #8F959E;
-font-weight: bold;
+        > days{
+            width: calc(100% / 7);
+            height: 130px;
+            background-color: ${theme.background};
+            border: 2px solid ${theme.border};
+            color: ${theme.textCalendarDays};
+            font-weight: bold;
+            text-align: right;
+            padding: 5px;
+            cursor: pointer;
+        }
+    }
 `;

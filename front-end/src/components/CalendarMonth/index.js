@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
-import { Container, CalendarHeader, CalendarBloco, CalendarHeaderNames, CalendarHeaderBloco, } from './styles';
-//import "./styles.css"
+import { Container } from './styles';
 
 function CalendarMonth() {
     const [calendar, setCalendar] = useState([]);
@@ -18,29 +17,26 @@ function CalendarMonth() {
                 Array(7).fill(0).map(() => day.add(1, "day").clone())
             );
         };
-    
+
         setCalendar(calendar)
     }, [value])
 
     return(
         <Container>
-            <CalendarHeader>
-                2022
-                <CalendarHeaderNames>
-                    {
-                        ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado']
-                        .map((d) => <CalendarHeaderBloco className='week'>{d}</CalendarHeaderBloco>)
-                    }
-                </CalendarHeaderNames>
-            </CalendarHeader>
+            <calendarHeader>
+                {
+                    ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado']
+                    .map((d) => <days className='week'>{d}</days>)
+                }
+            </calendarHeader>
             {calendar.map((week) => (
-                <div>
+                <weeks>
                     {week.map((day) => (
-                        <CalendarBloco
-                            onClick={() => {setValue(day)}}
-                        >{day.format("D").toString()}</CalendarBloco>
+                        <days onClick={() => {setValue(day)}}>
+                            {day.format("D").toString()}
+                        </days>
                     ))}
-                </div>
+                </weeks>
             ))}
         </Container>
     );
