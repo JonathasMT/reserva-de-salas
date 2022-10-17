@@ -1,4 +1,4 @@
-import React, { useEffect}from 'react';
+import React from 'react';
 import { Container, Content, ProfileContainer, NameContainer } from './styles';
 import {
     FaTimes,
@@ -21,8 +21,9 @@ const Sidebar = ({active}) => {
 
     return (
         <Container sidebar={active} id="container">
+            <FaTimes onClick={closeSidebar} />
             <ProfileContainer>
-                <img src={imgPerfil} />
+                <img src={imgPerfil} alt='Profile' />
                 {/* <FaTimes onClick={closeSidebar} /> */}
                 <NameContainer>
                     <p>Nome Sobrenome</p>

@@ -1,7 +1,9 @@
 import  styled from 'styled-components';
 
+import { Theme } from '../Theme';
+
 export const Container = styled.div`
-    background-color: #E2EBFC;
+    background-color: ${Theme.menuBackground};
     position: fixed;
     height: 100%;
     top: 0px;
@@ -12,7 +14,7 @@ export const Container = styled.div`
 
     > svg {
         position: fixed;
-        color: #9EA9BA;
+        color: ${Theme.textSecondary};
         width: 30px;
         height: 30px;
         margin-top: 32px;
@@ -51,7 +53,7 @@ export const ProfileContainer = styled.div`
         height: auto;
         width: 40%;
         border-radius: 100%;
-        border: 5px solid white;
+        border: 5px solid ${Theme.borderProfile};
     }
 `;
 
@@ -62,7 +64,7 @@ export const NameContainer = styled.div`
     font-size: 18px;
     justify-content: center;
     align-items: center;
-    color: #454D56;
+    color: ${Theme.textPrimary};
     cursor: pointer;
 
     > svg {

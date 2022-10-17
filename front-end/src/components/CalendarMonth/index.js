@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
 import { Container } from './styles';
+import Subtitle from "../Subtitle";
 
 function CalendarMonth() {
     const [calendar, setCalendar] = useState([]);
@@ -19,6 +20,7 @@ function CalendarMonth() {
         };
 
         setCalendar(calendar)
+    // eslint-disable-next-line
     }, [value])
 
     return(
@@ -38,6 +40,7 @@ function CalendarMonth() {
                     ))}
                 </weeks>
             ))}
+            <Subtitle />
         </Container>
     );
 }
