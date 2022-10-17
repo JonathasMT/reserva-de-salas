@@ -4,8 +4,9 @@ import { Theme } from "./components/Theme";
 export const Container = styled.div`
     margin: 0;
     padding: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    min-width: 1820px;
+    min-height: 1800px;
     display: flex;
     flex-direction: column;
     align-items: left;

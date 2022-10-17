@@ -34,14 +34,10 @@ export const Container = styled.div`
     }
 `;
 
-export const Content = styled.div`
-    margin-top: 20px;
-`;
-
 export const ProfileContainer = styled.div`
     padding-top: 20px;
     width: 100%;
-    height: 17%;
+    height: 160px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -50,8 +46,8 @@ export const ProfileContainer = styled.div`
 
     > img {
         position:relative;
-        height: auto;
-        width: 40%;
+        height: 120px;
+        width: 120px;
         border-radius: 100%;
         border: 5px solid ${Theme.borderProfile};
     }
@@ -75,3 +71,6 @@ export const NameContainer = styled.div`
     }
 `;
 
+export const Content = styled.div`
+    margin-top: 20px;
+`;

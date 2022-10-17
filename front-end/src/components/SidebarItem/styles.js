@@ -5,8 +5,11 @@ import { Theme } from '../Theme';
 
 
 export const Container = styled.div`
+    width: 300px;
+    height: 50px;
     display: flex;
     align-items: center;
+    justify-content: left;
     color: ${Theme.textAccent};
     font-weight: bold;
     font-size: 20px;
@@ -15,7 +18,6 @@ export const Container = styled.div`
     border-radius: 0px;
     margin: 0 15px 0 px;
     margin-bottom: 24px;
-    height: 50px;
 
     > svg {
         margin: 0 20px;

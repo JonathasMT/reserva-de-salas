@@ -5,7 +5,7 @@ import { Theme } from "../Theme";
 export const Container = styled.div`
 font-size: 20px;
 width: 1800px;
-height: 2000px;
+height: 1800px;
 margin: 20px;
 
     > calendarHeader {
