@@ -25,7 +25,6 @@ padding: 20px;
         > days {
         width: calc(100% / 7);
         text-align: center;
-        text-transform: uppercase;
         font-size: 20px;
         font-weight: bold;
         color: ${Theme.textSecondaryVariant};

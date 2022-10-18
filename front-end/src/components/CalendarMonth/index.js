@@ -29,7 +29,7 @@ function CalendarMonth() {
             <CalendarOptions/>
             <calendarHeader>
                 {
-                    ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado']
+                    ['DOMINGO', 'SEGUNDA', 'TERÇA', 'QUARTA', 'QUINTA', 'SEXTA', 'SÁBADO']
                     .map((d) => <days className='week'>{d}</days>)
                 }
             </calendarHeader>
