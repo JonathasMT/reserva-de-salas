@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import moment from "moment";
 import { Container } from './styles';
 import Subtitle from "../Subtitle";
+import CalendarOptions from "../CalendarOptions";
 
 function CalendarMonth() {
     const [calendar, setCalendar] = useState([]);
@@ -25,6 +26,7 @@ function CalendarMonth() {
 
     return(
         <Container>
+            <CalendarOptions/>
             <calendarHeader>
                 {
                     ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado']
