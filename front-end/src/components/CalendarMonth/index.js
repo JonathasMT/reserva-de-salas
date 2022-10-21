@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
-import { Container } from './styles';
+import { Container, CalendarHeader, CalendarNameDays, Weeks, Days } from './styles';
 import Subtitle from "../Subtitle";
 import CalendarOptions from "../CalendarOptions";
 
@@ -27,20 +27,20 @@ function CalendarMonth() {
     return(
         <Container>
             <CalendarOptions/>
-            <calendarHeader>
+            <CalendarHeader>
                 {
                     ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado']
-                    .map((d) => <days className='week'>{d}</days>)
+                    .map((d) => <CalendarNameDays className='week'>{d}</CalendarNameDays>)
                 }
-            </calendarHeader>
+            </CalendarHeader>
             {calendar.map((week) => (
-                <weeks>
+                <Weeks>
                     {week.map((day) => (
-                        <days onClick={() => {setValue(day)}}>
+                        <Days onClick={() => {setValue(day)}}>
                             {day.format("D").toString()}
-                        </days>
+                        </Days>
                     ))}
-                </weeks>
+                </Weeks>
             ))}
             <Subtitle />
         </Container>

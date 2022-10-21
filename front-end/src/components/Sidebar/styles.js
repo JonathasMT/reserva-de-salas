@@ -8,17 +8,17 @@ export const Container = styled.div`
     height: 100%;
     top: 0px;
     left: 0px;
-    width: 300px;
+    width: 250px;
     left: ${props => props.sidebar ? '0' : '-100%'};
     animation: showSidebar .4s;
 
     > svg {
         position: fixed;
         color: ${Theme.textSecondary};
-        width: 30px;
-        height: 30px;
-        margin-top: 32px;
-        margin-left: 32px;
+        width: 25px;
+        height: 25px;
+        margin-top: 15px;
+        margin-left: 15px;
         cursor: pointer;
     }
 
@@ -29,25 +29,25 @@ export const Container = styled.div`
         }
         to {
             opacity: 1;
-            width: 300px;
+            width: 250px;
         }
     }
 `;
 
 export const ProfileContainer = styled.div`
-    padding-top: 20px;
     width: 100%;
     height: 160px;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding-top: 10px;
+    overflow: hidden;
 
     > img {
         position:relative;
-        height: 120px;
-        width: 120px;
+        height: 100px;
+        width: 100px;
         border-radius: 100%;
         border: 5px solid ${Theme.borderProfile};
     }
@@ -57,7 +57,7 @@ export const NameContainer = styled.div`
     display: flex;
     flex-direction:row;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 15px;
     justify-content: center;
     align-items: center;
     color: ${Theme.textPrimary};
@@ -65,12 +65,12 @@ export const NameContainer = styled.div`
 
     > svg {
         margin-left: 10px;
-        width: 30px;
-        height: 30px;
+        width: 25px;
+        height: 25px;
         cursor: pointer;
     }
 `;
 
 export const Content = styled.div`
-    margin-top: 20px;
+    margin-top: 10px;
 `;

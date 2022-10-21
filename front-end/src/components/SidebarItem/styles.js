@@ -2,11 +2,9 @@ import styled from 'styled-components';
 
 import { Theme } from '../Theme';
 
-
-
 export const Container = styled.div`
     width: 300px;
-    height: 50px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: left;
@@ -16,20 +14,19 @@ export const Container = styled.div`
     padding: 0px;
     cursor: pointer;
     border-radius: 0px;
-    margin: 0 15px 0 px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 
     > svg {
-        margin: 0 20px;
-        height: 30px;
-        width: 30px;
+        margin: 0 10px;
+        height: 25px;
+        width: 25px;
     }
 
     > div {
         background-color: ${Theme.textAccent};
-        width: 6px;
+        width: 5px;
         height: 100%;
-        border-radius: 20px;
+        border-radius: 15px;
     }
 
     &:hover {

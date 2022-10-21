@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, ContainerInstituicao } from './styles';
+import { Container, ContainerInstituicao, Title, Subtitle } from './styles';
 import { FaBars } from "react-icons/fa";
 import Sidebar from '../Sidebar';
 
@@ -13,8 +13,8 @@ const Header = () => {
             <FaBars onClick={showSidebar} />
             {sidebar && <Sidebar active={setSidebar} />}
             <ContainerInstituicao>
-                <h1>Faculdade Delta</h1>
-                <p>Reserva de salas</p>
+                <Title>Faculdade Delta</Title>
+                <Subtitle>Reserva de salas</Subtitle>
             </ContainerInstituicao>
         </Container>
     )

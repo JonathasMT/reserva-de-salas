@@ -19,9 +19,9 @@ export const Container = styled.div`
 
     > circle {
         /* background-color: ${Theme.textAccent}; */
-        width: 25px;
-        height: 25px;
+        width: 20px;
+        height: 20px;
         border-radius: 100%;
-        margin-right: 10px;
+        margin-right: 8px;
     }
 `;
