@@ -7,7 +7,6 @@ width: 30%;
 height: 100%;
 display: flex;
 flex-direction: row;
-background-color: red;
 `;
 
 export const SubContainer = styled.div`
@@ -16,7 +15,6 @@ height: 100%;
 display: flex;
 flex-direction: column;
 margin-right: auto;
-background-color: red;
 `;
 
 export const Selector = styled.div`
@@ -27,10 +25,10 @@ flex-direction: row;
 justify-content: space-around;
 align-items: center;
 font-weight: bold;
-background-color: blue;
+font-size: 20px;
+color: ${Theme.textPrimary};
 
 > svg {
-        margin: 0 10px;
         height: 25px;
         width: 25px;
     }
@@ -43,5 +41,6 @@ flex-direction: row;
 justify-content: center;
 align-items: center;
 font-weight: bold;
-background-color: green;
+font-size: 16px;
+color: ${Theme.textSecondary};
 `;

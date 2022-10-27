@@ -1,12 +1,21 @@
-import React, { useState, useEffect } from "react";
-import moment from "moment";
-import { Container } from './styles';
-import Subtitle from "../Subtitle";
+import React from "react";
+import { Container, SubContainer, DayContainer, DayText, WeekContainer, WeekText, MonthContainer, MonthText } from './styles';
 
 function TimeSelector() {
 
     return(
         <Container>
+            <SubContainer>
+                <DayContainer>
+                    <DayText>DIA</DayText>
+                </DayContainer>
+                <WeekContainer>
+                    <WeekText>SEMANA</WeekText>
+                </WeekContainer>
+                <MonthContainer>
+                    <MonthText>MÊS</MonthText>
+                </MonthContainer>
+            </SubContainer>
         </Container>
     );
 }

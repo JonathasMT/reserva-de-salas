@@ -1,24 +1,18 @@
-import React, { useEffect } from "react";
-import axios from 'axios';
-import { Container, GroupSelector, SubContainer } from './styles';
+import React from "react";
+import { Container, SubContainer, Group, Room } from './styles';
 import { FaAngleDown } from "react-icons/fa";
 
 function RoomSelector() {
-    useEffect(async() => {
-        axios.post('http://10.30.0.213:8080/usuario/cadastrar', 
-        {
-            firstName: 'Fred',
-            lastName: 'Flintstone'
-          })
-    }, [])
-
     return(
         <Container>
             <SubContainer>
-                {/* <GroupSelector>
+                <Group>
                     Salas de aula
                     <FaAngleDown/>
-                </GroupSelector> */}
+                </Group>
+                <Room>
+                    Sala 04 (1º andar)
+                </Room>
             </SubContainer>
         </Container>
     );

@@ -15,5 +15,4 @@ export const Theme = {
     reuniao: '#2A8CF1',
     curso: '#FFA426',
     outro: '#FC90F2',
-
 };
