@@ -1,16 +1,14 @@
-import React, { useState, useEffect } from "react";
-import moment from "moment";
+import React from "react";
 import { Container } from './styles';
 import DateSelector from "../DateSelect";
-import Subtitle from "../Subtitle";
 import RoomSelector from "../RoomSelect";
 import TimeSelector from "../TimeSelect";
 
-function CalendarOptions() {
+function CalendarOptions({value, onChange}) {
 
     return(
         <Container>
-            <DateSelector />
+            <DateSelector date={value} setDate={onChange} />
             <RoomSelector />
             <TimeSelector />
         </Container>

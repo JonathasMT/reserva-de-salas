@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
-import { Container, CalendarHeader, CalendarNameDays, Weeks, Days } from './styles';
+import { Container, CalendarHeader, CalendarNameDays, WeekContainer, DayContainer, Day } from './styles';
 import Subtitle from "../Subtitle";
 import CalendarOptions from "../CalendarOptions";
 
 function CalendarMonth() {
-    const [calendar, setCalendar] = useState([]);
-    const [value, setValue] = useState(moment());
+    //tradução do moment para PT-BR;
+    moment.locale('pt-br');
+    moment.updateLocale('pt-br', {months : ["Janeiro", "Fevereiro", "Março", "Abril",
+    "Maio", "Junho","Julho","Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]});
 
-    const startDay = value.clone().startOf("month").startOf("week");
-    const endDay = value.clone().endOf("month").endOf("week");
+    const [date, setDate] = useState(moment());
+
+    const [calendar, setCalendar] = useState([]);
+
+    const startDay = date.clone().startOf("month").startOf("week");
+    const endDay = date.clone().endOf("month").endOf("week");
 
     useEffect(() => {
         const day = startDay.clone().subtract(1, "day");
@@ -22,25 +28,28 @@ function CalendarMonth() {
 
         setCalendar(calendar)
     // eslint-disable-next-line
-    }, [value])
+    }, [date])
 
     return(
         <Container>
-            <CalendarOptions/>
+            <CalendarOptions value={date} onChange={setDate} />
             <CalendarHeader>
                 {
-                    ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado']
-                    .map((d) => <CalendarNameDays className='week'>{d}</CalendarNameDays>)
+                    ['DOMINGO', 'SEGUNDA', 'TERÇA', 'QUARTA', 'QUINTA', 'SEXTA', 'SÁBADO']
+                    .map((d) => <CalendarNameDays>{d}</CalendarNameDays>)
                 }
             </CalendarHeader>
+
             {calendar.map((week) => (
-                <Weeks>
+                <WeekContainer>
                     {week.map((day) => (
-                        <Days onClick={() => {setValue(day)}}>
-                            {day.format("D").toString()}
-                        </Days>
+                        <DayContainer onClick={() => {setDate(day)}}>
+                            <Day>
+                                {day.format("D").toString()}
+                            </Day>
+                        </DayContainer>
                     ))}
-                </Weeks>
+                </WeekContainer>
             ))}
             <Subtitle />
         </Container>

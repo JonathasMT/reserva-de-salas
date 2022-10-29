@@ -9,6 +9,7 @@ box-sizing: border-box;
 padding-left: 5%;
 padding-right: 5%;
 padding-bottom: 5%;
+user-select: none;
 `;
 
 export const CalendarHeader = styled.div`
@@ -28,13 +29,12 @@ export const CalendarHeader = styled.div`
 export const CalendarNameDays = styled.div`
     width: calc(100% / 7);
     text-align: center;
-    text-transform: uppercase;
     font-size: 15px;
     font-weight: bold;
     color: ${Theme.textSecondaryVariant};
 `;
 
-export const Weeks = styled.div`
+export const WeekContainer = styled.div`
     width: 100%;
     display: flex;
     flex-direction:row;
@@ -43,7 +43,7 @@ export const Weeks = styled.div`
     border-right: 1px solid ${Theme.border};
 `;
 
-export const Days = styled.div`
+export const DayContainer = styled.div`
     width: calc(100% / 7);
     height: 70px;
     background-color: ${Theme.calendarBackground};
@@ -53,5 +53,13 @@ export const Days = styled.div`
     font-size: 12px;
     text-align: right;
     padding: 5px;
+    cursor: pointer;
+`;
+
+export const Day = styled.div`
+    color: ${Theme.textSecondary};
+    font-weight: bold;
+    font-size: 12px;
+    text-align: right;
     cursor: pointer;
 `;

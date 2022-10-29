@@ -11,7 +11,7 @@ function RoomSelector() {
                     <FaAngleDown/>
                 </Group>
                 <Room>
-                    Sala 04 (1º andar)
+                    Sala 04
                 </Room>
             </SubContainer>
         </Container>

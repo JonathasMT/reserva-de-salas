@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import 'moment/locale/pt-br';
 import './styles.css';
 
 import buildCalendar from './build';
@@ -16,6 +15,7 @@ export default function Calendar({ value, onChange}) {
     return (
         <div className='calendar'>
             <Header value={value} setValue={onChange}/>
+            
             <div className='body'>
                 <div className='day-names'>
                     {

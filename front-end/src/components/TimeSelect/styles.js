@@ -32,13 +32,13 @@ justify-content: center;
 /* background-color: white;
 border: 2px solid ${Theme.border}; */
 border-radius: 25px;
+cursor: pointer;
 `;
 
 export const DayText = styled.div`
 font-size: 14px;
 font-weight: bold;
 color: ${Theme.textSecondary};
-
 `;
 
 export const WeekContainer = styled.div`
@@ -51,7 +51,7 @@ justify-content: center;
 /* background-color: white;
 border: 2px solid ${Theme.border}; */
 border-radius: 25px;
-
+cursor: pointer;
 `;
 
 export const WeekText = styled.div`
@@ -70,7 +70,7 @@ justify-content: center;
 background-color: white;
 border-radius: 25px;
 border: 2px solid ${Theme.border};
-
+cursor: pointer;
 `;
 
 export const MonthText = styled.div`

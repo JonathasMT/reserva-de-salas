@@ -12,7 +12,6 @@ export const Container = styled.div`
     font-size: 20px;
     color: ${Theme.textSecondary};
     padding: 0px;
-    cursor: none;
     border-radius: 0px;
     margin: 0 15px 0 px;
     margin-bottom: 24px;

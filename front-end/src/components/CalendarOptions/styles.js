@@ -7,5 +7,7 @@ display: flex;
 flex-direction: row;
 justify-content: space-between;
 align-items: center;
-margin: 10px;
+margin-top: 10px;
+margin-bottom: 10px;
+user-select: none;
 `;
