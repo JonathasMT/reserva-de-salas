@@ -28,13 +28,14 @@ flex-direction: row;
 align-items: center;
 justify-content: space-around;
 font-weight: bold;
-font-size: 20px;
+font-size: 18px;
 color: ${Theme.textPrimary};
+gap: 7px;
 cursor: pointer;
 
 > svg {
-    height: 25px;
-    width: 25px;
+    width: 20px;
+    height: 20px;
     padding-left: 5px;
     margin-bottom: -3px;
     cursor: pointer;
@@ -50,7 +51,7 @@ align-items: flex-end;
 justify-content: space-around;
 margin-bottom: -3px;
 font-weight: bold;
-font-size: 16px;
+font-size: 14px;
 color: ${Theme.textSecondary};
 cursor: pointer;
 

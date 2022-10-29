@@ -1,11 +1,11 @@
 import React from "react";
-import { Container } from "./styles";
+import { Container, Circle, Title } from "./styles";
 
-const SubtitleItem = ({Cor, Text}) => {
+const SubtitleItem = ({color, text}) => {
     return(
-        <Container >
-            <circle style={{backgroundColor: Cor}}/>
-            {Text}
+        <Container>
+            <Circle style={{backgroundColor: color}}/>
+            <Title>{text}</Title>
         </Container>
     )
 };

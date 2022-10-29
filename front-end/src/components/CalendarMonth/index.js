@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
-import { Container, CalendarHeader, CalendarNameDays, WeekContainer, DayContainer, Day } from './styles';
+import { Container, CalendarHeader, CalendarNameDays, WeekContainer, DayContainer, Day, CurrentDay } from './styles';
 import Subtitle from "../Subtitle";
 import CalendarOptions from "../CalendarOptions";
 
@@ -14,10 +14,9 @@ function CalendarMonth() {
 
     const [calendar, setCalendar] = useState([]);
 
-    const startDay = date.clone().startOf("month").startOf("week");
-    const endDay = date.clone().endOf("month").endOf("week");
-
     useEffect(() => {
+        const startDay = date.clone().startOf("month").startOf("week");
+        const endDay = date.clone().endOf("month").endOf("week");
         const day = startDay.clone().subtract(1, "day");
         const calendar = [];
         while (day.isBefore(endDay, "day")) {
@@ -27,8 +26,15 @@ function CalendarMonth() {
         };
 
         setCalendar(calendar)
-    // eslint-disable-next-line
     }, [date])
+
+    function isToday(day) {
+        const getDate = day.format("D").toString();
+        if (day.isSame(new Date(), 'day'))
+            return <CurrentDay>{getDate}</CurrentDay>
+        else
+            return <Day> {getDate}</Day>
+    };
 
     return(
         <Container>
@@ -44,9 +50,7 @@ function CalendarMonth() {
                 <WeekContainer>
                     {week.map((day) => (
                         <DayContainer onClick={() => {setDate(day)}}>
-                            <Day>
-                                {day.format("D").toString()}
-                            </Day>
+                            {isToday(day)}
                         </DayContainer>
                     ))}
                 </WeekContainer>

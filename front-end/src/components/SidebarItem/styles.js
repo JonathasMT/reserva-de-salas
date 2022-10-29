@@ -12,9 +12,21 @@ export const Container = styled.div`
     font-weight: bold;
     font-size: 20px;
     padding: 0px;
-    cursor: pointer;
     border-radius: 0px;
     margin-bottom: 20px;
+    animation: showSidebar .4s;
+    cursor: pointer;
+
+    @keyframes showSidebar {
+        from {
+            opacity: 0;
+            width: 0;
+        }
+        to {
+            opacity: 1;
+            width: 250px;
+        }
+    }
 
     > svg {
         margin: 0 10px;

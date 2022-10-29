@@ -7,10 +7,10 @@ function Subtitle() {
 
     return(
         <Container>
-            <SubtitleItem Cor={Theme.aula} Text={'Aula'}/>
-            <SubtitleItem Cor={Theme.reuniao} Text={'Reunião'}/>
-            <SubtitleItem Cor={Theme.curso} Text={'Curso'}/>
-            <SubtitleItem Cor={Theme.outro} Text={'Outro'}/>
+            <SubtitleItem color={Theme.aula} text={'Aula'}/>
+            <SubtitleItem color={Theme.reuniao} text={'Reunião'}/>
+            <SubtitleItem color={Theme.curso} text={'Curso'}/>
+            <SubtitleItem color={Theme.outro} text={'Outro'}/>
         </Container>
     );
 };

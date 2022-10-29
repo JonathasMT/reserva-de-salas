@@ -9,18 +9,17 @@ export const Container = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: left;
-    font-size: 20px;
-    color: ${Theme.textSecondary};
-    padding: 0px;
-    border-radius: 0px;
-    margin: 0 15px 0 px;
-    margin-bottom: 24px;
+    padding-left: 5px;
+`;
 
-    > circle {
-        /* background-color: ${Theme.textAccent}; */
-        width: 20px;
-        height: 20px;
-        border-radius: 100%;
-        margin-right: 8px;
-    }
+export const Circle = styled.div`
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 8px;
+`;
+
+export const Title = styled.div`
+    font-size: 15px;
+    color: ${Theme.textSecondary};
 `;

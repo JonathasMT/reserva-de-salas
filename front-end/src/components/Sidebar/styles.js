@@ -3,14 +3,15 @@ import  styled from 'styled-components';
 import { Theme } from '../Theme';
 
 export const Container = styled.div`
-    background-color: ${Theme.menuBackground};
-    position: fixed;
+    width: 250px;
     height: 100%;
+    position: fixed;
     top: 0px;
     left: 0px;
-    width: 250px;
     left: ${props => props.sidebar ? '0' : '-100%'};
     animation: showSidebar .4s;
+    background-color: ${Theme.menuBackground};
+    user-select: none;
 
     > svg {
         position: fixed;
@@ -64,10 +65,10 @@ export const NameContainer = styled.div`
     cursor: pointer;
 
     > svg {
-        margin-left: 10px;
-        width: 25px;
-        height: 25px;
-        cursor: pointer;
+    margin-left: 10px;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
     }
 `;
 

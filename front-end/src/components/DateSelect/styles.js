@@ -27,20 +27,19 @@ display: flex;
 flex-direction: row;
 align-items: center;
 justify-content: space-around;
-margin-left: -7px;
-margin-right: -7px;
 color: ${Theme.textPrimary};
+gap: 7px;
 
 > svg {
-    height: 25px;
-    width: 25px;
+    height: 20px;
+    width: 20px;
     cursor: pointer;
     }
 `;
 
 export const Current = styled.div`
 font-weight: bold;
-font-size: 20px;
+font-size: 18px;
 margin-left: 18px;
 margin-right: 18px;
 cursor: pointer;
@@ -55,7 +54,7 @@ align-items: flex-end;
 justify-content: center;
 margin-bottom: -3px;
 font-weight: bold;
-font-size: 16px;
+font-size: 14px;
 color: ${Theme.textSecondary};
 cursor: pointer;
 `;
