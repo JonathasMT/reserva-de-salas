@@ -24,6 +24,22 @@ export const Container = styled.div`
 `;
 
 export const ContainerInstituicao = styled.div`
+    width: auto;
+    height: 100%;
+    color: ${Theme.textPrimary};
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    > img {
+        width: auto;
+        max-height: 95%;
+    }
+`;
+export const SubContainerInstituicao = styled.div`
+    width: auto;
     height: 100%;
     color: ${Theme.textPrimary};
     display: flex;
