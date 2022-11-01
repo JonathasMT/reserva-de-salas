@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, SubContainer, DayContainer, DayText, WeekContainer, WeekText, MonthContainer, MonthText } from './styles';
 
-function TimeSelector() {
+function SelectCalendarType() {
 
     return(
         <Container>
@@ -20,4 +20,4 @@ function TimeSelector() {
     );
 }
 
-export default TimeSelector;
+export default SelectCalendarType;

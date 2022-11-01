@@ -2,7 +2,7 @@ import React from "react";
 import { Container, SubContainer, Group, Room } from './styles';
 import { FaAngleDown } from "react-icons/fa";
 
-function RoomSelector() {
+function SelectRoom() {
     return(
         <Container>
             <SubContainer>
@@ -18,4 +18,4 @@ function RoomSelector() {
     );
 }
 
-export default RoomSelector;
+export default SelectRoom;

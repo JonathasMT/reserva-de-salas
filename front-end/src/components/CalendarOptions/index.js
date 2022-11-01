@@ -1,16 +1,16 @@
 import React from "react";
 import { Container } from './styles';
-import DateSelector from "../DateSelect";
-import RoomSelector from "../RoomSelect";
-import TimeSelector from "../TimeSelect";
+import SelectDate from "../SelectDate";
+import SelectRoom from "../SelectRoom";
+import SelectCalendarType from "../SelectCalendarType";
 
 function CalendarOptions({value, onChange}) {
 
     return(
         <Container>
-            <DateSelector date={value} setDate={onChange} />
-            <RoomSelector />
-            <TimeSelector />
+            <SelectDate date={value} setDate={onChange} />
+            <SelectRoom />
+            <SelectCalendarType />
         </Container>
     );
 }

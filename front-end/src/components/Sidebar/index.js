@@ -2,14 +2,7 @@ import React from 'react';
 import { Container, Content, ProfileContainer, NameContainer } from './styles';
 import {
     FaTimes,
-    // FaHome,
-    // FaEnvelope,
-    // FaRegSun,
-    // FaUserAlt,
-    // FaIdCardAlt,
-    // FaRegFileAlt,
     FaRegCalendarAlt,
-    // FaChartBar,
     FaAngleDown,
 } from 'react-icons/fa';
 
@@ -24,7 +17,6 @@ const Sidebar = ({active}) => {
             <FaTimes onClick={closeSidebar} />
             <ProfileContainer>
                 <img src={imgPerfil} alt='Profile' />
-                {/* <FaTimes onClick={closeSidebar} /> */}
                 <NameContainer>
                     <p>Nome Sobrenome</p>
                     <FaAngleDown />

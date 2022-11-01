@@ -16,15 +16,14 @@ function App() {
   return (
     <BrowserRouter>
       <Container>
-        <Header/>
-        <CalendarMonth/>
-        {/* <Navbar/>
+        <Navbar/>
         <Routes>
-          <Route path='/' element={<Home/>}/>
+          <Route path='/' element={<Login/>}/>
           <Route path='/minhasreservas' element={<MinhasReservas/>}/>
           <Route path='/configuracoes' element={<Configuracoes/>}/>
           <Route path='/login' element={<Login/>}/>
-        </Routes> */}
+        </Routes>
+
       </Container>
     </BrowserRouter>
   );

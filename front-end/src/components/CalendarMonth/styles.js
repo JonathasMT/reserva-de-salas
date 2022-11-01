@@ -65,18 +65,22 @@ export const Day = styled.div`
     color: ${Theme.textSecondary};
     font-weight: bold;
     font-size: 0.7rem;
-    cursor: pointer;
 `;
 
 export const CurrentDay = styled.div`
-    box-sizing: border-box;
+    width: 0.9rem;
+    height: 0.9rem;
     float: right;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
     color: ${Theme.calendarBackground};
     background-color: ${Theme.textSecondary};
     border: 0.5px solid ${Theme.textSecondary};
     border-radius: 50%;
     padding: 1px;
-    font-weight: bold;
     font-size: 0.6rem;
-    cursor: pointer;
+    font-weight: bold;
 `;

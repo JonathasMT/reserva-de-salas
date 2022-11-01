@@ -4,7 +4,7 @@ import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 
 import { Container, Selector, DateTime, SubContainer, Current } from './styles';
 
-function DateSelector({date, setDate}) {
+function SelectDate({date, setDate}) {
     function currentMonthName() {
         return date.format('MMMM');
     }
@@ -44,4 +44,4 @@ function DateSelector({date, setDate}) {
     );
 }
 
-export default DateSelector;
+export default SelectDate;
