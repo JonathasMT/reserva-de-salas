@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Theme } from "../Theme";
 
 export const Container = styled.div`
-width: 100%;
+width: 100vw;
 height: 100%;
 box-sizing: border-box;
 display: flex;
@@ -24,7 +24,7 @@ export const CalendarHeader = styled.div`
     border-top: 2px solid ${Theme.border};
     border-left: 2px solid ${Theme.border};
     border-right: 2px solid ${Theme.border};
-    border-bottom: 0.5px solid ${Theme.border};
+    border-bottom: 1px solid ${Theme.border};
     background-color: ${Theme.calendarHeaderBackground};
     border-radius: 10px 10px 0px 0px;
     align-items: center;
@@ -33,18 +33,17 @@ export const CalendarHeader = styled.div`
 export const CalendarNameDays = styled.div`
     width: calc(100% / 7);
     text-align: center;
-    font-size: 15px;
+    font-size: 0.9rem;
     font-weight: bold;
     color: ${Theme.textSecondaryVariant};
 `;
 
 export const WeekContainer = styled.div`
     width: 100%;
+    height: calc(100vw / 17);
     box-sizing: border-box;
-    height: calc(100vw / 18);
     display: flex;
     flex-direction:row;
-    /* background-color: ${Theme.calendarBackground}; */
     border-left: 1px solid ${Theme.border};
     border-right: 1px solid ${Theme.border};
 `;
@@ -52,28 +51,32 @@ export const WeekContainer = styled.div`
 export const DayContainer = styled.div`
     width: calc(100% / 7);
     height: 100%;
+    box-sizing: border-box;
+    display: block;
     background-color: ${Theme.calendarBackground};
     border: 1px solid ${Theme.border};
-    padding: 2px;
+    padding: 3px;
     cursor: pointer;
 `;
 
 export const Day = styled.div`
+    box-sizing: border-box;
     float: right;
     color: ${Theme.textSecondary};
     font-weight: bold;
-    font-size: 12px;
+    font-size: 0.7rem;
     cursor: pointer;
 `;
 
 export const CurrentDay = styled.div`
+    box-sizing: border-box;
     float: right;
-    color: ${Theme.textAccent};
-    /* background-color: ${Theme.menuBackground}; */
-    border: 1px solid ${Theme.textAccent};
+    color: ${Theme.calendarBackground};
+    background-color: ${Theme.textSecondary};
+    border: 0.5px solid ${Theme.textSecondary};
     border-radius: 50%;
     padding: 1px;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 0.6rem;
     cursor: pointer;
 `;

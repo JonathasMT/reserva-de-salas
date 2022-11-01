@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
 import { Container, CalendarHeader, CalendarNameDays, WeekContainer, DayContainer, Day, CurrentDay } from './styles';
+
 import Subtitle from "../Subtitle";
 import CalendarOptions from "../CalendarOptions";
+import CalendarBooking from "../CalendarBooking";
 
 function CalendarMonth() {
     //tradução do moment para PT-BR;
@@ -28,12 +30,22 @@ function CalendarMonth() {
         setCalendar(calendar)
     }, [date])
 
+    //verifica se o dia é o dia atual
     function isToday(day) {
         const getDate = day.format("D").toString();
         if (day.isSame(new Date(), 'day'))
             return <CurrentDay>{getDate}</CurrentDay>
         else
             return <Day> {getDate}</Day>
+    };
+
+    function isBooking(day, number) {
+        const getDate = parseInt(day.format("D"));
+        console.log(getDate)
+        if (getDate === number)
+            return <CalendarBooking/>
+        else
+            return''
     };
 
     return(
@@ -51,6 +63,7 @@ function CalendarMonth() {
                     {week.map((day) => (
                         <DayContainer onClick={() => {setDate(day)}}>
                             {isToday(day)}
+                            {isBooking(day, 17)}
                         </DayContainer>
                     ))}
                 </WeekContainer>
