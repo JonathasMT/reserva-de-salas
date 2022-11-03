@@ -13,7 +13,6 @@ function CalendarMonth() {
     "Maio", "Junho","Julho","Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]});
 
     const [date, setDate] = useState(moment());
-
     const [calendar, setCalendar] = useState([]);
 
     useEffect(() => {
@@ -41,7 +40,6 @@ function CalendarMonth() {
 
     function isBooking(day, number) {
         const getDate = parseInt(day.format("D"));
-        console.log(getDate)
         if (getDate === number)
             return <CalendarBooking/>
         else
@@ -54,14 +52,13 @@ function CalendarMonth() {
             <CalendarHeader>
                 {
                     ['DOMINGO', 'SEGUNDA', 'TERÇA', 'QUARTA', 'QUINTA', 'SEXTA', 'SÁBADO']
-                    .map((d) => <CalendarNameDays>{d}</CalendarNameDays>)
+                    .map((d) => <CalendarNameDays key={d}>{d}</CalendarNameDays>)
                 }
             </CalendarHeader>
-
             {calendar.map((week) => (
-                <WeekContainer>
+                <WeekContainer key={week}>
                     {week.map((day) => (
-                        <DayContainer onClick={() => {setDate(day)}}>
+                        <DayContainer key={day} onClick={() => {setDate(day)}}>
                             {isToday(day)}
                             {isBooking(day, 17)}
                         </DayContainer>

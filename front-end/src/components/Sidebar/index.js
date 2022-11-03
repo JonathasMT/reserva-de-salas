@@ -8,6 +8,7 @@ import {
 
 import SidebarItem from '../SidebarItem';
 import imgPerfil from '../../person.jpg';
+import { Link, NavLink } from 'react-router-dom';
 
 const Sidebar = ({active}) => {
     const closeSidebar = () => {active(false)};
@@ -17,17 +18,30 @@ const Sidebar = ({active}) => {
             <FaTimes onClick={closeSidebar} />
             <ProfileContainer>
                 <img src={imgPerfil} alt='Profile' />
+                <Link to='/login'>
                 <NameContainer>
-                    <p>Nome Sobrenome</p>
-                    <FaAngleDown />
+                        <p>Nome Sobrenome</p>
+                        <FaAngleDown />
+
                 </NameContainer>
+                </Link>
             </ProfileContainer>
             <Content>
-                <SidebarItem Icon={FaRegCalendarAlt} Text='INÍCIO' />
-                <SidebarItem Icon={FaRegCalendarAlt} Text='MINHAS RESERVAS' />
-                <SidebarItem Icon={FaRegCalendarAlt} Text='USUÁRIOS' />
-                <SidebarItem Icon={FaRegCalendarAlt} Text='CONFIGURAÇÕES' />
-                <SidebarItem Icon={FaRegCalendarAlt} Text='SAIR' />
+                <Link to='/'>
+                    <SidebarItem Icon={FaRegCalendarAlt} Text='INÍCIO' />
+                </Link>
+                <Link to='/mybookings'>
+                    <SidebarItem Icon={FaRegCalendarAlt} Text='MINHAS RESERVAS' />
+                </Link>
+                <Link to='/users'>
+                    <SidebarItem Icon={FaRegCalendarAlt} Text='USUÁRIOS' />
+                    </Link>
+                <Link to='/configs'>
+                    <SidebarItem Icon={FaRegCalendarAlt} Text='CONFIGURAÇÕES' />
+                    </Link>
+                <Link to='/logout'>
+                    <SidebarItem Icon={FaRegCalendarAlt} Text='SAIR' />
+                </Link>
             </Content>
         </Container>
     )

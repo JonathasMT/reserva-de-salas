@@ -1,12 +1,14 @@
 //imports
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const port = 3001;
 
 const app = express();
+app.use(cors());
 
 //Configurar JSON response
 app.use(express.json());
@@ -101,13 +103,13 @@ app.post('/auth/login', async (req, res) => {
         return res.status(422).json({msg: 'O email é obrigatório!'})
     }
     if(!password) {
-        return res.status(422).json({msg: 'O senha é obrigatório!'})
+        return res.status(422).json({msg: 'A senha é obrigatório!'})
     }
 
     //Verificar se o usuario existe e se a senha esta correta
     const user = await User.findOne({email: email})
     if(!user) {
-        return res.status(404).json({msg: 'O email ' + email + ' não foi encontrado!'});
+        return res.status(422).json({msg: 'O email ' + email + ' não foi encontrado!'});
     };
     const checkPassord = await bcrypt.compare(password, user.password);
     if(!checkPassord) {

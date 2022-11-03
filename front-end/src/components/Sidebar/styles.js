@@ -12,6 +12,10 @@ export const Container = styled.div`
     animation: showSidebar .4s;
     background-color: ${Theme.menuBackground};
     user-select: none;
+    
+    a {
+        text-decoration: none;
+    }
 
     > svg {
         position: fixed;

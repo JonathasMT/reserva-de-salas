@@ -9,7 +9,7 @@ box-sizing: border-box;
 display: flex;
 flex-direction: row;
 align-items: flex-start;
-justify-content: flex-start;
+justify-content: center;
 background-color: ${Theme.aula};
 border-radius: 5px;
 padding-top: 1px;
@@ -19,7 +19,7 @@ padding-right: 5px;
 
 export const Time = styled.div`
 width: 20%;
-height: 100%;
+height: auto;
 font-size: 8px;
 font-weight: bold;
 color: ${Theme.textPrimary}
@@ -28,6 +28,8 @@ color: ${Theme.textPrimary}
 export const Title = styled.div`
 width: 80%;
 height: 100%;
+align-items: flex-end;
+justify-content: flex-end;
 font-size: 8px;
 color: ${Theme.background}
 `;

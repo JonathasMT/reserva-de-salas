@@ -4,8 +4,8 @@ import CalendarMonth from "../../components/CalendarMonth"
 function Home() {
     return(
         <div>
-        <Header/>
-        <CalendarMonth/>
+            <Header/>
+            <CalendarMonth/>
         </div>
     )
 }
