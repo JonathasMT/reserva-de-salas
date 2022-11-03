@@ -7,7 +7,7 @@ import {
 } from 'react-icons/fa';
 
 import SidebarItem from '../SidebarItem';
-import imgPerfil from '../../person.jpg';
+import imgPerfil from '../../assets/img/person.jpg';
 import { Link, NavLink } from 'react-router-dom';
 
 const Sidebar = ({active}) => {
@@ -22,26 +22,25 @@ const Sidebar = ({active}) => {
                 <NameContainer>
                         <p>Nome Sobrenome</p>
                         <FaAngleDown />
-
                 </NameContainer>
                 </Link>
             </ProfileContainer>
-            <Content>
-                <Link to='/'>
+            <Content >
+                <NavLink to='/'>
                     <SidebarItem Icon={FaRegCalendarAlt} Text='INÍCIO' />
-                </Link>
-                <Link to='/mybookings'>
+                </NavLink>
+                <NavLink to='/mybookings'>
                     <SidebarItem Icon={FaRegCalendarAlt} Text='MINHAS RESERVAS' />
-                </Link>
-                <Link to='/users'>
+                </NavLink>
+                <NavLink to='/users'>
                     <SidebarItem Icon={FaRegCalendarAlt} Text='USUÁRIOS' />
-                    </Link>
-                <Link to='/configs'>
+                    </NavLink>
+                <NavLink to='/configs'>
                     <SidebarItem Icon={FaRegCalendarAlt} Text='CONFIGURAÇÕES' />
-                    </Link>
-                <Link to='/logout'>
+                    </NavLink>
+                <NavLink to='/logout'>
                     <SidebarItem Icon={FaRegCalendarAlt} Text='SAIR' />
-                </Link>
+                </NavLink>
             </Content>
         </Container>
     )

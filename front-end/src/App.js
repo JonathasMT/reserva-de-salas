@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Container} from './AppStyle';
 
 import Home from './pages/Home';
@@ -16,7 +16,6 @@ function App() {
           <Route path='/configs' element={<Configs/>}/>
           <Route path='/login' element={<Login/>}/>
         </Routes>
-
       </Container>
     </BrowserRouter>
   );

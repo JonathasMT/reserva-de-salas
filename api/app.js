@@ -56,19 +56,19 @@ app.post('/auth/register', async (req, res) => {
     //validações
     if(!name) {
         return res.status(422).json({msg: 'O nome é obrigatório!'})
-    }
+    };
     if(!email) {
         return res.status(422).json({msg: 'O email é obrigatório!'})
-    }
+    };
     if(!password) {
         return res.status(422).json({msg: 'O senha é obrigatório!'})
-    }
+    };
     if(!confirmPassword) {
         return res.status(422).json({msg: 'O confimar senha é obrigatório!'})
-    }
+    };
     if(password !== confirmPassword) {
         return res.status(422).json({msg: 'As senhas não conferem!'})
-    }
+    };
     //Checar se o usuario existe
     const userExists = await User.findOne({email: email})
     if(userExists) {
@@ -101,10 +101,10 @@ app.post('/auth/login', async (req, res) => {
     //validações
     if(!email) {
         return res.status(422).json({msg: 'O email é obrigatório!'})
-    }
+    };
     if(!password) {
         return res.status(422).json({msg: 'A senha é obrigatório!'})
-    }
+    };
 
     //Verificar se o usuario existe e se a senha esta correta
     const user = await User.findOne({email: email})

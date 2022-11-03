@@ -3,7 +3,7 @@ import { Container, ContainerInstituicao, Title, Subtitle, SubContainerInstituic
 import { FaBars } from "react-icons/fa";
 import Sidebar from '../Sidebar';
 
-import img from '../../icon.png';
+import logo from '../../assets/img/logo.png';
 
 const Header = () => {
     const [sidebar, setSidebar] = useState(false);
@@ -15,7 +15,7 @@ const Header = () => {
             <FaBars onClick={showSidebar} />
             {sidebar && <Sidebar active={setSidebar} />}
             <ContainerInstituicao>
-                <img src={img} alt='Instituiçao' />
+                <img src={logo} alt='Instituiçao' />
                 <SubContainerInstituicao>
                     <Title>Faculdade Delta</Title>
                     <Subtitle>Reserva de salas</Subtitle>
