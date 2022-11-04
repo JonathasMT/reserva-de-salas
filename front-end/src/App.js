@@ -1,23 +1,15 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Container} from './AppStyle';
+import React from 'react';
 
-import Home from './pages/Home';
-import Login from './pages/Login';
-import MyBookings from './pages/MyBookings';
-import Configs from './pages/Config';
+import { Container} from './AppStyle';
+import GlobalStyle from '../src/styles/globalStyle';
+import RoutesApp from './routes';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Container>
-        <Routes>
-          <Route path='/' element={<Home/>}/>
-          <Route path='/mybookings' element={<MyBookings/>}/>
-          <Route path='/configs' element={<Configs/>}/>
-          <Route path='/login' element={<Login/>}/>
-        </Routes>
-      </Container>
-    </BrowserRouter>
+    <Container>
+      <GlobalStyle/>
+      <RoutesApp/>
+    </Container>
   );
 }
 

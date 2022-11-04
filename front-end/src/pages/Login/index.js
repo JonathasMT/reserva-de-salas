@@ -3,7 +3,7 @@ import axios from 'axios';
 import Header from '../../components/Header';
 
 function Home() {
-    const apiUrl = "http://localhost:3001"
+    const apiUrl = "http://localhost:3001";
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
