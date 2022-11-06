@@ -33,8 +33,8 @@ app.get('/usuario/:id', verificaToken, async (req, res) => {
     res.status(200).json({usuario});
 });
 function verificaToken(req, res, next) {
-    const autHeader = req.headers['authorization'];
-    const token = autHeader && autHeader.split(' ')[1];
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
     if(!token) {
         return res.status(401).json({msg: 'Acesso negado!'});
     };
@@ -121,9 +121,11 @@ app.post('/login', async (req, res) => {
         const secret = process.env.SECRET;
         const token = jwt.sign({id: usuario._id}, secret,);
         const usuarioId = usuario.id;
+        const nome = usuario.nome;
+        const email = usuario.email;
         
         await usuario.save();
-        res.status(200).json({msg: 'Usuário autenticado com sucesso', token, usuarioId});
+        res.status(200).json({msg: 'Usuário autenticado com sucesso', token, usuarioId, nome, email});
     } catch (erro) {
         console.log(erro);
         res.status(500).json({msg: 'Ocorreu um erro, tente novamente ou contacte o administrador!'});

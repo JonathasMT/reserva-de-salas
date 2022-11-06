@@ -1,68 +1,60 @@
-import React, {useState, useEffect} from 'react';
-import axios from 'axios';
-import Header from '../../components/Header';
-import {Container} from './styles';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from "react-router-dom";
 
-function Home() {
-    const apiUrl = "http://localhost:3001";
+import useAuth from "../../hooks/useAuth";
+import Header from '../../components/Header';
+import { Container } from './styles';
+
+const Login = () => {
+    const { entrar } = useAuth();
+    const navegar = useNavigate();
+
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
-
-    const handleEmail = (evento) => {
-      setEmail(evento.target.value)
-    };
-    const handleSenha = (evento) => {
-      setSenha(evento.target.value)
-    };
+    const [erro, setErro] = useState('');
 
     useEffect(() => {
-      const token = localStorage.getItem('usuarioLogado');
-      if (token) {
+      const usuario = localStorage.getItem('usuarioLogado');
+      if (usuario) {
         console.log("Você já esta logado!");
-        console.log(token)
+        console.log(usuario)
       }else {
         console.log('Faça LOGIN!')
       }
+      navegar('/')
     }, []);
 
-    const submeterLogin = async (evento) => {
-      evento.preventDefault();
-      const loginData = {email:email,senha:senha};
-      await axios.post(apiUrl+'/login', loginData)
-      .then((resultado) => {
-        const token = resultado.data.token;
-        const usuarioId = resultado.data.usuarioId;
-        alert(resultado.data.msg);
-        localStorage.setItem('usuarioLogado', JSON.stringify({token:token, usuarioId:usuarioId}));
-      }).catch((erro) => {
-        console.log(erro);
-        alert(erro.response.data.msg);
-      });
+    const submeterLogin = async() => {
+      const resposta = await entrar(email, senha);
+      if (resposta) {
+        setErro(resposta);
+      };
+      navegar('/');
     };
-
     return(
       <div>
         <Header/>
         <Container>
           <h1>LOGIN</h1>
-          <form onSubmit={submeterLogin}>
-            <input
-                type="email"
-                name="email"
-                placeholder="Digite o seu e-mail"
-                onChange={(evento) => handleEmail(evento)}
-            />
-            <input
-                type="password"
-                name="senha"
-                placeholder="Digite sua senha"
-                onChange={(evento) => handleSenha(evento)}
-            />
-            <button type="submit">Entrar</button>
-          </form>
+          <input
+              type="email"
+              name="email"
+              placeholder="Digite o seu e-mail"
+              value={email}
+              onChange={(evento) => [setEmail(evento.target.value), setErro('')]}
+          />
+          <input
+              type="password"
+              name="senha"
+              placeholder="Digite sua senha"
+              value={senha}
+              onChange={(evento) => [setSenha(evento.target.value), setErro('')]}
+          />
+          <button onClick={submeterLogin}>Logar</button>
+          <span>{erro}</span>
         </Container>
       </div>
-    )
-}
+    );
+};
 
-export default Home
+export default Login;

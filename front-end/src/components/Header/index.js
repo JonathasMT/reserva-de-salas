@@ -4,23 +4,31 @@ import { FaBars } from "react-icons/fa";
 import Sidebar from '../Sidebar';
 
 import logo from '../../assets/img/logo.png';
+import useAuth from "../../hooks/useAuth";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
+    function Menu() {
+        const { logado } = useAuth();
+        if (logado) return <FaBars onClick={mostrarSidebar}/>;
+    }
     const [sidebar, setSidebar] = useState(false);
-
     const mostrarSidebar = () => setSidebar(!sidebar);
 
     return(
         <Container>
-            <FaBars onClick={mostrarSidebar} />
+            {Menu()}
             {sidebar && <Sidebar ativo={setSidebar} />}
-            <ContainerInstituicao>
-                <img src={logo} alt='Instituiçao' />
-                <SubContainerInstituicao>
-                    <Titulo>Faculdade Delta</Titulo>
-                    <SubTitulo>Reserva de salas</SubTitulo>
-                </SubContainerInstituicao>
-            </ContainerInstituicao>
+            <NavLink to='/'>
+                <ContainerInstituicao>
+                    <img src={logo} alt='Instituiçao' />
+                    <SubContainerInstituicao>
+                        <Titulo>Faculdade Delta</Titulo>
+                        <SubTitulo>Reserva de salas</SubTitulo>
+                    </SubContainerInstituicao>
+                </ContainerInstituicao>
+            </NavLink>
+
         </Container>
     )
 }

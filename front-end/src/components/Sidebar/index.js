@@ -4,14 +4,20 @@ import {
     FaTimes,
     FaRegCalendarAlt,
     FaAngleDown,
+    FaRegCalendarCheck,
+    FaUsers,
 } from 'react-icons/fa';
 
 import SidebarItem from '../SidebarItem';
 import imgPerfil from '../../assets/img/person.jpg';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
 const Sidebar = ({ativo}) => {
     const fecharSidebar = () => {ativo(false)};
+    const { sair } = useAuth();
+    const navegar = useNavigate();
+  
 
     return (
         <Container sidebar={ativo} id="container">
@@ -27,19 +33,19 @@ const Sidebar = ({ativo}) => {
             </ContainerPerfil>
             <Content >
                 <NavLink to='/'>
-                    <SidebarItem Icone={FaRegCalendarAlt} Texto='INÍCIO' />
+                    <SidebarItem Icone={<FaRegCalendarAlt/>} Texto='INÍCIO' Status={true} />
                 </NavLink>
                 <NavLink to='/minhasreservas'>
-                    <SidebarItem Icone={FaRegCalendarAlt} Texto='MINHAS RESERVAS' />
+                    <SidebarItem Icone={<FaRegCalendarCheck/>} Texto='MINHAS RESERVAS' />
                 </NavLink>
                 <NavLink to='/usuarios'>
-                    <SidebarItem Icone={FaRegCalendarAlt} Texto='USUÁRIOS' />
+                    <SidebarItem Icone={<FaUsers/>} Texto='USUÁRIOS' />
                     </NavLink>
-                <NavLink to='/configuracoes'>
-                    <SidebarItem Icone={FaRegCalendarAlt} Texto='CONFIGURAÇÕES' />
-                    </NavLink>
-                <NavLink to='/logout'>
-                    <SidebarItem Icone={FaRegCalendarAlt} Texto='SAIR' />
+                <NavLink to='/configuracoes' onClick={() => console.log('SAIR CLICADO')}>
+                    <SidebarItem Icone={<FaRegCalendarAlt/>} Texto='CONFIGURAÇÕES' />
+                </NavLink>
+                <NavLink onClick={() => [sair(), navegar("/")]}>
+                    <SidebarItem Icone={<FaRegCalendarAlt/>} Texto='SAIR' />
                 </NavLink>
             </Content>
         </Container>

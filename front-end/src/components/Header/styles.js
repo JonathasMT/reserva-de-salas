@@ -21,6 +21,10 @@ export const Container = styled.div`
         color: ${Theme.textoPrimary};
         cursor: pointer;
     }
+    a {
+        text-decoration: none;
+        height: 100%;
+    }
 `;
 
 export const ContainerInstituicao = styled.div`

@@ -25,7 +25,7 @@ export const CalendarioHeader = styled.div`
     border-left: 2px solid ${Theme.border};
     border-right: 2px solid ${Theme.border};
     border-bottom: 1px solid ${Theme.border};
-    background-color: ${Theme.calendarHeaderBackground};
+    background-color: ${Theme.calendarioHeaderFundo};
     border-radius: 10px 10px 0px 0px;
     align-items: center;
 `;
