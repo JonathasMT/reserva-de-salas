@@ -1,11 +1,11 @@
 import Header from "../../components/Header"
-import CalendarMonth from "../../components/CalendarMonth"
+import CalendarioMes from "../../components/CalendarioMes"
 
 function Home() {
     return(
         <div>
             <Header/>
-            <CalendarMonth/>
+            <CalendarioMes/>
         </div>
     )
 }

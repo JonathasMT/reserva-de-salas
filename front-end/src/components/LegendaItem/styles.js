@@ -12,14 +12,14 @@ export const Container = styled.div`
     padding-left: 5px;
 `;
 
-export const Circle = styled.div`
+export const Circulo = styled.div`
     width: 20px;
     height: 20px;
     border-radius: 50%;
     margin-right: 8px;
 `;
 
-export const Title = styled.div`
+export const Titulo = styled.div`
     font-size: 15px;
-    color: ${Theme.textSecondary};
+    color: ${Theme.textoSecondary};
 `;

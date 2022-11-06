@@ -14,6 +14,6 @@ export const Container = styled.div`
     border-bottom: 2px solid ${Theme.border};
     border-left: 2px solid ${Theme.border};
     border-right: 2px solid ${Theme.border};
-    background-color: ${Theme.calendarHeaderBackground};
+    background-color: ${Theme.calendarioHeaderFundo};
     border-radius: 0px 0px 10px 10px;
 `;

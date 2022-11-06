@@ -4,14 +4,14 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Home from './pages/Home';
 import Login from './pages/Login';
-import MyBookings from './pages/MyBookings';
-import Configs from './pages/Config';
+import MinhasReservas from './pages/MinhasReservas';
+import Configuracoes from './pages/Config';
 
-const Private = ({ Item }) => {
-//   const { logged } = useAuth();
-  const { logged } = 'useAuth()';
+const Privada = ({ Item }) => {
+//   const { logado } = useAuth();
+  const { logado } = 'useAuth()';
 
-  return logged > 0 ? <Item /> : <Login />;
+  return logado > 0 ? <Item /> : <Login />;
 };
 
 const RoutesApp = () => {
@@ -19,17 +19,17 @@ const RoutesApp = () => {
     <BrowserRouter>
       <Fragment>
         <Routes>
-            <Route path='/' element={<Private Item={Home} />}/>
-            <Route path='/mybookings' element={<Private Item={MyBookings} />}/>
-            <Route path='/configs' element={<Private Item={Configs} />}/>
-            <Route path='/login' element={<Login/>}/>
-            <Route path="*" element={<Login />} />
-
-            {/* <Route path='/' element={<Home/>}/>
-            <Route path='/mybookings' element={<MyBookings/>}/>
-            <Route path='/configs' element={<Configs/>}/>
+            {/* <Route path='/' element={<Privada Item={Home} />}/>
+            <Route path='/minhasreservas' element={<Privada Item={MinhasReservas} />}/>
+            <Route path='/configuracoes' element={<Privada Item={Configuracoes} />}/>
             <Route path='/login' element={<Login/>}/>
             <Route path="*" element={<Login />} /> */}
+
+            <Route path='/' element={<Home/>}/>
+            <Route path='/minhasreservas' element={<MinhasReservas/>}/>
+            <Route path='/configuracoes' element={<Configuracoes/>}/>
+            <Route path='/login' element={<Login/>}/>
+            <Route path="*" element={<Login />} />
         </Routes>
       </Fragment>
     </BrowserRouter>

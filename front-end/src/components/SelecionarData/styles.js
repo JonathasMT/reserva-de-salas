@@ -8,7 +8,7 @@ height: 100%;
 display: flex;
 flex-direction: row;
 align-items: flex-end;
-justify-content: center;
+justify-content: flex-start;
 `;
 
 export const SubContainer = styled.div`
@@ -20,44 +20,41 @@ align-items: center;
 justify-content: flex-end;
 `;
 
-export const Group = styled.div`
+export const Seletor = styled.div`
 width: auto;
 height: 50%;
 display: flex;
 flex-direction: row;
 align-items: center;
 justify-content: space-around;
-font-weight: bold;
-font-size: 18px;
-color: ${Theme.textPrimary};
+color: ${Theme.textoPrimary};
 gap: 7px;
-cursor: pointer;
 
 > svg {
-    width: 20px;
     height: 20px;
-    padding-left: 5px;
-    margin-bottom: -3px;
+    width: 20px;
     cursor: pointer;
     }
 `;
 
-export const Room = styled.div`
+export const Corrente = styled.div`
+font-weight: bold;
+font-size: 18px;
+margin-left: 18px;
+margin-right: 18px;
+cursor: pointer;
+`;
+
+export const DataHora = styled.div`
 width: auto;
 height: auto;
 display: flex;
 flex-direction: row;
 align-items: flex-end;
-justify-content: space-around;
+justify-content: center;
 margin-bottom: -3px;
 font-weight: bold;
 font-size: 14px;
-color: ${Theme.textSecondary};
+color: ${Theme.textoSecondary};
 cursor: pointer;
-
-> svg {
-    margin: 0 10px;
-    height: 25px;
-    width: 25px;
-    }
 `;

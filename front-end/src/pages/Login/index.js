@@ -5,13 +5,13 @@ import Header from '../../components/Header';
 function Home() {
     const apiUrl = "http://localhost:3001";
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [senha, setSenha] = useState('');
 
-    const handleEmail = (event) => {
-      setEmail(event.target.value)
+    const handleEmail = (evento) => {
+      setEmail(evento.target.value)
     };
-    const handlePassword = (event) => {
-      setPassword(event.target.value)
+    const handleSenha = (evento) => {
+      setSenha(evento.target.value)
     };
 
     useEffect(() => {
@@ -23,16 +23,16 @@ function Home() {
       }
     }, []);
 
-    const submitLogin = async (event) => {
-      event.preventDefault();
-      const loginData = {email:email,password:password};
-      await axios.post(apiUrl+'/auth/login', loginData)
-      .then((result) => {
-        alert(result.data.msg);
-        localStorage.setItem('token', JSON.stringify(result.data.token));
-      }).catch((error) => {
-        console.log(error);
-        alert(error.response.data.msg);
+    const submeterLogin = async (evento) => {
+      evento.preventDefault();
+      const loginData = {email:email,senha:senha};
+      await axios.post(apiUrl+'/login', loginData)
+      .then((resultado) => {
+        alert(resultado.data.msg);
+        localStorage.setItem('token', JSON.stringify(resultado.data.token));
+      }).catch((erro) => {
+        console.log(erro);
+        alert(erro.response.data.msg);
       });
     };
 
@@ -40,18 +40,18 @@ function Home() {
     <div>
         <Header/>
         <h1>LOGIN</h1>
-        <form onSubmit={submitLogin}>
+        <form onSubmit={submeterLogin}>
         <input
             type="email"
             name="email"
             placeholder="Digite o seu e-mail"
-            onChange={(event) => handleEmail(event)}
+            onChange={(evento) => handleEmail(evento)}
         />
         <input
             type="password"
-            name="password"
+            name="senha"
             placeholder="Digite sua senha"
-            onChange={(event) => handlePassword(event)}
+            onChange={(evento) => handleSenha(evento)}
         />
         <button type="submit">Entrar</button>
         </form>

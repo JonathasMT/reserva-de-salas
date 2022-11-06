@@ -17,19 +17,19 @@ padding-left: 5px;
 padding-right: 5px;
 `;
 
-export const Time = styled.div`
+export const Hora = styled.div`
 width: 20%;
 height: auto;
 font-size: 8px;
 font-weight: bold;
-color: ${Theme.textPrimary}
+color: ${Theme.textoPrimary}
 `;
 
-export const Title = styled.div`
+export const Titulo = styled.div`
 width: 80%;
 height: 100%;
 align-items: flex-end;
 justify-content: flex-end;
 font-size: 8px;
-color: ${Theme.background}
+color: ${Theme.fundo}
 `;

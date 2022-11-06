@@ -1,21 +1,21 @@
 import React from "react";
-import { Container, SubContainer, Group, Room } from './styles';
+import { Container, SubContainer, Grupo, Sala } from './styles';
 import { FaAngleDown } from "react-icons/fa";
 
-function SelectRoom() {
+function SelecionarSala() {
     return(
         <Container>
             <SubContainer>
-                <Group>
+                <Grupo>
                     Salas de aula
                     <FaAngleDown/>
-                </Group>
-                <Room>
+                </Grupo>
+                <Sala>
                     Sala 04
-                </Room>
+                </Sala>
             </SubContainer>
         </Container>
     );
 }
 
-export default SelectRoom;
+export default SelecionarSala;

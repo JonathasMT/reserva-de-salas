@@ -1,12 +1,12 @@
 import React from "react";
 import { Container } from "./styles";
 
-const SidebarItem = ({Icon, Text}) => {
+const SidebarItem = ({Icone, Texto}) => {
     return(
         <Container>
             <div />
-            <Icon />
-            {Text}
+            <Icone />
+            {Texto}
         </Container>
     )
 };

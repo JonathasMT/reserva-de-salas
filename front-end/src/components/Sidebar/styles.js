@@ -9,8 +9,8 @@ export const Container = styled.div`
     top: 0px;
     left: 0px;
     left: ${props => props.sidebar ? '0' : '-100%'};
-    animation: showSidebar .4s;
-    background-color: ${Theme.menuBackground};
+    animation: mostrarSidebar .4s;
+    background-color: ${Theme.menuFundo};
     user-select: none;
     
     a {
@@ -19,7 +19,7 @@ export const Container = styled.div`
 
     > svg {
         position: fixed;
-        color: ${Theme.textSecondary};
+        color: ${Theme.textoSecondary};
         width: 25px;
         height: 25px;
         margin-top: 15px;
@@ -27,7 +27,7 @@ export const Container = styled.div`
         cursor: pointer;
     }
 
-    @keyframes showSidebar {
+    @keyframes mostrarSidebar {
         from {
             opacity: 0;
             width: 0;
@@ -39,7 +39,7 @@ export const Container = styled.div`
     }
 `;
 
-export const ProfileContainer = styled.div`
+export const ContainerPerfil = styled.div`
     width: 100%;
     height: 160px;
     display: flex;
@@ -54,18 +54,18 @@ export const ProfileContainer = styled.div`
         height: 100px;
         width: 100px;
         border-radius: 100%;
-        border: 5px solid ${Theme.borderProfile};
+        border: 5px solid ${Theme.borderPerfil};
     }
 `;
 
-export const NameContainer = styled.div`
+export const ContainerNome = styled.div`
     display: flex;
     flex-direction:row;
     font-weight: bold;
     font-size: 15px;
     justify-content: center;
     align-items: center;
-    color: ${Theme.textPrimary};
+    color: ${Theme.textoPrimary};
     cursor: pointer;
 
     > svg {

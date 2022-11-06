@@ -8,16 +8,16 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: left;
-    color: ${Theme.textAccent};
+    color: ${Theme.textoAccent};
     font-weight: bold;
     font-size: 20px;
     padding: 0px;
     border-radius: 0px;
     margin-bottom: 20px;
-    animation: showSidebar .4s;
+    animation: mostrarSidebar .4s;
     cursor: pointer;
 
-    @keyframes showSidebar {
+    @keyframes mostrarSidebar {
         from {
             opacity: 0;
             width: 0;
@@ -35,14 +35,14 @@ export const Container = styled.div`
     }
 
     > div {
-        background-color: ${Theme.textAccent};
+        background-color: ${Theme.textoAccent};
         width: 5px;
         height: 100%;
         border-radius: 15px;
     }
 
     &:hover {
-        background: ${Theme.hoverBackground};
+        background: ${Theme.hoverFundo};
         backdrop-filter: blur( 13.5px );
         -webkit-backdrop-filter: blur( 13.5px );
     }

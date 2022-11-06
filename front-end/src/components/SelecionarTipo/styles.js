@@ -18,11 +18,11 @@ display: flex;
 flex-direction: row;
 align-items: center;
 justify-content: space-between;
-background-color: ${Theme.timeSelector};
+background-color: ${Theme.horaSeletor};
 border-radius: 25px;
 `;
 
-export const DayContainer = styled.div`
+export const ContainerDia = styled.div`
 width: 33%;
 height: calc(100% - 4px);
 display: flex;
@@ -35,13 +35,13 @@ border-radius: 25px;
 cursor: pointer;
 `;
 
-export const DayText = styled.div`
+export const Dia = styled.div`
 font-size: 14px;
 font-weight: bold;
-color: ${Theme.textSecondary};
+color: ${Theme.textoSecondary};
 `;
 
-export const WeekContainer = styled.div`
+export const ContainerSemana = styled.div`
 width: 33%;
 height: calc(100% - 4px);
 display: flex;
@@ -54,13 +54,13 @@ border-radius: 25px;
 cursor: pointer;
 `;
 
-export const WeekText = styled.div`
+export const Semana = styled.div`
 font-size: 14px;
 font-weight: bold;
-color: ${Theme.textSecondary};
+color: ${Theme.textoSecondary};
 `;
 
-export const MonthContainer = styled.div`
+export const ContainerMes = styled.div`
 width: 33%;
 height: calc(100% - 4px);
 display: flex;
@@ -73,8 +73,8 @@ border: 2px solid ${Theme.border};
 cursor: pointer;
 `;
 
-export const MonthText = styled.div`
+export const Mes = styled.div`
 font-size: 14px;
 font-weight: bold;
-color: ${Theme.textAccent};
+color: ${Theme.textoAccent};
 `;

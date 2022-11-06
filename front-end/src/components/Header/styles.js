@@ -9,7 +9,7 @@ export const Container = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    background-color: ${Theme.background};
+    background-color: ${Theme.fundo};
     box-shadow: 2px 0px 8px 1px rgba(0, 0, 0, 0.2);
     gap: 30px;
     user-select: none;
@@ -18,7 +18,7 @@ export const Container = styled.div`
         width: 30px;
         height: 30px;
         margin-left: 10px;
-        color: ${Theme.textPrimary};
+        color: ${Theme.textoPrimary};
         cursor: pointer;
     }
 `;
@@ -26,7 +26,7 @@ export const Container = styled.div`
 export const ContainerInstituicao = styled.div`
     width: auto;
     height: 100%;
-    color: ${Theme.textPrimary};
+    color: ${Theme.textoPrimary};
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -41,7 +41,7 @@ export const ContainerInstituicao = styled.div`
 export const SubContainerInstituicao = styled.div`
     width: auto;
     height: 100%;
-    color: ${Theme.textPrimary};
+    color: ${Theme.textoPrimary};
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -49,11 +49,11 @@ export const SubContainerInstituicao = styled.div`
     cursor: pointer;
 `;
 
-export const Title = styled.div`
+export const Titulo = styled.div`
     font-size: 20px;
     font-weight: bold;
 `;
 
-export const Subtitle = styled.div`
+export const SubTitulo = styled.div`
     font-size: 15px;
 `;

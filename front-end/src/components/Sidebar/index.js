@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Content, ProfileContainer, NameContainer } from './styles';
+import { Container, Content, ContainerPerfil, ContainerNome } from './styles';
 import {
     FaTimes,
     FaRegCalendarAlt,
@@ -10,36 +10,36 @@ import SidebarItem from '../SidebarItem';
 import imgPerfil from '../../assets/img/person.jpg';
 import { Link, NavLink } from 'react-router-dom';
 
-const Sidebar = ({active}) => {
-    const closeSidebar = () => {active(false)};
+const Sidebar = ({ativo}) => {
+    const fecharSidebar = () => {ativo(false)};
 
     return (
-        <Container sidebar={active} id="container">
-            <FaTimes onClick={closeSidebar} />
-            <ProfileContainer>
-                <img src={imgPerfil} alt='Profile' />
+        <Container sidebar={ativo} id="container">
+            <FaTimes onClick={fecharSidebar} />
+            <ContainerPerfil>
+                <img src={imgPerfil} alt='Perfil' />
                 <Link to='/login'>
-                <NameContainer>
+                <ContainerNome>
                         <p>Nome Sobrenome</p>
                         <FaAngleDown />
-                </NameContainer>
+                </ContainerNome>
                 </Link>
-            </ProfileContainer>
+            </ContainerPerfil>
             <Content >
                 <NavLink to='/'>
-                    <SidebarItem Icon={FaRegCalendarAlt} Text='INÍCIO' />
+                    <SidebarItem Icone={FaRegCalendarAlt} Texto='INÍCIO' />
                 </NavLink>
-                <NavLink to='/mybookings'>
-                    <SidebarItem Icon={FaRegCalendarAlt} Text='MINHAS RESERVAS' />
+                <NavLink to='/minhasreservas'>
+                    <SidebarItem Icone={FaRegCalendarAlt} Texto='MINHAS RESERVAS' />
                 </NavLink>
-                <NavLink to='/users'>
-                    <SidebarItem Icon={FaRegCalendarAlt} Text='USUÁRIOS' />
+                <NavLink to='/usuarios'>
+                    <SidebarItem Icone={FaRegCalendarAlt} Texto='USUÁRIOS' />
                     </NavLink>
-                <NavLink to='/configs'>
-                    <SidebarItem Icon={FaRegCalendarAlt} Text='CONFIGURAÇÕES' />
+                <NavLink to='/configuracoes'>
+                    <SidebarItem Icone={FaRegCalendarAlt} Texto='CONFIGURAÇÕES' />
                     </NavLink>
                 <NavLink to='/logout'>
-                    <SidebarItem Icon={FaRegCalendarAlt} Text='SAIR' />
+                    <SidebarItem Icone={FaRegCalendarAlt} Texto='SAIR' />
                 </NavLink>
             </Content>
         </Container>

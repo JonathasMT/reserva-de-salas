@@ -5,7 +5,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const port = 3001;
+const porta = 3001;
 
 const app = express();
 app.use(cors());
@@ -13,8 +13,8 @@ app.use(cors());
 //Configurar JSON response
 app.use(express.json());
 
-//Models
-const User = require('./models/User');
+//Modelos
+const Usuario = require('./models/Usuario');
 
 //Rota publica
 app.get('/', (req, res) => {
@@ -22,19 +22,19 @@ app.get('/', (req, res) => {
 });
 
 //Rota privada
-app.get('/user/:id', checkToken, async (req, res) => {
+app.get('/usuario/:id', verificaToken, async (req, res) => {
     const  id = req.params.id;
 
     //Verificar se o usuario existe
-    const user = await User.findById(id, '-password');
-    if(!user) {
+    const usuario = await Usuario.findById(id, '-senha');
+    if(!usuario) {
         return res.status(404).json({msg: 'O usuário não foi encontrado!'});
     }
-    res.status(200).json({user});
+    res.status(200).json({usuario});
 });
-function checkToken(req, res, next) {
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
+function verificaToken(req, res, next) {
+    const autHeader = req.headers['authorization'];
+    const token = autHeader && autHeader.split(' ')[1];
     if(!token) {
         return res.status(401).json({msg: 'Acesso negado!'});
     };
@@ -43,107 +43,107 @@ function checkToken(req, res, next) {
         jwt.verify(token, secret);
         
         next();
-    } catch (error) {
-        console.log(error);
+    } catch (erro) {
+        console.log(erro);
         res.status(400).json({msg: 'Token inválido!'});
     };
 };
 
 
 //Rota de criação de usuario
-app.post('/auth/register', async (req, res) => {
-    const {name, email, password, confirmPassword} = req.body;
+app.post('/cadastro', async (req, res) => {
+    const {nome, email, senha, confirmaSenha} = req.body;
     //validações
-    if(!name) {
+    if(!nome) {
         return res.status(422).json({msg: 'O nome é obrigatório!'})
     };
     if(!email) {
         return res.status(422).json({msg: 'O email é obrigatório!'})
     };
-    if(!password) {
+    if(!senha) {
         return res.status(422).json({msg: 'O senha é obrigatório!'})
     };
-    if(!confirmPassword) {
+    if(!confirmaSenha) {
         return res.status(422).json({msg: 'O confimar senha é obrigatório!'})
     };
-    if(password !== confirmPassword) {
+    if(senha !== confirmaSenha) {
         return res.status(422).json({msg: 'As senhas não conferem!'})
     };
     //Checar se o usuario existe
-    const userExists = await User.findOne({email: email})
-    if(userExists) {
+    const existeUsuario = await Usuario.findOne({email: email})
+    if(existeUsuario) {
         return res.status(422).json({msg: 'O email ' + email + ' já existe!'});
     };
 
     //Criar senha
     const salt = await bcrypt.genSalt(12);
-    const passwordHash = await bcrypt.hash(password, salt);
+    const senhaHash = await bcrypt.hash(senha, salt);
 
     // Criar o usuario de fato
-    const user = new User({
-        name,
+    const usuario = new Usuario({
+        nome,
         email,
-        password: passwordHash,
+        senha: senhaHash,
     });
     try {
-        await user.save();
+        await usuario.save();
         res.status(201).json({msg: 'Usuário cadastrado com sucesso'});
-    } catch (error) {
-        console.log(error);
+    } catch (erro) {
+        console.log(erro);
         res.status(500).json({msg: 'Ocorreu um erro, tente novamente ou contacte o administrador!'});
     };
 });
 
 //Rota de Login de usuario
-app.post('/auth/login', async (req, res) => {
-    const {email, password} = req.body;
+app.post('/login', async (req, res) => {
+    const {email, senha} = req.body;
 
     //validações
     if(!email) {
         return res.status(422).json({msg: 'O email é obrigatório!'})
     };
-    if(!password) {
+    if(!senha) {
         return res.status(422).json({msg: 'A senha é obrigatório!'})
     };
 
     //Verificar se o usuario existe e se a senha esta correta
-    const user = await User.findOne({email: email})
-    if(!user) {
+    const usuario = await Usuario.findOne({email: email})
+    if(!usuario) {
         return res.status(422).json({msg: 'O email ' + email + ' não foi encontrado!'});
     };
-    const checkPassord = await bcrypt.compare(password, user.password);
-    if(!checkPassord) {
+    const verificaSenha = await bcrypt.compare(senha, usuario.senha);
+    if(!verificaSenha) {
         return res.status(422).json({msg: 'Senha incorreta!'});
     };
 
     //Logar o  usuario;
     try {
         const secret = process.env.SECRET;
-        const token = jwt.sign({id: user._id}, secret,);
+        const token = jwt.sign({id: usuario._id}, secret,);
 
-        await user.save();
+        await usuario.save();
         res.status(200).json({msg: 'Usuário autenticado com sucesso', token});
-    } catch (error) {
-        console.log(error);
+    } catch (erro) {
+        console.log(erro);
         res.status(500).json({msg: 'Ocorreu um erro, tente novamente ou contacte o administrador!'});
     };
 });
 
 //Credenciais
-const dbuser = process.env.DB_USER;
-const dbpass = process.env.DB_PASS;
+const bdusuario = process.env.DB_USER;
+const dbsenha = process.env.DB_PASS;
 
-// mongoose.connect('mongodb+srv://' + dbuser + ':' + dbpass + '@cluster0.gbfhz.mongodb.net/?retryWrites=true&w=majority').then(
+// mongoose.connect('mongodb+srv://' + bdusuario + ':' + dbsenha + '@cluster0.gbfhz.mongodb.net/?retryWrites=true&w=majority').then(
 //     () => {
 //         app.listen(3000);
 //         console.log('Conectado ao Banco de Dados!');
 //     }
-// ).catch((error) => console.log(error));
+// ).catch((erro) => console.log(erro));
 
 mongoose.connect('mongodb://localhost:27017/reserva').then(
     () => {
-        app.listen(port);
+        app.listen(porta);
         console.log('Conectado ao bando de dados.');
-        console.log('Rodando na porta ' + port);
+        console.log('Rodando na porta ' + porta);
     }
-).catch((error) => console.log(error));
+).catch((erro) => console.log(erro));

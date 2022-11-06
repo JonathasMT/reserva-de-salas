@@ -15,7 +15,7 @@ padding-right: 5%;
 user-select: none;
 `;
 
-export const CalendarHeader = styled.div`
+export const CalendarioHeader = styled.div`
     width: 100%;
     height: 30px;
     box-sizing: border-box;
@@ -30,15 +30,15 @@ export const CalendarHeader = styled.div`
     align-items: center;
 `;
 
-export const CalendarNameDays = styled.div`
+export const CalendarioDiasSemana = styled.div`
     width: calc(100% / 7);
     text-align: center;
     font-size: 0.9rem;
     font-weight: bold;
-    color: ${Theme.textSecondaryVariant};
+    color: ${Theme.textoSecondaryVariant};
 `;
 
-export const WeekContainer = styled.div`
+export const ContainerSemana = styled.div`
     width: 100%;
     height: calc(100vw / 17);
     box-sizing: border-box;
@@ -48,26 +48,26 @@ export const WeekContainer = styled.div`
     border-right: 1px solid ${Theme.border};
 `;
 
-export const DayContainer = styled.div`
+export const ContainerDia = styled.div`
     width: calc(100% / 7);
     height: 100%;
     box-sizing: border-box;
     display: block;
-    background-color: ${Theme.calendarBackground};
+    background-color: ${Theme.calendarioFundo};
     border: 1px solid ${Theme.border};
     padding: 3px;
     cursor: pointer;
 `;
 
-export const Day = styled.div`
+export const Dia = styled.div`
     box-sizing: border-box;
     float: right;
-    color: ${Theme.textSecondary};
+    color: ${Theme.textoSecondary};
     font-weight: bold;
     font-size: 0.7rem;
 `;
 
-export const CurrentDay = styled.div`
+export const DiaCorrente = styled.div`
     width: 0.9rem;
     height: 0.9rem;
     float: right;
@@ -76,9 +76,9 @@ export const CurrentDay = styled.div`
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    color: ${Theme.calendarBackground};
-    background-color: ${Theme.textSecondary};
-    border: 0.5px solid ${Theme.textSecondary};
+    color: ${Theme.calendarioFundo};
+    background-color: ${Theme.textoSecondary};
+    border: 0.5px solid ${Theme.textoSecondary};
     border-radius: 50%;
     padding: 1px;
     font-size: 0.6rem;
