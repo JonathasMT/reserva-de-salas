@@ -120,9 +120,10 @@ app.post('/login', async (req, res) => {
     try {
         const secret = process.env.SECRET;
         const token = jwt.sign({id: usuario._id}, secret,);
-
+        const usuarioId = usuario.id;
+        
         await usuario.save();
-        res.status(200).json({msg: 'Usuário autenticado com sucesso', token});
+        res.status(200).json({msg: 'Usuário autenticado com sucesso', token, usuarioId});
     } catch (erro) {
         console.log(erro);
         res.status(500).json({msg: 'Ocorreu um erro, tente novamente ou contacte o administrador!'});

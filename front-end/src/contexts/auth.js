@@ -6,27 +6,28 @@ export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
     const apiUrl = "http://localhost:3001";
-    const [user, setUser] = useState();
+    const [usuario, setUsuario] = useState();
 
 
     useEffect(() => {
-        const userToken = localStorage.getItem("token");
+        const usuarioLogado = localStorage.getItem("usuarioLogado");
 
-        if (userToken) {
-        const hasUser = JSON.parse(usersStorage)?.filter(
-            (user) => user.email === JSON.parse(userToken).email
+        if (usuarioLogado) {
+        const temUsuario = JSON.parse(usuarioLogado)?.filter(
+            (usuario) => usuario.usuario.id === JSON.parse(usuarioLogado).usuarioId
         );
-        if (hasUser) setUser(hasUser[0]);
+        if (temUsuario) setUser(temUsuario[0]);
+        console.log(temUsuario);
         }
     }, []);
 
     const signin = (email, password) => {
         const usersStorage = JSON.parse(localStorage.getItem("users_bd"));
 
-        const hasUser = usersStorage?.filter((user) => user.email === email);
+        const temUsuario = usersStorage?.filter((user) => user.email === email);
 
-    if (hasUser?.length) {
-            if (hasUser[0].email === email && hasUser[0].password === password) {
+    if (temUsuario?.length) {
+            if (temUsuario[0].email === email && temUsuario[0].password === password) {
             const token = Math.random().toString(36).substring(2);
             localStorage.setItem("user_token", JSON.stringify({ email, token }));
             setUser({ email, password });
@@ -42,9 +43,9 @@ export const AuthProvider = ({ children }) => {
     const signup = (email, password) => {
         const usersStorage = JSON.parse(localStorage.getItem("users_bd"));
 
-        const hasUser = usersStorage?.filter((user) => user.email === email);
+        const temUsuario = usersStorage?.filter((user) => user.email === email);
 
-        if (hasUser?.length) {
+        if (temUsuario?.length) {
         return "Já tem uma conta com esse E-mail";
         }
 

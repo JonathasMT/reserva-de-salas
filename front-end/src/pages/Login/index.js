@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Header from '../../components/Header';
+import {Container} from './styles';
 
 function Home() {
     const apiUrl = "http://localhost:3001";
@@ -15,9 +16,10 @@ function Home() {
     };
 
     useEffect(() => {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('usuarioLogado');
       if (token) {
         console.log("Você já esta logado!");
+        console.log(token)
       }else {
         console.log('Faça LOGIN!')
       }
@@ -28,8 +30,10 @@ function Home() {
       const loginData = {email:email,senha:senha};
       await axios.post(apiUrl+'/login', loginData)
       .then((resultado) => {
+        const token = resultado.data.token;
+        const usuarioId = resultado.data.usuarioId;
         alert(resultado.data.msg);
-        localStorage.setItem('token', JSON.stringify(resultado.data.token));
+        localStorage.setItem('usuarioLogado', JSON.stringify({token:token, usuarioId:usuarioId}));
       }).catch((erro) => {
         console.log(erro);
         alert(erro.response.data.msg);
@@ -37,25 +41,27 @@ function Home() {
     };
 
     return(
-    <div>
+      <div>
         <Header/>
-        <h1>LOGIN</h1>
-        <form onSubmit={submeterLogin}>
-        <input
-            type="email"
-            name="email"
-            placeholder="Digite o seu e-mail"
-            onChange={(evento) => handleEmail(evento)}
-        />
-        <input
-            type="password"
-            name="senha"
-            placeholder="Digite sua senha"
-            onChange={(evento) => handleSenha(evento)}
-        />
-        <button type="submit">Entrar</button>
-        </form>
-    </div>
+        <Container>
+          <h1>LOGIN</h1>
+          <form onSubmit={submeterLogin}>
+            <input
+                type="email"
+                name="email"
+                placeholder="Digite o seu e-mail"
+                onChange={(evento) => handleEmail(evento)}
+            />
+            <input
+                type="password"
+                name="senha"
+                placeholder="Digite sua senha"
+                onChange={(evento) => handleSenha(evento)}
+            />
+            <button type="submit">Entrar</button>
+          </form>
+        </Container>
+      </div>
     )
 }
 
