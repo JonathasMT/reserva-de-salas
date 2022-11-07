@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Container, ContainerInstituicao, Titulo, SubTitulo, SubContainerInstituicao } from './styles';
 import { FaBars } from "react-icons/fa";
-import Sidebar from '../Sidebar';
+import { NavLink } from "react-router-dom";
 
+import { Container, ContainerInstituicao, Titulo, SubTitulo, SubContainerInstituicao } from './styles';
+import Sidebar from '../Sidebar';
 import logo from '../../assets/img/logo.png';
 import useAuth from "../../hooks/useAuth";
-import { NavLink } from "react-router-dom";
+
 
 const Header = () => {
     function Menu() {

@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import MinhasReservas from './pages/MinhasReservas';
 import Configuracoes from './pages/Config';
+import Header from "./components/Header";
 
 const Privada = ({ Item }) => {
   const { logado } = useAuth();
@@ -17,6 +18,7 @@ const RoutesApp = () => {
   return (
     <BrowserRouter>
       <Fragment>
+        <Header/>
         <Routes>
             <Route path='/' element={<Privada Item={Home} />}/>
             <Route path='/minhasreservas' element={<Privada Item={MinhasReservas} />}/>

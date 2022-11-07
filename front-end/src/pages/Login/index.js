@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
+import { Button, Container, Form, Input, SubContainer } from './styles';
 import useAuth from "../../hooks/useAuth";
-import Header from '../../components/Header';
-import { Container } from './styles';
 
 const Login = () => {
     const { entrar } = useAuth();
@@ -32,28 +31,28 @@ const Login = () => {
       navegar('/');
     };
     return(
-      <div>
-        <Header/>
-        <Container>
-          <h1>LOGIN</h1>
-          <input
+      <Container>
+        <SubContainer>
+          <Form>
+            <Input
               type="email"
               name="email"
               placeholder="Digite o seu e-mail"
               value={email}
               onChange={(evento) => [setEmail(evento.target.value), setErro('')]}
-          />
-          <input
+            />
+            <Input
               type="password"
               name="senha"
               placeholder="Digite sua senha"
               value={senha}
               onChange={(evento) => [setSenha(evento.target.value), setErro('')]}
-          />
-          <button onClick={submeterLogin}>Logar</button>
-          <span>{erro}</span>
-        </Container>
-      </div>
+            />
+            <Button onClick={submeterLogin}>ENTRAR</Button>
+            <span>{erro}</span>
+          </Form>
+        </SubContainer>
+      </Container>
     );
 };
 

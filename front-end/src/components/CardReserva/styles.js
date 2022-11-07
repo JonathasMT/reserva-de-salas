@@ -22,7 +22,9 @@ width: 20%;
 height: auto;
 font-size: 8px;
 font-weight: bold;
-color: ${Theme.textoPrimary}
+color: ${Theme.textoPrimary};
+text-overflow: ellipsis;
+overflow: hidden;
 `;
 
 export const Titulo = styled.div`
@@ -31,5 +33,7 @@ height: 100%;
 align-items: flex-end;
 justify-content: flex-end;
 font-size: 8px;
-color: ${Theme.fundo}
+color: ${Theme.fundo};
+text-overflow: ellipsis;
+overflow: hidden;
 `;
