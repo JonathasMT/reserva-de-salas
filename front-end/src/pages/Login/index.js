@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate as navegar} from 'react-router-dom';
 
 import { Button, Container, Form, Input, SubContainer } from './styles';
 import useAuth from '../../hooks/useAuth';
 
 const Login = () => {
     const { entrar } = useAuth();
-    const navegar = useNavigate();
 
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
@@ -16,7 +15,7 @@ const Login = () => {
       const usuario = localStorage.getItem('usuarioLogado');
       if (usuario) {
         console.log('Você já esta logado!');
-        console.log(usuario)
+        console.log(usuario);
         navegar('/');
       }else {
         console.log('Faça LOGIN!');
@@ -27,6 +26,9 @@ const Login = () => {
       const resposta = await entrar(email, senha);
       if (resposta) {
         setMsg(resposta);
+      }else {
+        setMsg('Erro ao conectar com a API')
+        return;
       };
       navegar('/');
     };

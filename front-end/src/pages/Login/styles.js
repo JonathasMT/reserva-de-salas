@@ -55,6 +55,7 @@ background-color: ${Theme.textoAccent};
 color: white;
 font-size: 20px;
 font-weight: bold;
+cursor: pointer;
 `;
 
 
