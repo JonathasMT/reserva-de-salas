@@ -20,7 +20,7 @@ const Sidebar = ({ativo}) => {
   
 
     return (
-        <Container sidebar={ativo} id="container">
+        <Container sidebar={ativo} id='container'>
             <FaTimes onClick={fecharSidebar} />
             <ContainerPerfil>
                 <img src={imgPerfil} alt='Perfil' />
@@ -44,7 +44,7 @@ const Sidebar = ({ativo}) => {
                 <NavLink to='/configuracoes' onClick={() => console.log('SAIR CLICADO')}>
                     <SidebarItem Icone={<FaRegCalendarAlt/>} Texto='CONFIGURAÇÕES' />
                 </NavLink>
-                <NavLink onClick={() => [sair(), navegar("/")]}>
+                <NavLink onClick={() => [sair(), fecharSidebar, navegar('/')]}>
                     <SidebarItem Icone={<FaRegCalendarAlt/>} Texto='SAIR' />
                 </NavLink>
             </Content>

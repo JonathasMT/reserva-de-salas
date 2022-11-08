@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 import { Container, SubContainer, Grupo, Sala } from './styles';
-import { FaAngleDown } from "react-icons/fa";
+import { FaAngleDown } from 'react-icons/fa';
 
 function SelecionarSala() {
     return(

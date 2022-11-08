@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { Theme } from "../../components/Theme"
+import { Theme } from '../../components/Theme'
 
 export const Container = styled.div`
 height: calc(100vh - 50px);
@@ -27,7 +27,7 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
-gap: 10px;
+gap: 20px;
 border: 1px solid white;
 border-radius: 10px;
 padding: 20px;
@@ -36,10 +36,10 @@ padding: 20px;
 
 export const Input = styled.input`
 width: 300px;
-height: 40px;
+height: 30px;
 box-sizing: border-box;
 border: none;
-border-radius: 10px;
+border-radius: 7px;
 padding: 10px;
 
 `;
@@ -49,7 +49,7 @@ width: 300px;
 height: 40px;
 box-sizing: border-box;
 border: none;
-border-radius: 10px;
+border-radius: 7px;
 padding: 5px;
 background-color: ${Theme.textoAccent};
 color: white;

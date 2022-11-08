@@ -2,7 +2,7 @@ import React from 'react';
 
 import GlobalStyle from '../src/styles/globalStyle';
 import RoutesApp from './routes';
-import { AuthProvider } from "./contexts/auth";
+import { AuthProvider } from './contexts/auth';
 
 function App() {
   return (

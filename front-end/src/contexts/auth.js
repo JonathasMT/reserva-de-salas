@@ -1,11 +1,11 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from 'react';
 import axios from 'axios';
 
 
 export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
-    const apiUrl = "http://localhost:3001";
+    const apiUrl = 'http://localhost:3001';
     const [usuario, setUsuario] = useState();
 
 
@@ -48,18 +48,18 @@ export const AuthProvider = ({ children }) => {
     };
 
     const cadastrar = (email, senha) => {
-        const armazenamentoUsuario = JSON.parse(localStorage.getItem("users_bd"));
+        const armazenamentoUsuario = JSON.parse(localStorage.getItem('users_bd'));
         const temUsuario = armazenamentoUsuario?.filter((usuario) => usuario.email === email);
         if (temUsuario?.length) {
-        return "Já tem uma conta com esse E-mail";
-        }
+        return 'Já tem uma conta com esse E-mail';
+        };
         let novoUsuario;
         if (armazenamentoUsuario) {
         novoUsuario = [...armazenamentoUsuario, { email, senha }];
         } else {
         novoUsuario = [{ email, senha }];
-        }
-        localStorage.setItem("users_bd", JSON.stringify(novoUsuario));
+        };
+        localStorage.setItem('users_bd', JSON.stringify(novoUsuario));
         return;
     };
 

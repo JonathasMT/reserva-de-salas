@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { Container, SubContainer, ContainerDia, Dia, ContainerSemana, Semana, ContainerMes, Mes } from './styles';
 
 function SelecionarTipo() {

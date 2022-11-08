@@ -1,5 +1,5 @@
-import moment from "moment";
-import React from "react";
+import moment from 'moment';
+import React from 'react';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 
 import { Container, Seletor, DataHora, SubContainer, Corrente } from './styles';
