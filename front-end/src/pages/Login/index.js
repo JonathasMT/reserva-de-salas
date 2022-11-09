@@ -3,6 +3,7 @@ import { useNavigate as navegar} from 'react-router-dom';
 
 import { Button, Container, Form, Input, SubContainer } from './styles';
 import useAuth from '../../hooks/useAuth';
+import Header from '../../components/Header';
 
 const Login = () => {
     const { entrar } = useAuth();
@@ -16,7 +17,7 @@ const Login = () => {
       if (usuario) {
         console.log('Você já esta logado!');
         console.log(usuario);
-        navegar('/');
+        // navegar('/');
       }else {
         console.log('Faça LOGIN!');
       };
@@ -36,20 +37,26 @@ const Login = () => {
       <Container>
         <SubContainer>
           <Form>
-            <Input
-              type='email'
-              name='email'
-              placeholder='Digite o seu e-mail'
-              value={email}
-              onChange={(evento) => [setEmail(evento.target.value), setMsg('')]}
-            />
-            <Input
-              type='password'
-              name='senha'
-              placeholder='Digite sua senha'
-              value={senha}
-              onChange={(evento) => [setSenha(evento.target.value), setMsg('')]}
-            />
+            <span> 
+              E-mail:
+              <Input
+                type='email'
+                name='email'
+                placeholder='Digite o seu e-mail'
+                value={email}
+                onChange={(evento) => [setEmail(evento.target.value), setMsg('')]}
+              />
+            </span>
+            <span>
+              Senha:
+              <Input
+                type='password'
+                name='senha'
+                placeholder='Digite sua senha'
+                value={senha}
+                onChange={(evento) => [setSenha(evento.target.value), setMsg('')]}
+              />
+            </span>
             <Button onClick={submeterLogin}>ENTRAR</Button>
             {msg}
           </Form>

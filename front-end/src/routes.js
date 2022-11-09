@@ -10,11 +10,12 @@ import Header from './components/Header';
 
 const Privada = ({ Item }) => {
   const { logado } = useAuth();
-  console.log('USEAUTH >> '+ logado);
+  console.log('routes.js >> Logado? >> '+ logado);
   return logado ? <Item /> : <Login />;
 };
 
 const RoutesApp = () => {
+  console.log('Passou no arquivo routs.js');
   return (
     <BrowserRouter>
       <Fragment>

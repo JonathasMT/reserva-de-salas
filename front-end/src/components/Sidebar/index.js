@@ -14,6 +14,7 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 
 const Sidebar = ({ativo}) => {
+    console.log('Passou no arquivo sidebar.js');
     const fecharSidebar = () => {ativo(false)};
     const { sair } = useAuth();
     const navegar = useNavigate();

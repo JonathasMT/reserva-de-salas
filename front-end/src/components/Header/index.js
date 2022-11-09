@@ -9,10 +9,11 @@ import useAuth from '../../hooks/useAuth';
 
 
 const Header = () => {
+    console.log('Passou no arquivo Header.js');
     function Menu() {
         const { logado } = useAuth();
         if (logado) return <FaBars onClick={mostrarSidebar}/>;
-    }
+    };
     const [sidebar, setSidebar] = useState(false);
     const mostrarSidebar = () => setSidebar(!sidebar);
 

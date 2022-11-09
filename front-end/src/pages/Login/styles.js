@@ -29,9 +29,18 @@ align-items: center;
 justify-content: center;
 gap: 20px;
 border: 1px solid white;
-border-radius: 10px;
+border-radius: 20px;
 padding: 20px;
 
+    >span {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        text-align: start;
+        color: ${Theme.textoPrimary};
+        gap: 5px;
+    }
 `;
 
 export const Input = styled.input`
@@ -42,6 +51,12 @@ border: none;
 border-radius: 7px;
 padding: 10px;
 
+    ::placeholder {
+        color: ${Theme.textoSecondary};
+    }
+    :focus {
+        color: ${Theme.textoPrimary};
+    }
 `;
 
 export const Button = styled.button`

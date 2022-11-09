@@ -5,13 +5,14 @@ import axios from 'axios';
 export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
+    console.log('Passou no arquivo auth.js');
     const apiUrl = 'http://localhost:3001';
     const [usuario, setUsuario] = useState();
 
 
     useEffect(() => {
+        console.log('Passou no arquivo auth.js >> useEffect');
         const usuarioLogado = localStorage.getItem('usuarioLogado');
-
         if (usuarioLogado) {
             const {token, email} = JSON.parse(usuarioLogado);
 
