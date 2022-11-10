@@ -10,19 +10,18 @@ import {
 
 import SidebarItem from '../SidebarItem';
 import imgPerfil from '../../assets/img/person.jpg';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate as navegar } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 
 const Sidebar = ({ativo}) => {
     console.log('Passou no arquivo sidebar.js');
     const fecharSidebar = () => {ativo(false)};
     const { sair } = useAuth();
-    const navegar = useNavigate();
   
 
     return (
         <Container sidebar={ativo} id='container'>
-            <FaTimes onClick={fecharSidebar} />
+            <FaTimes onClick={() => fecharSidebar()} />
             <ContainerPerfil>
                 <img src={imgPerfil} alt='Perfil' />
                 <Link to='/login'>
@@ -45,7 +44,7 @@ const Sidebar = ({ativo}) => {
                 <NavLink to='/configuracoes' onClick={() => console.log('SAIR CLICADO')}>
                     <SidebarItem Icone={<FaRegCalendarAlt/>} Texto='CONFIGURAÇÕES' />
                 </NavLink>
-                <NavLink onClick={() => [sair(), fecharSidebar, navegar('/')]}>
+                <NavLink onClick={() => [sair() , fecharSidebar(), navegar('/')]}>
                     <SidebarItem Icone={<FaRegCalendarAlt/>} Texto='SAIR' />
                 </NavLink>
             </Content>

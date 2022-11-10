@@ -3,27 +3,18 @@ import { useNavigate as navegar} from 'react-router-dom';
 
 import { Button, Container, Form, Input, SubContainer } from './styles';
 import useAuth from '../../hooks/useAuth';
-import Header from '../../components/Header';
 
-const Login = () => {
-    const { entrar } = useAuth();
+const Perfil = () => {
+    const { entrar, usuario } = useAuth();
 
-    const [email, setEmail] = useState('');
+    console.log('USUARIO >>>'+usuario);
+
+    // const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [msg, setMsg] = useState('');
 
-    // useEffect(() => {
-    //   const usuario = localStorage.getItem('usuarioLogado');
-    //   console.log('LOGADO? >> '+usuario);
-    //   if (usuario) {
-    //     console.log('Você já esta logado!');
-    //     console.log(usuario);
-    //   }else {
-    //     console.log('Faça LOGIN!');
-    //     return
-    //   };
-    //   navegar('/');
-    // }, []);
+    const {token, nome, email} = JSON.parse(usuario);
+
 
     const submeterLogin = async() => {
       const resposta = await entrar(email, senha);
@@ -35,18 +26,29 @@ const Login = () => {
       };
       navegar('/');
     };
+
     return(
       <Container>
         <SubContainer>
           <Form>
+          <span> 
+              Nome:
+              <Input
+                type='nome'
+                name='nome'
+                placeholder='Digite seu nome completo'
+                value={nome}
+                // onChange={(evento) => [setEmail(evento.target.value), setMsg('')]}
+              />
+            </span>
             <span> 
               E-mail:
               <Input
                 type='email'
                 name='email'
-                placeholder='Digite o seu e-mail'
+                placeholder='Digite seu e-mail'
                 value={email}
-                onChange={(evento) => [setEmail(evento.target.value), setMsg('')]}
+                // onChange={(evento) => [setEmail(evento.target.value), setMsg('')]}
               />
             </span>
             <span>
@@ -69,4 +71,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Perfil;

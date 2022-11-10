@@ -14,14 +14,10 @@ export const AuthProvider = ({ children }) => {
         console.log('Passou no arquivo auth.js >> useEffect');
         const usuarioLogado = localStorage.getItem('usuarioLogado');
         if (usuarioLogado) {
-            const {token, email} = JSON.parse(usuarioLogado);
-
-            if (token && email) {
-                const temUsuario = usuarioLogado;
-                if (temUsuario) setUsuario(temUsuario[0]);
-            };
+            setUsuario(usuarioLogado);
         };
     }, []);
+
 
     const entrar = async (email, senha) => {
         var retorno;
