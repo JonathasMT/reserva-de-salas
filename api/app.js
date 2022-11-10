@@ -21,6 +21,9 @@ app.get('/', (req, res) => {
     res.status(200).json({msg: 'Bem vindo a minha API'})
 });
 
+//--------------------------------------------------------------
+
+
 //Rota privada
 app.get('/usuario/:id', verificaToken, async (req, res) => {
     const  id = req.params.id;
