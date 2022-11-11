@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
-const database = require('./dataBase');
+const dataBase = require('../db');
 
-const Reserva = database.define('usuario', {
+const reserva = dataBase.define('usuario', {
     reservaId: {
         type: Sequelize.INTEGER,
         autoIncremente: true,
@@ -33,4 +33,4 @@ const Reserva = database.define('usuario', {
     },
 });
 
-module.exports = Reserva;
+module.exports = reserva;
