@@ -1,40 +1,52 @@
-const validarNome = (req, res, next) => {
-    const { body } = req;
+const Usuario = require('../models/Usuario');
 
-    if (body.nome === undefined) {
+const validarNome = async (req, res, next) => {
+    const { nome } = req.body;
+
+    if (nome === undefined) {
         return res.status(400).json({ msg: 'O campo Nome é obritatório!' });
     };
-    if (body.nome === '') {
+    if (nome === '') {
         return res.status(400).json({ msg: 'O campo Nome deve ser preeenchido!' });
     };
     next();
 };
 
-const validarEmail = (req, res, next) => {
-    const { body } = req;
+const validarEmail = async (req, res, next) => {
+    const { email } = req.body;
 
-    if (body.email === undefined) {
+    if (email === undefined) {
         return res.status(400).json({ msg: 'O campo Email é obritatório!' });
     };
-    if (body.email === '') {
+    if (email === '') {
         return res.status(400).json({ msg: 'O campo Email deve ser preeenchido!' });
+    };
+    const existeEmail = await Usuario.findOne({where : {email: email}});
+    if (existeEmail) {
+        return res.status(400).json({ msg: 'O campo e-mail ' + email + ' já existe, use outro e-mail!' });
     };
     next();
 };
 
-const validarSenha = (req, res, next) => {
-    const { body } = req;
+const validarSenha = async (req, res, next) => {
+    const { senha, confirmaSenha } = req.body;
 
-    if (body.senha === undefined) {
+    if (senha === undefined) {
         return res.status(400).json({ msg: 'O campo Senha é obritatório!' });
     };
-    if (body.senha === '') {
+    if (senha === '') {
+        return res.status(400).json({ msg: 'O campo Senha deve ser preeenchido!' });
+    };
+    if (confirmaSenha === undefined) {
+        return res.status(400).json({ msg: 'O campo Senha é obritatório!' });
+    };
+    if (confirmaSenha === '') {
         return res.status(400).json({ msg: 'O campo Senha deve ser preeenchido!' });
     };
     next();
 };
 
-const validarNivel = (req, res, next) => {
+const validarNivel = async (req, res, next) => {
     const { body } = req;
 
     if (body.nivel === undefined) {
@@ -46,7 +58,7 @@ const validarNivel = (req, res, next) => {
     next();
 };
 
-const validarStatus= (req, res, next) => {
+const validarStatus= async(req, res, next) => {
     const { body } = req;
 
     if (body.status === undefined) {

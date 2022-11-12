@@ -52,16 +52,37 @@ const Perfil = () => {
               />
             </span>
             <span>
-              Senha:
+              Senha atual:
               <Input
                 type='password'
                 name='senha'
-                placeholder='Digite sua senha'
+                placeholder='Digite sua senha atual'
                 value={senha}
                 onChange={(evento) => [setSenha(evento.target.value), setMsg('')]}
               />
             </span>
-            <Button onClick={submeterLogin}>ENTRAR</Button>
+            <span>
+              Nova senha:
+              <Input
+                type='password'
+                name='senha'
+                placeholder='Digite uma nova senha'
+                value={senha}
+                onChange={(evento) => [setSenha(evento.target.value), setMsg('')]}
+              />
+            </span>
+            <span>
+              Repita a nova senha:
+              <Input
+                type='password'
+                name='senha'
+                placeholder='Repita a nova senha'
+                value={senha}
+                onChange={(evento) => [setSenha(evento.target.value), setMsg('')]}
+              />
+            </span>
+            <Button onClick={submeterLogin}>ATUALIZAR</Button>
+            <Button onClick={submeterLogin}>CANCELAR</Button>
             {msg}
           </Form>
           <br/>

@@ -16,7 +16,11 @@ import useAuth from '../../hooks/useAuth';
 const Sidebar = ({ativo}) => {
     console.log('Passou no arquivo sidebar.js');
     const fecharSidebar = () => {ativo(false)};
-    const { sair } = useAuth();
+    const { sair, usuario } = useAuth();
+
+    console.log('USUARIO >>>'+usuario);
+
+    const {token, nome, email} = JSON.parse(usuario);
   
 
     return (
@@ -24,9 +28,9 @@ const Sidebar = ({ativo}) => {
             <FaTimes onClick={() => fecharSidebar()} />
             <ContainerPerfil>
                 <img src={imgPerfil} alt='Perfil' />
-                <Link to='/login'>
+                <Link to='/perfil' onClick={() => fecharSidebar()}>
                 <ContainerNome>
-                        <p>Nome Sobrenome</p>
+                        <p>{nome}</p>
                         <FaAngleDown />
                 </ContainerNome>
                 </Link>

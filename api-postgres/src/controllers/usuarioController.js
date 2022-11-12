@@ -1,12 +1,5 @@
-const usuario = require('../models/usuario');
+const usuario = require('../models/Usuario');
 const dataBase = require('../models/db');
-
-
-// router.post('/cadastro', usuarioControler.createUsuario);
-// router.get('/usuario', usuarioControler.readUsuario);
-// router.get('/usuarios', usuarioControler.readUsuarios);
-// router.put('/usuario/:id', usuarioControler.updateUsuario);
-// router.delete('/usuario/:id', usuarioControler.deleteUsuario);
 
 const createUsuario = async (req, res) => {
     await dataBase.sync();
@@ -23,9 +16,10 @@ const createUsuario = async (req, res) => {
 
 const readUsuario = async (req, res) => {
     await dataBase.sync();
-    const usuarios = usuario.findAll();
+    const usuarios = usuario.findByPk();
     return res.status(200).json('Listar todos os usuarios.'+usuarios)
 };
+
 const readUsuarios = async (_req, res) => {
     await dataBase.sync();
     const usuarios = await usuario.findAll();

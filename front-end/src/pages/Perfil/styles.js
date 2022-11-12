@@ -39,7 +39,7 @@ padding: 20px;
         justify-content: flex-start;
         text-align: start;
         color: ${Theme.textoPrimary};
-        gap: 5px;
+        gap: 3px;
     }
 `;
 

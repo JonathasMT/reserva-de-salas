@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import MinhasReservas from './pages/MinhasReservas';
 import Configuracoes from './pages/Config';
 import Perfil from './pages/Perfil';
+import NotFound from './pages/NotFound';
 
 const Privada = ({ Destino }) => {
   const { logado } = useAuth();
@@ -26,7 +27,7 @@ const RoutesApp = () => {
             <Route path='/minhasreservas' element={<Privada Destino={MinhasReservas} />}/>
             <Route path='/configuracoes' element={<Privada Destino={Configuracoes} />}/>
             <Route path='/perfil' element={<Privada Destino={Perfil} />}/>
-            <Route path='*' element={<Login />} />
+            <Route path='*' element={<NotFound />} />
 
             {/* <Route path='/' element={<Home/>}/>
             <Route path='/minhasreservas' element={<MinhasReservas/>}/>
