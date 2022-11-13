@@ -14,7 +14,8 @@ const Usuario = dataBase.define('Usuario', {
     },
     email: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
     },
     senha: {
         type: Sequelize.STRING,
@@ -35,14 +36,15 @@ const Usuario = dataBase.define('Usuario', {
     },
     ultimo_login: {
         type: Sequelize.DATE
-    },
+    }
 }, {
-    updatedAt: 'criado_em',
-    createdAt: 'atualizado_em'
+    tableName: 'Usuarios',
+    createdAt: 'criado_em',
+    updatedAt: 'atualizado_em'
 });
 
 //Compara se o Modelo de Usuario esta igual o do Banco de Dados
-console.log(Usuario === dataBase.models.Usuario);
+console.log('Usuario: ' + (Usuario === dataBase.models.Usuario).toString());
 //altera/remove/adicionas as colunas caso sejam modificadas ou não existam
 //remover quando em produção
 Usuario.sync({alter: true});

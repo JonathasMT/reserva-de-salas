@@ -1,8 +1,8 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
-const Usuario = require('../models/Usuario');
 const dataBase = require('../models/db');
+const Usuario = require('../models/Usuario');
 
 const createUsuario = async (req, res) => {
     await dataBase.sync();
@@ -32,7 +32,7 @@ const readUsuario = async (req, res) => {
     return res.status(200).json('Listar todos os usuarios.'+usuario)
 };
 
-const readTodosUsuarios = async (_req, res) => {
+const readVariosUsuarios = async (_req, res) => {
     await dataBase.sync();
     const usuarios = await Usuario.findAll();
     console.log(usuarios)
@@ -73,7 +73,7 @@ const login = async (req, res) => {
 module.exports = {
     createUsuario,
     readUsuario,
-    readTodosUsuarios,
+    readVariosUsuarios,
     updateUsuario,
     deleteUsuario,
     login

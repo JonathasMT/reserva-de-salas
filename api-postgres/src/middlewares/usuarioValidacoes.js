@@ -47,6 +47,9 @@ const validarNivel = async (req, res, next) => {
     if (!nivel) {
         return res.status(400).json({msg: 'O campo Nivel deve ser preeenchido!'});
     };
+    if (Number.isInteger(nivel)) {
+        return res.status(400).json({msg: 'O campo Nível deve ser um número inteiro!'});
+    };
     next();
 };
 
