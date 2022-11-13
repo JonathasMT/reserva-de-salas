@@ -4,6 +4,7 @@ const router = express.Router();
 
 const usuarioControler = require('./controllers/usuarioController');
 const usuarioValidacoes = require('./middlewares/usuarioValidacoes');
+const loginValidacoes = require('./middlewares/loginValidacoes');
 
 // //rota raiz/home
 // router.get('/', async (req, res) => {
@@ -18,15 +19,24 @@ router.post('/cadastro',
     usuarioValidacoes.validarEmail,
     usuarioValidacoes.validarSenha,
     usuarioValidacoes.validarNivel,
-    usuarioControler.createUsuario);
+    usuarioControler.createUsuario
+);
 //rota obter usuario
 router.get('/usuario/:id', usuarioControler.readUsuario);
 //rota obter todos os usuarios
-router.get('/usuarios', usuarioControler.readUsuarios);
+router.get('/usuarios', usuarioControler.readTodosUsuarios);
 //rota atualizar usuario
 router.put('/usuario/:id', usuarioControler.updateUsuario);
 //rota deletar usuario
 router.delete('/usuario/:id', usuarioControler.deleteUsuario);
+
+
+//rota de login
+router.post('/login',
+    loginValidacoes.validarEmail,
+    loginValidacoes.validarSenha,
+    usuarioControler.login
+);
 
 
 module.exports = router;

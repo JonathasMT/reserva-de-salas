@@ -35,6 +35,7 @@ app.get('/usuario/:id', verificaToken, async (req, res) => {
     }
     res.status(200).json({usuario});
 });
+
 function verificaToken(req, res, next) {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
@@ -97,6 +98,7 @@ app.post('/cadastro', async (req, res) => {
     };
 });
 
+//----------------------------------------------------------------------------------------------------------
 //Rota de Login de usuario
 app.post('/login', async (req, res) => {
     const {email, senha} = req.body;
@@ -110,7 +112,7 @@ app.post('/login', async (req, res) => {
     };
 
     //Verificar se o usuario existe e se a senha esta correta
-    const usuario = await Usuario.findOne({email: email})
+    const usuario = await Usuario.findOne({email: email});
     if(!usuario) {
         return res.status(422).json({msg: 'O email ' + email + ' não foi encontrado!'});
     };
@@ -134,6 +136,7 @@ app.post('/login', async (req, res) => {
         res.status(500).json({msg: 'Ocorreu um erro, tente novamente ou contacte o administrador!'});
     };
 });
+//----------------------------------------------------------------------------------------------------------
 
 //Credenciais
 const bdusuario = process.env.DB_USER;
