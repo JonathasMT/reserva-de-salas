@@ -1,12 +1,11 @@
 import {createContext, useEffect, useState} from 'react';
-import axios from 'axios';
+import api from '../services/api'
 
 
 export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
     console.log('Passou no arquivo auth.js');
-    const apiUrl = 'http://localhost:3001';
     const [usuario, setUsuario] = useState();
 
 
@@ -19,26 +18,24 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
 
-    const entrar = async (email, senha) => {
+    async function entrar (email, senha) {
         var retorno;
         const dadosLogin = {email:email,senha:senha};
-        await axios.post(apiUrl+'/login', dadosLogin)
+        await api.post('/login', dadosLogin)
         .then((resultado) => {
-            const token = resultado.data.token;
-            const usuarioId = resultado.data.usuarioId;
-            const usuarioNome = resultado.data.nome;
-            const usuarioEmail = resultado.data.email;
+            const {token, usuario_id, nome, email} = resultado.data;
             localStorage.setItem('usuarioLogado', JSON.stringify(
                 {
-                    token:token,
-                    usuarioId:usuarioId,
-                    nome:usuarioNome,
-                    email:usuarioEmail
+                    usuario_id:usuario_id,
+                    nome:nome,
+                    email:email,
+                    token:token
                 }));
             setUsuario({token, email});
             console.log(resultado.data.msg);
             retorno=resultado.data.msg;
         }).catch((erro) => {
+            console.log('ERRO >>'+erro)
             retorno=erro.response.data.msg;
         });
         return retorno;

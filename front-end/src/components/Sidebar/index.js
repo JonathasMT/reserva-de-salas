@@ -10,10 +10,11 @@ import {
 
 import SidebarItem from '../SidebarItem';
 import imgPerfil from '../../assets/img/person.jpg';
-import { Link, NavLink, useNavigate as navegar } from 'react-router-dom';
+import {Link, NavLink, useNavigate} from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 
 const Sidebar = ({ativo}) => {
+    const navegar = useNavigate();
     console.log('Passou no arquivo sidebar.js');
     const fecharSidebar = () => {ativo(false)};
     const { sair, usuario } = useAuth();

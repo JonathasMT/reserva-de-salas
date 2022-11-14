@@ -60,7 +60,7 @@ const login = async (req, res) => {
     try {
         const secret = process.env.SECRET;
         const token = jwt.sign({usuario_id: usuario.usuario_id}, secret,);
-        const {usuario_id, nome, email} = usuario.usuario_id;
+        const {usuario_id, nome, email} = usuario;
         
         // await usuario.save();
         res.status(200).json({msg: 'Usuário autenticado com sucesso', token, usuario_id, nome, email});
