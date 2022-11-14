@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { Button, Container } from "./styles";
+import { Button, Container } from './styles';
 
 function NotFound() {
     const navegar = useNavigate();

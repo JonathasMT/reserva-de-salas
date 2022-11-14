@@ -13,7 +13,7 @@ const Perfil = () => {
     const [senha, setSenha] = useState('');
     const [msg, setMsg] = useState('');
 
-    const {token, nome, email} = JSON.parse(usuario);
+    const {nome, email} = JSON.parse(usuario);
 
 
     const submeterLogin = async() => {
@@ -85,8 +85,6 @@ const Perfil = () => {
             <Button onClick={submeterLogin}>CANCELAR</Button>
             {msg}
           </Form>
-          <br/>
-          <span>Esqueceu a senha?</span>
         </SubContainer>
       </Container>
     );

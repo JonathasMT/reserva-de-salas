@@ -17,7 +17,7 @@ const Grupo = dataBase.define('Grupo', {
         type: Sequelize.STRING
     },
     dias_semana: {
-        type: Sequelize.JSON
+        type: Sequelize.ENUM
     },
     hora_inicio: {
         type: Sequelize.DATE,

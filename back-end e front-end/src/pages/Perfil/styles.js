@@ -19,6 +19,7 @@ box-sizing: border-box;
 flex-direction: column;
 align-items: center;
 justify-content: center;
+background-color: ${Theme.menuFundo};
 `;
 
 export const Form = styled.div`
@@ -31,6 +32,7 @@ gap: 20px;
 border: 1px solid white;
 border-radius: 20px;
 padding: 20px;
+background-color: ${Theme.menuFundo};
 
     >span {
         display: flex;
@@ -50,6 +52,7 @@ box-sizing: border-box;
 border: none;
 border-radius: 7px;
 padding: 10px;
+background-color: #fff;
 
     ::placeholder {
         color: ${Theme.textoSecondary};

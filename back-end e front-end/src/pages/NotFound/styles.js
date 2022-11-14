@@ -10,7 +10,7 @@ gap: 10px;
 display: flex;
 flex-direction: column;
 align-items: center;
-justify-content: flex-start;
+justify-content: center;
 background-color: ${Theme.menuFundo};
 
 > h1 {
