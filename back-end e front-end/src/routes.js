@@ -6,7 +6,7 @@ import Header from './components/Header';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import MinhasReservas from './pages/MinhasReservas';
-import Configuracoes from './pages/Configs';
+import Configuracoes from './pages/Configuracoes';
 import Perfil from './pages/Perfil';
 import NotFound from './pages/NotFound';
 import NovoUsuario from './pages/NovoUsuario';
@@ -14,6 +14,10 @@ import NovoGrupo from './pages/NovoGrupo';
 import NovaSala from './pages/NovaSala';
 import NovaCategoria from './pages/NovaCategoria';
 import NovaReserva from './pages/NovaReserva';
+import Usuarios from './pages/Usuarios';
+import EditarReserva from './pages/EditarReserva';
+import DetalhesReserva from './pages/DetalhesReserva';
+import PrimeiroAcesso from './pages/PrimeiroAcesso';
 
 
 // eslint-disable-next-line
@@ -45,6 +49,11 @@ const RoutesApp = () => {
             <Route path='/novasala' element={<NovaSala/>}/>
             <Route path='/novacategoria' element={<NovaCategoria/>}/>
             <Route path='/novareserva' element={<NovaReserva/>}/>
+            <Route path='/editarreserva' element={<EditarReserva/>}/>
+            <Route path='/detalhesreserva' element={<DetalhesReserva/>}/>
+            <Route path='/usuarios' element={<Usuarios/>}/>
+            <Route path='/primeiroacesso' element={<PrimeiroAcesso/>}/>
+            <Route path='/login' element={<Login/>}/>
             <Route path='*' element={<NotFound />} />
         </Routes>
       </Fragment>

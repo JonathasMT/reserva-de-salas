@@ -1,43 +1,13 @@
-import {
-    Button,
-    Container,
-    ContainerInput,
-    Input,
-    SubContainer,
-    InputTextArea,
-    ContainerHora,
-    Select,
-    ContainerLista,
-    ContainerItem} from './styles';
+import {Container} from './styles';
 
-import Table from "../../assets/import/Table";
-import {data} from "../../assets/import/data";
-import {Center} from "../../assets/import/Center";
+import {reservas} from "../../assets/import/bancoFake";
 
 const MinhasReservas = () => {
-
-    const titulos = Object.keys(data[0]);
-
+    const titulos = Object.keys(reservas[0]);
 
     return(
-    //   <Container>
-    //     <SubContainer>
-    //         <ContainerLista>
-    //             <ContainerItem>
-
-    //             </ContainerItem>
-    //         </ContainerLista>
-    //     </SubContainer>
-    //   </Container>
-
-    // <div className="App">
-    //     <h1>MinhasReservas</h1>
-    //     <Center V>
-    //     <Table data={data} />
-    //     </Center>
-    // </div>
         <Container>
-            <h1>MinhasReservas</h1>
+            <h2>MinhasReservas</h2>
             <table cellSpacing='1'>
                 <thead>
                     <tr>
@@ -45,7 +15,7 @@ const MinhasReservas = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map((reserva, i) => (
+                    {reservas.map((reserva, i) => (
                         <tr key={i}>
                         {titulos.map((titulo, i) => (
                             <td key={i}>{reserva[titulo]}</td>

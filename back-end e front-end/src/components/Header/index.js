@@ -10,28 +10,28 @@ import useAuth from '../../hooks/useAuth';
 
 const Header = () => {
     console.log('Passou no arquivo Header.js');
-    function Menu() {
-        const { logado } = useAuth();
-        if (logado) return <FaBars onClick={mostrarSidebar}/>;
-    };
+        const { autenticado } = useAuth();
     const [sidebar, setSidebar] = useState(false);
     const mostrarSidebar = () => setSidebar(!sidebar);
 
     return(
-        <Container>
-            {Menu()}
-            {sidebar && <Sidebar ativo={setSidebar} />}
-            <NavLink to='/'>
-                <ContainerInstituicao>
-                    <img src={logo} alt='Instituiçao' />
-                    <SubContainerInstituicao>
-                        <Titulo>Faculdade Delta</Titulo>
-                        <SubTitulo>Reserva de salas</SubTitulo>
-                    </SubContainerInstituicao>
-                </ContainerInstituicao>
-            </NavLink>
-
-        </Container>
+        <>  
+            {autenticado && (
+                <Container>
+                    <FaBars onClick={mostrarSidebar}/>
+                    {sidebar && <Sidebar ativo={setSidebar} />}
+                    <NavLink to='/'>
+                        <ContainerInstituicao>
+                            <img src={logo} alt='Instituiçao' />
+                            <SubContainerInstituicao>
+                                <Titulo>Faculdade Delta</Titulo>
+                                <SubTitulo>Reserva de salas</SubTitulo>
+                            </SubContainerInstituicao>
+                        </ContainerInstituicao>
+                    </NavLink>
+                </Container>
+            )}
+        </>
     )
 }
 

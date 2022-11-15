@@ -17,7 +17,7 @@ const Grupo = dataBase.define('Grupo', {
         type: Sequelize.STRING
     },
     dias_semana: {
-        type: Sequelize.ENUM
+        type: Sequelize.JSON
     },
     hora_inicio: {
         type: Sequelize.DATE,
@@ -33,11 +33,5 @@ const Grupo = dataBase.define('Grupo', {
     createdAt: 'criado_em',
     updatedAt: 'atualizado_em'
 });
-
-//Compara se o Modelo de Usuario esta igual o do Banco de Dados
-console.log('Grupo: '+(Grupo === dataBase.models.Grupo).toString());
-//altera/remove/adicionas as colunas caso sejam modificadas ou não existam
-//remover quando em produção
-Grupo.sync({alter: true});
 
 module.exports = Grupo;

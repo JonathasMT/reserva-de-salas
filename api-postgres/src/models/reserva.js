@@ -99,10 +99,4 @@ const Reserva = dataBase.define('Reserva', {
 //     }
 // });
 
-//Compara se o Modelo de Usuario esta igual o do Banco de Dados
-console.log('Reserva: '+(Reserva === dataBase.models.Reserva).toString());
-//altera/remove/adicionas as colunas caso sejam modificadas ou não existam
-//remover quando em produção
-Reserva.sync({alter: true});
-
 module.exports = Reserva;

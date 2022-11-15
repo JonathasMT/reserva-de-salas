@@ -12,34 +12,30 @@ export const Container = styled.div`
     background-color: ${Theme.menuFundo};
     padding: 20px;
 
-    > table {
-        border: 2px solid ${Theme.border};
+    table {
         border-collapse: collapse;
-    }
-
-    tr {
-        //linha impar sem cor de fundo
-        color: ${Theme.textoSecondary};
-        background-color: ${Theme.calendarioFundo};
-    }
-    
-    td, th {
+        font-size: 15px;
+        max-width: 50%;
+    };
+    th {
         border: 2px solid ${Theme.border};
-        justify-content: center;
         padding-left: 10px;
         padding-right: 10px;
-        text-align: center;
-    };
-    thead > tr {
+        text-align: left;
         background-color: ${Theme.textoAccent};
-        color: #fff;
+        color: #000;
     };
+    td {
+        border: 2px solid ${Theme.border};
+        padding-left: 10px;
+        padding-right: 10px;
+        text-align: left;
+        color: ${Theme.textoPrimary};
+    };
+    tr {
+        background-color: ${Theme.calendarioFundo};
+    }
     tbody tr {
-        //linha par com cor de fundo branca
-        :nth-of-type(even) {
-            background-color: ${Theme.textoSecondary};
-        color: ${Theme.calendarioFundo};
-        }
         //cor diferente ao passar o mouse sobre a linha
         :hover {
         background-color: ${Theme.textoAccent};

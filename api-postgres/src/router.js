@@ -21,6 +21,7 @@ const repeteTipoController = require('./controllers/repeteTipoController');
 const reservaController = require('./controllers/reservaController');
 const salaController = require('./controllers/salaController');
 const usuarioControler = require('./controllers/usuarioController');
+const instituicaoController = require('./controllers/instituicaoController');
 
 // //rota raiz/home
 // router.get('/', async (req, res) => {
@@ -31,8 +32,12 @@ const usuarioControler = require('./controllers/usuarioController');
 
 //ROTAS PARA CADASTRO----------------------------------------------------------
 
+//INSTITUIÇAO
+router.post('/intituicao',
+    instituicaoController.createInstituicao
+);
 //USUARIO
-router.post('/novousuario', 
+router.post('/novousuario',
     usuarioValidacoes.validarNome,
     usuarioValidacoes.validarEmail,
     usuarioValidacoes.validarSenha,

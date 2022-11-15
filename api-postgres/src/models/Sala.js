@@ -36,17 +36,4 @@ const Sala = dataBase.define('Sala', {
     updatedAt: 'atualizado_em'
 });
 
-// Sala.belongsTo(Grupo, {
-//     foreignKey: {
-//         name: 'grupo_id',
-//         allowNull: false
-//     }
-// });
-
-//Compara se o Modelo de Usuario esta igual o do Banco de Dados
-console.log('Sala: '+(Sala === dataBase.models.Sala).toString());
-//altera/remove/adicionas as colunas caso sejam modificadas ou não existam
-//remover quando em produção
-Sala.sync({alter: true});
-
 module.exports = Sala;

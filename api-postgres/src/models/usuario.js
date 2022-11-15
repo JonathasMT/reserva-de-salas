@@ -43,11 +43,4 @@ const Usuario = dataBase.define('Usuario', {
     updatedAt: 'atualizado_em'
 });
 
-//Compara se o Modelo de Usuario esta igual o do Banco de Dados
-console.log('Usuario: ' + (Usuario === dataBase.models.Usuario).toString());
-//altera/remove/adicionas as colunas caso sejam modificadas ou não existam
-//remover quando em produção
-Usuario.sync({alter: true});
-
-
 module.exports = Usuario;
