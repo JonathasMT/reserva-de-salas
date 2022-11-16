@@ -31,16 +31,16 @@ export const CalendarioHeader = styled.div`
 `;
 
 export const CalendarioDiasSemana = styled.div`
-    width: calc(100% / 7);
+    width: 100%;
     text-align: center;
     font-size: 0.9rem;
     font-weight: bold;
     color: ${Theme.textoSecondaryVariant};
 `;
 
-export const ContainerSemana = styled.div`
+export const Body = styled.div`
     width: 100%;
-    height: calc(100vw / 17);
+    height: 565px;
     box-sizing: border-box;
     display: flex;
     flex-direction:row;
@@ -49,7 +49,7 @@ export const ContainerSemana = styled.div`
 `;
 
 export const ContainerDia = styled.div`
-    width: calc(100% / 7);
+    width: 100%;
     height: 100%;
     box-sizing: border-box;
     display: block;

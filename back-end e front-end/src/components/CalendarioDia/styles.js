@@ -21,41 +21,27 @@ export const CalendarioHeader = styled.div`
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
     border-top: 2px solid ${Theme.border};
     border-left: 2px solid ${Theme.border};
     border-right: 2px solid ${Theme.border};
     border-bottom: 1px solid ${Theme.border};
     background-color: ${Theme.calendarioHeaderFundo};
     border-radius: 10px 10px 0px 0px;
-    align-items: center;
-`;
-
-export const CalendarioDiasSemana = styled.div`
-    width: calc(100% / 7);
-    text-align: center;
     font-size: 0.9rem;
     font-weight: bold;
     color: ${Theme.textoSecondaryVariant};
 `;
 
-export const ContainerSemana = styled.div`
+export const Body = styled.div`
     width: 100%;
-    height: calc(100vw / 17);
-    box-sizing: border-box;
-    display: flex;
-    flex-direction:row;
-    border-left: 1px solid ${Theme.border};
-    border-right: 1px solid ${Theme.border};
-`;
-
-export const ContainerDia = styled.div`
-    width: calc(100% / 7);
-    height: 100%;
+    height: 565px;
     box-sizing: border-box;
     display: block;
     background-color: ${Theme.calendarioFundo};
     border: 1px solid ${Theme.border};
-    padding: 3px;
+    padding: 10px;
     cursor: pointer;
 `;
 
@@ -64,7 +50,7 @@ export const Dia = styled.div`
     float: right;
     color: ${Theme.textoSecondary};
     font-weight: bold;
-    font-size: 0.7rem;
+    font-size: 1.5rem;
 `;
 
 export const DiaCorrente = styled.div`

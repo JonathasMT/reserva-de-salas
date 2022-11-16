@@ -3,8 +3,7 @@ import moment from 'moment';
 import {
     Container,
     CalendarioHeader,
-    CalendarioDiasSemana,
-    ContainerSemana,
+    Body,
     ContainerDia,
     Dia,
     DiaCorrente
@@ -24,8 +23,8 @@ function CalendarioDia({aoClicar, selecionado}) {
     const [calendario, setCalendario] = useState([]);
 
     useEffect(() => {
-        const inicioDia = data.clone().startOf('week');
-        const fimDia = data.clone().endOf('week');
+        const inicioDia = data.clone().startOf('month').startOf('week');
+        const fimDia = data.clone().endOf('month').endOf('week');
         const dia = inicioDia.clone().subtract(1, 'day');
         const calendario = [];
         while (dia.isBefore(fimDia, 'day')) {
@@ -57,21 +56,23 @@ function CalendarioDia({aoClicar, selecionado}) {
         <Container>
             <CalendarioOpcoes valor={data} onChange={setData} aoClicar={aoClicar} selecionado={selecionado}/>
             <CalendarioHeader>
-                {
-                    ['DOMINGO', 'SEGUNDA', 'TERÇA', 'QUARTA', 'QUINTA', 'SEXTA', 'SÁBADO']
-                    .map((d) => <CalendarioDiasSemana key={d}>{d}</CalendarioDiasSemana>)
-                }
+                HOJE
             </CalendarioHeader>
-            {calendario.map((semana) => (
-                <ContainerSemana key={semana}>
-                    {semana.map((dia) => (
-                        <ContainerDia key={dia} onClick={() => {setData(dia)}}>
-                            {isAtual(dia)}
-                            {isReserva(dia, 17)}
-                        </ContainerDia>
-                    ))}
-                </ContainerSemana>
-            ))}
+            <Body>
+                <Dia>
+                    {calendario.map((mes) => (
+                            mes.map((dia) => (
+                                // <ContainerDia key={dia} onClick={() => {setData(dia)}}>
+                                //     {console.log(calendario)}
+                                //     {isAtual(dia)}
+                                //     {isReserva(dia, 17)}
+                                // </ContainerDia>
+                                // console.log(dia.format('D').toString())
+                                <div>{dia.format('D').toString()}</div>
+                            ))
+                            
+                    ))}</Dia>
+            </Body>
             <Legenda />
         </Container>
     );

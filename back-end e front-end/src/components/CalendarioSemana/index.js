@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import moment from 'moment';
-import {Container, CalendarioHeader, CalendarioDiasSemana, ContainerSemana, ContainerDia, Dia, DiaCorrente} from './styles';
+import {Container, CalendarioHeader, CalendarioDiasSemana, Body, ContainerDia, Dia, DiaCorrente} from './styles';
 
 import Legenda from '../Legenda';
 import CalendarioOpcoes from '../CalendarioOpcoes';
@@ -56,14 +56,15 @@ function CalendarioSemana({aoClicar, selecionado}) {
                 }
             </CalendarioHeader>
             {calendario.map((semana) => (
-                <ContainerSemana key={semana}>
+                <Body key={semana}>
                     {semana.map((dia) => (
                         <ContainerDia key={dia} onClick={() => {setData(dia)}}>
+                            {console.log(calendario)}
                             {isAtual(dia)}
                             {isReserva(dia, 17)}
                         </ContainerDia>
                     ))}
-                </ContainerSemana>
+                </Body>
             ))}
             <Legenda />
         </Container>
