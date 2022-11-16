@@ -6,7 +6,7 @@ import Legenda from '../Legenda';
 import CalendarioOpcoes from '../CalendarioOpcoes';
 import CardReserva from '../CardReserva';
 
-function CalendarioMes() {
+function CalendarioMes(selecionado) {
     //tradução do moment para PT-BR;
     moment.locale('pt-br');
     moment.updateLocale('pt-br', {months : ['Janeiro', 'Fevereiro', 'Março', 'Abril',
@@ -47,7 +47,7 @@ function CalendarioMes() {
     };
 
     return(
-        <Container>
+        <Container selecionado={selecionado}>
             <CalendarioOpcoes valor={data} onChange={setData} />
             <CalendarioHeader>
                 {

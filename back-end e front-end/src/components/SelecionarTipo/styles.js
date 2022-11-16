@@ -30,13 +30,27 @@ export const ContainerDia = styled.div`
     align-items: center;
     justify-content: center;
     border-radius: 25px;
+    border: 2px;
+    color: ${Theme.textoSecondary};
     cursor: pointer;
+`;
+
+export const ContainerDiaSelecionado = styled.div`
+    width: 33%;
+    height: calc(100% - 4px);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 25px;
+    border: 2px solid ${Theme.border};
+    color: ${Theme.textoAccent}
 `;
 
 export const Dia = styled.div`
     font-size: 14px;
     font-weight: bold;
-    color: ${Theme.textoSecondary};
 `;
 
 export const ContainerSemana = styled.div`
@@ -47,16 +61,12 @@ export const ContainerSemana = styled.div`
     align-items: center;
     justify-content: center;
     border-radius: 25px;
+    border: 2px;
+    color: ${Theme.textoSecondary};
     cursor: pointer;
 `;
 
-export const Semana = styled.div`
-    font-size: 14px;
-    font-weight: bold;
-    color: ${Theme.textoSecondary};
-`;
-
-export const ContainerMes = styled.div`
+export const ContainerSemanaSelecionada = styled.div`
     width: 33%;
     height: calc(100% - 4px);
     display: flex;
@@ -66,11 +76,41 @@ export const ContainerMes = styled.div`
     background-color: white;
     border-radius: 25px;
     border: 2px solid ${Theme.border};
+    color: ${Theme.textoAccent}
+`;
+
+export const Semana = styled.div`
+    font-size: 14px;
+    font-weight: bold;
+`;
+
+export const ContainerMes = styled.div`
+    width: 33%;
+    height: calc(100% - 4px);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+    border: 2px;
+    color: ${Theme.textoSecondary};
     cursor: pointer;
+`;
+
+export const ContainerMesSelecionado = styled.div`
+    width: 33%;
+    height: calc(100% - 4px);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 25px;
+    border: 2px solid ${Theme.border};
+    color: ${Theme.textoAccent}
 `;
 
 export const Mes = styled.div`
     font-size: 14px;
     font-weight: bold;
-    color: ${Theme.textoAccent};
 `;

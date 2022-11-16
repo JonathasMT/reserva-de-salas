@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
-import { Container, CalendarioHeader, CalendarioDiasSemana, ContainerSemana, ContainerDia, Dia, DiaCorrente } from './styles';
+import {
+    Container,
+    CalendarioHeader,
+    CalendarioDiasSemana,
+    ContainerSemana,
+    ContainerDia,
+    Dia,
+    DiaCorrente
+} from './styles';
 
 import Legenda from '../Legenda';
 import CalendarioOpcoes from '../CalendarioOpcoes';
 import CardReserva from '../CardReserva';
 
-function CalendarioMes() {
+function CalendarioDia(selecionado) {
     //tradução do moment para PT-BR;
     moment.locale('pt-br');
     moment.updateLocale('pt-br', {months : ['Janeiro', 'Fevereiro', 'Março', 'Abril',
@@ -16,8 +24,8 @@ function CalendarioMes() {
     const [calendario, setCalendario] = useState([]);
 
     useEffect(() => {
-        const inicioDia = data.clone().startOf('month').startOf('week');
-        const fimDia = data.clone().endOf('month').endOf('week');
+        const inicioDia = data.clone().startOf('week');
+        const fimDia = data.clone().endOf('week');
         const dia = inicioDia.clone().subtract(1, 'day');
         const calendario = [];
         while (dia.isBefore(fimDia, 'day')) {
@@ -25,7 +33,6 @@ function CalendarioMes() {
                 Array(7).fill(0).map(() => dia.add(1, 'day').clone())
             );
         };
-
         setCalendario(calendario)
     }, [data])
 
@@ -47,7 +54,7 @@ function CalendarioMes() {
     };
 
     return(
-        <Container>
+        <Container selecionado={selecionado}>
             <CalendarioOpcoes valor={data} onChange={setData} />
             <CalendarioHeader>
                 {
@@ -70,4 +77,4 @@ function CalendarioMes() {
     );
 }
 
-export default CalendarioMes;
+export default CalendarioDia;

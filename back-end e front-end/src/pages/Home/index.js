@@ -1,9 +1,21 @@
-import CalendarioMes from '../../components/CalendarioMes'
+import CalendarioMes from '../../components/CalendarioMes';
+import CalendarioDia from '../../components/CalendarioDia';
+import CalendarioSemana from '../../components/CalendarioSemana';
 
-function Home() {
+function Home(selecionado) {
+
+    console.log(selecionado)
+
     return(
+
         <div>
-            <CalendarioMes/>
+            {
+                selecionado === 'dia' ? 
+                <CalendarioDia/> :
+                selecionado === 'semana' ?
+                <CalendarioSemana/> :
+                <CalendarioMes/>
+            }
         </div>
     )
 }

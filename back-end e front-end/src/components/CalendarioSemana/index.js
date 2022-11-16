@@ -6,7 +6,7 @@ import Legenda from '../Legenda';
 import CalendarioOpcoes from '../CalendarioOpcoes';
 import CardReserva from '../CardReserva';
 
-function CalendarioMes() {
+function CalendarioSemana(selecionado) {
     //tradução do moment para PT-BR;
     moment.locale('pt-br');
     moment.updateLocale('pt-br', {months : ['Janeiro', 'Fevereiro', 'Março', 'Abril',
@@ -16,8 +16,8 @@ function CalendarioMes() {
     const [calendario, setCalendario] = useState([]);
 
     useEffect(() => {
-        const inicioDia = data.clone().startOf('month').startOf('week');
-        const fimDia = data.clone().endOf('month').endOf('week');
+        const inicioDia = data.clone().startOf('week')
+        const fimDia = data.clone().endOf('week')
         const dia = inicioDia.clone().subtract(1, 'day');
         const calendario = [];
         while (dia.isBefore(fimDia, 'day')) {
@@ -47,8 +47,8 @@ function CalendarioMes() {
     };
 
     return(
-        <Container>
-            <CalendarioOpcoes valor={data} onChange={setData} />
+        <Container selecionado={selecionado}>
+            {/* <CalendarioOpcoes valor={data} onChange={setData} />
             <CalendarioHeader>
                 {
                     ['DOMINGO', 'SEGUNDA', 'TERÇA', 'QUARTA', 'QUINTA', 'SEXTA', 'SÁBADO']
@@ -65,9 +65,10 @@ function CalendarioMes() {
                     ))}
                 </ContainerSemana>
             ))}
-            <Legenda />
+            <Legenda /> */}
+            oi
         </Container>
     );
 }
 
-export default CalendarioMes;
+export default CalendarioSemana;

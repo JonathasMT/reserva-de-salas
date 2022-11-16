@@ -7,8 +7,8 @@ import { AuthProvider } from './contexts/auth';
 function App() {
   return (
     <AuthProvider>
-      <GlobalStyle/>
-      <RoutesApp/>
+        <GlobalStyle/>
+        <RoutesApp/>
     </AuthProvider>
   );
 }
