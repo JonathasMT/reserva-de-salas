@@ -1,5 +1,5 @@
-import { Fragment } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import {Fragment} from 'react';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import useAuth from '../src/hooks/useAuth';
 
 import Header from './components/Header';
@@ -21,10 +21,10 @@ import PrimeiroAcesso from './pages/PrimeiroAcesso';
 
 
 // eslint-disable-next-line
-const Privada = ({ Destino }) => {
-  const { logado } = useAuth();
-  console.log('routes.js >> Logado? >> '+ logado);
-  return logado ? <Destino /> : <Login />;
+const Privada = ({Destino}) => {
+  const {autenticado} = useAuth();
+  console.log('routes.js >> Autenticado? >> '+ autenticado);
+  return autenticado ? <Destino /> : <Login />;
 };
 
 const RoutesApp = () => {

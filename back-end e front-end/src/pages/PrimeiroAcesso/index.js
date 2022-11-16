@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-import { useState } from 'react';
+import {useState} from 'react';
 import {Container, SubContainer, Button, Form, ContainerInput, Input, InputImage} from './styles';
 
 const PrimeiroAcesso = () => {

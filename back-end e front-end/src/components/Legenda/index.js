@@ -1,7 +1,7 @@
-import { Container } from './styles';
+import {Container} from './styles';
 
 import LegendaItem from '../LegendaItem';
-import { Theme } from '../Theme';
+import {Theme} from '../Theme';
 
 function Legenda() {
 

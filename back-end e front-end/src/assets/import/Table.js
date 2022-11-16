@@ -30,10 +30,10 @@ const StyledTable = styled.table`
         font-weight: bold;
     };
 `;
-export default ({ data }) => (
+export default ({data}) => (
   <TableMarkup titles={Object.keys(data[0])} data={data} />
 );
-const TableMarkup = ({ titles, data }) => (
+const TableMarkup = ({titles, data}) => (
   <StyledTable>
     <thead>
       <tr>

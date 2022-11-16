@@ -13,8 +13,12 @@ import {
     ContainerDiaSelecionado
 } from './styles';
 
-function SelecionarTipo() {
-    const [selecionado, setSelecionado] = useState('mes');
+function SelecionarTipo({aoClicar, selecionado}) {
+    
+    const clica = (valor) => {
+        aoClicar(valor);
+
+    }
 
     const DiaSelecionado = () => {
         return(
@@ -62,27 +66,20 @@ function SelecionarTipo() {
         );
     };
 
-    const clica = (valor) => {
-        setSelecionado(valor);
-    }
-
-    // const BemVindo = () => {
-    //     return (
-    //         <Container>
-    //             <SubContainer>
-    //                 <h3>Bem Vindo ao Sistema Reserva Fácil</h3>
-    //                 <p> 
-    //                     Nada
-    //                 </p>
-    //                 <Button onClick={continuar}>VAMOS LÁ</Button>
-    //             </SubContainer>
-    //         </Container>
-    //     );
-    // };
+    const Tipo = () => {
+        switch (selecionado) {
+        case 'dia':
+            return <DiaSelecionado/>
+        case 'semana':
+            return <SemanaSelecionada/>
+        case 'mes':
+            return<MesSelecionado/>
+        };
+    };
 
     return(
-        <Container selecionado={selecionado}>
-            {selecionado === 'dia' ? <DiaSelecionado/> : selecionado === 'semana' ? <SemanaSelecionada/> : <MesSelecionado/>}
+        <Container>
+            <Tipo/>
         </Container>
     );
 }

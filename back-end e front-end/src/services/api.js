@@ -4,7 +4,7 @@ const api = axios.create({
     baseURL: 'http://localhost:3001'
 });
 api.interceptors.request.use(async config => {
-    const usuario = localStorage.getItem('usuarioLogado');
+    const usuario = localStorage.getItem('usuarioAutenticado');
     if(usuario) {
         const {token} = usuario;
         if (token) {

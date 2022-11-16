@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Content, ContainerPerfil, ContainerNome } from './styles';
+import {Container, Content, ContainerPerfil, ContainerNome} from './styles';
 import {
     FaTimes,
     FaRegCalendarAlt,
@@ -15,17 +15,20 @@ import useAuth from '../../hooks/useAuth';
 
 const Sidebar = ({ativo}) => {
     const navegar = useNavigate();
+    
     console.log('Passou no arquivo sidebar.js');
+
     const fecharSidebar = () => {ativo(false)};
-    const { sair, usuario } = useAuth();
+
+    const {sair, usuario} = useAuth();
 
     console.log('USUARIO >>>'+usuario);
 
+
     const {token, nome, email} = JSON.parse(usuario);
-  
 
     return (
-        <Container sidebar={ativo} id='container'>
+        <Container sidebar={ativo}>
             <FaTimes onClick={() => fecharSidebar()} />
             <ContainerPerfil>
                 <img src={imgPerfil} alt='Perfil' />

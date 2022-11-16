@@ -1,16 +1,16 @@
 import React from 'react';
-import { Container } from './styles';
+import {Container} from './styles';
 import SelecionarData from '../SelecionarData';
 import SelecionarSala from '../SelecionarSala';
 import SelecionarTipo from '../SelecionarTipo';
 
-function CalendarioOpcoes({valor, onChange, selecionado}) {
+function CalendarioOpcoes({valor, onChange, aoClicar, selecionado}) {
 
     return(
         <Container>
-            <SelecionarData data={valor} setData={onChange} />
+            <SelecionarData data={valor} setData={onChange} selecionado={selecionado}/>
             <SelecionarSala />
-            <SelecionarTipo selecionado={selecionado}/>
+            <SelecionarTipo aoClicar={aoClicar} selecionado={selecionado}/>
         </Container>
     );
 }

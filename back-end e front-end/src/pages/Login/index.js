@@ -14,10 +14,10 @@ const Login = () => {
     const [msg, setMsg] = useState('');
 
     // useEffect(() => {
-    //   const usuario = localStorage.getItem('usuarioLogado');
-    //   console.log('LOGADO? >> '+usuario);
+    //   const usuario = localStorage.getItem('usuarioAutenticado');
+    //   console.log('AUTENTICADO? >> '+usuario);
     //   if (usuario) {
-    //     console.log('Você já esta logado!');
+    //     console.log('Você já esta autenticado!');
     //     console.log(usuario);
     //   }else {
     //     console.log('Faça LOGIN!');

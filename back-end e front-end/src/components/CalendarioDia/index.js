@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import moment from 'moment';
 import {
     Container,
@@ -11,10 +11,10 @@ import {
 } from './styles';
 
 import Legenda from '../Legenda';
-import CalendarioOpcoes from '../CalendarioOpcoes';
 import CardReserva from '../CardReserva';
+import CalendarioOpcoes from '../CalendarioOpcoes';
 
-function CalendarioDia(selecionado) {
+function CalendarioDia({aoClicar, selecionado}) {
     //tradução do moment para PT-BR;
     moment.locale('pt-br');
     moment.updateLocale('pt-br', {months : ['Janeiro', 'Fevereiro', 'Março', 'Abril',
@@ -54,8 +54,8 @@ function CalendarioDia(selecionado) {
     };
 
     return(
-        <Container selecionado={selecionado}>
-            <CalendarioOpcoes valor={data} onChange={setData} />
+        <Container>
+            <CalendarioOpcoes valor={data} onChange={setData} aoClicar={aoClicar} selecionado={selecionado}/>
             <CalendarioHeader>
                 {
                     ['DOMINGO', 'SEGUNDA', 'TERÇA', 'QUARTA', 'QUINTA', 'SEXTA', 'SÁBADO']

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Hora, Titulo } from './styles';
+import {Container, Hora, Titulo} from './styles';
 
 function CardReserva() {
 

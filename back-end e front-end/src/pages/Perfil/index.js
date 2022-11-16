@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import { useNavigate as navegar} from 'react-router-dom';
+import {useState} from 'react';
+import {useNavigate as navegar} from 'react-router-dom';
 
-import { Button, Container, Form, Input, SubContainer } from './styles';
+import {Button, Container, Form, Input, SubContainer} from './styles';
 import useAuth from '../../hooks/useAuth';
 
 const Perfil = () => {
-    const { entrar, usuario } = useAuth();
+    const {entrar, usuario} = useAuth();
 
     console.log('USUARIO >>>'+usuario);
 

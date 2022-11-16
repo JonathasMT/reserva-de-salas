@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import moment from 'moment';
-import { Container, CalendarioHeader, CalendarioDiasSemana, ContainerSemana, ContainerDia, Dia, DiaCorrente } from './styles';
+import {Container, CalendarioHeader, CalendarioDiasSemana, ContainerSemana, ContainerDia, Dia, DiaCorrente} from './styles';
 
 import Legenda from '../Legenda';
 import CalendarioOpcoes from '../CalendarioOpcoes';
 import CardReserva from '../CardReserva';
 
-function CalendarioMes(selecionado) {
+function CalendarioMes({aoClicar, selecionado}) {
     //tradução do moment para PT-BR;
     moment.locale('pt-br');
     moment.updateLocale('pt-br', {months : ['Janeiro', 'Fevereiro', 'Março', 'Abril',
@@ -47,8 +47,8 @@ function CalendarioMes(selecionado) {
     };
 
     return(
-        <Container selecionado={selecionado}>
-            <CalendarioOpcoes valor={data} onChange={setData} />
+        <Container>
+            <CalendarioOpcoes valor={data} onChange={setData} aoClicar={aoClicar} selecionado={selecionado}/>
             <CalendarioHeader>
                 {
                     ['DOMINGO', 'SEGUNDA', 'TERÇA', 'QUARTA', 'QUINTA', 'SEXTA', 'SÁBADO']

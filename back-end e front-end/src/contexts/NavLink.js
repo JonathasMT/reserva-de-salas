@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { NavLink } from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 function NavList() {
   // This styling will be applied to a <NavLink> when the
@@ -16,7 +16,7 @@ function NavList() {
         <li>
           <NavLink
             to='messages'
-            style={({ isActive }) =>
+            style={({isActive}) =>
               isActive ? activeStyle : undefined
             }
           >
@@ -26,7 +26,7 @@ function NavList() {
         <li>
           <NavLink
             to='tasks'
-            className={({ isActive }) =>
+            className={({isActive}) =>
               isActive ? activeClassName : undefined
             }
           >
@@ -35,7 +35,7 @@ function NavList() {
         </li>
         <li>
           <NavLink to='tasks'>
-            {({ isActive }) => (
+            {({isActive}) => (
               <span
                 className={
                   isActive ? activeClassName : undefined

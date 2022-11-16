@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {FaBars} from 'react-icons/fa';
 import {NavLink} from 'react-router-dom';
 
@@ -16,7 +16,7 @@ const Header = () => {
 
     return(
         <>  
-            {!autenticado && (
+            {autenticado && (
                 <Container>
                     <FaBars onClick={mostrarSidebar}/>
                     {sidebar && <Sidebar ativo={setSidebar} />}

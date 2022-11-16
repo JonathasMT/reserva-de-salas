@@ -1,4 +1,4 @@
-import { Button, Container, ContainerInput, InputImage, Form, Input, Select, SubContainer } from './styles';
+import {Button, Container, ContainerInput, InputImage, Form, Input, Select, SubContainer} from './styles';
 
 const NovoUsuario = () => {
 

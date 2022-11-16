@@ -4,16 +4,16 @@ import api from '../services/api'
 
 export const AuthContext = createContext({});
 
-export const AuthProvider = ({ children }) => {
+export const AuthProvider = ({children}) => {
     console.log('Passou no arquivo auth.js');
     const [usuario, setUsuario] = useState();
 
 
     useEffect(() => {
         console.log('Passou no arquivo auth.js >> useEffect');
-        const usuarioLogado = localStorage.getItem('usuarioLogado');
-        if (usuarioLogado) {
-            setUsuario(usuarioLogado);
+        const usuarioAutenticado = localStorage.getItem('usuarioAutenticado');
+        if (usuarioAutenticado) {
+            setUsuario(usuarioAutenticado);
         };
     }, []);
 
@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
         await api.post('/login', dadosLogin)
         .then((resultado) => {
             const {token, usuario_id, nome, email} = resultado.data;
-            localStorage.setItem('usuarioLogado', JSON.stringify(
+            localStorage.setItem('usuarioAutenticado', JSON.stringify(
                 {
                     usuario_id:usuario_id,
                     nome:nome,
@@ -49,9 +49,9 @@ export const AuthProvider = ({ children }) => {
         };
         let novoUsuario;
         if (armazenamentoUsuario) {
-        novoUsuario = [...armazenamentoUsuario, { email, senha }];
+        novoUsuario = [...armazenamentoUsuario, {email, senha}];
         } else {
-        novoUsuario = [{ email, senha }];
+        novoUsuario = [{email, senha}];
         };
         localStorage.setItem('users_bd', JSON.stringify(novoUsuario));
         return;
@@ -59,12 +59,12 @@ export const AuthProvider = ({ children }) => {
 
     const sair = () => {
         setUsuario(null);
-        localStorage.removeItem('usuarioLogado');
+        localStorage.removeItem('usuarioAutenticado');
     };
 
     return (
         <AuthContext.Provider
-        value={{ usuario, autenticado: !!usuario, entrar, cadastrar, sair }}
+        value={{usuario, autenticado: !!usuario, entrar, cadastrar, sair}}
         >
         {children}
         </AuthContext.Provider>

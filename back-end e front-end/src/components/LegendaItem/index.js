@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Circulo, Titulo } from './styles';
+import {Container, Circulo, Titulo} from './styles';
 
 const LegendaItem = ({cor, texto}) => {
     return(
