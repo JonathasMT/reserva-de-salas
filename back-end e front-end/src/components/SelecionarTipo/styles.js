@@ -9,6 +9,7 @@ export const Container = styled.div`
     flex-direction: row;
     align-items: flex-end;
     justify-content: right;
+    
 `;
 
 export const SubContainer = styled.div`
@@ -20,6 +21,7 @@ export const SubContainer = styled.div`
     justify-content: space-between;
     background-color: ${Theme.horaSeletor};
     border-radius: 25px;
+
 `;
 
 export const ContainerDia = styled.div`
@@ -45,7 +47,8 @@ export const ContainerDiaSelecionado = styled.div`
     background-color: white;
     border-radius: 25px;
     border: 2px solid ${Theme.border};
-    color: ${Theme.textoAccent}
+    color: ${Theme.textoAccent};
+    box-shadow: 1px 0px 4px 0px rgba(0, 0, 0, 0.2);
 `;
 
 export const Dia = styled.div`
@@ -76,7 +79,8 @@ export const ContainerSemanaSelecionada = styled.div`
     background-color: white;
     border-radius: 25px;
     border: 2px solid ${Theme.border};
-    color: ${Theme.textoAccent}
+    color: ${Theme.textoAccent};
+    box-shadow: 1px 0px 4px 0px rgba(0, 0, 0, 0.2);
 `;
 
 export const Semana = styled.div`
@@ -107,7 +111,8 @@ export const ContainerMesSelecionado = styled.div`
     background-color: white;
     border-radius: 25px;
     border: 2px solid ${Theme.border};
-    color: ${Theme.textoAccent}
+    color: ${Theme.textoAccent};
+    box-shadow: 1px 0px 4px 0px rgba(0, 0, 0, 0.2);
 `;
 
 export const Mes = styled.div`

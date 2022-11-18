@@ -55,7 +55,7 @@ export const ContainerDia = styled.div`
     display: block;
     background-color: ${Theme.calendarioFundo};
     border: 1px solid ${Theme.border};
-    padding: 3px;
+    padding: 10px 5px;
     cursor: pointer;
 `;
 
@@ -64,23 +64,24 @@ export const Dia = styled.div`
     float: right;
     color: ${Theme.textoSecondary};
     font-weight: bold;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
+    margin: 1px;
 `;
 
 export const DiaCorrente = styled.div`
-    width: 0.9rem;
-    height: 0.9rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    box-sizing: border-box;
     float: right;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    box-sizing: border-box;
     color: ${Theme.calendarioFundo};
     background-color: ${Theme.textoSecondary};
     border: 0.5px solid ${Theme.textoSecondary};
     border-radius: 50%;
-    padding: 1px;
-    font-size: 0.6rem;
+    margin: -1px 1px 1px 1px ;
+    font-size: 0.8rem;
     font-weight: bold;
 `;

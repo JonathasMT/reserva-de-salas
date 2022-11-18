@@ -9,7 +9,6 @@ function Home() {
     const [selecionado, setSelecionado] = useState('mes');
 
     function clicado(valor) {
-        console.log('Clicado ' + valor);
         setSelecionado(valor)
     }
 

@@ -16,8 +16,8 @@ function CalendarioSemana({aoClicar, selecionado}) {
     const [calendario, setCalendario] = useState([]);
 
     useEffect(() => {
-        const inicioDia = data.clone().startOf('week')
-        const fimDia = data.clone().endOf('week')
+        const inicioDia = data.clone().startOf('week');
+        const fimDia = data.clone().endOf('week');
         const dia = inicioDia.clone().subtract(1, 'day');
         const calendario = [];
         while (dia.isBefore(fimDia, 'day')) {
@@ -25,7 +25,6 @@ function CalendarioSemana({aoClicar, selecionado}) {
                 Array(7).fill(0).map(() => dia.add(1, 'day').clone())
             );
         };
-
         setCalendario(calendario)
     }, [data])
 
@@ -59,7 +58,6 @@ function CalendarioSemana({aoClicar, selecionado}) {
                 <Body key={semana}>
                     {semana.map((dia) => (
                         <ContainerDia key={dia} onClick={() => {setData(dia)}}>
-                            {console.log(calendario)}
                             {isAtual(dia)}
                             {isReserva(dia, 17)}
                         </ContainerDia>
