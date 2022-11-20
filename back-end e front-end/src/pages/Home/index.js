@@ -1,27 +1,8 @@
 import { useState } from 'react';
 
-import CalendarioOpcoes from '../../components/CalendarioOpcoes';
-import CalendarioDia from '../../components/CalendarioDia';
-import CalendarioSemana from '../../components/CalendarioSemana';
-import CalendarioMes from '../../components/CalendarioMes';
+import Calendario from '../../components/Calendario'
 
 function Home() {
-    const [selecionado, setSelecionado] = useState('mes');
-
-    function clicado(valor) {
-        setSelecionado(valor)
-    }
-
-    const Calendario = () => {
-        switch (selecionado) {
-            case 'dia':
-                return <CalendarioDia aoClicar={clicado} selecionado={selecionado}/>
-            case 'semana':
-                return <CalendarioSemana aoClicar={clicado} selecionado={selecionado}/>
-            case 'mes':
-                return <CalendarioMes aoClicar={clicado} selecionado={selecionado}/>
-        };
-    };
 
     return(
         <>

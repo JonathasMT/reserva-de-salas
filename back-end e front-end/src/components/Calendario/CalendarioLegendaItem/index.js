@@ -1,7 +1,7 @@
 import React from 'react';
 import {Container, Circulo, Titulo} from './styles';
 
-const LegendaItem = ({cor, texto}) => {
+const CalendarioLegendaItem = ({cor, texto}) => {
     return(
         <Container>
             <Circulo style={{backgroundColor: cor}}/>
@@ -10,4 +10,4 @@ const LegendaItem = ({cor, texto}) => {
     )
 };
 
-export default LegendaItem;
+export default CalendarioLegendaItem;

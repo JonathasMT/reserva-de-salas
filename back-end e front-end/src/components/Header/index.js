@@ -16,7 +16,7 @@ const Header = () => {
 
     return(
         <>  
-            {autenticado && (
+            {!autenticado && (
                 <Container>
                     <FaBars onClick={mostrarSidebar}/>
                     {sidebar && <Sidebar ativo={setSidebar} />}

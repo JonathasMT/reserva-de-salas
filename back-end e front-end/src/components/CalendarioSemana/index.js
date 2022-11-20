@@ -1,18 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import moment from 'moment';
-import {Container, CalendarioHeader, CalendarioDiasSemana, Body, ContainerDia, Dia, DiaCorrente} from './styles';
+import {Container, Body, ContainerDia, Dia, DiaCorrente} from './styles';
 
-import Legenda from '../Legenda';
-import CalendarioOpcoes from '../CalendarioOpcoes';
 import CardReserva from '../CardReserva';
 
-function CalendarioSemana({aoClicar, selecionado}) {
-    //tradução do moment para PT-BR;
-    moment.locale('pt-br');
-    moment.updateLocale('pt-br', {months : ['Janeiro', 'Fevereiro', 'Março', 'Abril',
-    'Maio', 'Junho','Julho','Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']});
-
-    const [data, setData] = useState(moment());
+function CalendarioSemana({data, setData}) {
     const [calendario, setCalendario] = useState([]);
 
     useEffect(() => {
@@ -47,13 +38,6 @@ function CalendarioSemana({aoClicar, selecionado}) {
 
     return(
         <Container >
-            <CalendarioOpcoes valor={data} onChange={setData} aoClicar={aoClicar} selecionado={selecionado}/>
-            <CalendarioHeader>
-                {
-                    ['DOMINGO', 'SEGUNDA', 'TERÇA', 'QUARTA', 'QUINTA', 'SEXTA', 'SÁBADO']
-                    .map((d) => <CalendarioDiasSemana key={d}>{d}</CalendarioDiasSemana>)
-                }
-            </CalendarioHeader>
             {calendario.map((semana) => (
                 <Body key={semana}>
                     {semana.map((dia) => (
@@ -64,7 +48,6 @@ function CalendarioSemana({aoClicar, selecionado}) {
                     ))}
                 </Body>
             ))}
-            <Legenda />
         </Container>
     );
 }

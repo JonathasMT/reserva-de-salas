@@ -9,50 +9,24 @@ import {
     DiaCorrente
 } from './styles';
 
-import Legenda from '../Legenda';
 import CardReserva from '../CardReserva';
-import CalendarioOpcoes from '../CalendarioOpcoes';
 
-function CalendarioDia({aoClicar, selecionado}) {
-    //tradução do moment para PT-BR;
-    moment.locale('pt-br');
-    moment.updateLocale('pt-br', {months : ['Janeiro', 'Fevereiro', 'Março', 'Abril',
-    'Maio', 'Junho','Julho','Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']});
+function CalendarioDia({data, setData, calendarioTipo}) {
 
-    const [data, setData] = useState(moment());
     const [dia, setDia] = useState();
 
     useEffect(() => {
-        setDia(data)
-    }, [dia])
-
-    //------------------------------------
-    function anterior() {
-        setData(data.subtract(1, 'day'));
-        console.log('ANTERIOR  ' + data.toString());
-    }
-
-    function proximo() {
-        setData(data.add(1, 'day'));
-        console.log('PROXIMO ' + data.toString());
-    }
+        setDia(data.format('D'));
+        console.log('atualizou '+ data.format('D'));
+    }, [data])
 
     return(
         <Container>
-            <CalendarioOpcoes valor={data} onChange={setData} aoClicar={aoClicar} selecionado={selecionado}/>
-            <CalendarioHeader>
-                HOJE
-            </CalendarioHeader>
             <Body>
                 <Dia>
-                    <button onClick={anterior}>Anterior</button>
-                    <br/>
-                        {''+data.format('D')}
-                    <br/>
-                    <button onClick={proximo}>proximo</button>
+                    {dia}
                 </Dia>
             </Body>
-            <Legenda />
         </Container>
     );
 }

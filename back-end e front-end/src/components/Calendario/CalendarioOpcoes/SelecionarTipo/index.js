@@ -13,12 +13,7 @@ import {
     ContainerDiaSelecionado
 } from './styles';
 
-function SelecionarTipo({aoClicar, selecionado}) {
-    
-    const clica = (valor) => {
-        aoClicar(valor);
-
-    }
+function SelecionarTipo({calendarioTipo,setCalendarioTipo}) {
 
     const DiaSelecionado = () => {
         return(
@@ -26,10 +21,10 @@ function SelecionarTipo({aoClicar, selecionado}) {
                 <ContainerDiaSelecionado>
                     <Dia>DIA</Dia>
                 </ContainerDiaSelecionado>
-                <ContainerSemana onClick={()=>clica('semana')}>
+                <ContainerSemana onClick={()=>setCalendarioTipo('week')}>
                     <Semana>SEMANA</Semana>
                 </ContainerSemana>
-                <ContainerMes onClick={()=>clica('mes')}>
+                <ContainerMes onClick={()=>setCalendarioTipo('month')}>
                     <Mes>MÊS</Mes>
                 </ContainerMes>
             </SubContainer>
@@ -38,13 +33,13 @@ function SelecionarTipo({aoClicar, selecionado}) {
     const SemanaSelecionada = () => {
         return(
             <SubContainer>
-                <ContainerDia onClick={()=>clica('dia')}>
+                <ContainerDia onClick={()=>setCalendarioTipo('day')}>
                     <Dia>DIA</Dia>
                 </ContainerDia>
                 <ContainerSemanaSelecionada>
                     <Semana>SEMANA</Semana>
                 </ContainerSemanaSelecionada>
-                <ContainerMes onClick={()=>clica('mes')}>
+                <ContainerMes onClick={()=>setCalendarioTipo('month')}>
                     <Mes>MÊS</Mes>
                 </ContainerMes>
             </SubContainer>
@@ -53,10 +48,10 @@ function SelecionarTipo({aoClicar, selecionado}) {
     const MesSelecionado = () => {
         return(
             <SubContainer>
-                <ContainerDia onClick={()=>clica('dia')}>
+                <ContainerDia onClick={()=>setCalendarioTipo('day')}>
                     <Dia>DIA</Dia>
                 </ContainerDia>
-                <ContainerSemana onClick={()=>clica('semana')}>
+                <ContainerSemana onClick={()=>setCalendarioTipo('week')}>
                     <Semana>SEMANA</Semana>
                 </ContainerSemana>
                 <ContainerMesSelecionado>
@@ -67,12 +62,12 @@ function SelecionarTipo({aoClicar, selecionado}) {
     };
 
     const Tipo = () => {
-        switch (selecionado) {
-        case 'dia':
+        switch (calendarioTipo) {
+        case 'day':
             return <DiaSelecionado/>
-        case 'semana':
+        case 'week':
             return <SemanaSelecionada/>
-        case 'mes':
+        case 'month':
             return<MesSelecionado/>
         };
     };
