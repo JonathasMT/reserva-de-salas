@@ -32,7 +32,7 @@ function Calendario() {
                 calendarioTipo={calendarioTipo}
                 data={data}
                 setData={setData}/>
-            <CalendarioLegenda/>
+            {/* <CalendarioLegenda/> */}
         </Container>
 )
 };

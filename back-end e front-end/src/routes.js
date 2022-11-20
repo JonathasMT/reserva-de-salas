@@ -34,13 +34,22 @@ const RoutesApp = () => {
       <Fragment>
         <Header/>
         <Routes>
-            {/* <Route path='/' element={<Privada Destino={Home} />}/>
+            <Route path='/' element={<Privada Destino={Home} />}/>
             <Route path='/minhasreservas' element={<Privada Destino={MinhasReservas} />}/>
             <Route path='/configuracoes' element={<Privada Destino={Configuracoes} />}/>
             <Route path='/perfil' element={<Privada Destino={Perfil} />}/>
-            <Route path='*' element={<NotFound />} /> */}
+            <Route path='/novousuario' element={<Privada Destino={NovoUsuario} />}/>
+            <Route path='/novogrupo' element={<Privada Destino={NovoGrupo} />}/>
+            <Route path='/novasala' element={<Privada Destino={NovaSala} />}/>
+            <Route path='/novacategoria' element={<Privada Destino={NovaCategoria} />}/>
+            <Route path='/novareserva' element={<Privada Destino={NovaReserva} />}/>
+            <Route path='/editarreserva' element={<Privada Destino={EditarReserva} />}/>
+            <Route path='/detalhesreserva' element={<Privada Destino={DetalhesReserva} />}/>
+            <Route path='/usuarios' element={<Privada Destino={Usuarios} />}/>
+            <Route path='/primeiroacesso' element={<Privada Destino={PrimeiroAcesso} />}/>
+            <Route path='*' element={<NotFound />} />
 
-            <Route path='/' element={<Home/>}/>
+            {/* <Route path='/' element={<Home/>}/>
             <Route path='/minhasreservas' element={<MinhasReservas/>}/>
             <Route path='/configuracoes' element={<Configuracoes/>}/>
             <Route path='/perfil' element={<Perfil/>}/>
@@ -54,7 +63,7 @@ const RoutesApp = () => {
             <Route path='/usuarios' element={<Usuarios/>}/>
             <Route path='/primeiroacesso' element={<PrimeiroAcesso/>}/>
             <Route path='/login' element={<Login/>}/>
-            <Route path='*' element={<NotFound />} />
+            <Route path='*' element={<NotFound />} /> */}
         </Routes>
       </Fragment>
     </BrowserRouter>

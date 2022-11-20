@@ -10,6 +10,7 @@ import {
 } from './styles';
 
 import CardReserva from '../CardReserva';
+import CalendarioLegenda from '../Calendario/CalendarioLegenda';
 
 function CalendarioDia({data, setData, calendarioTipo}) {
 
@@ -27,6 +28,7 @@ function CalendarioDia({data, setData, calendarioTipo}) {
                     {dia}
                 </Dia>
             </Body>
+            <CalendarioLegenda/>
         </Container>
     );
 }

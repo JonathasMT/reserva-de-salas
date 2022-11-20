@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Container, Body, ContainerDia, Dia, DiaCorrente} from './styles';
 
 import CardReserva from '../CardReserva';
+import CalendarioLegenda from '../Calendario/CalendarioLegenda';
 
 function CalendarioSemana({data, setData}) {
     const [calendario, setCalendario] = useState([]);
@@ -48,6 +49,7 @@ function CalendarioSemana({data, setData}) {
                     ))}
                 </Body>
             ))}
+                <CalendarioLegenda/>
         </Container>
     );
 }
