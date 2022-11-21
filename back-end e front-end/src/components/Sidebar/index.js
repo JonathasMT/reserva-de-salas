@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {Container, Content, ContainerPerfil, ContainerNome} from './styles';
 import {
     FaTimes,
@@ -14,18 +14,21 @@ import {Link, NavLink, useNavigate} from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 
 const Sidebar = ({ativo}) => {
-    const navegar = useNavigate();
-    
+
     console.log('Passou no arquivo sidebar.js');
-
+    const navegar = useNavigate();
     const fecharSidebar = () => {ativo(false)};
-
     const {sair, usuario} = useAuth();
+    const [nome, setNome] = useState('Ninguem');
 
-    console.log('USUARIO >>>'+usuario);
+    // useEffect(() => {
+    // const {usuario} = useAuth();
+    // const {nome} = JSON.parse(usuario);
+    // setNome(nome);
+    // }, []);
 
 
-    const {token, nome, email} = JSON.parse(usuario);
+    
 
     return (
         <Container sidebar={ativo}>

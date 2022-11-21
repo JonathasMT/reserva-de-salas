@@ -1,23 +1,21 @@
 const dataBase = require('../models/db');
 const Usuario = require('../models/Usuario');
 
-const readBancoDeDados = async (req, res) => {
+const tamanhoBD = async (req, res) => {
     await dataBase.sync();
-    const usuario = await Usuario.findByPk(1);
+    const {count} = await Usuario.findAndCountAll();
 
-    console.log(usuario);
+    console.log(count);
 
-    if(usuario) {
+    if(count>0) {
         //o banco de dados já possui registros
         return res.status(200).json({msg: '1'});
     } else {
         //O banco de dados está vazio
         return res.status(200).json({msg: '0'});
-    }
-
-    
+    };
 };
 
 module.exports = {
-    readBancoDeDados
+    tamanhoBD
 };

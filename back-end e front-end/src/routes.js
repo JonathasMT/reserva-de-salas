@@ -1,5 +1,6 @@
-import {Fragment} from 'react';
+import {Fragment, useEffect, useState} from 'react';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
+
 
 import useAuth from '../src/hooks/useAuth';
 
@@ -23,27 +24,12 @@ import PrimeiroAcesso from './pages/PrimeiroAcesso';
 const RoutesApp = () => {
 
     console.log('Passou no arquivo routes.js');
-
-    const {root, autenticado} = useAuth();
-    
-    const verificaBd = async () => {
-        const retorno = await root();
-        return retorno;
-    };
+    const {autenticado} = useAuth();
 
     // eslint-disable-next-line
     const Privada = ({Destino}) => {
         console.log('routes.js >> Autenticado? >> '+ autenticado);
-
-        if(autenticado){
-            return <Destino/>;
-        }else {
-            if(!verificaBd()==='0') {
-                return <login/>
-            }else {
-                return <PrimeiroAcesso/>;
-            };
-        };
+        return autenticado ? <Destino/> : <Login/>;
     };
 
     return (

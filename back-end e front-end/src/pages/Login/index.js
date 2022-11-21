@@ -13,25 +13,8 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [msg, setMsg] = useState('');
-    const [verifica, setVerifica] = useState('');
-
-
-    // useEffect(() => {
-    //   const verificaBd = async () => {
-    //     const retorno = await root();
-    //     if(retorno==='0'){
-    //       navegar('/primeiroacesso');
-    //     }
-    //   }
-    //   verificaBd();
-      
-    // }, []);
 
     const submeterLogin = async() => {
-      const root = await root('get');
-        setMsg(root);
-        console.log(root);
-
       const resposta = await entrar(email, senha);
       if (resposta) {
         setMsg(resposta);

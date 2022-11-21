@@ -1,6 +1,7 @@
 const express = require('express');
-
 const router = express.Router();
+
+const instituicaoController = require('../controllers/instituicaoController');
 
 //validações
 const categoriaValidacoes = require('./middlewares/categoriaValidacoes');
@@ -22,10 +23,9 @@ const repeteTipoController = require('./controllers/repeteTipoController');
 const reservaController = require('./controllers/reservaController');
 const salaController = require('./controllers/salaController');
 const usuarioControler = require('./controllers/usuarioController');
-const instituicaoController = require('./controllers/instituicaoController');
 
 //rota raiz/home
-router.get('/', rootController.tamanhoBD);
+router.get('/instituicao', instituicaoController.readInstituicao);
 
 //ROTAS PARA CADASTRO----------------------------------------------------------
 

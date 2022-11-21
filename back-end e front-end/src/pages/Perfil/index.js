@@ -37,7 +37,7 @@ const Perfil = () => {
                 type='nome'
                 name='nome'
                 placeholder='Digite seu nome completo'
-                value={nome}
+                defaultValue={nome}
                 // onChange={(evento) => [setEmail(evento.target.value), setMsg('')]}
               />
             </span>
@@ -47,7 +47,7 @@ const Perfil = () => {
                 type='email'
                 name='email'
                 placeholder='Digite seu e-mail'
-                value={email}
+                defaultValue={email}
                 // onChange={(evento) => [setEmail(evento.target.value), setMsg('')]}
               />
             </span>
