@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 
 import {Button, Container, Form, Input, SubContainer} from './styles';
@@ -6,27 +6,32 @@ import useAuth from '../../hooks/useAuth';
 import Header from '../../components/Header';
 
 const Login = () => {
+
     const navegar = useNavigate();
-    const {entrar} = useAuth();
+    const {entrar, root} = useAuth();
 
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [msg, setMsg] = useState('');
+    const [verifica, setVerifica] = useState('');
+
 
     // useEffect(() => {
-    //   const usuario = localStorage.getItem('usuarioAutenticado');
-    //   console.log('AUTENTICADO? >> '+usuario);
-    //   if (usuario) {
-    //     console.log('Você já esta autenticado!');
-    //     console.log(usuario);
-    //   }else {
-    //     console.log('Faça LOGIN!');
-    //     return
-    //   };
-    //   navegar('/');
+    //   const verificaBd = async () => {
+    //     const retorno = await root();
+    //     if(retorno==='0'){
+    //       navegar('/primeiroacesso');
+    //     }
+    //   }
+    //   verificaBd();
+      
     // }, []);
 
     const submeterLogin = async() => {
+      const root = await root('get');
+        setMsg(root);
+        console.log(root);
+
       const resposta = await entrar(email, senha);
       if (resposta) {
         setMsg(resposta);

@@ -1,8 +1,13 @@
 // eslint-disable-next-line
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
+import {useNavigate} from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 import {Container, SubContainer, Button, Form, ContainerInput, Input, InputImage} from './styles';
 
 const PrimeiroAcesso = () => {
+
+    const navegar = useNavigate();
+    const {root} = useAuth();
 
     const msg = `
         A conexão com o banco de 
@@ -16,6 +21,17 @@ const PrimeiroAcesso = () => {
         e.preventDefault();
         setConf(true);
     };
+
+    // useEffect(() => {
+    //     const verificaBd = async () => {
+    //       const retorno = await root();
+    //       if(!retorno==='0'){
+    //         navegar('/login');
+    //       }
+    //     }
+    //     verificaBd();
+        
+    //   }, []);
 
     const BemVindo = () => {
         return (

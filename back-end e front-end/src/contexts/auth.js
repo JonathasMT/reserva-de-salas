@@ -17,6 +17,19 @@ export const AuthProvider = ({children}) => {
         };
     }, []);
 
+    async function root () {
+        var retorno;
+        await api.get('/')
+        .then((resultado) => {
+            // console.log(resultado.data.msg);
+            retorno=resultado.data.msg;
+        }).catch((erro) => {
+            console.log('ERRO >>'+erro)
+            retorno=erro.response.data.msg;
+        });
+        return retorno;
+    };
+
 
     async function entrar (email, senha) {
         var retorno;
@@ -64,7 +77,7 @@ export const AuthProvider = ({children}) => {
 
     return (
         <AuthContext.Provider
-        value={{usuario, autenticado: !!usuario, entrar, cadastrar, sair}}
+        value={{usuario, autenticado: !!usuario, entrar, cadastrar, sair, root}}
         >
         {children}
         </AuthContext.Provider>

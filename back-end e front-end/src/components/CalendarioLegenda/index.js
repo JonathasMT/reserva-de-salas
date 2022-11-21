@@ -1,7 +1,7 @@
 import {Container} from './styles';
 
 import Legenda from '../CalendarioLegendaItem';
-import {Theme} from '../../Theme';
+import {Theme} from '../Theme';
 
 function CalendarioLegenda() {
 

@@ -21,6 +21,7 @@ const dataBase = new Sequelize(
     }
 );
 
+
 //metodo assincrono - autenticar banco de dados
 dataBase.authenticate()
 .then(() => {

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import CalendarioDia from '../../CalendarioDia';
-import CalendarioSemana from '../../CalendarioSemana';
-import CalendarioMes from '../../CalendarioMes';
+import CalendarioDia from '../CalendarioDia';
+import CalendarioSemana from '../CalendarioSemana';
+import CalendarioMes from '../CalendarioMes';
 
 function CalendarioBody({data, setData, calendarioTipo}) {
 

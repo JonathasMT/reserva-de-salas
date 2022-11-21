@@ -14,6 +14,7 @@ const usuarioValidacoes = require('./middlewares/usuarioValidacoes');
 const loginValidacoes = require('./middlewares/loginValidacoes');
 
 //controllers
+const rootController = require('./controllers/rootController');
 const categoriaController = require('./controllers/categoriaController');
 const grupoController = require('./controllers/grupoController');
 const repeteController = require('./controllers/repeteController');
@@ -23,12 +24,8 @@ const salaController = require('./controllers/salaController');
 const usuarioControler = require('./controllers/usuarioController');
 const instituicaoController = require('./controllers/instituicaoController');
 
-// //rota raiz/home
-// router.get('/', async (req, res) => {
-//     return res.status(200).json({
-//         msg: "Joanatas R. Martins - API de reserva de salas."
-//     });
-// });
+//rota raiz/home
+router.get('/', rootController.readBancoDeDados);
 
 //ROTAS PARA CADASTRO----------------------------------------------------------
 

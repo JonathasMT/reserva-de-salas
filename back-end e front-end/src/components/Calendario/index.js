@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import moment from 'moment';
 
-import CalendarioBody from "./CalendarioBody";
-import CalendarioHeader from "./CalendarioHeader";
-import CalendarioOpcoes from "./CalendarioOpcoes";
-import CalendarioLegenda from "./CalendarioLegenda";
+import CalendarioBody from "../CalendarioBody";
+import CalendarioHeader from "../CalendarioHeader";
+import CalendarioOpcoes from "../CalendarioOpcoes";
+import CalendarioLegenda from "../CalendarioLegenda";
 import { Container } from './styles';
 
 function Calendario() {
