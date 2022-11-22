@@ -1,11 +1,11 @@
 import { Container, Loader } from "./styles";
 
-import loading from "../../assets/img/loading.svg";
+import carregando from "../../assets/img/carregando.svg";
 
 const Loading = () => {
   return (
     <Container>
-        <Loader src={loading} alt='Loading'/>
+        <Loader src={carregando} alt='Loading'/>
     </Container>
   );
 };

@@ -30,15 +30,15 @@ const validarEmail = async (req, res, next) => {
 };
 
 const validarSenha = async (req, res, next) => {
-    const {senha, confirmaSenha} = req.body;
+    const {senha, confirma_senha} = req.body;
 
     if (!senha) {
         return res.status(400).json({msg: 'O campo Senha deve ser preeenchido!'});
     };
-    if (!confirmaSenha) {
+    if (!confirma_senha) {
         return res.status(400).json({msg: 'O campo Confirmar senha deve ser preeenchido!'});
     };
-    if (confirmaSenha != senha ) {
+    if (confirma_senha != senha ) {
         return res.status(400).json({msg: 'As senhas devem ser iguais!'});
     };
     next();
@@ -66,41 +66,41 @@ const validarStatus= async(req, res, next) => {
 };
 
 const validarLogin = async (req, res, next) => {
-        const {email, senha} = req.body;
+    const {email, senha} = req.body;
 
-        //verifica se o e-mail foi preenchido
-        if (!email) {
-            return res.status(400).json({msg: 'O campo Email deve ser preeenchido!'});
-        };
-        //verifica se a senha foi preenchida
-        if (!senha) {
-            return res.status(400).json({msg: 'O campo Senha deve ser preeenchido!'});
-        };
-        //verifica se o e-mail informado existe
-        const usuario = await Usuario.findOne({where : {email: email}});
-        if (!usuario) {
-            return res.status(400).json({msg: 'E-mail ' + email + ' não foi encontrado!'});
-        };
-        //verifica se a senha informada está correta
-        const verificaSenha = await bcrypt.compare(senha, usuario.senha);
-        if(!verificaSenha) {
-            return res.status(422).json({msg: 'Senha incorreta!'});
-        };
+    //verifica se o e-mail foi preenchido
+    if (!email) {
+        return res.status(400).json({msg: 'O campo Email deve ser preeenchido!'});
+    };
+    //verifica se a senha foi preenchida
+    if (!senha) {
+        return res.status(400).json({msg: 'O campo Senha deve ser preeenchido!'});
+    };
+    //verifica se o e-mail informado existe
+    const usuario = await Usuario.findOne({where : {email: email}});
+    if (!usuario) {
+        return res.status(400).json({msg: 'E-mail ' + email + ' não foi encontrado!'});
+    };
+    //verifica se a senha informada está correta
+    const verificaSenha = await bcrypt.compare(senha, usuario.senha);
+    if(!verificaSenha) {
+        return res.status(422).json({msg: 'Senha incorreta!'});
+    };
+    next();
+};
+
+const validarCredenciais = (req, res, next) => {
+    try {
+        const token = req.headers.authorization.split(' ')[1];
+        const decodificado = jwt.verify(token, process.env.SECRET);
+        req.usuario = decodificado;
+        console.log(req);
         next();
+    } catch (erro) {
+        return res.status(401).send({ msg: 'Não autorizado!'});
     };
 
-        const validarCredenciais = (req, res, next) => {
-            try {
-                const token = req.headers.authorization.split(' ')[1];
-                const decodificado = jwt.verify(token, process.env.SECRET);
-                req.usuario = decodificado;
-                console.log(req);
-                next();
-            } catch (erro) {
-                return res.status(401).send({ msg: 'Não autorizado!'});
-            };
-
-        };
+};
 
 module.exports = {
     validarNome,

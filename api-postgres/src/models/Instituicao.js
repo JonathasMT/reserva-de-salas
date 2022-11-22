@@ -8,7 +8,7 @@ const Instituicao = dataBase.define('Instituicao', {
         primaryKey: true,
         allowNull: false
     },
-    nome: {
+    nome_instituicao: {
         type: Sequelize.STRING,
         allowNull: false
     },

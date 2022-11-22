@@ -26,6 +26,28 @@ const createUsuario = async (req, res) => {
     });
 };
 
+const createPrimeiroUsuario = async (req, res) => {
+    await dataBase.sync();
+    const {nome, email, senha, imagem} = req.body;
+
+    //criar hash para a senha
+    const salt = await bcrypt.genSalt(12);
+    const senhaHash = await bcrypt.hash(senha, salt);
+    //criar o usuario com os dados recebidos
+    await Usuario.create({
+        nome: nome,
+        email: email,
+        senha: senhaHash,
+        imagem: imagem,
+        nivel: 2,
+        status: true
+    }).then((resultado) => {
+        return res.status(200).json('Usuario cadastrado');
+    }).catch((erro) => {
+        res.status(500).json({msg: 'Ocorreu um erro, tente novamente ou contacte o administrador!'+erro});
+    });
+};
+
 const readUsuario = async (req, res) => {
     await dataBase.sync();
     const usuario = Usuario.findByPk();
@@ -88,6 +110,7 @@ const tamanhoBancoDeDados = async (req, res) => {
 
 module.exports = {
     createUsuario,
+    createPrimeiroUsuario,
     readUsuario,
     readVariosUsuarios,
     updateUsuario,

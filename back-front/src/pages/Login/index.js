@@ -34,6 +34,7 @@ const Login = () => {
                 name='email'
                 placeholder='Digite o seu e-mail'
                 value={email}
+                required
                 onChange={(evento) => [setEmail(evento.target.value), setMsg('')]}
               />
             </span>
@@ -44,6 +45,7 @@ const Login = () => {
                 name='senha'
                 placeholder='Digite sua senha'
                 value={senha}
+                required
                 onChange={(evento) => [setSenha(evento.target.value), setMsg('')]}
               />
             </span>

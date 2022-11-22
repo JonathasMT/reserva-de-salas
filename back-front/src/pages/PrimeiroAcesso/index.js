@@ -1,17 +1,18 @@
 // eslint-disable-next-line
 import {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
-import Loading from '../../components/Loading';
-import useAuth from '../../hooks/useAuth';
+
 import {Container, SubContainer, Button, Form, ContainerInput, Input, InputImage} from './styles';
+import Carregando from '../../components/Carregando';
+import useCadastro from '../../hooks/useCadastro';
 
 const PrimeiroAcesso = () => {
 
     const navegar = useNavigate();
-    const {tamanhoBd} = useAuth();
-    const [loading, setLoading] = useState(true);
+    const {tamanhoBd, primeiroAcesso} = useCadastro();
+    const [carregando, setCarregando] = useState(true);
 
-    const msg = `
+    const texto = `
         A conexão com o banco de 
         dados foi efetuada com 
         sucesso, porém  está em branco.
@@ -24,19 +25,47 @@ const PrimeiroAcesso = () => {
         setConf(true);
     };
 
-    useEffect(() => {
+    // useEffect(() => {
+    //     const verificaBd = async () => {
+    //       const vazio = await tamanhoBd();
+    //       if(!vazio){
+    //         navegar('/');
+    //       }else {
+    //         setCarregando(false)
+    //       }
+    //     }
+    //     verificaBd();
+    // }, []);
 
-        const verificaBd = async () => {
-          const vazio = await tamanhoBd();
-          if(!vazio){
-            navegar('/');
-          }else {
-            setLoading(false)
-          }
-        }
-        verificaBd();
-        
-      }, []);
+    const [instituicaoNome, setInstituicaoNome] = useState();
+    const [logo, setLogo] = useState('');
+
+    const [img, setImg] = useState('');
+    const [nome, setNome] = useState('');
+    const [email, setEmail] = useState('');
+    const [senha, setSenha] = useState('');
+    const [confirmaSenha, setConfirmaSenha] = useState('');
+
+    const [msg, setMsg] = useState('');
+
+    const submeterPrimeiroAcesso = async() => {
+        const resposta = await primeiroAcesso(
+            instituicaoNome, 
+            logo,
+            img,
+            nome,
+            email,
+            senha,
+            confirmaSenha
+        );
+        if (resposta) {
+            setMsg(resposta);
+        }else {
+            setMsg('Erro ao conectar com a API')
+            return;
+        };
+        navegar('/');
+    };
 
     const BemVindo = () => {
         return (
@@ -44,7 +73,7 @@ const PrimeiroAcesso = () => {
                 <SubContainer>
                     <h3>Bem Vindo ao Sistema Reserva Fácil</h3>
                     <p> 
-                        {msg}
+                        {texto}
                     </p>
                     <Button onClick={continuar}>VAMOS LÁ</Button>
                 </SubContainer>
@@ -62,8 +91,10 @@ const PrimeiroAcesso = () => {
                                 Nome:
                                 <Input
                                     type='text'
-                                    name='nome'
+                                    name='instituicao'
                                     placeholder='Digite o nome da sua instituição'
+                                    value={instituicaoNome}
+                                    onChange={(e) => [setInstituicaoNome(e.target.value), setMsg(''), console.log(e.target.value)]}
                                 />
                             </ContainerInput>
                             <ContainerInput> 
@@ -72,6 +103,8 @@ const PrimeiroAcesso = () => {
                                     type='file'
                                     name='logo'
                                     placeholder='Selecione sua imagem de logo'
+                                    value={logo}
+                                    onChange={(e) => [setLogo(e.target.value), setMsg('')]}
                                 />
                             </ContainerInput>
                         </Form>
@@ -82,8 +115,10 @@ const PrimeiroAcesso = () => {
                                 Imagem de perfil:
                                 <InputImage
                                     type='text'
-                                    name='nome'
+                                    name='img'
                                     placeholder='Selecione sua imagem de perfil'
+                                    value={img}
+                                    onChange={(e) => [setImg(e.target.value), setMsg('')]}
                                 />
                             </ContainerInput>
                             <ContainerInput> 
@@ -92,6 +127,9 @@ const PrimeiroAcesso = () => {
                                     type='text'
                                     name='nome'
                                     placeholder='Digite seu nome completo'
+                                    required
+                                    value={nome}
+                                    onChange={(e) => [setNome(e.target.value), setMsg('')]}
                                 />
                             </ContainerInput>
                             <ContainerInput> 
@@ -100,6 +138,9 @@ const PrimeiroAcesso = () => {
                                     type='email'
                                     name='email'
                                     placeholder='Digite seu e-mail'
+                                    required
+                                    value={email}
+                                    onChange={(e) => [setEmail(e.target.value), setMsg('')]}
                                 />
                             </ContainerInput>
                             <ContainerInput>
@@ -108,25 +149,31 @@ const PrimeiroAcesso = () => {
                                     type='password'
                                     name='senha'
                                     placeholder='Digite uma senha'
+                                    required
+                                    value={senha}
+                                    onChange={(e) => [setSenha(e.target.value), setMsg('')]}
                                 />
                             </ContainerInput>
                             <ContainerInput>
                                 Repita a senha:
                                 <Input
                                     type='password'
-                                    name='senha'
+                                    name='confirmaSenha'
                                     placeholder='Repita a senha'
+                                    required
+                                    value={confirmaSenha}
+                                    onChange={(e) => [setConfirmaSenha(e.target.value), setMsg('')]}
                                 />
                             </ContainerInput>
                         </Form>
-                        <Button>CADASTRAR</Button>
+                        <Button onClick={submeterPrimeiroAcesso}>CADASTRAR</Button>
                 </SubContainer>
             </Container>
         );
     };
     return(
         <>
-            {loading? <Loading/>: ''}
+            {/* {carregando? <Carregando/>: ''} */}
             {conf? <Configurar/> : <BemVindo/>}
         </>
      

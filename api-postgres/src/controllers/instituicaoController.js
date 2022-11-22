@@ -3,11 +3,11 @@ const Instituicao = require('../models/Instituicao');
 
  const createInstituicao = async (req, res) => {
     await dataBase.sync();
-    const {nome, logo} = req.body;
+    const {nome_instituicao, logo} = req.body;
 
     //criar instituição com os dados recebidos
     await Instituicao.create({
-        nome: nome,
+        nome_instituicao: nome_instituicao,
         logo: logo
     }).then((resultado) => {
         return res.status(200).json('Instituição cadastrada');
@@ -18,11 +18,11 @@ const Instituicao = require('../models/Instituicao');
 
 const readInstituicao = async (req, res) => {
     await dataBase.sync();
-    const {nome, logo} = req.body;
+    const {nome_instituicao, logo} = req.body;
 
     //criar o usuario com os dados recebidos
     await Instituicao.create({
-        nome: nome,
+        nome_instituicao: nome_instituicao,
         logo: logo
     }).then((resultado) => {
         return res.status(200).json('Instituição cadastrada');

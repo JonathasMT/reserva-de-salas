@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {Theme} from '../../components/Theme'
 
 export const Container = styled.div`
-    height: calc(100vh - 50px);
+    height: 100vh;
     display: flex;
     box-sizing: border-box;
     flex-direction: column;

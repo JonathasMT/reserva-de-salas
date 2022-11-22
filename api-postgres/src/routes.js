@@ -5,6 +5,7 @@ const router = express.Router();
 //validações
 const categoriaValidacoes = require('./middlewares/categoriaValidacoes');
 const grupoValidacoes = require('./middlewares/grupoValidacoes');
+const instituicaoValidacoes = require('./middlewares/instituicaoValidacoes');
 const repeteValidacoes = require('./middlewares/repeteValidacoes');
 const repeteTipoValidacoes = require('./middlewares/repeteTipoValidacoes');
 const reservaValidacoes = require('./middlewares/reservaValidacoes');
@@ -26,6 +27,19 @@ const instituicaoController = require('./controllers/instituicaoController');
 router.get('/', rootController.tamanhoBD);
 
 //ROTAS PARA CADASTRO----------------------------------------------------------
+
+//USUARIO
+router.post('/primeiroacesso',
+    instituicaoValidacoes.validarTamanhoBancoDeDados,
+    instituicaoValidacoes.validarNomeInstituicao,
+    usuarioValidacoes.validarNome,
+    usuarioValidacoes.validarEmail,
+    usuarioValidacoes.validarSenha,
+    //cria a instituiçao
+    instituicaoController.createInstituicao,
+    //cria o usuario
+    usuarioControler.createUsuario
+);
 
 //INSTITUIÇAO
 router.post('/intituicao',
@@ -133,7 +147,9 @@ router.get('/usuarios',
 );
 
 //TAMANHO DA TABELA USUARIOS
-router.get('/tamanhobd', usuarioControler.tamanhoBancoDeDados)
+router.get('/tamanhobd', 
+    usuarioControler.tamanhoBancoDeDados
+);
 
 
 //ROTAS PARA DELETAR UM CADASTRO-----------------------------------------------

@@ -61,22 +61,9 @@ export const AuthProvider = ({children}) => {
         localStorage.removeItem('usuarioAutenticado');
     };
 
-    async function tamanhoBd () {
-        var retorno;
-        await api.get('/tamanhobd')
-        .then((resultado) => {
-            retorno=resultado.data.vazio;
-        }).catch((erro) => {
-            console.log('ERRO >>'+erro)
-            retorno=erro.response.data.msg;
-        });
-        return retorno;
-    };
-
     return (
         <AuthContext.Provider
-        value={{usuario, autenticado: !!usuario, entrar, cadastrar, sair, tamanhoBd}}
-        >
+            value={{usuario, autenticado: !!usuario, entrar, cadastrar, sair}}>
         {children}
         </AuthContext.Provider>
     );

@@ -10,7 +10,7 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
     position: absolute;
-    background-color: ${Theme.fundo};
+    background-color: ${Theme.menuFundo};
 
     >svg {
         background-color: red;
