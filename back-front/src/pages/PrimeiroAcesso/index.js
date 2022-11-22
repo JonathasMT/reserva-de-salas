@@ -1,13 +1,15 @@
 // eslint-disable-next-line
 import {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
+import Loading from '../../components/Loading';
 import useAuth from '../../hooks/useAuth';
 import {Container, SubContainer, Button, Form, ContainerInput, Input, InputImage} from './styles';
 
 const PrimeiroAcesso = () => {
 
     const navegar = useNavigate();
-    const {root} = useAuth();
+    const {tamanhoBd} = useAuth();
+    const [loading, setLoading] = useState(true);
 
     const msg = `
         A conexão com o banco de 
@@ -22,16 +24,19 @@ const PrimeiroAcesso = () => {
         setConf(true);
     };
 
-    // useEffect(() => {
-    //     const verificaBd = async () => {
-    //       const retorno = await root();
-    //       if(!retorno==='0'){
-    //         navegar('/login');
-    //       }
-    //     }
-    //     verificaBd();
+    useEffect(() => {
+
+        const verificaBd = async () => {
+          const vazio = await tamanhoBd();
+          if(!vazio){
+            navegar('/');
+          }else {
+            setLoading(false)
+          }
+        }
+        verificaBd();
         
-    //   }, []);
+      }, []);
 
     const BemVindo = () => {
         return (
@@ -121,6 +126,7 @@ const PrimeiroAcesso = () => {
     };
     return(
         <>
+            {loading? <Loading/>: ''}
             {conf? <Configurar/> : <BemVindo/>}
         </>
      

@@ -5,7 +5,7 @@ const Instituicao = require('../models/Instituicao');
     await dataBase.sync();
     const {nome, logo} = req.body;
 
-    //criar o usuario com os dados recebidos
+    //criar instituição com os dados recebidos
     await Instituicao.create({
         nome: nome,
         logo: logo

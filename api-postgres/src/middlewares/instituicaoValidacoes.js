@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const dataBase = require('../models/db');
 const Usuario = require('../models/Usuario');
 
-const validarNome = async (req, res, next) => {
+const validarBancoDeDados = async (req, res, next) => {
     const {nome} = req.body;
 
     if (!nome) {

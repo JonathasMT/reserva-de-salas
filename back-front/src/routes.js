@@ -49,7 +49,7 @@ const RoutesApp = () => {
                 <Route path='/editarreserva' element={<Privada Destino={EditarReserva} />}/>
                 <Route path='/detalhesreserva' element={<Privada Destino={DetalhesReserva} />}/>
                 <Route path='/usuarios' element={<Privada Destino={Usuarios} />}/>
-                {/* <Route path='/primeiroacesso' element={<PrimeiroAcesso/>}/> */}
+                <Route path='/primeiroacesso' element={<PrimeiroAcesso/>}/>
                 <Route path='*' element={<NotFound />} />
 
                 {/* <Route path='/' element={<Home/>}/>

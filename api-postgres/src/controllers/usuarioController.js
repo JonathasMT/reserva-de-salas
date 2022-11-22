@@ -70,11 +70,28 @@ const login = async (req, res) => {
     };
 };
 
+const tamanhoBancoDeDados = async (req, res) => {
+    await dataBase.sync();
+    const {count} = await Usuario.findAndCountAll();
+
+    console.log(count);
+
+    if(count>0) {
+        //o banco de dados já possui registros
+        return res.status(200).json({msg: 'O banco de dados já possui cadastros', vazio: false});
+    } else {
+        //O banco de dados está vazio
+        res.status(200).json({msg: 'O banco de dados está vazio', vazio: true});
+    };
+    
+};
+
 module.exports = {
     createUsuario,
     readUsuario,
     readVariosUsuarios,
     updateUsuario,
     deleteUsuario,
-    login
+    login,
+    tamanhoBancoDeDados
 };

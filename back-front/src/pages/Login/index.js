@@ -3,12 +3,11 @@ import {useNavigate} from 'react-router-dom';
 
 import {Button, Container, Form, Input, SubContainer} from './styles';
 import useAuth from '../../hooks/useAuth';
-import Header from '../../components/Header';
 
 const Login = () => {
 
     const navegar = useNavigate();
-    const {entrar, root} = useAuth();
+    const {entrar} = useAuth();
 
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');

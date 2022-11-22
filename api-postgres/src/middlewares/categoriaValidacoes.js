@@ -26,7 +26,7 @@ const validarCor = async (req, res, next) => {
     //cria tabela caso não exista 
     await dataBase.sync();
     //verifica se o titulo informado já existe
-    const existeCor = await Sala.findOne({where : {cor: cor}});
+    const existeCor = await Categoria.findOne({where : {cor: cor}});
     if (existeCor) {
         return res.status(400).json({msg: 'A cor ' + cor + ' já existe!'});
     };

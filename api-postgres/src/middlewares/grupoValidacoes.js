@@ -32,7 +32,7 @@ const validarHoraInicio = async (req, res, next) => {
     if (!horaInicio) {
         return res.status(400).json({msg: 'O campo Hora inicial deve ser preechido!'});
     };
-    if (!dataValida(horaInicio)) {
+    if (!dataValida(new Date(horaInicio))) {
         return res.status(400).json({msg: 'O campo Hora inicial está em um formato invalido!'});
     }
     next();
@@ -44,7 +44,7 @@ const validarHoraFim = async (req, res, next) => {
     if (!horaFim) {
         return res.status(400).json({msg: 'O campo Hora final deve ser preechido!'});
     };
-    if (!dataValida(horaFim)) {
+    if (!dataValida(new Date(horaFim))) {
         return res.status(400).json({msg: 'O campo Hora final está em um formato invalido!'});
     }
     next();
@@ -63,7 +63,9 @@ const validarTempoAntecedencia = async (req, res, next) => {
 };
 
 function dataValida(dataHora) {
-    return date instanceof Date && !isNaN(dataHora);
+    const x = dataHora instanceof Date && !isNaN(dataHora);
+    console.log(dataHora);
+    return x;
 };
 
 module.exports = {

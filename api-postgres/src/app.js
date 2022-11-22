@@ -11,12 +11,12 @@ const RepeteTipo = require('./models/RepeteTipo');
 const Repete = require('./models/Repete');
 const Reserva = require('./models/Reserva');
 
-const router = require('./router');
+const routes = require('./routes');
 
 const app =express();
 app.use(cors());
 app.use(express.json());
-app.use(router);
+app.use(routes);
 
 //Compara se o Modelo esta igual o do Banco de Dados
 console.log('Instituicao: '+(Instituicao === dataBase.models.Instituicao).toString());
