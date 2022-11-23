@@ -3,6 +3,7 @@ import {useNavigate} from 'react-router-dom';
 
 import {Button, Container, Form, Input, SubContainer} from './styles';
 import useAuth from '../../hooks/useAuth';
+import Carregamento from '../../components/Carregando'
 
 
 const Login = () => {
@@ -13,19 +14,23 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [msg, setMsg] = useState('');
+    const [carregando, setCarregando] = useState(false)
 
     const submeterLogin = async() => {
-      const resposta = await entrar(email, senha);
-      if (resposta) {
-        setMsg(resposta);
-      }else {
-        setMsg('Erro ao conectar com a API')
-        return;
-      };
-      navegar('/');
+        setCarregando(true);
+        const resposta = await entrar(email, senha);
+        setCarregando(false);
+        if (resposta) {
+            setMsg(resposta);
+        }else {
+            setMsg('Erro ao conectar com a API')
+            return;
+        };
+        navegar('/');
     };
     return(
       <Container>
+        {carregando && <Carregamento/>}
         <SubContainer>
           <Form type='post'>
             <span> 

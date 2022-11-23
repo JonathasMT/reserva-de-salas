@@ -10,6 +10,8 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
     position: absolute;
+    user-select: none;
+    
     /* background-color: ${Theme.menuFundo}; */
 
     >svg {

@@ -65,7 +65,7 @@ const PrimeiroAcesso = () => {
 
     return(
         <>
-            {carregando? <Carregando/> : 
+            {carregando? <Carregando/> :
             <Container>
                 <SubContainer>
                         <Form>
