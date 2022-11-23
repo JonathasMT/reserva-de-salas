@@ -2,44 +2,42 @@ const express = require('express');
 
 const router = express.Router();
 
+//importar arquivos de rotas
+const primeiroAcessoRoutes = require('./primeiroAcessoRoutes');
+const usuarioRoutes = require('./usuarioRoutes');
+
+
+//inserir as rotas
+router.use(
+    primeiroAcessoRoutes,
+    usuarioRoutes
+);
+
+
 //validações
-const categoriaValidacoes = require('./middlewares/categoriaValidacoes');
-const grupoValidacoes = require('./middlewares/grupoValidacoes');
-const instituicaoValidacoes = require('./middlewares/instituicaoValidacoes');
-const repeteValidacoes = require('./middlewares/repeteValidacoes');
-const repeteTipoValidacoes = require('./middlewares/repeteTipoValidacoes');
-const reservaValidacoes = require('./middlewares/reservaValidacoes');
-const salaValidacoes = require('./middlewares/salaValidacoes');
-const usuarioValidacoes = require('./middlewares/usuarioValidacoes');
+const categoriaValidacoes = require('../middlewares/categoriaValidacoes');
+const grupoValidacoes = require('../middlewares/grupoValidacoes');
+const repeteValidacoes = require('../middlewares/repeteValidacoes');
+const repeteTipoValidacoes = require('../middlewares/repeteTipoValidacoes');
+const reservaValidacoes = require('../middlewares/reservaValidacoes');
+const usuarioValidacoes = require('../middlewares/usuarioValidacoes');
 
 //controllers
-const rootController = require('./controllers/rootController');
-const categoriaController = require('./controllers/categoriaController');
-const grupoController = require('./controllers/grupoController');
-const repeteController = require('./controllers/repeteController');
-const repeteTipoController = require('./controllers/repeteTipoController');
-const reservaController = require('./controllers/reservaController');
-const salaController = require('./controllers/salaController');
-const usuarioControler = require('./controllers/usuarioController');
-const instituicaoController = require('./controllers/instituicaoController');
+const categoriaController = require('../controllers/categoriaController');
+const grupoController = require('../controllers/grupoController');
+const repeteController = require('../controllers/repeteController');
+const repeteTipoController = require('../controllers/repeteTipoController');
+const reservaController = require('../controllers/reservaController');
+const usuarioControler = require('../controllers/usuarioController');
+const instituicaoController = require('../controllers/instituicaoController');
 
-//rota raiz/home
-router.get('/', rootController.tamanhoBD);
 
+//ROTA PARA FAZER LOGIN--------------------------------------------------------
 //ROTAS PARA CADASTRO----------------------------------------------------------
-
-//USUARIO
-router.post('/primeiroacesso',
-    instituicaoValidacoes.validarTamanhoBancoDeDados,
-    instituicaoValidacoes.validarNomeInstituicao,
-    usuarioValidacoes.validarNome,
-    usuarioValidacoes.validarEmail,
-    usuarioValidacoes.validarSenha,
-    //cria a instituiçao
-    instituicaoController.createInstituicao,
-    //cria o usuario
-    usuarioControler.createUsuario
-);
+//ROTAS PARA ATUALIZAR CADASTRO------------------------------------------------
+//ROTAS PARA LER UM UNICO CADASTRO---------------------------------------------
+//ROTAS PARA LER DIVERSOS CADASTROS--------------------------------------------
+//ROTAS PARA DELETAR UM CADASTRO-----------------------------------------------
 
 //INSTITUIÇAO
 router.post('/intituicao',
@@ -67,15 +65,7 @@ router.post('/novogrupo',
     //cria o grupo de salas
     grupoController.createGrupo
 );
-//SALA
-router.post('/novasala',
-    usuarioValidacoes.validarCredenciais,
-    salaValidacoes.validarGrupoId,
-    salaValidacoes.validarTitulo,
-    salaValidacoes.validarCapacidade,
-    //cria a sala
-    salaController.createSala
-);
+
 //CATEGORIA
 router.post('/novacategoria',
     usuarioValidacoes.validarCredenciais,
@@ -115,7 +105,7 @@ router.post('/novareserva',
 );
 
 
-//ROTAS PARA ATUALIZAR CADASTRO------------------------------------------------
+
 
 //USUARIO
 router.put('/usuario/:id',
@@ -129,7 +119,7 @@ router.put('/usuario/:id',
 );
 
 
-//ROTAS PARA LER UM UNICO CADASTRO---------------------------------------------
+
 
 //USUARIO
 router.get('/usuario/:id',
@@ -138,7 +128,6 @@ router.get('/usuario/:id',
 );
 
 
-//ROTAS PARA LER DIVERSOS CADASTROS--------------------------------------------
 
 //USUARIO
 router.get('/usuarios',
@@ -146,29 +135,12 @@ router.get('/usuarios',
     usuarioControler.readVariosUsuarios
 );
 
-//TAMANHO DA TABELA USUARIOS
-router.get('/tamanhobd', 
-    usuarioControler.tamanhoBancoDeDados
-);
 
-
-//ROTAS PARA DELETAR UM CADASTRO-----------------------------------------------
 
 //USUARIO
 router.delete('/usuario/:id',
     usuarioValidacoes.validarCredenciais,
     usuarioControler.deleteUsuario
 );
-
-
-//ROTAS PARA DELETAR VARIOS CADASTROS------------------------------------------
-
-
-//ROTA PARA FAZER LOGIN--------------------------------------------------------
-router.post('/login',
-    usuarioValidacoes.validarLogin,
-    usuarioControler.login
-);
-
 
 module.exports = router;

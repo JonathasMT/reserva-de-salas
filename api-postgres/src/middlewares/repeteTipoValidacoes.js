@@ -1,4 +1,4 @@
-const dataBase = require("../models/db");
+const dataBase = require("../db");
 const Repete_tipo = require("../models/RepeteTipo");
 
 const validarTitulo = async (req, res, next) => {

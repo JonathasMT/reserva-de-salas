@@ -1,7 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 
-const dataBase = require('./models/db');
+const dataBase = require('./db');
+
+//models
 const Instituicao = require('./models/Instituicao');
 const Usuario = require('./models/Usuario');
 const Categoria = require('./models/Categoria');
@@ -11,12 +13,15 @@ const RepeteTipo = require('./models/RepeteTipo');
 const Repete = require('./models/Repete');
 const Reserva = require('./models/Reserva');
 
-const routes = require('./routes');
+//routes
+const routes = require('./routes/routes');
 
+//configs
 const app =express();
 app.use(cors());
 app.use(express.json());
 app.use(routes);
+
 
 //Compara se o Modelo esta igual o do Banco de Dados
 console.log('Instituicao: '+(Instituicao === dataBase.models.Instituicao).toString());

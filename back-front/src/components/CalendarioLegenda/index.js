@@ -4,7 +4,6 @@ import Legenda from '../CalendarioLegendaItem';
 import {Theme} from '../Theme';
 
 function CalendarioLegenda() {
-
     return(
         <Container>
             <Legenda cor={Theme.aula} texto={'Aula'}/>

@@ -1,5 +1,5 @@
 const Categoria = require("../models/Categoria");
-const dataBase = require("../models/db");
+const dataBase = require("../db");
 
 const validarTitulo = async (req, res, next) => {
     const {titulo} = req.body;

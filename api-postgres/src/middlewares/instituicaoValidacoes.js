@@ -1,4 +1,4 @@
-const dataBase = require('../models/db');
+const dataBase = require('../db');
 const Instituicao = require('../models/Instituicao');
 
 const validarTamanhoBancoDeDados = async (req, res, next) => {

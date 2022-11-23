@@ -1,4 +1,4 @@
-const dataBase = require('../models/db');
+const dataBase = require('../db');
 const RepeteTipo = require('../models/RepeteTipo');
 
 const createRepeteTipo = async (req, res) => {

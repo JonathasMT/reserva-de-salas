@@ -4,11 +4,12 @@ import api from '../services/api'
 
 export const CadastroContext = createContext({});
 
-async function tamanhoBd () {
+async function tamanhoBd() {
     var retorno;
-    await api.get('/tamanhobd')
+    await api.get('/primeiroacesso')
     .then((resultado) => {
         retorno=resultado.data.vazio;
+        console.log(retorno);
     }).catch((erro) => {
         console.log('ERRO >>'+erro)
         retorno=erro.response.data.msg;

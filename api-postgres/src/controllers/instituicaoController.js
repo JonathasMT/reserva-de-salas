@@ -1,4 +1,4 @@
-const dataBase = require('../models/db');
+const dataBase = require('../db');
 const Instituicao = require('../models/Instituicao');
 
  const createInstituicao = async (req, res, next) => {

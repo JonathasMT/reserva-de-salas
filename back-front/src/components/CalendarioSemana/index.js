@@ -3,11 +3,9 @@ import {Container, Body, ContainerDia, Dia, DiaCorrente} from './styles';
 
 import CardReserva from '../CardReserva';
 import CalendarioLegenda from '../CalendarioLegenda';
-import Carregamento from '../Carregando'
 
 function CalendarioSemana({data, setData}) {
     const [calendario, setCalendario] = useState([]);
-    const [carregando, setCarregando] = useState(true);
 
     useEffect(() => {
         const inicioDia = data.clone().startOf('week');
@@ -51,7 +49,6 @@ function CalendarioSemana({data, setData}) {
                     ))}
                 </Body>
             ))}
-                <CalendarioLegenda/>
         </Container>
     );
 }

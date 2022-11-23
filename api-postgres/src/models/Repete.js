@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const dataBase = require('./db');
+const dataBase = require('../db');
 const RepeteTipo = require('./RepeteTipo');
 
 const Repete = dataBase.define('Repete', {

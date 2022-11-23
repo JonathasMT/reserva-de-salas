@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import moment from 'moment';
 
+import {Container} from './styles';
 import CalendarioBody from "../CalendarioBody";
 import CalendarioHeader from "../CalendarioHeader";
 import CalendarioOpcoes from "../CalendarioOpcoes";
 import CalendarioLegenda from "../CalendarioLegenda";
-import { Container } from './styles';
 
 function Calendario() {
     //tradução do moment para PT-BR;
@@ -32,7 +32,7 @@ function Calendario() {
                 calendarioTipo={calendarioTipo}
                 data={data}
                 setData={setData}/>
-            {/* <CalendarioLegenda/> */}
+            <CalendarioLegenda/>
         </Container>
 )
 };

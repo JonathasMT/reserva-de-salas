@@ -28,7 +28,6 @@ function CalendarioDia({data, setData, calendarioTipo}) {
                     {dia}
                 </Dia>
             </Body>
-            <CalendarioLegenda/>
         </Container>
     );
 }

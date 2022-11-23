@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
-const dataBase = require('../models/db');
+const dataBase = require('../db');
 const Usuario = require('../models/Usuario');
 
 const validarNome = async (req, res, next) => {

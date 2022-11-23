@@ -49,7 +49,6 @@ function CalendarioMes({data, setData}) {
                     ))}
                 </ContainerSemana>
             ))}
-                <CalendarioLegenda/>
         </Container>
     );
 }

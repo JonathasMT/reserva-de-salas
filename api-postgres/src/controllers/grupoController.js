@@ -1,4 +1,4 @@
-const dataBase = require('../models/db');
+const dataBase = require('../db');
 const Grupo = require('../models/Grupo');
 
 const createGrupo = async (req, res) => {
