@@ -20,7 +20,7 @@ const createUsuario = async (req, res) => {
         nivel: nivel,
         status: true
     }).then((resultado) => {
-        return res.status(200).json('Usuario cadastrado');
+        return res.status(200).json({msg: 'Usuário cadastrado'});
     }).catch((erro) => {
         res.status(500).json({msg: 'Ocorreu um erro, tente novamente ou contacte o administrador!'+erro});
     });

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {Theme} from '../../components/Theme'
 
 export const Container = styled.div`
-    height: 100vh;
+    height: 100%;
     display: flex;
     box-sizing: border-box;
     flex-direction: column;
@@ -50,7 +50,7 @@ export const Button = styled.button`
 //-------------------------------------------------------------
 
 
-export const Form = styled.form`
+export const Form = styled.div`
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -62,13 +62,13 @@ export const Form = styled.form`
     padding: 20px;
     background-color: ${Theme.menuFundo};
 
-    h2{
+    >h2 {
         margin: 0;
         padding: 0;
         width: 300px;
         text-align: center;
     }
-    p {
+    >p {
         margin: 0;
         padding: 0;
         width: 300px;

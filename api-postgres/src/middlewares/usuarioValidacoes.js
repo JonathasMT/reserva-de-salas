@@ -8,7 +8,7 @@ const validarNome = async (req, res, next) => {
     const {nome} = req.body;
 
     if (!nome) {
-        return res.status(400).json({msg: 'O campo Nome deve ser preeenchido!' });
+        return res.status(400).json({msg: 'O campo "Nome" deve ser preeenchido!' });
     };
     next();
 };
@@ -70,11 +70,11 @@ const validarLogin = async (req, res, next) => {
 
     //verifica se o e-mail foi preenchido
     if (!email) {
-        return res.status(400).json({msg: 'O campo Email deve ser preeenchido!'});
+        return res.status(400).json({msg: 'O campo "Email" deve ser preeenchido!'});
     };
     //verifica se a senha foi preenchida
     if (!senha) {
-        return res.status(400).json({msg: 'O campo Senha deve ser preeenchido!'});
+        return res.status(400).json({msg: 'O campo "Senha" deve ser preeenchido!'});
     };
     //verifica se o e-mail informado existe
     const usuario = await Usuario.findOne({where : {email: email}});

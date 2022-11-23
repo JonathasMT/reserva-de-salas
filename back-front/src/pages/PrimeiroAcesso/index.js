@@ -12,32 +12,7 @@ const PrimeiroAcesso = () => {
     const {tamanhoBd, primeiroAcesso} = useCadastro();
     const [carregando, setCarregando] = useState(true);
 
-    const texto = `
-        A conexão com o banco de 
-        dados foi efetuada com 
-        sucesso, porém  está em branco.
-        Gostaria de iniciar a configuração do seu sistema?`
-
-    const [conf, setConf] = useState(false);
-
-    const continuar = (e) => {
-        e.preventDefault();
-        setConf(true);
-    };
-
-    // useEffect(() => {
-    //     const verificaBd = async () => {
-    //       const vazio = await tamanhoBd();
-    //       if(!vazio){
-    //         navegar('/');
-    //       }else {
-    //         setCarregando(false)
-    //       }
-    //     }
-    //     verificaBd();
-    // }, []);
-
-    const [instituicaoNome, setInstituicaoNome] = useState();
+    const [instituicaoNome, setInstituicaoNome] = useState('');
     const [logo, setLogo] = useState('');
 
     const [img, setImg] = useState('');
@@ -48,7 +23,25 @@ const PrimeiroAcesso = () => {
 
     const [msg, setMsg] = useState('');
 
+    const texto = `
+        A conexão com o banco de 
+        dados foi efetuada com 
+        sucesso, porém  está em branco.
+        Gostaria de iniciar a configuração do seu sistema?`;
+
+    useEffect(() => {
+        const verificaBd = async () => {
+          const vazio = await tamanhoBd();
+          setCarregando(false);
+          if(!vazio){
+            navegar('/');
+          };
+        };
+        verificaBd();
+    }, []);
+
     const submeterPrimeiroAcesso = async() => {
+        setCarregando(true);
         const resposta = await primeiroAcesso(
             instituicaoNome, 
             logo,
@@ -58,31 +51,21 @@ const PrimeiroAcesso = () => {
             senha,
             confirmaSenha
         );
+        setCarregando(false);
         if (resposta) {
             setMsg(resposta);
+            if (resposta==='Usuário cadastrado'){
+                navegar('/');
+            };
         }else {
-            setMsg('Erro ao conectar com a API')
+            setMsg('Ocorreu um erro, tente novamente ou contacte o administrador do sistema')
             return;
         };
-        navegar('/');
     };
 
-    const BemVindo = () => {
-        return (
-            <Container>
-                <SubContainer>
-                    <h3>Bem Vindo ao Sistema Reserva Fácil</h3>
-                    <p> 
-                        {texto}
-                    </p>
-                    <Button onClick={continuar}>VAMOS LÁ</Button>
-                </SubContainer>
-            </Container>
-        );
-    };
-
-    const Configurar = () => {
-        return (
+    return(
+        <>
+            {carregando? <Carregando/> : 
             <Container>
                 <SubContainer>
                         <Form>
@@ -94,6 +77,7 @@ const PrimeiroAcesso = () => {
                                     name='instituicao'
                                     placeholder='Digite o nome da sua instituição'
                                     value={instituicaoNome}
+                                    required
                                     onChange={(e) => [setInstituicaoNome(e.target.value), setMsg(''), console.log(e.target.value)]}
                                 />
                             </ContainerInput>
@@ -109,8 +93,7 @@ const PrimeiroAcesso = () => {
                             </ContainerInput>
                         </Form>
                         <Form>
-                            <h2>Usúario</h2>
-                            <p>{msg}</p>
+                            <h2>Usuário</h2>
                             <ContainerInput> 
                                 Imagem de perfil:
                                 <InputImage
@@ -167,16 +150,11 @@ const PrimeiroAcesso = () => {
                             </ContainerInput>
                         </Form>
                         <Button onClick={submeterPrimeiroAcesso}>CADASTRAR</Button>
+                        <p>{msg}</p>
                 </SubContainer>
             </Container>
-        );
-    };
-    return(
-        <>
-            {/* {carregando? <Carregando/>: ''} */}
-            {conf? <Configurar/> : <BemVindo/>}
+            }
         </>
-     
     );
 };
 

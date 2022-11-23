@@ -22,13 +22,11 @@ const Sidebar = ({ativo}) => {
     const [nome, setNome] = useState('Ninguem');
 
     // useEffect(() => {
-    // const {usuario} = useAuth();
     // const {nome} = JSON.parse(usuario);
     // setNome(nome);
     // }, []);
 
 
-    
 
     return (
         <Container sidebar={ativo}>
@@ -43,19 +41,19 @@ const Sidebar = ({ativo}) => {
                 </Link>
             </ContainerPerfil>
             <Content >
-                <NavLink to='/'>
+                <NavLink to='/' onClick={() => fecharSidebar()}>
                     <SidebarItem Icone={<FaRegCalendarAlt/>} Texto='INÍCIO' Status={true} />
                 </NavLink>
-                <NavLink to='/minhasreservas'>
+                <NavLink to='/minhasreservas' onClick={() => fecharSidebar()}>
                     <SidebarItem Icone={<FaRegCalendarCheck/>} Texto='MINHAS RESERVAS' />
                 </NavLink>
-                <NavLink to='/usuarios'>
+                <NavLink to='/usuarios' onClick={() => fecharSidebar()}>
                     <SidebarItem Icone={<FaUsers/>} Texto='USUÁRIOS' />
                     </NavLink>
-                <NavLink to='/configuracoes' onClick={() => console.log('SAIR CLICADO')}>
+                <NavLink to='/configuracoes' onClick={() => fecharSidebar()}>
                     <SidebarItem Icone={<FaRegCalendarAlt/>} Texto='CONFIGURAÇÕES' />
                 </NavLink>
-                <NavLink onClick={() => [sair() , fecharSidebar(), navegar('/')]}>
+                <NavLink to='/' onClick={() => [sair() , fecharSidebar()]}>
                     <SidebarItem Icone={<FaRegCalendarAlt/>} Texto='SAIR' />
                 </NavLink>
             </Content>

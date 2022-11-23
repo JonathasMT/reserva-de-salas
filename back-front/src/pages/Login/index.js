@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import {Button, Container, Form, Input, SubContainer} from './styles';
 import useAuth from '../../hooks/useAuth';
 
+
 const Login = () => {
 
     const navegar = useNavigate();
@@ -26,7 +27,7 @@ const Login = () => {
     return(
       <Container>
         <SubContainer>
-          <Form>
+          <Form type='post'>
             <span> 
               E-mail:
               <Input
