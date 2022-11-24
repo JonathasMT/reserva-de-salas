@@ -4,18 +4,15 @@ const bcrypt = require('bcrypt');
 const dataBase = require('../db');
 const Usuario = require('../models/Usuario');
 
-const validarNome = async (req, res, next) => {
-    const {nome} = req.body;
+const novoCadastro = async (req, res, next) => {
+    const {nome, email, senha, confirma_senha, nivel} = req.body;
 
+    //validar nome
     if (!nome) {
         return res.status(400).json({msg: 'O campo "Nome" deve ser preeenchido!' });
     };
-    next();
-};
 
-const validarEmail = async (req, res, next) => {
-    const {email} = req.body;
-
+    //validar email
     if (!email) {
         return res.status(400).json({msg: 'O campo Email deve ser preeenchido!'});
     };
@@ -26,12 +23,8 @@ const validarEmail = async (req, res, next) => {
     if (existeEmail) {
         return res.status(400).json({msg: 'O campo e-mail ' + email + ' já existe!'});
     };
-    next();
-};
 
-const validarSenha = async (req, res, next) => {
-    const {senha, confirma_senha} = req.body;
-
+    //validar senhas
     if (!senha) {
         return res.status(400).json({msg: 'O campo Senha deve ser preeenchido!'});
     };
@@ -41,31 +34,63 @@ const validarSenha = async (req, res, next) => {
     if (confirma_senha != senha ) {
         return res.status(400).json({msg: 'As senhas devem ser iguais!'});
     };
-    next();
-};
 
-const validarNivel = async (req, res, next) => {
-    const {nivel} = req.body;
-
+    //validar nivel
     if (!nivel) {
         return res.status(400).json({msg: 'O campo Nivel deve ser preeenchido!'});
     };
     if (Number.isInteger(nivel)) {
         return res.status(400).json({msg: 'O campo Nível deve ser um número inteiro!'});
     };
+
     next();
+
 };
 
-const validarStatus= async(req, res, next) => {
-    const {status} = req.body;
+const primeiroCadastro = async (req, res, next) => {
+    const {nome, email, senha, confirma_senha, nivel} = req.body;
 
-    if (!status) {
-        return res.status(400).json({msg: 'O campo Status deve ser preeenchido!'});
+    //validar nome
+    if (!nome) {
+        return res.status(400).json({msg: 'O campo "Nome" deve ser preeenchido!' });
     };
+
+    //validar email
+    if (!email) {
+        return res.status(400).json({msg: 'O campo Email deve ser preeenchido!'});
+    };
+    //cria tabela caso não exista 
+    await dataBase.sync();
+    //verifica se o e-mail informado já existe
+    const existeEmail = await Usuario.findOne({where : {email: email}});
+    if (existeEmail) {
+        return res.status(400).json({msg: 'O campo e-mail ' + email + ' já existe!'});
+    };
+
+    //validar senhas
+    if (!senha) {
+        return res.status(400).json({msg: 'O campo Senha deve ser preeenchido!'});
+    };
+    if (!confirma_senha) {
+        return res.status(400).json({msg: 'O campo Confirmar senha deve ser preeenchido!'});
+    };
+    if (confirma_senha != senha ) {
+        return res.status(400).json({msg: 'As senhas devem ser iguais!'});
+    };
+
+    //validar nivel
+    if (!nivel) {
+        return res.status(400).json({msg: 'O campo Nivel deve ser preeenchido!'});
+    };
+    if (Number.isInteger(nivel)) {
+        return res.status(400).json({msg: 'O campo Nível deve ser um número inteiro!'});
+    };
+
     next();
+
 };
 
-const validarLogin = async (req, res, next) => {
+const login = async (req, res, next) => {
     const {email, senha} = req.body;
 
     //verifica se o e-mail foi preenchido
@@ -89,7 +114,7 @@ const validarLogin = async (req, res, next) => {
     next();
 };
 
-const validarCredenciais = (req, res, next) => {
+const credenciais = (req, res, next) => {
     try {
         const token = req.headers.authorization.split(' ')[1];
         const decodificado = jwt.verify(token, process.env.SECRET);
@@ -103,11 +128,8 @@ const validarCredenciais = (req, res, next) => {
 };
 
 module.exports = {
-    validarNome,
-    validarEmail,
-    validarSenha,
-    validarNivel,
-    validarStatus,
-    validarLogin,
-    validarCredenciais
+    novoCadastro,
+    primeiroCadastro,
+    login,
+    credenciais
 };

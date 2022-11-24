@@ -41,22 +41,13 @@ const instituicaoController = require('../controllers/instituicaoController');
 
 //INSTITUIÇAO
 router.post('/intituicao',
-    usuarioValidacoes.validarCredenciais,
+    usuarioValidacoes.credenciais,
     instituicaoController.createInstituicao
 );
-//USUARIO
-router.post('/novousuario',
-    usuarioValidacoes.validarCredenciais,
-    usuarioValidacoes.validarNome,
-    usuarioValidacoes.validarEmail,
-    usuarioValidacoes.validarSenha,
-    usuarioValidacoes.validarNivel,
-    //cria o usuario
-    usuarioControler.createUsuario
-);
+
 //GRUPO
 router.post('/novogrupo',
-    usuarioValidacoes.validarCredenciais,
+    usuarioValidacoes.credenciais,
     grupoValidacoes.validarTitulo,
     grupoValidacoes.validarDiasSemana,
     grupoValidacoes.validarHoraInicio,
@@ -68,7 +59,7 @@ router.post('/novogrupo',
 
 //CATEGORIA
 router.post('/novacategoria',
-    usuarioValidacoes.validarCredenciais,
+    usuarioValidacoes.credenciais,
     categoriaValidacoes.validarTitulo,
     categoriaValidacoes.validarCor,
     //cria a categoria de reserva
@@ -76,14 +67,14 @@ router.post('/novacategoria',
 );
 //TIPO DE REPETIÇÃO
 router.post('/novotiporepeticao',
-    usuarioValidacoes.validarCredenciais,
+    usuarioValidacoes.credenciais,
     repeteTipoValidacoes.validarTitulo,
     //cria o tipo de repetição ex: Diarimente
     repeteTipoController.createRepeteTipo
 );
 //REPETIÇÃO
 router.post('/novarepeticao',
-    usuarioValidacoes.validarCredenciais,
+    usuarioValidacoes.credenciais,
     repeteValidacoes.validarRepeteTipoId,
     repeteValidacoes.validarQuantidade,
     //cria a repetição de reserva
@@ -91,7 +82,7 @@ router.post('/novarepeticao',
 );
 //RESERVA
 router.post('/novareserva',
-    usuarioValidacoes.validarCredenciais,
+    usuarioValidacoes.credenciais,
     reservaValidacoes.validarUsuarioId,
     reservaValidacoes.validarSalaId,
     reservaValidacoes.validarCategoriaId,
@@ -109,11 +100,8 @@ router.post('/novareserva',
 
 //USUARIO
 router.put('/usuario/:id',
-    usuarioValidacoes.validarCredenciais,
-    usuarioValidacoes.validarNome,
-    usuarioValidacoes.validarEmail,
-    usuarioValidacoes.validarSenha,
-    usuarioValidacoes.validarNivel,
+    usuarioValidacoes.credenciais,
+    
     //atuliza o usuario
     usuarioControler.updateUsuario
 );
@@ -123,7 +111,7 @@ router.put('/usuario/:id',
 
 //USUARIO
 router.get('/usuario/:id',
-    usuarioValidacoes.validarCredenciais,
+    usuarioValidacoes.credenciais,
     usuarioControler.readUsuario
 );
 
@@ -131,7 +119,7 @@ router.get('/usuario/:id',
 
 //USUARIO
 router.get('/usuarios',
-    usuarioValidacoes.validarCredenciais,
+    usuarioValidacoes.credenciais,
     usuarioControler.readVariosUsuarios
 );
 
@@ -139,7 +127,7 @@ router.get('/usuarios',
 
 //USUARIO
 router.delete('/usuario/:id',
-    usuarioValidacoes.validarCredenciais,
+    usuarioValidacoes.credenciais,
     usuarioControler.deleteUsuario
 );
 

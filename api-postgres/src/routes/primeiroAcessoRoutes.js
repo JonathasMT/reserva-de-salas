@@ -19,9 +19,7 @@ router.get('/primeiroacesso',
 router.post('/primeiroacesso',
     instituicaoValidacoes.validarTamanhoBancoDeDados,
     instituicaoValidacoes.validarNomeInstituicao,
-    usuarioValidacoes.validarNome,
-    usuarioValidacoes.validarEmail,
-    usuarioValidacoes.validarSenha,
+    usuarioValidacoes.primeiroCadastro,
     //cria a instituiçao
     instituicaoController.createInstituicao,
     //cria o usuario
