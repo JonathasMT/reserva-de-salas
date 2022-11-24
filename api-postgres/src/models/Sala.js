@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const dataBase = require('../db');
+const dataBase = require('../connection');
 
 const Grupo = require('./Grupo');
 

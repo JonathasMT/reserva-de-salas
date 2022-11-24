@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
-const dataBase = require('../db');
+const dataBase = require('../connection');
 const Usuario = require('../models/Usuario');
 
 const novoCadastro = async (req, res, next) => {
@@ -48,7 +48,7 @@ const novoCadastro = async (req, res, next) => {
 };
 
 const primeiroCadastro = async (req, res, next) => {
-    const {nome, email, senha, confirma_senha, nivel} = req.body;
+    const {nome, email, senha, confirma_senha} = req.body;
 
     //validar nome
     if (!nome) {
@@ -78,13 +78,15 @@ const primeiroCadastro = async (req, res, next) => {
         return res.status(400).json({msg: 'As senhas devem ser iguais!'});
     };
 
-    //validar nivel
-    if (!nivel) {
-        return res.status(400).json({msg: 'O campo Nivel deve ser preeenchido!'});
-    };
-    if (Number.isInteger(nivel)) {
-        return res.status(400).json({msg: 'O campo Nível deve ser um número inteiro!'});
-    };
+    // //validar nivel
+    // if (!nivel) {
+    //     return res.status(400).json({msg: 'O campo Nivel deve ser preeenchido!'});
+    // };
+    // if (Number.isInteger(nivel)) {
+    //     return res.status(400).json({msg: 'O campo Nível deve ser um número inteiro!'});
+    // };
+
+    req.body.nivel = 2;
 
     next();
 

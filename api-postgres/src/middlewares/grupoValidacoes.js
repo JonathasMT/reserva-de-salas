@@ -1,4 +1,4 @@
-const dataBase = require("../db");
+const dataBase = require("../connection");
 const Grupo = require("../models/Grupo");
 
 const validarTitulo = async (req, res, next) => {

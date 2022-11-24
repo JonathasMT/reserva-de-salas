@@ -1,4 +1,4 @@
-const dataBase = require("../db");
+const dataBase = require("../connection");
 const Sala = require("../models/Sala");
 
 const validarGrupoId = async (req, res, next) => {

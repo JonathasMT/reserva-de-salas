@@ -1,18 +1,15 @@
 const express = require('express');
-
 const router = express.Router();
 
 //importar arquivos de rotas
 const primeiroAcessoRoutes = require('./primeiroAcessoRoutes');
 const usuarioRoutes = require('./usuarioRoutes');
 
-
 //inserir as rotas
 router.use(
     primeiroAcessoRoutes,
     usuarioRoutes
 );
-
 
 //validações
 const categoriaValidacoes = require('../middlewares/categoriaValidacoes');
@@ -93,42 +90,6 @@ router.post('/novareserva',
     reservaValidacoes.validarHoraFim,
     //cria a nova reserva
     reservaController.createReserva
-);
-
-
-
-
-//USUARIO
-router.put('/usuario/:id',
-    usuarioValidacoes.credenciais,
-    
-    //atuliza o usuario
-    usuarioControler.updateUsuario
-);
-
-
-
-
-//USUARIO
-router.get('/usuario/:id',
-    usuarioValidacoes.credenciais,
-    usuarioControler.readUsuario
-);
-
-
-
-//USUARIO
-router.get('/usuarios',
-    usuarioValidacoes.credenciais,
-    usuarioControler.readVariosUsuarios
-);
-
-
-
-//USUARIO
-router.delete('/usuario/:id',
-    usuarioValidacoes.credenciais,
-    usuarioControler.deleteUsuario
 );
 
 module.exports = router;

@@ -20,15 +20,8 @@ const PrimeiroAcesso = () => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [confirmaSenha, setConfirmaSenha] = useState('');
-
     const [msg, setMsg] = useState('');
-
-    const texto = `
-        A conexão com o banco de 
-        dados foi efetuada com 
-        sucesso, porém  está em branco.
-        Gostaria de iniciar a configuração do seu sistema?`;
-
+    
     useEffect(() => {
         const verificaBd = async () => {
           const vazio = await tamanhoBd();

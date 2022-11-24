@@ -1,4 +1,4 @@
-const dataBase = require('../db');
+const dataBase = require('../connection');
 const Reserva = require('../models/Reserva');
 
 const createReserva = async (req, res) => {

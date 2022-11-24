@@ -1,4 +1,4 @@
-const dataBase = require('../db');
+const dataBase = require('../connection');
 const Repete = require('../models/Repete');
 
 const createRepete = async (req, res) => {

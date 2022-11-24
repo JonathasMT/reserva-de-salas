@@ -1,5 +1,4 @@
 const express = require('express');
-
 const router = express.Router();
 
 //validações
@@ -17,8 +16,8 @@ router.get('/primeiroacesso',
 
 //CADASTRA INSTITUIÇÃO E USUARIO NO PRIMEIRO ACESSO
 router.post('/primeiroacesso',
-    instituicaoValidacoes.validarTamanhoBancoDeDados,
-    instituicaoValidacoes.validarNomeInstituicao,
+    instituicaoValidacoes.tamanhoBancoDeDados,
+    instituicaoValidacoes.nomeInstituicao,
     usuarioValidacoes.primeiroCadastro,
     //cria a instituiçao
     instituicaoController.createInstituicao,

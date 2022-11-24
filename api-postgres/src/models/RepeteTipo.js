@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const dataBase = require('../db');
+const dataBase = require('../connection');
 
 const RepeteTipo = dataBase.define('Repete_tipo', {
     repete_tipo_id: {

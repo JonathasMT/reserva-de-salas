@@ -1,7 +1,7 @@
-const dataBase = require('../db');
+const dataBase = require('../connection');
 const Instituicao = require('../models/Instituicao');
 
- const createInstituicao = async (req, res, next) => {
+const createInstituicao = async (req, res, next) => {
     await dataBase.sync();
     const {nome_instituicao, logo} = req.body;
 

@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 
-const dataBase = require('./db');
+const dataBase = require('./connection');
 
 //models
 const Instituicao = require('./models/Instituicao');
@@ -43,7 +43,7 @@ console.log('Reserva: '+(Reserva === dataBase.models.Reserva).toString());
     await RepeteTipo.sync({alter: true});
     await Repete.sync({alter: true});
     await Reserva.sync({alter: true});
-  })();
+})();
 
 
 module.exports = app;

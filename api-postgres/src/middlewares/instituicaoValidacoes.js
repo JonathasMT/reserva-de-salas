@@ -1,7 +1,7 @@
-const dataBase = require('../db');
+const dataBase = require('../connection');
 const Instituicao = require('../models/Instituicao');
 
-const validarTamanhoBancoDeDados = async (req, res, next) => {
+const tamanhoBancoDeDados = async (req, res, next) => {
     await dataBase.sync();
     const {count} = await Instituicao.findAndCountAll();
 
@@ -10,10 +10,9 @@ const validarTamanhoBancoDeDados = async (req, res, next) => {
         return res.status(401).json({msg: 'Não autorizado. Este não é o primeiro acesso.', vazio: false});
     };
     next();
-    
 };
 
-const validarNomeInstituicao = async (req, res, next) => {
+const nomeInstituicao = async (req, res, next) => {
     const {nome_instituicao} = req.body;
 
     if (!nome_instituicao) {
@@ -23,6 +22,6 @@ const validarNomeInstituicao = async (req, res, next) => {
 };
 
 module.exports = {
-    validarTamanhoBancoDeDados,
-    validarNomeInstituicao
+    tamanhoBancoDeDados,
+    nomeInstituicao
 };

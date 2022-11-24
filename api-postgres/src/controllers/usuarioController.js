@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
-const dataBase = require('../db');
+const dataBase = require('../connection');
 const Usuario = require('../models/Usuario');
 
 const createUsuario = async (req, res) => {
@@ -83,7 +83,6 @@ const login = async (req, res) => {
         const secret = process.env.SECRET;
         const token = jwt.sign({usuario_id: usuario.usuario_id}, secret,);
         const {usuario_id, nome, email} = usuario;
-
         res.status(200).json({msg: 'Usuário autenticado com sucesso',  usuario_id, nome, email, token});
     } catch (erro) {
         console.log(erro);
@@ -94,8 +93,6 @@ const login = async (req, res) => {
 const tamanhoBancoDeDados = async (req, res) => {
     await dataBase.sync();
     const {count} = await Usuario.findAndCountAll();
-
-    console.log(req.header.authorization);
 
     if(count>0) {
         //o banco de dados já possui registros

@@ -1,4 +1,4 @@
-const dataBase = require('../db');
+const dataBase = require('../connection');
 const Categoria = require('../models/Categoria');
 
 const createCategoria = async (req, res) => {
