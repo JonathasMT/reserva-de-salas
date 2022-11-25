@@ -8,11 +8,12 @@ async function tamanhoBd() {
     var retorno;
     await api.get('/primeiroacesso')
     .then((resultado) => {
-        retorno=resultado.data.vazio;
-        console.log(retorno);
+        console.log('MSG = ' + resultado.data.msg);
+        console.log('VAZIO = ' + resultado.data.vazio);
+        retorno = resultado.data.vazio;
     }).catch((erro) => {
-        console.log('ERRO >>'+erro)
-        retorno=erro.response.data.msg;
+        console.log('ERRO = ' + erro.response.data.msg);
+        retorno = erro.response.data;
     });
     return retorno;
 };
@@ -20,21 +21,21 @@ async function tamanhoBd() {
 async function primeiroAcesso (instituicaoNome, logo, img, nome, email, senha, confirmaSenha) {
     var retorno;
     const dadosPrimeiroAcesso = {
-        nome_instituicao: instituicaoNome,
+        nomeInstituicao: instituicaoNome,
         logo: logo,
         imagem: img,
         nome: nome,
         email: email,
         senha: senha,
-        confirma_senha: confirmaSenha
+        confirmaSenha: confirmaSenha
     };
     await api.post('/primeiroacesso', dadosPrimeiroAcesso)
     .then((resultado) => {
-        console.log(resultado.data.msg);
-        retorno=resultado.data.msg;
+        console.log('MSG = ' + resultado.data.msg);
+        retorno = resultado.data;
     }).catch((erro) => {
-        console.log('ERRO >>'+erro)
-        retorno=erro.response.data.msg;
+        console.log('ERRO = ' + erro.response.data.msg);
+        retorno = erro.response.data;
     });
     return retorno;
 };

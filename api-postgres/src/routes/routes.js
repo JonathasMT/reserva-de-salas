@@ -38,8 +38,7 @@ const instituicaoController = require('../controllers/instituicaoController');
 
 //INSTITUIÇAO
 router.post('/intituicao',
-    usuarioValidacoes.credenciais,
-    instituicaoController.createInstituicao
+    usuarioValidacoes.credenciais
 );
 
 //GRUPO

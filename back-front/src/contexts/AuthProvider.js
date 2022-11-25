@@ -7,7 +7,7 @@ export const AuthContext = createContext({});
 export const AuthProvider = ({children}) => {
 
     console.log('Passou no arquivo auth.js');
-    const [usuario, setUsuario] = useState();
+    const [usuario, setUsuario] = useState(false);
 
     useEffect(() => {
         console.log('Passou no arquivo auth.js >> useEffect');
@@ -30,8 +30,6 @@ export const AuthProvider = ({children}) => {
                     email:email,
                     token:token
                 }));
-            setUsuario({token, email});
-            console.log(resultado.data.msg);
             retorno=resultado.data.msg;
         }).catch((erro) => {
             console.log('ERRO >>'+erro)
@@ -63,7 +61,7 @@ export const AuthProvider = ({children}) => {
 
     return (
         <AuthContext.Provider
-            value={{usuario, autenticado: !!usuario, entrar, cadastrar, sair}}>
+            value={{usuario, autenticado: usuario, setUsuario, entrar, cadastrar, sair}}>
         {children}
         </AuthContext.Provider>
     );

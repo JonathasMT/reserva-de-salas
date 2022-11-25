@@ -24,11 +24,11 @@ const PrimeiroAcesso = () => {
     
     useEffect(() => {
         const verificaBd = async () => {
-          const vazio = await tamanhoBd();
-          setCarregando(false);
-          if(!vazio){
-            navegar('/');
-          };
+            const resposta = await tamanhoBd();
+            setCarregando(false);
+            if (resposta.erro) {
+                navegar('/');
+            };
         };
         verificaBd();
     }, []);
@@ -45,13 +45,13 @@ const PrimeiroAcesso = () => {
             confirmaSenha
         );
         setCarregando(false);
-        if (resposta) {
-            setMsg(resposta);
-            if (resposta==='Usuário cadastrado'){
+        if (resposta.msg) {
+            setMsg(resposta.msg);
+            if (resposta.ok){
                 navegar('/');
             };
         }else {
-            setMsg('Ocorreu um erro, tente novamente ou contacte o administrador do sistema')
+            setMsg('Ocorreu um erro, tente novamente ou contacte o administrador do sistema s')
             return;
         };
     };

@@ -26,27 +26,7 @@ const createUsuario = async (req, res) => {
     });
 };
 
-const createPrimeiroUsuario = async (req, res) => {
-    await dataBase.sync();
-    const {nome, email, senha, imagem} = req.body;
 
-    //criar hash para a senha
-    const salt = await bcrypt.genSalt(12);
-    const senhaHash = await bcrypt.hash(senha, salt);
-    //criar o usuario com os dados recebidos
-    await Usuario.create({
-        nome: nome,
-        email: email,
-        senha: senhaHash,
-        imagem: imagem,
-        nivel: 2,
-        status: true
-    }).then((resultado) => {
-        return res.status(200).json('Usuario cadastrado');
-    }).catch((erro) => {
-        res.status(500).json({msg: 'Ocorreu um erro, tente novamente ou contacte o administrador!'+erro});
-    });
-};
 
 const readUsuario = async (req, res) => {
     await dataBase.sync();
@@ -90,27 +70,11 @@ const login = async (req, res) => {
     };
 };
 
-const tamanhoBancoDeDados = async (req, res) => {
-    await dataBase.sync();
-    const {count} = await Usuario.findAndCountAll();
-
-    if(count>0) {
-        //o banco de dados já possui registros
-        return res.status(200).json({msg: 'O banco de dados já possui cadastros', vazio: false});
-    } else {
-        //O banco de dados está vazio
-        res.status(200).json({msg: 'O banco de dados está vazio', vazio: true});
-    };
-    
-};
-
 module.exports = {
     createUsuario,
-    createPrimeiroUsuario,
     readUsuario,
     readVariosUsuarios,
     updateUsuario,
     deleteUsuario,
-    login,
-    tamanhoBancoDeDados
+    login
 };

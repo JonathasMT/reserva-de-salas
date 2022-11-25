@@ -2,27 +2,22 @@ const express = require('express');
 const router = express.Router();
 
 //validações
-const instituicaoValidacoes = require('../middlewares/instituicaoValidacoes');
-const usuarioValidacoes = require('../middlewares/usuarioValidacoes');
+const primeiroAcessoValidacoes = require('../middlewares/primeiroAcessoValidacoes');
 
 //controllers
-const usuarioControler = require('../controllers/usuarioController');
-const instituicaoController = require('../controllers/instituicaoController');
+const primeiroAcessoController = require('../controllers/primeiroAcessoController');
 
 //TAMANHO DA TABELA USUARIOS
 router.get('/primeiroacesso', 
-    usuarioControler.tamanhoBancoDeDados
+    primeiroAcessoController.tamanhoBd
 );
 
 //CADASTRA INSTITUIÇÃO E USUARIO NO PRIMEIRO ACESSO
 router.post('/primeiroacesso',
-    instituicaoValidacoes.tamanhoBancoDeDados,
-    instituicaoValidacoes.nomeInstituicao,
-    usuarioValidacoes.primeiroCadastro,
-    //cria a instituiçao
-    instituicaoController.createInstituicao,
-    //cria o usuario
-    usuarioControler.createUsuario
+    primeiroAcessoValidacoes.tamanhoBd,
+    primeiroAcessoValidacoes.cadastro,
+    //cria a intituiçaõ e o usuario no primeiro acesso
+    primeiroAcessoController.cadastro
 );
 
 module.exports = router;
