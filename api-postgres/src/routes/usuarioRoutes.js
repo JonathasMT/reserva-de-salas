@@ -19,26 +19,26 @@ router.post('/novousuario',
     usuarioValidacoes.credenciais,
     usuarioValidacoes.novoCadastro,
     //cria o usuario
-    usuarioControler.createUsuario
+    usuarioControler.create
 );
 
 //ATUALIZAR USUÁRIO
 router.put('/usuario/:id',
     usuarioValidacoes.credenciais,
     //atuliza o usuario
-    usuarioControler.updateUsuario
+    usuarioControler.update
 );
 
 //LER UM USUÁRIO
 router.get('/usuario/:id',
     usuarioValidacoes.credenciais,
-    usuarioControler.readUsuario
+    usuarioControler.read
 );
 
 //LER VARIOS USUÁRIOS
 router.get('/usuarios',
     usuarioValidacoes.credenciais,
-    usuarioControler.readVariosUsuarios
+    usuarioControler.readVarios
 );
 
 //DELETAR UM USUARIO

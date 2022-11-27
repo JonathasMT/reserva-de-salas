@@ -4,11 +4,16 @@ const router = express.Router();
 //importar arquivos de rotas
 const primeiroAcessoRoutes = require('./primeiroAcessoRoutes');
 const usuarioRoutes = require('./usuarioRoutes');
+const instituicaoRoutes = require('./instituicaoRoutes');
+const grupoRoutes = require('./grupoRoutes');
 
 //inserir as rotas
 router.use(
     primeiroAcessoRoutes,
-    usuarioRoutes
+    usuarioRoutes,
+    instituicaoRoutes,
+    grupoRoutes
+    
 );
 
 //validações
@@ -36,22 +41,8 @@ const instituicaoController = require('../controllers/instituicaoController');
 //ROTAS PARA LER DIVERSOS CADASTROS--------------------------------------------
 //ROTAS PARA DELETAR UM CADASTRO-----------------------------------------------
 
-//INSTITUIÇAO
-router.post('/intituicao',
-    usuarioValidacoes.credenciais
-);
 
-//GRUPO
-router.post('/novogrupo',
-    usuarioValidacoes.credenciais,
-    grupoValidacoes.validarTitulo,
-    grupoValidacoes.validarDiasSemana,
-    grupoValidacoes.validarHoraInicio,
-    grupoValidacoes.validarHoraFim,
-    grupoValidacoes.validarTempoAntecedencia,
-    //cria o grupo de salas
-    grupoController.createGrupo
-);
+
 
 //CATEGORIA
 router.post('/novacategoria',

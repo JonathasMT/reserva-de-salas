@@ -1,7 +1,7 @@
 import React from 'react';
 import {Container} from './styles';
 
-const SidebarItem = ({Icone, Texto, Status}) => {
+const MenuItem = ({Icone, Texto, Status}) => {
     return(
         <Container>
             <div />
@@ -11,4 +11,4 @@ const SidebarItem = ({Icone, Texto, Status}) => {
     )
 };
 
-export default SidebarItem;
+export default MenuItem;

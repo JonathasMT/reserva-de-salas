@@ -3,12 +3,13 @@ import styled from 'styled-components';
 import {Theme} from '../../components/Theme'
 
 export const Container = styled.div`
-    height: calc(100vh - 50px);
+    height: 100vh;
     display: flex;
     box-sizing: border-box;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    padding-top: 50px;
     background-color: ${Theme.menuFundo};
 `;
 
@@ -23,7 +24,34 @@ export const SubContainer = styled.div`
     gap: 20px
 `;
 
+/* export const BotaoEditar = styled.button`
+    width: 60px;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    top: 0;
+    right: 0;
+    margin: 20px;
+    position:absolute;
+    gap: 3px;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: ${Theme.textoAccent};
+    color: white;
+    font-size: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 2px 0px 8px 0px rgba(0, 0, 0, 0.2);
+
+`; */
+
 export const Form = styled.form`
+position:relative;
+  white-space: nowrap;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -108,6 +136,28 @@ export const Input = styled.input`
         :focus {
             color: ${Theme.textoPrimary};
         }
+`;
+
+export const List = styled.div`
+    width: 300px;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 7px;
+    padding: 10px;
+    background-color: #fff;
+    color: ${Theme.textoSecondaryVariant};
+    font-size: 15px;
+
+    >svg {
+        cursor: pointer;
+        color: ${Theme.textoPrimary};
+
+    }
 `;
 
 export const Button = styled.button`

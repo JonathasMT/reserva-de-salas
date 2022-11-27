@@ -21,12 +21,12 @@ const tamanhoBd= async (_req, res, next) => {
 
         if(instituicao > 0 || usuario > 0) {
         //o banco de dados já possui registros
-            return res.status(200).json({msg: 'Não autorizado. O banco de dados já possui cadastros.', vazio: false});
+            return res.status(200).json({erro: true, msg: 'Não autorizado. O banco de dados já possui cadastros.'});
         }else {
             next();
         };
 
-    } catch (erro) {
+    } catch (_error) {
         return res.status(500).json({msg: msgErro});
         
     };
@@ -35,11 +35,11 @@ const tamanhoBd= async (_req, res, next) => {
 //######################################################################################################################################################
 
 const cadastro = async (req, res, next) => {
-    const {nomeInstituicao, nome, email, nivel, status, senha, confirmaSenha} = req.body;
+    const {instituicaoNome, nome, email, nivel, status, senha, confirmaSenha} = req.body;
 
     //-----------------------------------------------------------------------------------------------------
     //validações instituição
-    if (!nomeInstituicao) {
+    if (!instituicaoNome) {
         return res.status(400).json({msg: 'O campo "Nome da intituição" deve ser preeenchido!' });
     };
     //-----------------------------------------------------------------------------------------------------

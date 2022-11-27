@@ -1,4 +1,4 @@
-import {Fragment, useEffect, useState} from 'react';
+import {Fragment} from 'react';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 
 
@@ -20,54 +20,57 @@ import Usuarios from './pages/Usuarios';
 import EditarReserva from './pages/EditarReserva';
 import DetalhesReserva from './pages/DetalhesReserva';
 import PrimeiroAcesso from './pages/PrimeiroAcesso';
+import Instituicao from './pages/Instituicao';
+
 
 const RoutesApp = () => {
 
     console.log('Passou no arquivo routes.js');
-    const {autenticado} = useAuth();
+    const {usuario} = useAuth();
 
     // eslint-disable-next-line
     const Privada = ({Destino}) => {
-        console.log('routes.js >> Autenticado? >> '+ autenticado);
-        return autenticado ? <Destino/> : <Login/>;
+        console.log('routes.js >> Possui usuario? >> '+ usuario);
+        return usuario ? <Destino/> : <Login/>;
     };
-
     return (
         <BrowserRouter>
             <Fragment>
-            <Header/>
-            <Routes>
-                <Route path='/' element={<Privada Destino={Home} />}/>
-                <Route path='/minhasreservas' element={<Privada Destino={MinhasReservas} />}/>
-                <Route path='/configuracoes' element={<Privada Destino={Configuracoes} />}/>
-                <Route path='/perfil' element={<Privada Destino={Perfil} />}/>
-                <Route path='/novousuario' element={<Privada Destino={NovoUsuario} />}/>
-                <Route path='/novogrupo' element={<Privada Destino={NovoGrupo} />}/>
-                <Route path='/novasala' element={<Privada Destino={NovaSala} />}/>
-                <Route path='/novacategoria' element={<Privada Destino={NovaCategoria} />}/>
-                <Route path='/novareserva' element={<Privada Destino={NovaReserva} />}/>
-                <Route path='/editarreserva' element={<Privada Destino={EditarReserva} />}/>
-                <Route path='/detalhesreserva' element={<Privada Destino={DetalhesReserva} />}/>
-                <Route path='/usuarios' element={<Privada Destino={Usuarios} />}/>
-                <Route path='/primeiroacesso' element={<PrimeiroAcesso/>}/>
-                <Route path='*' element={<NotFound />} />
+                <Header/>
+                <Routes>
+                    <Route path='/' element={<Privada Destino={Home} />}/>
+                    <Route path='/minhasreservas' element={<Privada Destino={MinhasReservas} />}/>
+                    <Route path='/configuracoes' element={<Privada Destino={Configuracoes} />}/>
+                    <Route path='/perfil' element={<Privada Destino={Perfil} />}/>
+                    <Route path='/novousuario' element={<Privada Destino={NovoUsuario} />}/>
+                    <Route path='/novogrupo' element={<Privada Destino={NovoGrupo} />}/>
+                    <Route path='/novasala' element={<Privada Destino={NovaSala} />}/>
+                    <Route path='/novacategoria' element={<Privada Destino={NovaCategoria} />}/>
+                    <Route path='/novareserva' element={<Privada Destino={NovaReserva} />}/>
+                    <Route path='/editarreserva' element={<Privada Destino={EditarReserva} />}/>
+                    <Route path='/detalhesreserva' element={<Privada Destino={DetalhesReserva} />}/>
+                    <Route path='/usuarios' element={<Privada Destino={Usuarios} />}/>
+                    <Route path='/instituicao' element={<Privada Destino={Instituicao} />}/>
+                
+                    <Route path='/primeiroacesso' element={<PrimeiroAcesso/>}/>
+                    <Route path='*' element={<NotFound />} />
 
-                {/* <Route path='/' element={<Home/>}/>
-                <Route path='/minhasreservas' element={<MinhasReservas/>}/>
-                <Route path='/configuracoes' element={<Configuracoes/>}/>
-                <Route path='/perfil' element={<Perfil/>}/>
-                <Route path='/novousuario' element={<NovoUsuario/>}/>
-                <Route path='/novogrupo' element={<NovoGrupo/>}/>
-                <Route path='/novasala' element={<NovaSala/>}/>
-                <Route path='/novacategoria' element={<NovaCategoria/>}/>
-                <Route path='/novareserva' element={<NovaReserva/>}/>
-                <Route path='/editarreserva' element={<EditarReserva/>}/>
-                <Route path='/detalhesreserva' element={<DetalhesReserva/>}/>
-                <Route path='/usuarios' element={<Usuarios/>}/>
-                <Route path='/primeiroacesso' element={<PrimeiroAcesso/>}/>
-                <Route path='/login' element={<Login/>}/>
-                <Route path='*' element={<NotFound />} /> */}
-            </Routes>
+                    {/* <Route path='/' element={<Home/>}/>
+                    <Route path='/minhasreservas' element={<MinhasReservas/>}/>
+                    <Route path='/configuracoes' element={<Configuracoes/>}/>
+                    <Route path='/perfil' element={<Perfil/>}/>
+                    <Route path='/novousuario' element={<NovoUsuario/>}/>
+                    <Route path='/novogrupo' element={<NovoGrupo/>}/>
+                    <Route path='/novasala' element={<NovaSala/>}/>
+                    <Route path='/novacategoria' element={<NovaCategoria/>}/>
+                    <Route path='/novareserva' element={<NovaReserva/>}/>
+                    <Route path='/editarreserva' element={<EditarReserva/>}/>
+                    <Route path='/detalhesreserva' element={<DetalhesReserva/>}/>
+                    <Route path='/usuarios' element={<Usuarios/>}/>
+                    <Route path='/primeiroacesso' element={<PrimeiroAcesso/>}/>
+                    <Route path='/login' element={<Login/>}/>
+                    <Route path='*' element={<NotFound />} /> */}
+                </Routes>
             </Fragment>
         </BrowserRouter>
     );

@@ -4,12 +4,12 @@ import {useNavigate} from 'react-router-dom';
 
 import {Container, SubContainer, Button, Form, ContainerInput, Input, InputImage} from './styles';
 import Carregando from '../../components/Carregando';
-import useCadastro from '../../hooks/useCadastro';
+import useAuth from '../../hooks/useAuth';
 
 const PrimeiroAcesso = () => {
 
     const navegar = useNavigate();
-    const {tamanhoBd, primeiroAcesso} = useCadastro();
+    const {tamanhoBd, primeiroAcesso} = useAuth();
     const [carregando, setCarregando] = useState(true);
 
     const [instituicaoNome, setInstituicaoNome] = useState('');
@@ -26,6 +26,7 @@ const PrimeiroAcesso = () => {
         const verificaBd = async () => {
             const resposta = await tamanhoBd();
             setCarregando(false);
+            console.log('ERRO? ' + resposta.erro);
             if (resposta.erro) {
                 navegar('/');
             };
@@ -47,11 +48,14 @@ const PrimeiroAcesso = () => {
         setCarregando(false);
         if (resposta.msg) {
             setMsg(resposta.msg);
-            if (resposta.ok){
-                navegar('/');
+            console.log('MSG = ' + resposta.msg);
+            if (resposta.erro){
+                console.log('ERRO? ' + resposta.erro);
+                return;
             };
+            navegar('/');
         }else {
-            setMsg('Ocorreu um erro, tente novamente ou contacte o administrador do sistema s')
+            setMsg('Ocorreu um erro, tente novamente ou contacte o administrador do sistemas')
             return;
         };
     };
@@ -63,31 +67,28 @@ const PrimeiroAcesso = () => {
                 <SubContainer>
                         <Form>
                             <h2>Instituição</h2>
-                            <ContainerInput> 
-                                Nome:
-                                <Input
-                                    type='text'
-                                    name='instituicao'
-                                    placeholder='Digite o nome da sua instituição'
-                                    value={instituicaoNome}
-                                    required
-                                    onChange={(e) => [setInstituicaoNome(e.target.value), setMsg(''), console.log(e.target.value)]}
-                                />
-                            </ContainerInput>
-                            <ContainerInput> 
-                                Logo:
-                                <InputImage
-                                    type='file'
-                                    name='logo'
-                                    placeholder='Selecione sua imagem de logo'
-                                    value={logo}
-                                    onChange={(e) => [setLogo(e.target.value), setMsg('')]}
-                                />
-                            </ContainerInput>
-                        </Form>
-                        <Form>
+                                <ContainerInput> 
+                                    Nome da instituição:
+                                    <Input
+                                        type='text'
+                                        name='instituicao'
+                                        placeholder='Digite o nome da sua instituição'
+                                        value={instituicaoNome}
+                                        required
+                                        onChange={(e) => [setInstituicaoNome(e.target.value), setMsg(''), console.log(e.target.value)]}
+                                    />
+                                </ContainerInput>
+                                {/* <ContainerInput> 
+                                    Logo:
+                                    <InputImage
+                                        type='file'
+                                        name='logo'
+                                        placeholder='Selecione sua imagem de logo'
+                                        onChange={(e) => setLogo(e.target.files[0])}
+                                    />
+                                </ContainerInput> */}
                             <h2>Usuário</h2>
-                            <ContainerInput> 
+                            {/* <ContainerInput> 
                                 Imagem de perfil:
                                 <InputImage
                                     type='text'
@@ -96,9 +97,9 @@ const PrimeiroAcesso = () => {
                                     value={img}
                                     onChange={(e) => [setImg(e.target.value), setMsg('')]}
                                 />
-                            </ContainerInput>
+                            </ContainerInput> */}
                             <ContainerInput> 
-                                Nome:
+                                Nome do usuário:
                                 <Input
                                     type='text'
                                     name='nome'

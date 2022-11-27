@@ -10,7 +10,7 @@ const createCategoria = async (req, res) => {
         titulo: titulo,
         descricao: descricao,
         cor: cor
-    }).then((resultado) => {
+    }).then((result) => {
         return res.status(200).json('Categoria de reserva cadastrada');
     }).catch((erro) => {
         res.status(500).json({msg: 'Ocorreu um erro, tente novamente ou contacte o administrador! '+erro});

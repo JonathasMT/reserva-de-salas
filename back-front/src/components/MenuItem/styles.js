@@ -14,10 +14,10 @@ export const Container = styled.div`
     padding: 0px;
     border-radius: 0px;
     margin-bottom: 20px;
-    animation: mostrarSidebar .4s;
+    animation: mostrarMenu .4s;
     cursor: pointer;
 
-    @keyframes mostrarSidebar {
+    @keyframes mostrarMenu {
         from {
             opacity: 0;
             width: 0;

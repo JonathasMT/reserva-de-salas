@@ -3,15 +3,40 @@ import  styled from 'styled-components';
 import {Theme} from '../Theme';
 
 export const Container = styled.div`
+    width: 100%;
+    height: 100%;
+    user-select: none;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    z-index: 6;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+
+`;
+
+export const ContainerVazio = styled.div`
+width: 100%;
+height: 100%;
+`;
+
+export const ContainerMenu = styled.div`
     width: 250px;
     height: 100%;
     position: fixed;
     top: 0px;
     left: 0px;
-    left: ${props => props.sidebar ? '0' : '-100%'};
-    animation: mostrarSidebar .4s;
+    left: ${props => props.menu ? '0' : '-100%'};
+    animation: mostrarMenu .4s;
     background-color: ${Theme.menuFundo};
     user-select: none;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: left;
     
     a {
         text-decoration: none;
@@ -27,7 +52,7 @@ export const Container = styled.div`
         cursor: pointer;
     }
 
-    @keyframes mostrarSidebar {
+    @keyframes mostrarMenu {
         from {
             opacity: 0;
             width: 0;
@@ -41,13 +66,14 @@ export const Container = styled.div`
 
 export const ContainerPerfil = styled.div`
     width: 100%;
-    height: 160px;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding-top: 10px;
     overflow: hidden;
+    padding-top: 25px;
 
     > img {
         position:relative;

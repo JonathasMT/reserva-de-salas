@@ -8,50 +8,44 @@ export const Container = styled.div`
     box-sizing: border-box;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     padding-top: 50px;
     background-color: ${Theme.menuFundo};
 `;
 
 export const SubContainer = styled.div`
-    box-sizing: border-box;
+    height:100%;
     display: flex;
+    box-sizing: border-box;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 20px;
-    border-radius: 20px;
-    padding: 20px;
+    background-color: red;
     background-color: ${Theme.menuFundo};
-
-    >h3 {
-        margin:0;
-        padding: 0;
-    }
-
-    >p {
-        width: 300px;
-    }
+    gap: 20px
 `;
 
-export const Button = styled.button`
-    width: 300px;
-    height: 40px;
+export const BotaoEditar = styled.button`
+    width: 60px;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     box-sizing: border-box;
-    border: none;
-    border-radius: 7px;
+    margin-left: calc(100% - 60px);
+    gap: 3px;
     padding: 5px;
+    border: none;
+    border-radius: 5px;
     background-color: ${Theme.textoAccent};
     color: white;
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 10px;
+    font-weight: 500;
     cursor: pointer;
 `;
 
-//-------------------------------------------------------------
-
-
-export const Form = styled.div`
+export const Form = styled.form`
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -63,13 +57,13 @@ export const Form = styled.div`
     padding: 20px;
     background-color: ${Theme.menuFundo};
 
-    >h2 {
+    h2{
         margin: 0;
         padding: 0;
         width: 300px;
         text-align: center;
     }
-    >p {
+    p {
         margin: 0;
         padding: 0;
         width: 300px;
@@ -137,4 +131,19 @@ export const Input = styled.input`
             color: ${Theme.textoPrimary};
         }
 `;
+
+export const Button = styled.button`
+    width: 300px;
+    height: 40px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 7px;
+    padding: 5px;
+    background-color: ${props => props.tipo? Theme.textoAccent: Theme.textoSecondary};
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+`;
+
 

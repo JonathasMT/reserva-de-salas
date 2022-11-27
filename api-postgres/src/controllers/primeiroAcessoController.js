@@ -4,7 +4,7 @@ const dataBase = require('../connection');
 const Instituicao = require('../models/Instituicao');
 const Usuario = require('../models/Usuario');
 
-const msgErro = 'Ocorreu um erro, tente novamente ou contacte o administrador! '
+const msgErro = 'Ocorreu um erro, tente novamente ou contacte o administrador! ';
 
 const tamanhoBd= async (_req, res) => {
     try {
@@ -23,10 +23,10 @@ const tamanhoBd= async (_req, res) => {
 
         if(instituicao > 0 || usuario > 0) {
         //o banco de dados já possui registros
-            return res.status(200).json({erro: false, msg: 'Não autorizado. O banco de dados já possui cadastros.', vazio: false});
+            return res.status(200).json({erro: true, msg: 'Não autorizado. O banco de dados já possui cadastros.'});
         }else {
             //O banco de dados está vazio
-            return res.status(200).json({erro: false, msg: 'O banco de dados está vazio', vazio: true});
+            return res.status(200).json({erro: false, msg: 'O banco de dados está vazio'});
         };
 
     } catch (e) {
@@ -43,7 +43,7 @@ const cadastro = async (req, res) => {
         await dataBase.sync();
         req.body.nivel = 2;
         const {
-            nomeInstituicao,
+            instituicaoNome,
             logo,
             imagem,
             nome,
@@ -55,13 +55,13 @@ const cadastro = async (req, res) => {
         //-----------------------------------------------------------------------------------------------------
         //criar instituição com os dados recebidos
         await Instituicao.create({
-            nome_instituicao: nomeInstituicao,
+            nome_instituicao: instituicaoNome,
             logo: logo
-        }).then((resultado) => {
+        }).then((result) => {
             instituicao = true;
             console.log('Instituição cadastrada');
         }).catch((erro) => {
-            return res.status(500).json({msg: msgErro + erro});
+            return res.status(200).json({erro: true, msg: 'Erro ao cadastrar instituição!'});
         });
         //-----------------------------------------------------------------------------------------------------
         //criar hash para a senha do usuario
@@ -75,22 +75,22 @@ const cadastro = async (req, res) => {
             imagem: imagem,
             nivel: nivel,
             status: true
-        }).then((resultado) => {
+        }).then((result) => {
             usuario = true;
             console.log('Usuário cadastrado');
         }).catch((erro) => {
-            return res.status(500).json({msg: msgErro});
+            return res.status(200).json({erro: true, msg: 'Erro ao cadastrar usuário!'});
         });
         //-----------------------------------------------------------------------------------------------------
         console.log(instituicao);
         console.log(usuario);
         if(instituicao && usuario) {
-            return res.status(200).json({ok: true, msg: 'Instituição e usuario cadastrado no primeiro acesso'});
+            return res.status(200).json({erro: false, msg: 'Instituição e usuario cadastrado no primeiro acesso.'});
         }else {
-            return res.status(500).json({ok: false, msg: msgErro});
+            return res.status(200).json({erro: true, msg: 'Erro ao cadastrar!'});
         };
-    } catch (erro) {
-        return res.status(500).json({ok: false, msg: msgErro});
+    } catch (_error) {
+        return res.status(500).json({erro: true, msg: msgErro});
     };
 };
 

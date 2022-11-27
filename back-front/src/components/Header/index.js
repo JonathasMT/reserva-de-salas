@@ -3,23 +3,30 @@ import {FaBars} from 'react-icons/fa';
 import {NavLink} from 'react-router-dom';
 
 import {Container, ContainerInstituicao, Titulo, SubTitulo, SubContainerInstituicao} from './styles';
-import Sidebar from '../Sidebar';
+import Menu from '../Menu';
 import logo from '../../assets/img/logo.png';
 import useAuth from '../../hooks/useAuth';
+import useContexto from '../../hooks/useContexto';
 
 
 const Header = () => {
     console.log('Passou no arquivo Header.js');
-        const {autenticado} = useAuth();
-    const [sidebar, setSidebar] = useState(false);
-    const mostrarSidebar = () => setSidebar(!sidebar);
+    const {usuario} = useAuth();
+    const {menu, alterarMenu} = useContexto();
+
+    const mostrarMenu = (e) => {
+        e.preventDefault();
+        alterarMenu();
+    }
+
+    console.log('MENU no header > ' + menu);
 
     return(
         <>  
-            {autenticado && (
+            {usuario && (
                 <Container>
-                    <FaBars onClick={mostrarSidebar}/>
-                    {sidebar && <Sidebar ativo={setSidebar} />}
+                    <FaBars onClick={mostrarMenu}/>
+                    {menu && <Menu/>}
                     <NavLink to='/'>
                         <ContainerInstituicao>
                             <img src={logo} alt='Instituiçao' />

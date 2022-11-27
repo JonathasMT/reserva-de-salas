@@ -3,15 +3,15 @@ import React from 'react';
 import GlobalStyle from '../src/styles/globalStyle';
 import RoutesApp from './routes';
 import {AuthProvider} from './contexts/AuthProvider';
-import { CadastroProvider } from './contexts/CadastroProvider';
+import {ContextoProvider} from './contexts/ContextoProvider';
 
 function App() {
   return (
     <AuthProvider>
-        <CadastroProvider>
+        <ContextoProvider>
             <GlobalStyle/>
             <RoutesApp/>
-        </CadastroProvider>
+        </ContextoProvider>
     </AuthProvider>
   );
 }

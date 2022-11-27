@@ -26,7 +26,7 @@ const createReserva = async (req, res) => {
         data: data,
         hora_inicio: horaInicio,
         hora_fim: horaFim
-    }).then((resultado) => {
+    }).then((result) => {
         return res.status(200).json('Reserva cadastrada');
     }).catch((erro) => {
         res.status(500).json({msg: 'Ocorreu um erro, tente novamente ou contacte o administrador! '+erro});

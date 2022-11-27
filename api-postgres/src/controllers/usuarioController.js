@@ -3,8 +3,9 @@ const bcrypt = require('bcrypt');
 
 const dataBase = require('../connection');
 const Usuario = require('../models/Usuario');
+const Instituicao = require('../models/Instituicao');
 
-const createUsuario = async (req, res) => {
+const create= async (req, res) => {
     await dataBase.sync();
     const {nome, email, senha, imagem, nivel} = req.body;
 
@@ -19,29 +20,27 @@ const createUsuario = async (req, res) => {
         imagem: imagem,
         nivel: nivel,
         status: true
-    }).then((resultado) => {
+    }).then((result) => {
         return res.status(200).json({msg: 'Usuário cadastrado'});
     }).catch((erro) => {
         res.status(500).json({msg: 'Ocorreu um erro, tente novamente ou contacte o administrador!'+erro});
     });
 };
 
-
-
-const readUsuario = async (req, res) => {
+const read = async (req, res) => {
     await dataBase.sync();
     const usuario = Usuario.findByPk();
     return res.status(200).json('Listar todos os usuarios.'+usuario)
 };
 
-const readVariosUsuarios = async (_req, res) => {
+const readVarios = async (_req, res) => {
     await dataBase.sync();
     const usuarios = await Usuario.findAll();
     console.log(usuarios)
     return res.status(200).json('Listar todos os usuarios.'+usuarios.dataValues)
 };
 
-const updateUsuario = async (req, res) => {
+const update = async (req, res) => {
     await dataBase.sync();
     const usuario = Usuario.findAll();
     return res.status(200).json('Listar todos os usuarios.'+usuario)
@@ -49,32 +48,37 @@ const updateUsuario = async (req, res) => {
 
 const deleteUsuario = async (req, res) => {
     await dataBase.sync();
-    const usuario = Usuario.findAll();
-    return res.status(200).json('Listar todos os usuarios.'+usuario)
+    Usuario.findAll();
+    return res.status(200).json({erro: false, msg: 'Todos os usuários foram deletados'})
 };
 
 const login = async (req, res) => {
-    await dataBase.sync();
-    const {email} = req.body;
-
-    const usuario = await Usuario.findOne({where : {email: email}});
-
     try {
-        const secret = process.env.SECRET;
-        const token = jwt.sign({usuario_id: usuario.usuario_id}, secret,);
+        await dataBase.sync();
+        const usuario = req.body.usuario;
         const {usuario_id, nome, email} = usuario;
-        res.status(200).json({msg: 'Usuário autenticado com sucesso',  usuario_id, nome, email, token});
-    } catch (erro) {
+        const secret = process.env.SECRET;
+        const token = jwt.sign({usuario_id: usuario_id}, secret,);
+
+        const instituicao = await Instituicao.findOne({where : {instituicao_id: 1}});
+
+        res.status(200).json({
+            erro: false,
+            msg: 'Usuário autenticado com sucesso',
+            usuario: {usuario_id, nome, email, token},
+            instituicao
+        });
+    } catch (_error) {
         console.log(erro);
-        res.status(500).json({msg: 'Ocorreu um erro, tente novamente ou contacte o administrador!'});
+        res.status(500).json({erro: true, msg: 'Ocorreu um erro, tente novamente ou contacte o administrador!'});
     };
 };
 
 module.exports = {
-    createUsuario,
-    readUsuario,
-    readVariosUsuarios,
-    updateUsuario,
+    create,
+    read,
+    readVarios,
+    update,
     deleteUsuario,
     login
 };

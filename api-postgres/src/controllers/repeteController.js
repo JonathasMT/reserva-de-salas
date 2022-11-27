@@ -9,7 +9,7 @@ const createRepete = async (req, res) => {
     await Repete.create({
         repete_tipo_id: repeteTipoId,
         quantidade: quantidade 
-    }).then((resultado) => {
+    }).then((result) => {
         return res.status(200).json('Repetição cadastrada');
     }).catch((erro) => {
         res.status(500).json({msg: 'Ocorreu um erro, tente novamente ou contacte o administrador! '+erro});

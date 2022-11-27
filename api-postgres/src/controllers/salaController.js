@@ -11,7 +11,7 @@ const createSala = async (req, res) => {
         titulo: titulo,
         descricao: descricao,
         capacidade: capacidade
-    }).then((resultado) => {
+    }).then((result) => {
         return res.status(200).json('Sala cadastrada');
     }).catch((erro) => {
         res.status(500).json({msg: 'Ocorreu um erro, tente novamente ou contacte o administrador! '+erro});

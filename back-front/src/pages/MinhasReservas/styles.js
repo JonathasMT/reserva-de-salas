@@ -3,14 +3,14 @@ import styled from 'styled-components';
 import {Theme} from '../../components/Theme'
 
 export const Container = styled.div`
-    height: calc(100vh - 50px);
+    height: 100vh;
     display: flex;
     box-sizing: border-box;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
     background-color: ${Theme.menuFundo};
-    padding: 20px;
+    padding: 50px 20px;
 
     > table {
         border: 2px solid ${Theme.border};

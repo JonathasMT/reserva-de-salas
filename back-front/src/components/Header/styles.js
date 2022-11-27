@@ -9,6 +9,8 @@ export const Container = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
+    position: absolute;
+    top: 0;
     background-color: ${Theme.fundo};
     box-shadow: 2px 0px 8px 1px rgba(0, 0, 0, 0.2);
     gap: 30px;

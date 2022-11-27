@@ -1,66 +1,107 @@
 const dataBase = require("../connection");
 const Grupo = require("../models/Grupo");
 
-const validarTitulo = async (req, res, next) => {
-    const {titulo} = req.body;
+const msgErro = 'Ocorreu um erro, tente novamente ou contacte o administrador! ';
 
-    if (!titulo) {
-        return res.status(400).json({msg: 'O campo Titulo deve ser preeenchido!'});
-    };
-    //cria tabela caso não exista 
-    await dataBase.sync();
-    //verifica se o titulo informado já existe
-    const existeTitulo = await Grupo.findOne({where : {titulo: titulo}});
-    if (existeTitulo) {
-        return res.status(400).json({msg: 'O titulo ' + titulo + ' já existe!'});
-    };
-    next();
-};
 
-const validarDiasSemana = async (req, res, next) => {
-    const {diasSemana} = req.body;
+const create = async (req, res, next) => {
+    try {
+        const {titulo, diasSemana, horaInicio, horaFim, tempoAntecedencia} = req.body;
 
-    if (!diasSemana) {
-        return res.status(400).json({msg: 'O campo Dias da Semana deve ser preeenchido!'});
-    };
-    next();
-};
+        //verifica  se o titulo está vazio
+        if (!titulo) {
+            return res.status(200).json({erro: true, msg: 'O campo Titulo deve ser preeenchido!'});
+        };
+        //cria tabela caso não exista 
+        await dataBase.sync();
+        //verifica se o titulo informado já existe
+        const existeTitulo = await Grupo.findOne({where : {titulo: titulo}});
+        if (existeTitulo) {
+            return res.status(200).json({erro: true, msg: 'O titulo ' + titulo + ' já existe!'});
+        };
+        //verifica  se o dias da semana está vazio
+        if (!diasSemana) {
+            return res.status(200).json({erro: true, msg: 'O campo Dias da Semana deve ser preeenchido!'});
+        };
+        //verifica  se a hora de inicio está vazio
+        if (!horaInicio) {
+            return res.status(200).json({erro: true, msg: 'O campo Hora inicial deve ser preechido!'});
+        };
+        if (!dataValida(new Date(horaInicio))) {
+            return res.status(200).json({erro: true, msg: 'O campo Hora inicial está em um formato invalido!'});
+        };
+        //verifica  se a hora de fim está vazio
+        if (!horaFim) {
+            return res.status(200).json({erro: true, msg: 'O campo Hora final deve ser preechido!'});
+        };
+        if (!dataValida(new Date(horaFim))) {
+            return res.status(200).json({erro: true, msg: 'O campo Hora final está em um formato invalido!'});
+        };
+        //verifica  se o tempo de antecedencia está vazio
+        if (!tempoAntecedencia) {
+            return res.status(200).json({erro: true, msg: 'O campo Tempo máximo de antecedência deve ser preechido!'});
+        };
+        if (Number.isInteger(tempoAntecedencia)) {
+            return res.status(200).json({erro: true, msg: 'O campo Tempo máximo de antecedência deve ser um número inteiro!'});
+        };
 
-const validarHoraInicio = async (req, res, next) => {
-    const {horaInicio} = req.body;
+        next();
 
-    if (!horaInicio) {
-        return res.status(400).json({msg: 'O campo Hora inicial deve ser preechido!'});
-    };
-    if (!dataValida(new Date(horaInicio))) {
-        return res.status(400).json({msg: 'O campo Hora inicial está em um formato invalido!'});
+    } catch (error) {
+        return res.status(500).json({erro: true, msg: msgErro})
     }
-    next();
+
 };
 
-const validarHoraFim = async (req, res, next) => {
-    const {horaFim} = req.body;
+const update = async (req, res, next) => {
+    try {
+        const {titulo, diasSemana, horaInicio, horaFim, tempoAntecedencia} = req.body;
 
-    if (!horaFim) {
-        return res.status(400).json({msg: 'O campo Hora final deve ser preechido!'});
-    };
-    if (!dataValida(new Date(horaFim))) {
-        return res.status(400).json({msg: 'O campo Hora final está em um formato invalido!'});
-    }
+        //verifica  se o titulo está vazio
+        if (!titulo) {
+            return res.status(200).json({erro: true, msg: 'O campo Titulo deve ser preeenchido!'});
+        };
+        //cria tabela caso não exista 
+        await dataBase.sync();
+        //verifica se o titulo informado já existe
+        const existeTitulo = await Grupo.findOne({where : {titulo: titulo}});
+        if (existeTitulo) {
+            return res.status(200).json({erro: true, msg: 'O titulo ' + titulo + ' já existe!'});
+        };
+        //verifica  se o dias da semana está vazio
+        if (!diasSemana) {
+            return res.status(200).json({erro: true, msg: 'O campo Dias da Semana deve ser preeenchido!'});
+        };
+        //verifica  se a hora de inicio está vazio
+        if (!horaInicio) {
+            return res.status(200).json({erro: true, msg: 'O campo Hora inicial deve ser preechido!'});
+        };
+        if (!dataValida(new Date(horaInicio))) {
+            return res.status(200).json({erro: true, msg: 'O campo Hora inicial está em um formato invalido!'});
+        };
+        //verifica  se a hora de fim está vazio
+        if (!horaFim) {
+            return res.status(200).json({erro: true, msg: 'O campo Hora final deve ser preechido!'});
+        };
+        if (!dataValida(new Date(horaFim))) {
+            return res.status(200).json({erro: true, msg: 'O campo Hora final está em um formato invalido!'});
+        };
+        //verifica  se o tempo de antecedencia está vazio
+        if (!tempoAntecedencia) {
+            return res.status(200).json({erro: true, msg: 'O campo Tempo máximo de antecedência deve ser preechido!'});
+        };
+        if (Number.isInteger(tempoAntecedencia)) {
+            return res.status(200).json({erro: true, msg: 'O campo Tempo máximo de antecedência deve ser um número inteiro!'});
+        };
+
     next();
+
+    } catch (error) {
+        return res.status(500).json({erro: true, msg: msgErro})
+    };
+
 };
 
-const validarTempoAntecedencia = async (req, res, next) => {
-    const {tempoAntecedencia} = req.body;
-
-    if (!tempoAntecedencia) {
-        return res.status(400).json({msg: 'O campo Tempo máximo de antecedência deve ser preechido!'});
-    };
-    if (Number.isInteger(tempoAntecedencia)) {
-        return res.status(400).json({msg: 'O campo Tempo máximo de antecedência deve ser um número inteiro!'});
-    };
-    next();
-};
 
 function dataValida(dataHora) {
     const x = dataHora instanceof Date && !isNaN(dataHora);
@@ -69,9 +110,6 @@ function dataValida(dataHora) {
 };
 
 module.exports = {
-    validarTitulo,
-    validarDiasSemana,
-    validarHoraInicio,
-    validarHoraFim,
-    validarTempoAntecedencia
+    create,
+    update
 };
