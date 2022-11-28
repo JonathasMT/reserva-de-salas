@@ -1,11 +1,11 @@
 import React from 'react';
 import {Container, Hora, Titulo} from './styles';
 
-function CardReserva({cor, horaInicio, horaFim, tipo}) {
+function CardReserva({cor, horaInicio, horaFim, titulo, tipo}) {
     return(
         <Container cor={cor} tipo={tipo}>
             <Hora>{horaInicio}~{horaFim}</Hora>
-            <Titulo>Comunicação Argumentativa II</Titulo>
+            <Titulo>{titulo}</Titulo>
         </Container>
     );
 }

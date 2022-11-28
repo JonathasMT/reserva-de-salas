@@ -24,7 +24,7 @@ import {BiEdit, BiPlus} from 'react-icons/bi';
 import Carregamento from '../../components/Carregando';
 
 const Configuracoes = () => {
-
+    
     const navegar = useNavigate();
 
     const [carregando, setCarregando] = useState(false)
@@ -42,7 +42,6 @@ const Configuracoes = () => {
             setCarregando(false);
             if (!resposta.erro) {
                 setGrupos(resposta.grupos)
-                console.log(resposta.grupos);
             };
             if (resposta.erro) {
                 alert(resposta.msg);
@@ -109,7 +108,7 @@ const Configuracoes = () => {
                                 grupos.map((grupo, i) =>
                                     <ContainerListGrupo key={i}>
                                         <ListGrupo>
-                                            {grupo.titulo + '. ID = ' + grupo.grupo_id}
+                                            {grupo.titulo}
                                             <BiEdit onClick={(e) => [e.preventDefault(), navegar('/instituicao')]}/>
                                         </ListGrupo>
                                         {

@@ -28,15 +28,15 @@ function Calendario() {
     const buscarReservas = async() => {
         setCarregando(true);
         const resposta = await listarReservas();
-        setCarregando(false);
         if (!resposta.erro) {
-            setReservas(resposta.reservas)
+            setReservas(resposta.reservas);
+            setCarregando(false);
+            return;
         };
         if (resposta.erro) {
             alert(resposta.msg);
             return;
         };
-        setCarregando(false);
     };
     useEffect(() => {
         buscarReservas();

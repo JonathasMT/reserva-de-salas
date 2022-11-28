@@ -33,7 +33,7 @@ export const ContainerDia = styled.div`
     align-items: center;
     justify-content: flex-start;
     white-space: nowrap;
-    position:relative;
+    position: relative;
     background-color: ${Theme.calendarioFundo};
     border: 1px solid ${Theme.border};
     padding: 20px 7px;

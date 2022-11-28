@@ -1,5 +1,9 @@
 const dataBase = require('../connection');
+const Categoria = require('../models/Categoria');
+const Repete = require('../models/Repete');
 const Reserva = require('../models/Reserva');
+const Sala = require('../models/Sala');
+const Usuario = require('../models/Usuario');
 
 const create= async (req, res) => {
     await dataBase.sync();
@@ -28,8 +32,8 @@ const create= async (req, res) => {
         hora_fim: horaFim
     }).then((_result) => {
         return res.status(200).json({erro: false, msg: 'Reserva cadastrada'});
-    }).catch((_erro) => {
-        res.status(500).json({erro: false, msg: 'Ocorreu um erro, tente novamente ou contacte o administrador! '});
+    }).catch((erro) => {
+        res.status(500).json({erro: false, msg: 'Ocorreu um erro, tente novamente ou contacte o administrador! '+erro});
     });
 };
 

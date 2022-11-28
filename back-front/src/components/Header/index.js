@@ -17,9 +17,7 @@ const Header = () => {
     const mostrarMenu = (e) => {
         e.preventDefault();
         alterarMenu();
-    }
-
-    console.log('MENU no header > ' + menu);
+    };
 
     return(
         <>  

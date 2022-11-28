@@ -7,35 +7,36 @@ const create = async (req, res, next) => {
     try {
         const {usuarioId, salaId, categoriaId, repeteId, titulo, horaInicio, horaFim} = req.body;
         //verifica ID do usuario
+        console.log(Number.isInteger(usuarioId));
         if (!usuarioId) {
-            return res.status(200).json({erro: true, msg: 'O Usuário deve ser informado!'});
+            return res.status(200).json({erro: true, msg: 'O "ID" do usuário deve ser informado!'});
         };
-        if (Number.isInteger(usuarioId)) {
-            return res.status(200).json({erro: true, msg: 'O campo Usuário deve ser um número inteiro!'});
+        if (!Number.isInteger(usuarioId)) {
+            return res.status(200).json({erro: true, msg: 'O "ID" do usuário deve ser um número inteiro!'});
         };
         //verifica ID da sala
         if (!salaId) {
-            return res.status(200).json({erro: true, msg: 'A Sala deve ser informada!'});
+            return res.status(200).json({erro: true, msg: 'A "Sala" deve ser informada!'});
         };
-        if (Number.isInteger(salaId)) {
-            return res.status(200).json({erro: true, msg: 'O campo Sala deve ser um número inteiro!'});
+        if (!Number.isInteger(salaId)) {
+            return res.status(200).json({erro: true, msg: 'O ID do campo "Sala" deve ser um número inteiro!'});
         };
         //verifica ID da categoria
         if (!categoriaId) {
-            return res.status(200).json({erro: true, msg: 'A Categoria da reserva deve ser informada!'});
+            return res.status(200).json({erro: true, msg: 'O ID do campo "Categoria" da reserva deve ser informada!'});
         };
-        if (Number.isInteger(categoriaId)) {
-            return res.status(200).json({erro: true, msg: 'O campo Categoria da reserva deve ser um número inteiro!'});
+        if (!Number.isInteger(categoriaId)) {
+            return res.status(200).json({erro: true, msg: 'O ID do campo "Categoria" da reserva deve ser um número inteiro!'});
         };
         //verifica ID da repetição
         if (repeteId) {
             if (Number.isInteger(repeteId)) {
-                return res.status(200).json({erro: true, msg: 'O campo Repetir deve ser um número inteiro!'});
+                return res.status(200).json({erro: true, msg: 'O ID do campo "Repetir" deve ser um número inteiro!'});
             };
         };
         //verifica Titulo
         if (!titulo) {
-            return res.status(200).json({erro: true, msg: 'O campo Titulo deve ser preeenchido!'});
+            return res.status(200).json({erro: true, msg: 'O campo "Titulo" deve ser preeenchido!'});
         };
         //verifica Hora de inicio
         if (!horaInicio) {

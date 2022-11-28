@@ -14,6 +14,7 @@ export const AuthProvider = ({children}) => {
     useEffect(() => {
         console.log('Passou no arquivo auth.js >> useEffect');
         const usuarioAutenticado = localStorage.getItem('usuarioAutenticado');
+        console.log('USUARIO AUTENTICADO >');
         console.log(usuarioAutenticado);
         if (usuarioAutenticado) {
             setUsuario(usuarioAutenticado);
@@ -153,18 +154,10 @@ export const AuthProvider = ({children}) => {
         return retorno;
     };
 
-    async function cadastrarGrupo(titulo, descricao, diasSemana, horaInicio, horaFim, tempoAntecedencia) {
-        console.log(diasSemana);
-        const dadosGrupo = {
-            titulo,
-            descricao,
-            diasSemana,
-            horaInicio,
-            horaFim,
-            tempoAntecedencia
-        };
+    async function novoGrupo(dados) {
         var retorno;
-        await api.post('/novogrupo', dadosGrupo)
+        console.log(dados);
+        await api.post('/novogrupo', dados)
         .then((resultado) => {
             console.log('MSG = ' + resultado.data.msg);
             retorno = resultado.data;
@@ -184,6 +177,20 @@ export const AuthProvider = ({children}) => {
         }).catch((erro) => {
             console.log('ERRO? ' + erro.response.data.msg);
             
+            retorno = erro.response.data;
+        });
+        return retorno;
+    };
+
+    async function novaReserva(dados) {
+        console.log(dados);
+        var retorno;
+        await api.post('/novareserva', dados)
+        .then((resultado) => {
+            console.log('MSG = ' + resultado.data.msg);
+            retorno = resultado.data;
+        }).catch((erro) => {
+            console.log('ERRO = ' + erro.response.data.msg);
             retorno = erro.response.data;
         });
         return retorno;
@@ -216,10 +223,11 @@ export const AuthProvider = ({children}) => {
                 primeiroAcesso,
                 listarInstituicao,
                 atualizarInstituicao,
-                cadastrarGrupo,
+                novoGrupo,
                 listarGrupos,
                 listarSalas,
-                listarReservas
+                listarReservas,
+                novaReserva
             }}
         >
         {children}

@@ -20,16 +20,15 @@ import useAuth from '../../hooks/useAuth';
 const NovoGrupo = () => {
 
     const navegar = useNavigate();
-    const [carregando, setCarregando] = useState(false)
-    const {cadastrarGrupo} = useAuth();
+    const {novoGrupo} = useAuth();
 
+    const [carregando, setCarregando] = useState(false);
     const [titulo, setTitulo] = useState('');
     const [descricao, setDescricao] = useState('');
     const [diasSemana, setDiasSemana] = useState({dias: []});
     const [horaInicio, setHoraInicio] = useState('07:00');
     const [horaFim, setHoraFim] = useState('22:00');
     const [tempoAntecedencia, setTempoAntecedencia] = useState('');
-
     const [msg, setMsg] = useState('');
 
     const aoMudar = (e) => {
@@ -46,14 +45,15 @@ const NovoGrupo = () => {
 
     const submeterCadastrar = async() => {
         setCarregando(true);
-        const resposta = await cadastrarGrupo(
+        const dados = {
             titulo,
             descricao,
             diasSemana,
             horaInicio,
             horaFim,
             tempoAntecedencia
-        );
+        };
+        const resposta = await novoGrupo(dados);
         setCarregando(false);
         if (resposta.erro) {
             setMsg(resposta.msg);

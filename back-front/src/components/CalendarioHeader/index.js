@@ -3,11 +3,11 @@ import {Container, DiaDaSemana, DiasDaSemana} from './styles';
 
 
 function CalendarioHeader({data, calendarioTipo}) {
-    const valor = calendarioTipo==='day'
+    
     const diasDaSemana = ['DOMINGO', 'SEGUNDA', 'TERÇA', 'QUARTA', 'QUINTA', 'SEXTA', 'SÁBADO'];
 
     function dias() {
-        if(valor) {
+        if(calendarioTipo==='day') {
             return <DiaDaSemana>{data.format('dddd')}</DiaDaSemana>
         }else {
             return(

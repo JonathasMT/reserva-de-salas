@@ -3,13 +3,14 @@ import styled from 'styled-components';
 import {Theme} from '../../components/Theme'
 
 export const Container = styled.div`
-    height: calc(100vh - 50px);
+    height: 100vh;
     display: flex;
     box-sizing: border-box;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     background-color: ${Theme.menuFundo};
+    margin-top: 50px;
 `;
 
 export const SubContainer = styled.div`
@@ -160,7 +161,7 @@ export const Button = styled.button`
     border: none;
     border-radius: 7px;
     padding: 5px;
-    background-color: ${Theme.textoAccent};
+    background-color: ${props => props.tipo? Theme.textoAccent: Theme.textoSecondary};
     color: white;
     font-size: 20px;
     font-weight: bold;

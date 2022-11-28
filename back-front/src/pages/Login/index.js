@@ -25,7 +25,6 @@ const Login = () => {
             return;
         };
         if (!resposta.erro) {
-            alert(resposta.msg);
             navegar('/');
         }
     };

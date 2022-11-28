@@ -1,9 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {Container, ContainerSemana, ContainerDia, Dia, DiaCorrente} from './styles';
+import {useNavigate} from 'react-router-dom';
 
+import {Container, ContainerSemana, ContainerDia, Dia, DiaCorrente} from './styles';
 import CardReserva from '../CardReserva';
 
 function CalendarioMes({data, setData, reservas, calendarioTipo}) {
+
+    const navegar = useNavigate();
     const [calendario, setCalendario] = useState([]);
 
     useEffect(() => {
@@ -28,20 +31,12 @@ function CalendarioMes({data, setData, reservas, calendarioTipo}) {
             return <Dia> {getData}</Dia>
     };
 
-
-    function isReserva(dia, number) {
-        const getData = dia.format('YYYY-MM-DD');
-        if (getData == '2022-12-02'){
-            return <CardReserva/>
-        }
-    };
-
     return(
         <Container>
             {calendario.map((semana) => (
                 <ContainerSemana key={semana}>
-                    {semana.map((dia) => (
-                        <ContainerDia key={dia} onClick={() => {setData(dia)}}>
+                    {semana.map((dia, i) => (
+                        <ContainerDia key={i} onClick={(e) => [e.preventDefault(), navegar('/novareserva', {state: {dia: dia.format('YYYY-MM-DD')}})]}>
                             {isAtual(dia)}
                             {
                                 reservas.map((reserva, i) => 
@@ -52,6 +47,7 @@ function CalendarioMes({data, setData, reservas, calendarioTipo}) {
                                         tipo={calendarioTipo}
                                         horaInicio={reserva.hora_inicio}
                                         horaFim={reserva.hora_fim}
+                                        titulo={reserva.titulo}
                                         cor={reserva.categoria_id}
                                     />
                                 )

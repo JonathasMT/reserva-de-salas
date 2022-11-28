@@ -22,6 +22,7 @@ export const Container = styled.div`
     flex-direction: row;
     align-items: flex-start;
     justify-content: flex-start;
+    position: relative;
     background-color: ${props => {
         switch (props.cor) {
         case 1:
@@ -39,6 +40,8 @@ export const Container = styled.div`
     padding-top: 1px;
     padding-left: 5px;
     padding-right: 5px;
+    z-index: 100;
+    cursor: pointer;
 `;
 
 export const Hora = styled.div`

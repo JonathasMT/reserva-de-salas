@@ -37,6 +37,7 @@ function CalendarioDia({data, setData, calendarioTipo, reservas}) {
                                 tipo={calendarioTipo}
                                 horaInicio={reserva.hora_inicio}
                                 horaFim={reserva.hora_fim}
+                                titulo={reserva.titulo}
                                 cor={reserva.categoria_id}
                             />
                         )

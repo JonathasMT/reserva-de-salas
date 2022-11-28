@@ -49,8 +49,7 @@ function SelecionarData({data, setData, calendarioTipo}) {
         if(calendarioTipo === 'month')
             return nomeMesCorrente();
     };
-
-    console.log(dataNome());
+    
     return(
         <Container>
             <SubContainer>

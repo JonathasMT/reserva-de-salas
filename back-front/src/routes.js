@@ -30,7 +30,6 @@ const RoutesApp = () => {
 
     // eslint-disable-next-line
     const Privada = ({Destino}) => {
-        console.log('routes.js >> Possui usuario? >> '+ usuario);
         return usuario ? <Destino/> : <Login/>;
     };
     return (
