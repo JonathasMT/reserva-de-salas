@@ -5,14 +5,14 @@ import {Theme} from '../Theme';
 export const Container = styled.div`
     width: 100%;
     min-height: 20px;
-    max-height: ${props => {
+    height: ${props => {
         switch (props.tipo) {
         case 'day':
-            return '95%'
+            return '80px'
         case 'week':
-            return '95%'
+            return '40px'
         case 'month':
-            return '85%'
+            return '20px'
         default:
             return '20px';
         }}

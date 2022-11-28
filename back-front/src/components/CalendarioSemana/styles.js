@@ -27,10 +27,16 @@ export const ContainerDia = styled.div`
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    white-space: nowrap;
+    position:relative;
     background-color: ${Theme.calendarioFundo};
     border: 1px solid ${Theme.border};
-    padding: 10px 5px;
+    padding: 30px 10px;
+    gap: 5px;
     cursor: pointer;
 `;
 
@@ -40,23 +46,29 @@ export const Dia = styled.div`
     color: ${Theme.textoSecondary};
     font-weight: bold;
     font-size: 0.8rem;
-    margin: 1px;
+    top: 0;
+    right: 0;
+    position:absolute;
+    margin: 10px;
 `;
 
 export const DiaCorrente = styled.div`
     width: 1.5rem;
     height: 1.5rem;
     box-sizing: border-box;
-    float: right;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    top: 0;
+    right: 0;
+    position:absolute;
+    margin: 5px;
     color: ${Theme.calendarioFundo};
     background-color: ${Theme.textoSecondary};
     border: 0.5px solid ${Theme.textoSecondary};
     border-radius: 50%;
-    margin: -1px 1px 1px 1px ;
+    /* margin: -1px 1px 1px 1px ; */
     font-size: 0.8rem;
     font-weight: bold;
 `;

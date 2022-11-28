@@ -38,7 +38,7 @@ export const Dia = styled.div`
     top: 0;
     right: 0;
     position:absolute;
-    margin: 20px;
+    margin: 15px;
 `;
 
 export const DiaCorrente = styled.div`
