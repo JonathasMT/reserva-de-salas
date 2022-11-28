@@ -115,6 +115,7 @@ export const AuthProvider = ({children}) => {
     };
 
     async function atualizarInstituicao (instituicaoNome, logo) {
+
         var retorno;
         const {token} = JSON.parse(usuario);
         console.log('token ');
@@ -127,7 +128,9 @@ export const AuthProvider = ({children}) => {
         .then((resultado) => {
             console.log('MSG = ' + resultado.data.msg);
             //atualiza a instituição salva no localStorage
-            localStorage.setItem('instituicao', JSON.stringify(resultado.data.instituicao));
+            if(!resultado.data.erro){
+                localStorage.setItem('instituicao', JSON.stringify(resultado.data.instituicao));
+            };
             retorno = resultado.data;
         }).catch((erro) => {
             console.log('ERRO = ' + erro.response.data.msg);
@@ -151,15 +154,16 @@ export const AuthProvider = ({children}) => {
     };
 
     async function cadastrarGrupo(titulo, descricao, diasSemana, horaInicio, horaFim, tempoAntecedencia) {
-        var retorno;
+        console.log(diasSemana);
         const dadosGrupo = {
-            titulo: titulo,
+            titulo,
             descricao,
             diasSemana,
             horaInicio,
             horaFim,
             tempoAntecedencia
         };
+        var retorno;
         await api.post('/novogrupo', dadosGrupo)
         .then((resultado) => {
             console.log('MSG = ' + resultado.data.msg);
@@ -171,21 +175,51 @@ export const AuthProvider = ({children}) => {
         return retorno;
     };
 
+    async function listarSalas() {
+        var retorno;
+        await api.get('/listarsalas')
+        .then((resultado) => {
+            console.log('MSG = ' + resultado.data.msg);
+            retorno = resultado.data;
+        }).catch((erro) => {
+            console.log('ERRO? ' + erro.response.data.msg);
+            
+            retorno = erro.response.data;
+        });
+        return retorno;
+    };
+
+    async function listarReservas() {
+        var retorno;
+        await api.get('/listarreservas')
+        .then((resultado) => {
+            console.log('MSG = ' + resultado.data.msg);
+            retorno = resultado.data;
+        }).catch((erro) => {
+            console.log('ERRO? ' + erro.response.data.msg);
+            retorno = erro.response.data;
+        });
+        return retorno;
+    };
 
     return (
         <AuthContext.Provider
             value={{
+                //states
                 usuario: usuario,
                 instituicao: instituicao,
+                //funções
                 setUsuario,
                 login,
-                // cadastrarUsuario,
                 sair,
                 tamanhoBd,
                 primeiroAcesso,
                 listarInstituicao,
                 atualizarInstituicao,
-                listarGrupos
+                cadastrarGrupo,
+                listarGrupos,
+                listarSalas,
+                listarReservas
             }}
         >
         {children}

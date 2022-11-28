@@ -56,15 +56,15 @@ const Reserva = dataBase.define('Reserva', {
         type: Sequelize.STRING,
     },
     data: {
-        type: Sequelize.DATEONLY,
+        type: Sequelize.DATEONLY(10),
         allowNull: false
     },
     hora_inicio: {
-        type: Sequelize.DATE,
+        type: Sequelize.STRING(5),
         allowNull: false
     },
     hora_fim: {
-        type: Sequelize.DATE,
+        type: Sequelize.STRING(5),
         allowNull: false
     },
 }, {

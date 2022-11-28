@@ -18,6 +18,13 @@ const createSala = async (req, res) => {
     });
 };
 
+const readVarias = async (_req, res) => {
+    await dataBase.sync();
+    const salas = await Sala.findAll();
+    return res.status(200).json({erro: false, msg: 'Sucesso', salas: salas})
+};
+
 module.exports = {
-    createSala
+    createSala,
+    readVarias
 };

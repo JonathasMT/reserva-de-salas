@@ -6,32 +6,31 @@ const primeiroAcessoRoutes = require('./primeiroAcessoRoutes');
 const usuarioRoutes = require('./usuarioRoutes');
 const instituicaoRoutes = require('./instituicaoRoutes');
 const grupoRoutes = require('./grupoRoutes');
+const salaRoutes = require('./salaRoutes');
+const reservaRoutes = require('./reservaRoutes');
+
 
 //inserir as rotas
 router.use(
     primeiroAcessoRoutes,
     usuarioRoutes,
     instituicaoRoutes,
-    grupoRoutes
+    grupoRoutes,
+    salaRoutes,
+    reservaRoutes,
     
 );
 
 //validações
 const categoriaValidacoes = require('../middlewares/categoriaValidacoes');
-const grupoValidacoes = require('../middlewares/grupoValidacoes');
 const repeteValidacoes = require('../middlewares/repeteValidacoes');
 const repeteTipoValidacoes = require('../middlewares/repeteTipoValidacoes');
-const reservaValidacoes = require('../middlewares/reservaValidacoes');
 const usuarioValidacoes = require('../middlewares/usuarioValidacoes');
 
 //controllers
 const categoriaController = require('../controllers/categoriaController');
-const grupoController = require('../controllers/grupoController');
 const repeteController = require('../controllers/repeteController');
 const repeteTipoController = require('../controllers/repeteTipoController');
-const reservaController = require('../controllers/reservaController');
-const usuarioControler = require('../controllers/usuarioController');
-const instituicaoController = require('../controllers/instituicaoController');
 
 
 //ROTA PARA FAZER LOGIN--------------------------------------------------------
@@ -67,19 +66,4 @@ router.post('/novarepeticao',
     //cria a repetição de reserva
     repeteController.createRepete
 );
-//RESERVA
-router.post('/novareserva',
-    usuarioValidacoes.credenciais,
-    reservaValidacoes.validarUsuarioId,
-    reservaValidacoes.validarSalaId,
-    reservaValidacoes.validarCategoriaId,
-    reservaValidacoes.validarRepeteId,
-    reservaValidacoes.validarTitulo,
-    reservaValidacoes.validarData,
-    reservaValidacoes.validarHoraInicio,
-    reservaValidacoes.validarHoraFim,
-    //cria a nova reserva
-    reservaController.createReserva
-);
-
 module.exports = router;

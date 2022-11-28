@@ -23,9 +23,9 @@ const create = async (req, res) => {
         hora_fim: horaFim,
         tempo_antecedencia: tempoAntecedencia
     }).then((result) => {
-        return res.status(200).json('Grupo cadastrado');
+        return res.status(200).json({erro: false, msg: 'Grupo cadastrado'});
     }).catch((erro) => {
-        res.status(500).json({msg: 'Ocorreu um erro, tente novamente ou contacte o administrador! '+erro});
+        res.status(500).json({erro: true, msg: 'Ocorreu um erro, tente novamente ou contacte o administrador! '});
     });
 };
 

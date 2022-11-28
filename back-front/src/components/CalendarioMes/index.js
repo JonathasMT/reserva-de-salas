@@ -3,7 +3,7 @@ import {Container, ContainerSemana, ContainerDia, Dia, DiaCorrente} from './styl
 
 import CardReserva from '../CardReserva';
 
-function CalendarioMes({data, setData}) {
+function CalendarioMes({data, setData, reservas, calendarioTipo}) {
     const [calendario, setCalendario] = useState([]);
 
     useEffect(() => {
@@ -28,12 +28,12 @@ function CalendarioMes({data, setData}) {
             return <Dia> {getData}</Dia>
     };
 
+
     function isReserva(dia, number) {
-        const getData = parseInt(dia.format('D'));
-        if (getData === number)
+        const getData = dia.format('YYYY-MM-DD');
+        if (getData == '2022-12-02'){
             return <CardReserva/>
-        else
-            return''
+        }
     };
 
     return(
@@ -43,7 +43,19 @@ function CalendarioMes({data, setData}) {
                     {semana.map((dia) => (
                         <ContainerDia key={dia} onClick={() => {setData(dia)}}>
                             {isAtual(dia)}
-                            {isReserva(dia, 17)}
+                            {
+                                reservas.map((reserva, i) => 
+                                    reserva.data === dia.format('YYYY-MM-DD') 
+                                    && 
+                                    <CardReserva
+                                        key={i}
+                                        tipo={calendarioTipo}
+                                        horaInicio={reserva.hora_inicio}
+                                        horaFim={reserva.hora_fim}
+                                        cor={reserva.categoria_id}
+                                    />
+                                )
+                            }
                         </ContainerDia>
                     ))}
                 </ContainerSemana>

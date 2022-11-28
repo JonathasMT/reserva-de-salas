@@ -11,7 +11,12 @@ import {
     InputImage,
     Button,
     BotaoEditar,
-    List
+    List,
+    ContainerListGrupo,
+    FormSala,
+    ListGrupo,
+    ListSala,
+    ContainerListSala
 } from './styles';
 
 import {BiEdit, BiPlus} from 'react-icons/bi';
@@ -23,12 +28,12 @@ const Configuracoes = () => {
     const navegar = useNavigate();
 
     const [carregando, setCarregando] = useState(false)
+    const {instituicao, listarGrupos, listarSalas} = useAuth();
 
-    const {instituicao, listarGrupos} = useAuth();
     const {nome_instituicao} = JSON.parse(instituicao);
     const [desativado, setDesativado] = useState(true);
-
     const [grupos, setGrupos] = useState([]);
+    const [salas, setSalas] = useState([]);
 
     useEffect(() => {
         const buscarGrupos = async() => {
@@ -37,6 +42,23 @@ const Configuracoes = () => {
             setCarregando(false);
             if (!resposta.erro) {
                 setGrupos(resposta.grupos)
+                console.log(resposta.grupos);
+            };
+            if (resposta.erro) {
+                alert(resposta.msg);
+                
+                return;
+            };
+            setCarregando(false);
+        };
+
+        const buscarSalas = async() => {
+            setCarregando(true);
+            const resposta = await listarSalas();
+            setCarregando(false);
+            if (!resposta.erro) {
+                setSalas(resposta.salas)
+                console.log(resposta.salas);
             };
             if (resposta.erro) {
                 alert(resposta.msg);
@@ -45,6 +67,7 @@ const Configuracoes = () => {
             setCarregando(false);
         };
         buscarGrupos();
+        buscarSalas();
     }, []);
 
     const alterarEdicao = (e) => {
@@ -77,18 +100,32 @@ const Configuracoes = () => {
                         </ContainerInput> */}
                     </Form>
                     <Form>
+                        <BotaoEditar onClick={(e) => [e.preventDefault(), navegar('/novogrupo')]}>
+                            <BiPlus/>
+                        </BotaoEditar>
                         <h2>Grupos de sala</h2>
-                        {
-                            grupos.length > 0 ? grupos.map((grupo, i) => 
-                                <List key={i}>
-                                    {grupo.titulo}
-                                    <BiEdit onClick={(e) => [e.preventDefault(), navegar('/instituicao')]}/>
-                                </List>
-                            )
+                        {   
+                            grupos.length > 0 ?
+                                grupos.map((grupo, i) =>
+                                    <ContainerListGrupo key={i}>
+                                        <ListGrupo>
+                                            {grupo.titulo + '. ID = ' + grupo.grupo_id}
+                                            <BiEdit onClick={(e) => [e.preventDefault(), navegar('/instituicao')]}/>
+                                        </ListGrupo>
+                                        {
+                                            salas.map((sala, i) =>
+                                                sala.grupo_id===grupo.grupo_id &&
+                                                    <ListSala key={i}>
+                                                        {sala.titulo}
+                                                        <BiEdit onClick={(e) => [e.preventDefault(), navegar('/instituicao')]}/>
+                                                    </ListSala>
+                                            )
+                                        }
+                                    </ContainerListGrupo>
+                                )
                             :
                             <List>
                                 Não há grupos
-                                <BiPlus onClick={(e) => [e.preventDefault(), navegar('/novogrupo')]}/>
                             </List>
                         }
                     </Form>

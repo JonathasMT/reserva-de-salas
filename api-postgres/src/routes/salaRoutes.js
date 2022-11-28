@@ -10,12 +10,18 @@ const salaController = require('../controllers/salaController');
 
 //SALA
 router.post('/novasala',
-    usuarioValidacoes.validarCredenciais,
+    usuarioValidacoes.credenciais,
     salaValidacoes.validarGrupoId,
     salaValidacoes.validarTitulo,
     salaValidacoes.validarCapacidade,
     //cria a sala
     salaController.createSala
+);
+
+//LER VARIAS
+router.get('/listarsalas',
+    usuarioValidacoes.credenciais,
+    salaController.readVarias
 );
 
 module.exports = router;

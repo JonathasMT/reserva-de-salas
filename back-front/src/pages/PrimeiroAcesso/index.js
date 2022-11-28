@@ -50,6 +50,7 @@ const PrimeiroAcesso = () => {
             setMsg(resposta.msg);
             console.log('MSG = ' + resposta.msg);
             if (resposta.erro){
+                setMsg(resposta.msg);
                 console.log('ERRO? ' + resposta.erro);
                 return;
             };

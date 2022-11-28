@@ -12,7 +12,7 @@ import {
 import CardReserva from '../CardReserva';
 import CalendarioLegenda from '../CalendarioLegenda';
 
-function CalendarioDia({data, setData, calendarioTipo}) {
+function CalendarioDia({data, setData, calendarioTipo, reservas}) {
 
     const [dia, setDia] = useState();
 
@@ -21,12 +21,26 @@ function CalendarioDia({data, setData, calendarioTipo}) {
         console.log('atualizou '+ data.format('D'));
     }, [data])
 
+
     return(
         <Container>
             <Body>
                 <Dia>
                     {dia}
                 </Dia>
+                    {
+                        reservas.map((reserva, i) => 
+                            reserva.data === data.format('YYYY-MM-DD') 
+                            && 
+                            <CardReserva
+                                key={i}
+                                tipo={calendarioTipo}
+                                horaInicio={reserva.hora_inicio}
+                                horaFim={reserva.hora_fim}
+                                cor={reserva.categoria_id}
+                            />
+                        )
+                    }
             </Body>
         </Container>
     );

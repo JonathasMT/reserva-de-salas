@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 
-import useAuth from '../../hooks/useAuth';
 import {
     Container,
     SubContainer,
@@ -9,24 +8,22 @@ import {
     ContainerInput,
     Input,
     InputImage,
-    Button,
-    BotaoEditar
+    Button
 } from './styles';
 import Carregamento from '../../components/Carregando';
+import useAuth from '../../hooks/useAuth';
 
 const ConfiguracaoInicial = () => {
 
     const navegar = useNavigate();
-
     const [carregando, setCarregando] = useState(false)
-    const {instituicao, listarInstituicao, atualizarInstituicao} = useAuth();
+    const {listarInstituicao, atualizarInstituicao} = useAuth();
+
     const [instituicaoNome, setInstituicaoNome] = useState('');
     const [logo, setLogo] = useState('');
     const [msg, setMsg] = useState('');
 
     useEffect(() => {
-        // const {nome_instituicao} = JSON.parse(instituicao);
-        // setInstituicaoNome(nome_instituicao);
         const buscarInstituicao = async() => {
             setCarregando(true);
             const resposta = await listarInstituicao();
@@ -42,7 +39,6 @@ const ConfiguracaoInicial = () => {
             setCarregando(false);
         };
         buscarInstituicao();
-
     }, []);
 
     const submeterAtualizar = async() => {
@@ -70,7 +66,7 @@ const ConfiguracaoInicial = () => {
                         type='text'
                         name='nome'
                         placeholder='Digite o nome da sua instituição'
-                        defaultValue={instituicaoNome}
+                        value={instituicaoNome}
                         onChange={(e) => setInstituicaoNome(e.target.value)}
                     />
                 </ContainerInput>
@@ -84,7 +80,7 @@ const ConfiguracaoInicial = () => {
                 </ContainerInput>
             </Form>
             <Button
-            onClick={submeterAtualizar}
+                onClick={submeterAtualizar}
                 tipo={true}
             >ATUALIZAR</Button>
             <Button

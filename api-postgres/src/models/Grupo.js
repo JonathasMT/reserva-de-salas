@@ -20,10 +20,10 @@ const Grupo = dataBase.define('Grupo', {
         type: Sequelize.JSON
     },
     hora_inicio: {
-        type: Sequelize.DATE,
+        type: Sequelize.STRING(5)
     },
     hora_fim: {
-        type: Sequelize.DATE
+        type: Sequelize.STRING(5)
     },
     tempo_antecedencia: {
         type: Sequelize.INTEGER

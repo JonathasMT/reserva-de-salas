@@ -4,7 +4,7 @@ import {Container, Body, ContainerDia, Dia, DiaCorrente} from './styles';
 import CardReserva from '../CardReserva';
 import CalendarioLegenda from '../CalendarioLegenda';
 
-function CalendarioSemana({data, setData}) {
+function CalendarioSemana({data, setData, reservas, calendarioTipo}) {
     const [calendario, setCalendario] = useState([]);
 
     useEffect(() => {
@@ -44,7 +44,19 @@ function CalendarioSemana({data, setData}) {
                     {semana.map((dia) => (
                         <ContainerDia key={dia} onClick={() => {setData(dia)}}>
                             {isAtual(dia)}
-                            {isReserva(dia, 17)}
+                            {
+                                reservas.map((reserva, i) => 
+                                    reserva.data === dia.format('YYYY-MM-DD') 
+                                    && 
+                                    <CardReserva
+                                        key={i}
+                                        tipo={calendarioTipo}
+                                        horaInicio={reserva.hora_inicio}
+                                        horaFim={reserva.hora_fim}
+                                        cor={reserva.categoria_id}
+                                    />
+                                )
+                            }
                         </ContainerDia>
                     ))}
                 </Body>
