@@ -42,9 +42,7 @@ const Menu = () => {
     return (
         <Container>
             <ContainerMenu menu={menu}>
-                {/* <FaTimes onClick={() => fecharMenu()}/> */}
                 <ContainerPerfil>
-                    {/* <img src={imgPerfil} alt='Perfil' /> */}
                     <Link to='/perfil' onClick={() => fecharMenu()}>
                     <ContainerNome>
                             <p>{nome}</p>

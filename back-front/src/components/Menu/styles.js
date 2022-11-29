@@ -64,14 +64,13 @@ export const ContainerMenu = styled.div`
 
 export const ContainerPerfil = styled.div`
     width: 100%;
-    height: 50px;
+    height: 100px;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    padding-top: 25px;
-    padding-bottom: 25px;
 
     > img {
         position:relative;
@@ -83,20 +82,31 @@ export const ContainerPerfil = styled.div`
 `;
 
 export const ContainerNome = styled.div`
-    display: flex;
-    flex-direction:row;
-    font-weight: bold;
-    font-size: 15px;
+    width: 100%;
+    box-sizing: border-box;
     justify-content: center;
     align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction:row;
+    font-weight: 600;
+    font-size: 16px;
     color: ${Theme.textoPrimary};
+    padding-left: 10px;
+    padding-right: 10px;
     cursor: pointer;
 
+    > p {
+        padding: 0;
+        margin: 0;
+    }
+
     > svg {
-    margin-left: 10px;
-    width: 25px;
-    height: 25px;
-    cursor: pointer;
+        width: 25px;
+        height: 25px;
+        margin-left: 5px;
+        cursor: pointer;
     };
 `;
 

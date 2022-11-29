@@ -53,7 +53,7 @@ export const ContainerDiaSelecionado = styled.div`
 
 export const Dia = styled.div`
     font-size: 14px;
-    font-weight: bold;
+    font-weight: 600;
 `;
 
 export const ContainerSemana = styled.div`
@@ -85,7 +85,7 @@ export const ContainerSemanaSelecionada = styled.div`
 
 export const Semana = styled.div`
     font-size: 14px;
-    font-weight: bold;
+    font-weight: 600;
 `;
 
 export const ContainerMes = styled.div`
@@ -117,5 +117,5 @@ export const ContainerMesSelecionado = styled.div`
 
 export const Mes = styled.div`
     font-size: 14px;
-    font-weight: bold;
+    font-weight: 600;
 `;

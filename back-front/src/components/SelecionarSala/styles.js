@@ -27,7 +27,7 @@ export const Grupo = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    font-weight: bold;
+    font-weight: 700;
     font-size: 18px;
     color: ${Theme.textoPrimary};
     gap: 7px;
@@ -50,7 +50,7 @@ export const Sala = styled.div`
     align-items: flex-end;
     justify-content: space-around;
     margin-bottom: -3px;
-    font-weight: bold;
+    font-weight: 600;
     font-size: 14px;
     color: ${Theme.textoSecondary};
     cursor: pointer;

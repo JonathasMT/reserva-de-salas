@@ -38,7 +38,7 @@ export const Seletor = styled.div`
 `;
 
 export const Corrente = styled.div`
-    font-weight: bold;
+    font-weight: 700;
     font-size: 18px;
     margin-left: 18px;
     margin-right: 18px;
