@@ -76,19 +76,9 @@ export const AuthProvider = ({children}) => {
         return retorno;
     };
 
-    async function primeiroAcesso (instituicaoNome, logo, img, nome, email, senha, confirmaSenha) {
+    async function primeiroAcesso (dados) {
         var retorno;
-        
-        const dadosPrimeiroAcesso = {
-            instituicaoNome: instituicaoNome,
-            logo: logo,
-            imagem: img,
-            nome: nome,
-            email: email,
-            senha: senha,
-            confirmaSenha: confirmaSenha
-        };
-        await api.post('/primeiroacesso', dadosPrimeiroAcesso)
+        await api.post('/primeiroacesso', dados)
         .then((resultado) => {
             console.log('MSG = ' + resultado.data.msg);
             retorno = resultado.data;

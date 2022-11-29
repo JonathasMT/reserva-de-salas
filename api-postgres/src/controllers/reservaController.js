@@ -33,7 +33,7 @@ const create= async (req, res) => {
     }).then((_result) => {
         return res.status(200).json({erro: false, msg: 'Reserva cadastrada'});
     }).catch((erro) => {
-        res.status(500).json({erro: false, msg: 'Ocorreu um erro, tente novamente ou contacte o administrador! '+erro});
+        res.status(500).json({erro: true, msg: 'Ocorreu um erro, tente novamente ou contacte o administrador! '+erro});
     });
 };
 
@@ -86,7 +86,7 @@ const update= async (req, res) => {
         hora_inicio: horaInicio,
         hora_fim: horaFim
     }).then((_result) => {
-        return res.status(200).json('Reserva cadastrada');
+        return res.status(200).json({erro: false, msg: 'Reserva cadastrada'});
     }).catch((_erro) => {
         res.status(500).json({erro: true, msg: 'Ocorreu um erro, tente novamente ou contacte o administrador! '});
     });

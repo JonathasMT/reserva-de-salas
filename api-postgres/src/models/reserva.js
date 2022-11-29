@@ -13,41 +13,41 @@ const Reserva = dataBase.define('Reserva', {
         primaryKey: true,
         allowNull: false
     },
-    usuario_id: {
-        type: Sequelize.INTEGER,
-        references: {
-            model: Usuario,
-            key: 'usuario_id',
-            deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
-        },
-        allowNull: false
-    },
-    sala_id: {
-        type: Sequelize.INTEGER,
-        references: {
-            model: Sala,
-            key: 'sala_id',
-            deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
-        },
-        allowNull: false
-    },
-    categoria_id: {
-        type: Sequelize.INTEGER,
-        references: {
-            model: Categoria,
-            key: 'categoria_id',
-            deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
-        },
-        allowNull: false
-    },
-    repete_id: {
-        type: Sequelize.INTEGER,
-        references: {
-            model: Repete,
-            key: 'repete_id',
-            deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
-        }
-    },
+    // usuario_id: {
+    //     type: Sequelize.INTEGER,
+    //     // references: {
+    //     //     model: Usuario,
+    //     //     key: 'usuario_id',
+    //     //     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+    //     // },
+    //     allowNull: false
+    // },
+    // sala_id: {
+    //     type: Sequelize.INTEGER,
+    //     // references: {
+    //     //     model: Sala,
+    //     //     key: 'sala_id',
+    //     //     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+    //     // },
+    //     allowNull: false
+    // },
+    // categoria_id: {
+    //     type: Sequelize.INTEGER,
+    //     // references: {
+    //     //     model: Categoria,
+    //     //     key: 'categoria_id',
+    //     //     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+    //     // },
+    //     allowNull: false
+    // },
+    // repete_id: {
+    //     type: Sequelize.INTEGER,
+    //     // references: {
+    //     //     model: Repete,
+    //     //     key: 'repete_id',
+    //     //     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+    //     // }
+    // },
     titulo: {
         type: Sequelize.STRING,
         allowNull: false
@@ -73,30 +73,70 @@ const Reserva = dataBase.define('Reserva', {
     updatedAt: 'atualizado_em'
 });
 
-// Reserva.belongsTo(Usuario, Sala, Tipo, {
+Reserva.belongsTo(Usuario, {
+    constraint: true,
+    foreignKey: 'usuario_id'
+});
+
+Usuario.hasMany(Reserva, {
+    foreignKey: 'usuario_id'
+});
+//------------------------------
+Reserva.belongsTo(Sala, {
+    constraint: true,
+    foreignKey: 'sala_id'
+});
+
+Sala.hasMany(Reserva, {
+    foreignKey: 'sala_id'
+});
+//------------------------------
+Reserva.belongsTo(Categoria, {
+    constraint: true,
+    foreignKey: 'categoria_id'
+});
+
+Categoria.hasMany(Reserva, {
+    foreignKey: 'categoria_id'
+});
+//------------------------------
+Reserva.belongsTo(Repete, {
+    constraint: true,
+    foreignKey: 'repete_id'
+});
+
+Repete.hasOne(Reserva, {
+    foreignKey: 'repete_id'
+});
+
+
+
+// Usuario.hasMany(Reserva, {
 //     foreignKey: {
-//         name: 'reserva_id',
-//         allowNull: false
+//         name: 'usuario_id'
 //     }
 // });
-
-// // Reserva.belongsTo(Sala, {
-// //     foreignKey: {
-// //         name: 'reserva_id',
-// //         allowNull: false
-// //     }
-// // });
-// // Reserva.belongsTo(Tipo, {
-// //     foreignKey: {
-// //         name: 'reserva_id',
-// //         allowNull: false
-// //     }
-// // });
-
-// Reserva.belongsTo(Repete, {
+// Reserva.belongsTo(Usuario);
+// //------------------------------
+// Sala.hasMany(Reserva, {
 //     foreignKey: {
-//         name: 'reserva_id'
+//         name: 'sala_id'
 //     }
 // });
+// Reserva.belongsTo(Sala);
+// //------------------------------
+// Categoria.hasMany(Reserva, {
+//     foreignKey: {
+//         name: 'categoria_id'
+//     }
+// });
+// Reserva.belongsTo(Categoria);
+// //------------------------------
+// Repete.hasOne(Reserva, {
+//     foreignKey: {
+//         name: 'repete_id'
+//     }
+// });
+// Reserva.belongsTo(Repete);
 
 module.exports = Reserva;

@@ -34,9 +34,10 @@ const PrimeiroAcesso = () => {
         verificaBd();
     }, []);
 
-    const submeterPrimeiroAcesso = async() => {
-        setCarregando(true);
-        const resposta = await primeiroAcesso(
+    const submeterPrimeiroAcesso = async(e) => {
+        e.preventDefault();
+
+        const dados = {
             instituicaoNome, 
             logo,
             img,
@@ -44,19 +45,16 @@ const PrimeiroAcesso = () => {
             email,
             senha,
             confirmaSenha
-        );
+        };
+        setCarregando(true);
+        const resposta = await primeiroAcesso(dados);
         setCarregando(false);
-        if (resposta.msg) {
+        if (!resposta.erro) {
+            alert(resposta.msg);
+            navegar('/')
+        };
+        if (resposta.erro) {
             setMsg(resposta.msg);
-            console.log('MSG = ' + resposta.msg);
-            if (resposta.erro){
-                setMsg(resposta.msg);
-                console.log('ERRO? ' + resposta.erro);
-                return;
-            };
-            navegar('/');
-        }else {
-            setMsg('Ocorreu um erro, tente novamente ou contacte o administrador do sistemas')
             return;
         };
     };

@@ -41,6 +41,7 @@ const NovaReserva = ({navigation}) => {
     const {usuario_id} = JSON.parse(usuario);
     const aoSubmeter = async (e) => {
         e.preventDefault();
+
         const dados = {
             titulo,
             descricao,
@@ -56,7 +57,6 @@ const NovaReserva = ({navigation}) => {
         const resposta = await novaReserva(dados);
         setCarregando(false);
         if (!resposta.erro) {
-            setCarregando(false);
             alert(resposta.msg);
             navegar('/')
         };
