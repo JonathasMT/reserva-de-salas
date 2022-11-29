@@ -1,9 +1,9 @@
 import React from 'react';
 import {Container} from './styles';
 
-const MenuItem = ({Icone, Texto, Status}) => {
+const MenuItem = ({Icone, Texto, Status, local}) => {
     return(
-        <Container>
+        <Container local={local}>
             <div />
             {Icone}
             {Texto}

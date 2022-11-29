@@ -53,7 +53,7 @@ export const DataHora = styled.div`
     align-items: flex-end;
     justify-content: center;
     margin-bottom: -3px;
-    font-weight: bold;
+    font-weight: 600;
     font-size: 14px;
     color: ${Theme.textoSecondary};
     cursor: pointer;

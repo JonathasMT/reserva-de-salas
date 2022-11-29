@@ -21,7 +21,8 @@ export const DiasDaSemana = styled.div`
     width: calc(100% / 7);
     text-align: center;
     font-size: 0.9rem;
-    font-weight: bold;
+    font-weight: 600;
+    letter-spacing: 1px;
     color: ${Theme.textoSecondaryVariant};
 `;
 

@@ -42,34 +42,39 @@ export const ContainerDia = styled.div`
 `;
 
 export const Dia = styled.div`
-    box-sizing: border-box;
-    float: right;
-    color: ${Theme.textoSecondary};
-    font-weight: bold;
-    font-size: 0.7rem;
     top: 0;
     right: 0;
     position:absolute;
     margin: 5px;
+    //fonte
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: ${Theme.textoSecondary};
+
+
+
+
 `;
 
 export const DiaCorrente = styled.div`
+    //circulo
     width: 0.9rem;
     height: 0.9rem;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    box-sizing: border-box;
+    position:absolute;
     top: 0;
     right: 0;
-    position:absolute;
-    margin: 5px;
-    color: ${Theme.calendarioFundo};
     background-color: ${Theme.textoSecondary};
-    border: 0.5px solid ${Theme.textoSecondary};
     border-radius: 50%;
-    padding: 1px;
-    font-size: 0.6rem;
+    margin: 3px;
+    padding: 2px;
+    //fonte
+    font-size: 0.7rem;
     font-weight: bold;
+    color: ${Theme.calendarioFundo};
+
+
 `;

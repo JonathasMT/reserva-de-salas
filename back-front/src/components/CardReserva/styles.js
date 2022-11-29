@@ -4,7 +4,7 @@ import {Theme} from '../Theme';
 
 export const Container = styled.div`
     width: 100%;
-    min-height: 20px;
+    min-height: 25px;
     height: ${props => {
         switch (props.tipo) {
         case 'day':
@@ -40,13 +40,14 @@ export const Container = styled.div`
     padding-top: 1px;
     padding-left: 5px;
     padding-right: 5px;
-    z-index: 100;
+    box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.2);
     cursor: pointer;
+    z-index: 50;
 `;
 
 export const Hora = styled.div`
     width: auto;
-    font-size: 8px;
+    font-size: 9px;
     font-weight: bold;
     color: ${Theme.textoPrimary};
 `;
@@ -55,8 +56,9 @@ export const Titulo = styled.div`
     width: auto;
     align-items: flex-end;
     justify-content: flex-end;
-    font-size: 8px;
+    font-size: 9px;
     color: ${Theme.fundo};
     text-overflow: ellipsis;
+    letter-spacing: 0.3px;
     overflow: hidden;
 `;

@@ -9,12 +9,13 @@ export const Container = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    position: absolute;
+    position: fixed;
     top: 0;
     background-color: ${Theme.fundo};
-    box-shadow: 2px 0px 8px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.2);
     gap: 30px;
     user-select: none;
+    z-index: 30;
 
     > svg {
         width: 30px;

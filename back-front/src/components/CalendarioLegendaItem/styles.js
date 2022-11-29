@@ -13,10 +13,11 @@ export const Container = styled.div`
 `;
 
 export const Circulo = styled.div`
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
     margin-right: 8px;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
 `;
 
 export const Titulo = styled.div`

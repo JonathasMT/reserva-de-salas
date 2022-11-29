@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {NavLink} from 'react-router-dom';
 
 import {Theme} from '../Theme';
 
@@ -7,36 +8,25 @@ export const Container = styled.div`
     height: 40px;
     display: flex;
     align-items: center;
-    justify-content: left;
-    color: ${Theme.textoAccent};
-    font-weight: bold;
-    font-size: 20px;
+    justify-content: flex-start;
+    color: ${props => props.local ? Theme.textoAccent : Theme.textoSecondaryVariant};
+    font-weight: 500;
+    font-size: 17px;
+    margin: 0;
     padding: 0px;
     border-radius: 0px;
-    margin-bottom: 20px;
-    animation: mostrarMenu .4s;
+    margin-bottom: 25px;
     cursor: pointer;
-
-    @keyframes mostrarMenu {
-        from {
-            opacity: 0;
-            width: 0;
-        }
-        to {
-            opacity: 1;
-            width: 250px;
-        }
-    }
 
     > svg {
         margin: 0 10px;
-        height: 25px;
-        width: 25px;
+        height: 20px;
+        width: 20px;
     }
 
     > div {
-        background-color: ${Theme.textoAccent};
-        width: 5px;
+        background-color: ${props => props.local && Theme.textoAccent};
+        width: 4px;
         height: 100%;
         border-radius: 15px;
     }

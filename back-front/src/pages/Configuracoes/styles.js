@@ -3,14 +3,15 @@ import styled from 'styled-components';
 import {Theme} from '../../components/Theme'
 
 export const Container = styled.div`
-    height: 100vh;
+    height: 100%;
     display: flex;
     box-sizing: border-box;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding-top: 50px;
     background-color: ${Theme.menuFundo};
+    padding-top: 80px;
+    padding-bottom: 30px;
 `;
 
 export const SubContainer = styled.div`

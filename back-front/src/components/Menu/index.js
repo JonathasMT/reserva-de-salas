@@ -1,7 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import {Container, ContainerVazio, ContainerMenu, Content, ContainerPerfil, ContainerNome} from './styles';
+import {Link, NavLink, useLocation} from 'react-router-dom';
+
 import {
-    FaTimes,
+    Container,
+    ContainerVazio,
+    ContainerMenu,
+    Content,
+    ContainerPerfil,
+    ContainerNome,
+    ItemLink
+} from './styles';
+
+import {
     FaRegCalendarAlt,
     FaAngleDown,
     FaRegCalendarCheck,
@@ -9,14 +19,12 @@ import {
 } from 'react-icons/fa';
 
 import MenuItem from '../MenuItem';
-import imgPerfil from '../../assets/img/person.jpg';
-import {Link, NavLink} from 'react-router-dom';
+// import imgPerfil from '../../assets/img/person.jpg';
 import useAuth from '../../hooks/useAuth';
 import useContexto from '../../hooks/useContexto';
 
 
 const Menu = () => {
-
     console.log('Passou no arquivo menu.js');
     const {menu, alterarMenu} = useContexto();
     const fecharMenu = () => alterarMenu();
@@ -28,8 +36,9 @@ const Menu = () => {
     setNome(nome);
     }, []);
 
+    const {pathname} = useLocation();
 
-
+    console.log(pathname);
     return (
         <Container>
             <ContainerMenu menu={menu}>
@@ -43,18 +52,18 @@ const Menu = () => {
                     </ContainerNome>
                     </Link>
                 </ContainerPerfil>
-                <Content >
+                <Content>
                     <NavLink to='/' onClick={() => fecharMenu()}>
-                        <MenuItem Icone={<FaRegCalendarAlt/>} Texto='INÍCIO' Status={true}/>
+                        <MenuItem Icone={<FaRegCalendarAlt/>} Texto='INÍCIO' Status={true} local={pathname==='/'}/>
                     </NavLink>
                     <NavLink to='/minhasreservas' onClick={() => fecharMenu()}>
-                        <MenuItem Icone={<FaRegCalendarCheck/>} Texto='MINHAS RESERVAS' />
+                        <MenuItem Icone={<FaRegCalendarCheck/>} Texto='MINHAS RESERVAS' local={pathname==='/minhasreservas'}/>
                     </NavLink>
                     <NavLink to='/usuarios' onClick={() => fecharMenu()}>
-                        <MenuItem Icone={<FaUsers/>} Texto='USUÁRIOS' />
+                        <MenuItem Icone={<FaUsers/>} Texto='USUÁRIOS' local={pathname==='/usuarios'}/>
                         </NavLink>
                     <NavLink to='/configuracoes' onClick={() => fecharMenu()}>
-                        <MenuItem Icone={<FaRegCalendarAlt/>} Texto='CONFIGURAÇÕES'/>
+                        <MenuItem Icone={<FaRegCalendarAlt/>} Texto='CONFIGURAÇÕES' local={pathname==='/configuracoes'}/>
                     </NavLink>
                     <NavLink to='/' onClick={() => [sair() , fecharMenu()]}>
                         <MenuItem Icone={<FaRegCalendarAlt/>} Texto='SAIR'/>

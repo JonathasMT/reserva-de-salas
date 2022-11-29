@@ -190,7 +190,6 @@ export const AuthProvider = ({children}) => {
         var retorno;
         await api.get('/listarreservas')
         .then((resultado) => {
-            console.log('MSG = ' + resultado.data.msg);
             retorno = resultado.data;
         }).catch((erro) => {
             console.log('ERRO? ' + erro.response.data.msg);

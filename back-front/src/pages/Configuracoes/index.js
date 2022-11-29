@@ -7,16 +7,12 @@ import {
     SubContainer,
     Form,
     ContainerInput,
-    Input,
-    InputImage,
     Button,
     BotaoEditar,
     List,
     ContainerListGrupo,
-    FormSala,
     ListGrupo,
     ListSala,
-    ContainerListSala
 } from './styles';
 
 import {BiEdit, BiPlus} from 'react-icons/bi';

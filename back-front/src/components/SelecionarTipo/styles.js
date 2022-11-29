@@ -39,16 +39,16 @@ export const ContainerDia = styled.div`
 
 export const ContainerDiaSelecionado = styled.div`
     width: 33%;
-    height: calc(100% - 4px);
+    height: 99%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     background-color: white;
     border-radius: 25px;
-    border: 2px solid ${Theme.border};
+    /* border: 2px solid ${Theme.border}; */
     color: ${Theme.textoAccent};
-    box-shadow: 1px 0px 4px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.2);
 `;
 
 export const Dia = styled.div`
@@ -71,16 +71,16 @@ export const ContainerSemana = styled.div`
 
 export const ContainerSemanaSelecionada = styled.div`
     width: 33%;
-    height: calc(100% - 4px);
+    height: 99%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     background-color: white;
     border-radius: 25px;
-    border: 2px solid ${Theme.border};
+    /* border: 2px solid ${Theme.border}; */
     color: ${Theme.textoAccent};
-    box-shadow: 1px 0px 4px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.2);
 `;
 
 export const Semana = styled.div`
@@ -103,16 +103,16 @@ export const ContainerMes = styled.div`
 
 export const ContainerMesSelecionado = styled.div`
     width: 33%;
-    height: calc(100% - 4px);
+    height: 99%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     background-color: white;
     border-radius: 25px;
-    border: 2px solid ${Theme.border};
+    /* border: 2px solid ${Theme.border}; */
     color: ${Theme.textoAccent};
-    box-shadow: 1px 0px 4px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.2);
 `;
 
 export const Mes = styled.div`

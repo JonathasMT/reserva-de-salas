@@ -1,4 +1,5 @@
-import  styled from 'styled-components';
+import  styled, {css} from 'styled-components';
+import {NavLink} from 'react-router-dom';
 
 import {Theme} from '../Theme';
 
@@ -10,11 +11,10 @@ export const Container = styled.div`
     flex-direction: row;
     align-items: flex-start;
     justify-content: flex-start;
-    z-index: 6;
     position: fixed;
     top: 0px;
     left: 0px;
-
+    z-index: 100;
 `;
 
 export const ContainerVazio = styled.div`
@@ -32,15 +32,15 @@ export const ContainerMenu = styled.div`
     animation: mostrarMenu .4s;
     background-color: ${Theme.menuFundo};
     user-select: none;
-
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: left;
+    box-shadow: 0px 0px 50px 10px rgba(0, 0, 0, 0.2);
     
     a {
         text-decoration: none;
-    }
+    };
 
     > svg {
         position: fixed;
@@ -50,30 +50,28 @@ export const ContainerMenu = styled.div`
         margin-top: 15px;
         margin-left: 15px;
         cursor: pointer;
-    }
+    };
 
     @keyframes mostrarMenu {
         from {
-            opacity: 0;
-            width: 0;
+            transform: translateX(-250px);
         }
         to {
-            opacity: 1;
-            width: 250px;
+        transform: translateX(0px);
         }
-    }
+    };
 `;
 
 export const ContainerPerfil = styled.div`
     width: 100%;
-    height: auto;
+    height: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-top: 10px;
     overflow: hidden;
     padding-top: 25px;
+    padding-bottom: 25px;
 
     > img {
         position:relative;
@@ -81,7 +79,7 @@ export const ContainerPerfil = styled.div`
         width: 100px;
         border-radius: 100%;
         border: 5px solid ${Theme.borderPerfil};
-    }
+    };
 `;
 
 export const ContainerNome = styled.div`
@@ -99,9 +97,23 @@ export const ContainerNome = styled.div`
     width: 25px;
     height: 25px;
     cursor: pointer;
-    }
+    };
 `;
 
 export const Content = styled.div`
-    margin-top: 10px;
+    width: 100%;
+    margin-top: 0px;
+    
+    >a {
+        .active {
+            background-color: red;
+        }
+    }
+`;
+
+export const ItemLink = styled(NavLink)`
+    background-color: blue;
+    &.active {
+        background-color: #f8dc2f;
+    }
 `;
