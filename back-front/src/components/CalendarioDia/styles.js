@@ -23,8 +23,8 @@ export const Body = styled.div`
     justify-content: flex-start;
     white-space: nowrap;
     position:relative;
-    background-color: ${Theme.calendarioFundo};
-    border: 1px solid ${Theme.border};
+    background-color: ${Theme.fundoCalendarioBloco};
+    border: 1px solid ${Theme.borderCalendario};
     padding: 50px 10px;
     gap: 5px;
     cursor: pointer;
@@ -32,7 +32,7 @@ export const Body = styled.div`
 
 export const Dia = styled.div`
     box-sizing: border-box;
-    color: ${Theme.textoSecondary};
+    color: ${Theme.secundaria};
     font-weight: bold;
     font-size: 1.5rem;
     top: 0;
@@ -42,19 +42,22 @@ export const Dia = styled.div`
 `;
 
 export const DiaCorrente = styled.div`
-    width: 0.9rem;
-    height: 0.9rem;
-    float: right;
+    //circulo
+    width: 1.9rem;
+    height: 1.9rem;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    box-sizing: border-box;
-    color: ${Theme.calendarioFundo};
-    background-color: ${Theme.textoSecondary};
-    border: 0.5px solid ${Theme.textoSecondary};
+    position:absolute;
+    top: 0;
+    right: 0;
+    background-color: ${Theme.secundaria};
     border-radius: 50%;
-    padding: 1px;
-    font-size: 0.6rem;
+    margin: 10px;
+    padding: 3px;
+    //fonte
+    font-size: 1.3rem;
     font-weight: bold;
+    color: ${Theme.fundoCalendarioBloco};
 `;

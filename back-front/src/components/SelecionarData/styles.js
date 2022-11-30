@@ -27,7 +27,7 @@ export const Seletor = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    color: ${Theme.textoPrimary};
+    color: ${Theme.primaria};
     gap: 7px;
 
     > svg {
@@ -55,6 +55,6 @@ export const DataHora = styled.div`
     margin-bottom: -3px;
     font-weight: 600;
     font-size: 14px;
-    color: ${Theme.textoSecondary};
+    color: ${Theme.secundaria};
     cursor: pointer;
 `;

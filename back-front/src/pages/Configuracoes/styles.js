@@ -4,14 +4,15 @@ import {Theme} from '../../components/Theme'
 
 export const Container = styled.div`
     height: 100%;
+    min-height: 100vh;
     display: flex;
     box-sizing: border-box;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    background-color: ${Theme.menuFundo};
-    padding-top: 80px;
-    padding-bottom: 30px;
+    background-color: ${Theme.fundoSecundario};
+    padding-top: 70px;
+    padding-bottom: 20px;
 `;
 
 export const SubContainer = styled.div`
@@ -21,11 +22,11 @@ export const SubContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: ${Theme.menuFundo};
+    background-color: ${Theme.fundoSecundario};
     gap: 20px
 `;
 
-export const BotaoEditar = styled.button`
+export const BotaoFlutuante = styled.button`
     width: auto;
     height: auto;
     display: flex;
@@ -41,7 +42,7 @@ export const BotaoEditar = styled.button`
     padding: 5px;
     border: none;
     border-radius: 9px;
-    background-color: ${Theme.textoAccent};
+    background-color: ${Theme.acentuada};
     color: white;
     font-size: 10px;
     font-weight: 500;
@@ -68,7 +69,7 @@ export const Form = styled.div`
     border: 1px solid white;
     border-radius: 20px;
     padding: 20px;
-    background-color: ${Theme.menuFundo};
+    background-color: ${Theme.fundoSecundario};
 
     h2{
         margin: 0;
@@ -90,7 +91,7 @@ export const ContainerInput = styled.div`
     align-items: flex-start;
     justify-content: flex-start;
     text-align: start;
-    color: ${Theme.textoPrimary};
+    color: ${Theme.primaria};
     gap: 3px;
 `;
 
@@ -120,10 +121,10 @@ export const Select = styled.select`
         padding: 5px;
     }
     ::placeholder {
-        color: ${Theme.textoSecondary};
+        color: ${Theme.secundaria};
     }
     :focus {
-        color: ${Theme.textoPrimary};
+        color: ${Theme.primaria};
     }
 `;
 
@@ -138,10 +139,10 @@ export const Input = styled.input`
     background-color: #fff;
 
         ::placeholder {
-            color: ${Theme.textoSecondary};
+            color: ${Theme.secundaria};
         }
         :focus {
-            color: ${Theme.textoPrimary};
+            color: ${Theme.primaria};
         }
 `;
 
@@ -157,12 +158,12 @@ export const List = styled.div`
     border-radius: 7px;
     padding: 0 10px;
     background-color: #fff;
-    color: ${Theme.textoSecondaryVariant};
+    color: ${Theme.secundaria};
     font-size: 15px;
 
     >svg {
         cursor: pointer;
-        color: ${Theme.textoPrimary};
+        color: ${Theme.primaria};
     }
 `;
 
@@ -190,11 +191,11 @@ export const ContainerListGrupo = styled.div`
     border-radius: 7px;
     padding: 2px 10px;
     background-color: #fff;
-    color: ${Theme.textoPrimary};
+    color: ${Theme.primaria};
     font-size: 15px;
     >svg {
         cursor: pointer;
-        color: ${Theme.textoPrimary};
+        color: ${Theme.primaria};
     }
 `;
 
@@ -222,14 +223,14 @@ export const ListSala = styled.div`
     border: none;
     border-radius: 7px;
     padding: 0 10px;
-    background-color: ${Theme.border};
-    color: ${Theme.textoSecondary};
+    background-color: ${Theme.borderCalendario};
+    color: ${Theme.secundaria};
     font-size: 15px;
     margin: 3px;
 
     >svg {
         cursor: pointer;
-        color: ${Theme.textoPrimary};
+        color: ${Theme.primaria};
     }
 `;
 
@@ -243,7 +244,7 @@ export const FormSala = styled.div`
     border: 1px solid white;
     border-radius: 20px;
     padding: 20px;
-    background-color: ${Theme.menuFundo};
+    background-color: ${Theme.fundoSecundario};
 
     h2{
         margin: 0;
@@ -266,7 +267,7 @@ export const Button = styled.button`
     border: none;
     border-radius: 7px;
     padding: 5px;
-    background-color: ${Theme.textoAccent};
+    background-color: ${Theme.acentuada};
     color: white;
     font-size: 20px;
     font-weight: bold;

@@ -29,7 +29,7 @@ export const Grupo = styled.div`
     justify-content: space-around;
     font-weight: 700;
     font-size: 18px;
-    color: ${Theme.textoPrimary};
+    color: ${Theme.primaria};
     gap: 7px;
     cursor: pointer;
 
@@ -52,7 +52,7 @@ export const Sala = styled.div`
     margin-bottom: -3px;
     font-weight: 600;
     font-size: 14px;
-    color: ${Theme.textoSecondary};
+    color: ${Theme.secundaria};
     cursor: pointer;
 
     > svg {

@@ -3,14 +3,16 @@ import styled from 'styled-components';
 import {Theme} from '../../components/Theme'
 
 export const Container = styled.div`
-    height: 100vh;
+    height: 100%;
+    min-height: 100vh;
     display: flex;
     box-sizing: border-box;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    background-color: ${Theme.menuFundo};
-    margin-top: 50px;
+    background-color: ${Theme.fundoSecundario};
+    padding-top: 70px;
+    padding-bottom: 20px;
 `;
 
 export const SubContainer = styled.div`
@@ -21,9 +23,7 @@ export const SubContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    background-color: ${Theme.menuFundo};
+    background-color: ${Theme.fundoSecundario};
 `;
 
 export const Form = styled.form`
@@ -36,7 +36,7 @@ export const Form = styled.form`
     border: 1px solid white;
     border-radius: 20px;
     padding: 20px;
-    background-color: ${Theme.menuFundo};
+    background-color: ${Theme.fundoSecundario};
 `;
 
 //-----------------------------------------
@@ -48,7 +48,7 @@ export const ContainerInput = styled.div`
     align-items: flex-start;
     justify-content: flex-start;
     text-align: start;
-    color: ${Theme.textoPrimary};
+    color: ${Theme.primaria};
     gap: 3px;
 `;
 
@@ -62,11 +62,11 @@ export const Input = styled.input`
     background-color: #fff;
 
         ::placeholder {
-            color: ${Theme.textoSecondary};
+            color: ${Theme.secundaria};
         }
         :focus {
-            color: ${Theme.textoPrimary};
-            outline: 1px ${Theme.textoAccent};
+            color: ${Theme.primaria};
+            outline: 1px ${Theme.acentuada};
         }
 `;
 
@@ -88,7 +88,7 @@ export const ContainerCheckBox = styled.div`
     align-items: flex-start;
     justify-content: flex-start;
     text-align: start;
-    color: ${Theme.textoPrimary};
+    color: ${Theme.primaria};
     gap: 3px;
 `;
 
@@ -98,7 +98,7 @@ export const SubContainerCheckBox = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    color: ${Theme.textoSecondary};
+    color: ${Theme.secundaria};
 `;
 
 export const Checkbox = styled.input.attrs({type: 'radio'})`
@@ -119,11 +119,11 @@ export const InputTextArea= styled.textarea`
     background-color: #fff;
 
         ::placeholder {
-            color: ${Theme.textoSecondary};
+            color: ${Theme.secundaria};
         }
         :focus {
-            color: ${Theme.textoPrimary};
-            outline: 1px solid ${Theme.textoAccent};
+            color: ${Theme.primaria};
+            outline: 1px solid ${Theme.acentuada};
         }
 `;
 
@@ -146,11 +146,11 @@ export const Select = styled.select`
         padding: 5px;
     }
     ::placeholder {
-        color: ${Theme.textoSecondary};
+        color: ${Theme.secundaria};
     }
     :focus {
-        color: ${Theme.textoPrimary};
-        outline: 1px solid ${Theme.textoAccent};
+        color: ${Theme.primaria};
+        outline: 1px solid ${Theme.acentuada};
     }
 `;
 
@@ -161,7 +161,7 @@ export const Button = styled.button`
     border: none;
     border-radius: 7px;
     padding: 5px;
-    background-color: ${props => props.tipo? Theme.textoAccent: Theme.textoSecondary};
+    background-color: ${props => props.tipo? Theme.acentuada: Theme.secundaria};
     color: white;
     font-size: 20px;
     font-weight: bold;

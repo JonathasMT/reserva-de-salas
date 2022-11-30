@@ -13,5 +13,5 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: left;
     justify-content: start;
-    background-color: ${Theme.fundo};
+    background-color: ${Theme.fundoGeral};
 `;

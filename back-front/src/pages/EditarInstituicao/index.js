@@ -85,7 +85,8 @@ const ConfiguracaoInicial = () => {
             >ATUALIZAR</Button>
             <Button
                 onClick={(e) => [e.preventDefault(), navegar(-1)]}
-            >CANCELAR</Button>
+            >CANCELAR
+            </Button>
         </SubContainer>
       </Container>
     );

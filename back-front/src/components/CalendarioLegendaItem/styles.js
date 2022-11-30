@@ -22,5 +22,5 @@ export const Circulo = styled.div`
 
 export const Titulo = styled.div`
     font-size: 15px;
-    color: ${Theme.textoSecondary};
+    color: ${Theme.secundaria};
 `;

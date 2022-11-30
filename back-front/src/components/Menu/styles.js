@@ -6,6 +6,7 @@ import {Theme} from '../Theme';
 export const Container = styled.div`
     width: 100%;
     height: 100%;
+    min-height: 100vh;
     user-select: none;
     display: flex;
     flex-direction: row;
@@ -14,7 +15,7 @@ export const Container = styled.div`
     position: fixed;
     top: 0px;
     left: 0px;
-    z-index: 100;
+    z-index: 30;
 `;
 
 export const ContainerVazio = styled.div`
@@ -30,7 +31,7 @@ export const ContainerMenu = styled.div`
     left: 0px;
     left: ${props => props.menu ? '0' : '-100%'};
     animation: mostrarMenu .4s;
-    background-color: ${Theme.menuFundo};
+    background-color: ${Theme.fundoSecundario};
     user-select: none;
     display: flex;
     flex-direction: column;
@@ -44,7 +45,7 @@ export const ContainerMenu = styled.div`
 
     > svg {
         position: fixed;
-        color: ${Theme.textoSecondary};
+        color: ${Theme.secundaria};
         width: 25px;
         height: 25px;
         margin-top: 15px;
@@ -77,7 +78,7 @@ export const ContainerPerfil = styled.div`
         height: 100px;
         width: 100px;
         border-radius: 100%;
-        border: 5px solid ${Theme.borderPerfil};
+        border: 5px solid ${Theme.borderGeral};
     };
 `;
 
@@ -92,20 +93,24 @@ export const ContainerNome = styled.div`
     flex-direction:row;
     font-weight: 600;
     font-size: 16px;
-    color: ${Theme.textoPrimary};
+    color: ${Theme.primaria};
     padding-left: 10px;
     padding-right: 10px;
-    cursor: pointer;
+    a {
+        text-decoration: none;
+    };
 
     > p {
         padding: 0;
         margin: 0;
+        cursor: pointer;
     }
 
     > svg {
         width: 25px;
         height: 25px;
         margin-left: 5px;
+        margin-right: 10px;
         cursor: pointer;
     };
 `;

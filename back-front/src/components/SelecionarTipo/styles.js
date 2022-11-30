@@ -19,7 +19,7 @@ export const SubContainer = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    background-color: ${Theme.horaSeletor};
+    background-color: ${Theme.fundoSeletorTipo};
     border-radius: 25px;
 
 `;
@@ -33,7 +33,7 @@ export const ContainerDia = styled.div`
     justify-content: center;
     border-radius: 25px;
     border: 2px;
-    color: ${Theme.textoSecondary};
+    color: ${Theme.secundaria};
     cursor: pointer;
 `;
 
@@ -46,8 +46,8 @@ export const ContainerDiaSelecionado = styled.div`
     justify-content: center;
     background-color: white;
     border-radius: 25px;
-    /* border: 2px solid ${Theme.border}; */
-    color: ${Theme.textoAccent};
+    /* border: 2px solid ${Theme.borderCalendario}; */
+    color: ${Theme.acentuada};
     box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.2);
 `;
 
@@ -65,7 +65,7 @@ export const ContainerSemana = styled.div`
     justify-content: center;
     border-radius: 25px;
     border: 2px;
-    color: ${Theme.textoSecondary};
+    color: ${Theme.secundaria};
     cursor: pointer;
 `;
 
@@ -78,8 +78,8 @@ export const ContainerSemanaSelecionada = styled.div`
     justify-content: center;
     background-color: white;
     border-radius: 25px;
-    /* border: 2px solid ${Theme.border}; */
-    color: ${Theme.textoAccent};
+    /* border: 2px solid ${Theme.borderCalendario}; */
+    color: ${Theme.acentuada};
     box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.2);
 `;
 
@@ -97,7 +97,7 @@ export const ContainerMes = styled.div`
     justify-content: center;
     border-radius: 25px;
     border: 2px;
-    color: ${Theme.textoSecondary};
+    color: ${Theme.secundaria};
     cursor: pointer;
 `;
 
@@ -110,8 +110,8 @@ export const ContainerMesSelecionado = styled.div`
     justify-content: center;
     background-color: white;
     border-radius: 25px;
-    /* border: 2px solid ${Theme.border}; */
-    color: ${Theme.textoAccent};
+    /* border: 2px solid ${Theme.borderCalendario}; */
+    color: ${Theme.acentuada};
     box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.2);
 `;
 

@@ -9,7 +9,7 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    background-color: ${Theme.menuFundo};
+    background-color: ${Theme.fundoSecundario};
     padding: 20px;
 
     table {
@@ -18,27 +18,27 @@ export const Container = styled.div`
         max-width: 50%;
     };
     th {
-        border: 2px solid ${Theme.border};
+        border: 2px solid ${Theme.borderCalendario};
         padding-left: 10px;
         padding-right: 10px;
         text-align: left;
-        background-color: ${Theme.textoAccent};
+        background-color: ${Theme.acentuada};
         color: #000;
     };
     td {
-        border: 2px solid ${Theme.border};
+        border: 2px solid ${Theme.borderCalendario};
         padding-left: 10px;
         padding-right: 10px;
         text-align: left;
-        color: ${Theme.textoPrimary};
+        color: ${Theme.primaria};
     };
     tr {
-        background-color: ${Theme.calendarioFundo};
+        background-color: ${Theme.fundoCalendarioBloco};
     }
     tbody tr {
         //cor diferente ao passar o mouse sobre a linha
         :hover {
-        background-color: ${Theme.textoAccent};
+        background-color: ${Theme.acentuada};
         }
     };
 `;

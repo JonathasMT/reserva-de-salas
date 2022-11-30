@@ -8,7 +8,7 @@ import {
     Form,
     ContainerInput,
     Button,
-    BotaoEditar,
+    BotaoFlutuante,
     List,
     ContainerListGrupo,
     ListGrupo,
@@ -81,7 +81,7 @@ const Configuracoes = () => {
                             Nome da instituição:
                             <List>
                                 {nome_instituicao}
-                                <BiEdit onClick={(e) => [e.preventDefault(), navegar('/instituicao')]}/>
+                                <BiEdit onClick={(e) => [e.preventDefault(), navegar('/editarinstituicao')]}/>
                             </List>
                         </ContainerInput>
                         {/* <ContainerInput> 
@@ -95,9 +95,9 @@ const Configuracoes = () => {
                         </ContainerInput> */}
                     </Form>
                     <Form>
-                        <BotaoEditar onClick={(e) => [e.preventDefault(), navegar('/novogrupo')]}>
+                        <BotaoFlutuante onClick={(e) => [e.preventDefault(), navegar('/novogrupo')]}>
                             <BiPlus/>
-                        </BotaoEditar>
+                        </BotaoFlutuante>
                         <h2>Grupos de sala</h2>
                         {   
                             grupos.length > 0 ?

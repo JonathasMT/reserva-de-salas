@@ -20,8 +20,8 @@ export const ContainerSemana = styled.div`
     box-sizing: border-box;
     display: flex;
     flex-direction:row;
-    border-left: 1px solid ${Theme.border};
-    border-right: 1px solid ${Theme.border};
+    border-left: 1px solid ${Theme.borderCalendario};
+    border-right: 1px solid ${Theme.borderCalendario};
 `;
 
 export const ContainerDia = styled.div`
@@ -34,8 +34,8 @@ export const ContainerDia = styled.div`
     justify-content: flex-start;
     white-space: nowrap;
     position: relative;
-    background-color: ${Theme.calendarioFundo};
-    border: 1px solid ${Theme.border};
+    background-color: ${Theme.fundoCalendarioBloco};
+    border: 1px solid ${Theme.borderCalendario};
     padding: 20px 7px;
     gap: 3px;
     cursor: pointer;
@@ -49,7 +49,7 @@ export const Dia = styled.div`
     //fonte
     font-size: 0.7rem;
     font-weight: bold;
-    color: ${Theme.textoSecondary};
+    color: ${Theme.secundaria};
 
 
 
@@ -67,14 +67,12 @@ export const DiaCorrente = styled.div`
     position:absolute;
     top: 0;
     right: 0;
-    background-color: ${Theme.textoSecondary};
+    background-color: ${Theme.secundaria};
     border-radius: 50%;
     margin: 3px;
     padding: 2px;
     //fonte
     font-size: 0.7rem;
     font-weight: bold;
-    color: ${Theme.calendarioFundo};
-
-
+    color: ${Theme.fundoCalendarioBloco};
 `;

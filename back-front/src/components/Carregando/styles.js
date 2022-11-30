@@ -6,14 +6,14 @@ export const Container = styled.div`
     width: 100%;
     height: 100%;
     display: flex;
-    z-index: 100;
+    z-index: 40;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     position: absolute;
     user-select: none;
     
-    /* background-color: ${Theme.menuFundo}; */
+    /* background-color: ${Theme.fundoSecundario}; */
 
     >svg {
         background-color: red;

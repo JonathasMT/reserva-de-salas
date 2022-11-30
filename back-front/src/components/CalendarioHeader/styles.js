@@ -8,11 +8,11 @@ export const Container = styled.div`
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
-    border-top: 2px solid ${Theme.border};
-    border-left: 2px solid ${Theme.border};
-    border-right: 2px solid ${Theme.border};
-    border-bottom: 1px solid ${Theme.border};
-    background-color: ${Theme.calendarioHeaderFundo};
+    border-top: 2px solid ${Theme.borderCalendario};
+    border-left: 2px solid ${Theme.borderCalendario};
+    border-right: 2px solid ${Theme.borderCalendario};
+    border-bottom: 1px solid ${Theme.borderCalendario};
+    background-color: ${Theme.fundoCalendarioHeader};
     border-radius: 10px 10px 0px 0px;
     align-items: center;
 `;
@@ -23,7 +23,7 @@ export const DiasDaSemana = styled.div`
     font-size: 0.9rem;
     font-weight: 600;
     letter-spacing: 1px;
-    color: ${Theme.textoSecondaryVariant};
+    color: ${Theme.terciaria};
 `;
 
 export const DiaDaSemana = styled.div`
@@ -31,5 +31,5 @@ export const DiaDaSemana = styled.div`
     text-align: center;
     font-size: 0.9rem;
     font-weight: bold;
-    color: ${Theme.textoSecondaryVariant};
+    color: ${Theme.terciaria};
 `;

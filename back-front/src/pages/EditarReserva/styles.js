@@ -9,7 +9,7 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    background-color: ${Theme.menuFundo};
+    background-color: ${Theme.fundoSecundario};
 `;
 
 export const SubContainer = styled.div`
@@ -22,7 +22,7 @@ export const SubContainer = styled.div`
     justify-content: flex-start;
     margin-top: 20px;
     margin-bottom: 20px;
-    background-color: ${Theme.menuFundo};
+    background-color: ${Theme.fundoSecundario};
 `;
 
 export const Form = styled.form`
@@ -35,7 +35,7 @@ export const Form = styled.form`
     border: 1px solid white;
     border-radius: 20px;
     padding: 20px;
-    background-color: ${Theme.menuFundo};
+    background-color: ${Theme.fundoSecundario};
 `;
 
 //-----------------------------------------
@@ -47,7 +47,7 @@ export const ContainerInput = styled.div`
     align-items: flex-start;
     justify-content: flex-start;
     text-align: start;
-    color: ${Theme.textoPrimary};
+    color: ${Theme.primaria};
     gap: 3px;
 `;
 
@@ -61,11 +61,11 @@ export const Input = styled.input`
     background-color: #fff;
 
         ::placeholder {
-            color: ${Theme.textoSecondary};
+            color: ${Theme.secundaria};
         }
         :focus {
-            color: ${Theme.textoPrimary};
-            outline: 1px ${Theme.textoAccent};
+            color: ${Theme.primaria};
+            outline: 1px ${Theme.acentuada};
         }
 `;
 
@@ -87,7 +87,7 @@ export const ContainerCheckBox = styled.div`
     align-items: flex-start;
     justify-content: flex-start;
     text-align: start;
-    color: ${Theme.textoPrimary};
+    color: ${Theme.primaria};
     gap: 3px;
 `;
 
@@ -97,7 +97,7 @@ export const SubContainerCheckBox = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    color: ${Theme.textoSecondary};
+    color: ${Theme.secundaria};
 `;
 
 export const Checkbox = styled.input.attrs({type: 'radio'})`
@@ -118,11 +118,11 @@ export const InputTextArea= styled.textarea`
     background-color: #fff;
 
         ::placeholder {
-            color: ${Theme.textoSecondary};
+            color: ${Theme.secundaria};
         }
         :focus {
-            color: ${Theme.textoPrimary};
-            outline: 1px solid ${Theme.textoAccent};
+            color: ${Theme.primaria};
+            outline: 1px solid ${Theme.acentuada};
         }
 `;
 
@@ -145,11 +145,11 @@ export const Select = styled.select`
         padding: 5px;
     }
     ::placeholder {
-        color: ${Theme.textoSecondary};
+        color: ${Theme.secundaria};
     }
     :focus {
-        color: ${Theme.textoPrimary};
-        outline: 1px solid ${Theme.textoAccent};
+        color: ${Theme.primaria};
+        outline: 1px solid ${Theme.acentuada};
     }
 `;
 
@@ -160,7 +160,7 @@ export const Button = styled.button`
     border: none;
     border-radius: 7px;
     padding: 5px;
-    background-color: ${Theme.textoAccent};
+    background-color: ${Theme.acentuada};
     color: white;
     font-size: 20px;
     font-weight: bold;

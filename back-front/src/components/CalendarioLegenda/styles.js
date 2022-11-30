@@ -10,10 +10,10 @@ export const Container = styled.div`
     align-items: center;
     justify-content: flex-start;
     gap: 30px;
-    border-top: 1px solid ${Theme.border};
-    border-bottom: 2px solid ${Theme.border};
-    border-left: 2px solid ${Theme.border};
-    border-right: 2px solid ${Theme.border};
-    background-color: ${Theme.calendarioHeaderFundo};
+    border-top: 1px solid ${Theme.borderCalendario};
+    border-bottom: 2px solid ${Theme.borderCalendario};
+    border-left: 2px solid ${Theme.borderCalendario};
+    border-right: 2px solid ${Theme.borderCalendario};
+    background-color: ${Theme.fundoCalendarioHeader};
     border-radius: 0px 0px 10px 10px;
 `;

@@ -29,7 +29,7 @@ const tamanhoBd= async (_req, res) => {
             return res.status(200).json({erro: false, msg: 'O banco de dados está vazio'});
         };
 
-    } catch (e) {
+    } catch (_error) {
         return res.status(500).json({erro: true, msg: msgErro});
         
     };

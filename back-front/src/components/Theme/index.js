@@ -1,6 +1,6 @@
 export const Theme = {
     fundoGeral: '#F4F5FE', //geral
-    fundoFundoSecundario: '#E3ECFD', //menu
+    fundoSecundario: '#E3ECFD', //menu
     fundoCalendarioBloco: '#FEFEFE', //blocos
     fundoCalendarioHeader:'#FDFCFF', //header
     //-------------------------------
@@ -10,8 +10,8 @@ export const Theme = {
     acentuada: '#2C8BEF', //cor acentuada/selecionada
     primaria: '#454d58', //titulos
     primariaDark: '#343b46',
-    secundaria: '#8D929C',
-    terciaria: '#9EA9BA',
+    secundaria: '#9EA9BA',
+    terciaria: '#8D929C',
     //-------------------------------
     fundoSeletorTipo: '#E8E9F2',
     //-------------------------------
@@ -20,19 +20,6 @@ export const Theme = {
     reuniao: '#2A8CF1',
     curso: '#FFA426',
     outro: '#FC90F2',
-
-    //----------------
-    fundo: '#F4F5FE',
-    menuFundo: '#E3ECFD',
-    calendarioFundo: '#FEFEFE',
-    calendarioHeaderFundo: '#FDFCFF',
-    border: '#EEEFF6',
-    borderPerfil: 'white',
-    textoPrimary: '#454D56',
-    textoSecondary: '#9EA9BA',
-    textoSecondaryVariant: '#8F959E',
-    textoAccent: '#2C8BEF',
-    horaSeletor: '#E8E9F2',
 };
 
 // export const Theme = {

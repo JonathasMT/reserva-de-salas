@@ -21,13 +21,21 @@ function CalendarioDia({data, setData, calendarioTipo, reservas}) {
         console.log('atualizou '+ data.format('D'));
     }, [data])
 
+    function isAtual(dia) {
+        console.log('DIA');
+        console.log(dia);
+        console.log(new Date(), 'day');
+        if (data.isSame(new Date(), 'day'))
+            return <DiaCorrente>{dia}</DiaCorrente>
+        else
+            return <Dia> {dia}</Dia>
+    };
+
 
     return(
         <Container>
             <Body>
-                <Dia>
-                    {dia}
-                </Dia>
+                    {isAtual(dia)}
                     {
                         reservas.map((reserva, i) => 
                             reserva.data === data.format('YYYY-MM-DD') 

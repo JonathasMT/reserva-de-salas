@@ -9,26 +9,27 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    color: ${props => props.local ? Theme.textoAccent : Theme.textoSecondaryVariant};
+    color: ${props => props.local ? Theme.acentuada : Theme.secundaria};
     font-weight: 500;
     font-size: 17px;
     margin: 0;
     padding: 0px;
     border-radius: 0px;
     margin-bottom: 25px;
+    gap: 20px;
     cursor: pointer;
 
     > svg {
-        margin: 0 10px;
-        height: 20px;
-        width: 20px;
+        height: 18px;
+        width: 18px;
     }
 
     > div {
-        background-color: ${props => props.local && Theme.textoAccent};
         width: 4px;
         height: 100%;
         border-radius: 15px;
+        background-color: ${props => props.local && Theme.acentuada};
+
     }
 
     &:hover {

@@ -9,7 +9,7 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    background-color: ${Theme.menuFundo};
+    background-color: ${Theme.fundoSecundario};
 `;
 
 export const SubContainer = styled.div`
@@ -38,7 +38,7 @@ export const Form = styled.div`
         align-items: flex-start;
         justify-content: flex-start;
         text-align: start;
-        color: ${Theme.textoPrimary};
+        color: ${Theme.primaria};
         gap: 5px;
     }
 `;
@@ -52,10 +52,10 @@ export const Input = styled.input`
     padding: 10px;
 
     ::placeholder {
-        color: ${Theme.textoSecondary};
+        color: ${Theme.secundaria};
     }
     :focus {
-        color: ${Theme.textoPrimary};
+        color: ${Theme.primaria};
     }
 `;
 
@@ -66,7 +66,7 @@ export const Button = styled.button`
     border: none;
     border-radius: 7px;
     padding: 5px;
-    background-color: ${Theme.textoAccent};
+    background-color: ${Theme.acentuada};
     color: white;
     font-size: 20px;
     font-weight: bold;

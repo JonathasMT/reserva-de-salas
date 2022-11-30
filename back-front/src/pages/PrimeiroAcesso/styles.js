@@ -3,14 +3,15 @@ import styled from 'styled-components';
 import {Theme} from '../../components/Theme'
 
 export const Container = styled.div`
-    height: 100vh;
+    height: 100%;
+    min-height: 100vh;
     display: flex;
     box-sizing: border-box;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding-top: 50px;
-    background-color: ${Theme.menuFundo};
+    background-color: ${Theme.fundoSecundario};
 `;
 
 export const SubContainer = styled.div`
@@ -22,7 +23,7 @@ export const SubContainer = styled.div`
     gap: 20px;
     border-radius: 20px;
     padding: 20px;
-    background-color: ${Theme.menuFundo};
+    background-color: ${Theme.fundoSecundario};
 
     >h3 {
         margin:0;
@@ -41,7 +42,7 @@ export const Button = styled.button`
     border: none;
     border-radius: 7px;
     padding: 5px;
-    background-color: ${Theme.textoAccent};
+    background-color: ${Theme.acentuada};
     color: white;
     font-size: 20px;
     font-weight: bold;
@@ -61,7 +62,7 @@ export const Form = styled.div`
     border: 1px solid white;
     border-radius: 20px;
     padding: 20px;
-    background-color: ${Theme.menuFundo};
+    background-color: ${Theme.fundoSecundario};
 
     >h2 {
         margin: 0;
@@ -83,7 +84,7 @@ export const ContainerInput = styled.div`
     align-items: flex-start;
     justify-content: flex-start;
     text-align: start;
-    color: ${Theme.textoPrimary};
+    color: ${Theme.primaria};
     gap: 3px;
 `;
 
@@ -113,10 +114,10 @@ export const Select = styled.select`
         padding: 5px;
     }
     ::placeholder {
-        color: ${Theme.textoSecondary};
+        color: ${Theme.secundaria};
     }
     :focus {
-        color: ${Theme.textoPrimary};
+        color: ${Theme.primaria};
     }
 `;
 
@@ -131,10 +132,10 @@ export const Input = styled.input`
     background-color: #fff;
 
         ::placeholder {
-            color: ${Theme.textoSecondary};
+            color: ${Theme.secundaria};
         }
         :focus {
-            color: ${Theme.textoPrimary};
+            color: ${Theme.primaria};
         }
 `;
 

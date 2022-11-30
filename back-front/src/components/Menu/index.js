@@ -11,12 +11,16 @@ import {
     ItemLink
 } from './styles';
 
+
 import {
-    FaRegCalendarAlt,
-    FaAngleDown,
-    FaRegCalendarCheck,
-    FaUsers,
-} from 'react-icons/fa';
+    BsCalendar2Event,
+    BsCalendar2Check,
+    BsPersonLinesFill,
+    BsGear,
+    BsBoxArrowInLeft
+} from 'react-icons/bs';
+import {FaAngleDown} from 'react-icons/fa';
+
 
 import MenuItem from '../MenuItem';
 // import imgPerfil from '../../assets/img/person.jpg';
@@ -52,19 +56,19 @@ const Menu = () => {
                 </ContainerPerfil>
                 <Content>
                     <NavLink to='/' onClick={() => fecharMenu()}>
-                        <MenuItem Icone={<FaRegCalendarAlt/>} Texto='INÍCIO' Status={true} local={pathname==='/'}/>
+                        <MenuItem Icone={<BsCalendar2Event/>} Texto='INÍCIO' Status={true} local={pathname==='/'}/>
                     </NavLink>
                     <NavLink to='/minhasreservas' onClick={() => fecharMenu()}>
-                        <MenuItem Icone={<FaRegCalendarCheck/>} Texto='MINHAS RESERVAS' local={pathname==='/minhasreservas'}/>
+                        <MenuItem Icone={<BsCalendar2Check/>} Texto='MINHAS RESERVAS' local={pathname==='/minhasreservas'}/>
                     </NavLink>
                     <NavLink to='/usuarios' onClick={() => fecharMenu()}>
-                        <MenuItem Icone={<FaUsers/>} Texto='USUÁRIOS' local={pathname==='/usuarios'}/>
+                        <MenuItem Icone={<BsPersonLinesFill/>} Texto='USUÁRIOS' local={pathname==='/usuarios'}/>
                         </NavLink>
                     <NavLink to='/configuracoes' onClick={() => fecharMenu()}>
-                        <MenuItem Icone={<FaRegCalendarAlt/>} Texto='CONFIGURAÇÕES' local={pathname==='/configuracoes'}/>
+                        <MenuItem Icone={<BsGear/>} Texto='CONFIGURAÇÕES' local={pathname==='/configuracoes'}/>
                     </NavLink>
                     <NavLink to='/' onClick={() => [sair() , fecharMenu()]}>
-                        <MenuItem Icone={<FaRegCalendarAlt/>} Texto='SAIR'/>
+                        <MenuItem Icone={<BsBoxArrowInLeft/>} Texto='SAIR'/>
                     </NavLink>
                 </Content>
             </ContainerMenu>

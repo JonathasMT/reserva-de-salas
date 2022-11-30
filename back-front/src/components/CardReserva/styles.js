@@ -42,14 +42,14 @@ export const Container = styled.div`
     padding-right: 5px;
     box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.2);
     cursor: pointer;
-    z-index: 50;
+    z-index: 10;
 `;
 
 export const Hora = styled.div`
     width: auto;
     font-size: 9px;
     font-weight: bold;
-    color: ${Theme.textoPrimary};
+    color: ${Theme.primaria};
 `;
 
 export const Titulo = styled.div`
@@ -57,8 +57,8 @@ export const Titulo = styled.div`
     align-items: flex-end;
     justify-content: flex-end;
     font-size: 9px;
-    color: ${Theme.fundo};
-    text-overflow: ellipsis;
+    color: ${Theme.fundoGeral};
     letter-spacing: 0.3px;
     overflow: hidden;
+    text-overflow: ellipsis;
 `;

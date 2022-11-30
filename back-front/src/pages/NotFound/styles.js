@@ -3,15 +3,16 @@ import styled from 'styled-components';
 import {Theme} from '../../components/Theme'
 
 export const Container = styled.div`
-    height: calc(100vh - 50px);
+    height: 100%;
+    min-height: 100vh;
     box-sizing: border-box;
-    padding-top: 10px;
     gap: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: ${Theme.menuFundo};
+    background-color: ${Theme.fundoSecundario};
+    padding-top: 50px;
 `;
 
 export const Button = styled.button`
@@ -21,7 +22,7 @@ export const Button = styled.button`
     border: none;
     border-radius: 7px;
     padding: 5px;
-    background-color: ${Theme.textoAccent};
+    background-color: ${Theme.acentuada};
     color: white;
     font-size: 20px;
     font-weight: bold;

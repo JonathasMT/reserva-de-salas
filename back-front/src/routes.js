@@ -20,7 +20,7 @@ import Usuarios from './pages/Usuarios';
 import EditarReserva from './pages/EditarReserva';
 import DetalhesReserva from './pages/DetalhesReserva';
 import PrimeiroAcesso from './pages/PrimeiroAcesso';
-import Instituicao from './pages/Instituicao';
+import EditarInstituicao from './pages/EditarInstituicao';
 
 
 const RoutesApp = () => {
@@ -49,7 +49,7 @@ const RoutesApp = () => {
                     <Route path='/editarreserva' element={<Privada Destino={EditarReserva} />}/>
                     <Route path='/detalhesreserva' element={<Privada Destino={DetalhesReserva} />}/>
                     <Route path='/usuarios' element={<Privada Destino={Usuarios} />}/>
-                    <Route path='/instituicao' element={<Privada Destino={Instituicao} />}/>
+                    <Route path='/editarinstituicao' element={<Privada Destino={EditarInstituicao} />}/>
                 
                     <Route path='/primeiroacesso' element={<PrimeiroAcesso/>}/>
                     <Route path='*' element={<NotFound />} />
