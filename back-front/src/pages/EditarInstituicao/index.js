@@ -7,7 +7,7 @@ import {
     Form,
     ContainerInput,
     Input,
-    InputImage,
+    // InputImage,
     Button
 } from './styles';
 import Carregamento from '../../components/Carregando';
@@ -45,13 +45,13 @@ const ConfiguracaoInicial = () => {
         setCarregando(true);
         const resposta = await atualizarInstituicao(instituicaoNome, logo);
         setCarregando(false);
-        if (resposta.erro) {
-            alert(resposta.msg);
-            return;
-        };
         if (!resposta.erro) {
             alert(resposta.msg);
-        }
+        };
+        if (resposta.erro) {
+            setMsg(resposta.msg);
+            return;
+        };
     };
 
     return(
@@ -70,23 +70,25 @@ const ConfiguracaoInicial = () => {
                         onChange={(e) => setInstituicaoNome(e.target.value)}
                     />
                 </ContainerInput>
-                <ContainerInput> 
+                {/* <ContainerInput> 
                     Logo:
                     <InputImage
                         type='file'
                         name='logo'
                         placeholder='Selecione sua imagem de logo'
+
                     />
-                </ContainerInput>
+                </ContainerInput> */}
+                <Button
+                    onClick={submeterAtualizar}
+                    tipo={true}
+                >ATUALIZAR</Button>
+                <Button
+                    onClick={(e) => [e.preventDefault(), navegar(-1)]}
+                >CANCELAR
+                </Button>
+                {msg}
             </Form>
-            <Button
-                onClick={submeterAtualizar}
-                tipo={true}
-            >ATUALIZAR</Button>
-            <Button
-                onClick={(e) => [e.preventDefault(), navegar(-1)]}
-            >CANCELAR
-            </Button>
         </SubContainer>
       </Container>
     );

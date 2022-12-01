@@ -7,6 +7,7 @@ const usuarioRoutes = require('./usuarioRoutes');
 const instituicaoRoutes = require('./instituicaoRoutes');
 const grupoRoutes = require('./grupoRoutes');
 const salaRoutes = require('./salaRoutes');
+const categoriaRoutes = require('./categoriaRoutes');
 const reservaRoutes = require('./reservaRoutes');
 
 
@@ -17,6 +18,7 @@ router.use(
     instituicaoRoutes,
     grupoRoutes,
     salaRoutes,
+    categoriaRoutes,
     reservaRoutes,
     
 );
@@ -40,17 +42,6 @@ const repeteTipoController = require('../controllers/repeteTipoController');
 //ROTAS PARA LER DIVERSOS CADASTROS--------------------------------------------
 //ROTAS PARA DELETAR UM CADASTRO-----------------------------------------------
 
-
-
-
-//CATEGORIA
-router.post('/novacategoria',
-    usuarioValidacoes.credenciais,
-    categoriaValidacoes.validarTitulo,
-    categoriaValidacoes.validarCor,
-    //cria a categoria de reserva
-    categoriaController.createCategoria
-);
 //TIPO DE REPETIÇÃO
 router.post('/novotiporepeticao',
     usuarioValidacoes.credenciais,

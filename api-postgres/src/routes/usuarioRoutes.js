@@ -14,6 +14,12 @@ router.post('/login',
     usuarioControler.login
 );
 
+//LISTAR VARIOS USUÁRIOS
+router.get('/listarusuarios',
+    usuarioValidacoes.credenciais,
+    usuarioControler.readVarios
+);
+
 //NOVO USUÁRIO
 router.post('/novousuario',
     usuarioValidacoes.credenciais,
@@ -35,11 +41,6 @@ router.get('/usuario/:id',
     usuarioControler.read
 );
 
-//LER VARIOS USUÁRIOS
-router.get('/usuarios',
-    usuarioValidacoes.credenciais,
-    usuarioControler.readVarios
-);
 
 //DELETAR UM USUARIO
 router.delete('/usuario/:id',

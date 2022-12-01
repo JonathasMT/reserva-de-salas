@@ -31,8 +31,7 @@ export const ContainerMenu = styled.div`
     left: 0px;
     left: ${props => props.menu ? '0' : '-100%'};
     animation: mostrarMenu .4s;
-    /* background-color: ${Theme.fundoSecundario};
-    backdrop-filter: blur(10px); */
+    background-color: ${Theme.fundoSecundario};
     user-select: none;
     display: flex;
     flex-direction: column;
@@ -40,9 +39,6 @@ export const ContainerMenu = styled.div`
     justify-content: left;
     box-shadow: 0px 0px 50px 10px rgba(0, 0, 0, 0.2);
 
-    background-color: ${Theme.fundoSecundario};
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(15px);
     
     a {
         text-decoration: none;

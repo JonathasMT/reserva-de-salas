@@ -36,8 +36,7 @@ const read = async (req, res) => {
 const readVarios = async (_req, res) => {
     await dataBase.sync();
     const usuarios = await Usuario.findAll();
-    console.log(usuarios)
-    return res.status(200).json('Listar todos os usuarios.'+usuarios.dataValues)
+    return res.status(200).json({erro: false, msg: 'Sucesso', usuarios: usuarios})
 };
 
 const update = async (req, res) => {

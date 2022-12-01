@@ -1,7 +1,7 @@
 const dataBase = require('../connection');
 const Categoria = require('../models/Categoria');
 
-const createCategoria = async (req, res) => {
+const create = async (req, res) => {
     await dataBase.sync();
     const {titulo, descricao, cor} = req.body;
 
@@ -17,6 +17,14 @@ const createCategoria = async (req, res) => {
     });
 };
 
+const readVarias = async (_req, res) => {
+    await dataBase.sync();
+    const categorias = await Categoria.findAll();
+    console.log(categorias)
+    return res.status(200).json({erro: false, msg: 'Sucesso', categorias: categorias})
+};
+
 module.exports = {
-    createCategoria
+    create,
+    readVarias
 };

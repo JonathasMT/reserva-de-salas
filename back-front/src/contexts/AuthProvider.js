@@ -172,6 +172,20 @@ export const AuthProvider = ({children}) => {
         return retorno;
     };
 
+    async function listarCategorias() {
+        var retorno;
+        await api.get('/listarcategorias')
+        .then((resultado) => {
+            console.log('MSG = ' + resultado.data.msg);
+            retorno = resultado.data;
+        }).catch((erro) => {
+            console.log('ERRO? ' + erro.response.data.msg);
+            
+            retorno = erro.response.data;
+        });
+        return retorno;
+    };
+
     async function novaReserva(dados) {
         console.log(dados);
         var retorno;
@@ -198,6 +212,18 @@ export const AuthProvider = ({children}) => {
         return retorno;
     };
 
+    async function listarUsuarios() {
+        var retorno;
+        await api.get('/listarusuarios')
+        .then((resultado) => {
+            retorno = resultado.data;
+        }).catch((erro) => {
+            console.log('ERRO? ' + erro.response.data.msg);
+            retorno = erro.response.data;
+        });
+        return retorno;
+    };
+
     return (
         <AuthContext.Provider
             value={{
@@ -215,8 +241,10 @@ export const AuthProvider = ({children}) => {
                 novoGrupo,
                 listarGrupos,
                 listarSalas,
+                listarCategorias,
                 listarReservas,
-                novaReserva
+                novaReserva,
+                listarUsuarios,
             }}
         >
         {children}

@@ -34,7 +34,7 @@ export const ContainerDia = styled.div`
     white-space: nowrap;
     position:relative;
     background-color: ${Theme.fundoCalendarioBloco};
-    border: 1px solid ${Theme.borderCalendario};
+    border: 1px solid ${Theme.borderCalendario};c
     padding: 30px 10px;
     gap: 5px;
     cursor: pointer;

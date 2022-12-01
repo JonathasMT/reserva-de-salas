@@ -71,7 +71,7 @@ export const Form = styled.div`
     padding: 20px;
     background-color: ${Theme.fundoSecundario};
 
-    h2{
+    h3{
         margin: 0;
         padding: 0;
         width: 300px;
@@ -159,7 +159,7 @@ export const List = styled.div`
     padding: 0 10px;
     background-color: #fff;
     color: ${Theme.secundaria};
-    font-size: 15px;
+    font-size: 12px;
 
     >svg {
         cursor: pointer;
@@ -225,13 +225,15 @@ export const ListSala = styled.div`
     padding: 0 10px;
     background-color: ${Theme.borderCalendario};
     color: ${Theme.secundaria};
-    font-size: 15px;
+    font-size: 12px;
     margin: 3px;
 
     >svg {
+        width: 18px;
+        height: 18px;
         cursor: pointer;
         color: ${Theme.primaria};
-    }
+    };
 `;
 
 export const FormSala = styled.div`
@@ -272,6 +274,22 @@ export const Button = styled.button`
     font-size: 20px;
     font-weight: bold;
     cursor: pointer;
+`;
+
+export const ContainerTitulo = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+`;
+
+export const Circulo = styled.div`
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: ${props => props.cor};
+    /* box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2); */
 `;
 
 
