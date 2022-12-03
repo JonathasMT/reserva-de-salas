@@ -3,15 +3,15 @@ import {Container, DiaDaSemana, DiasDaSemana} from './styles';
 
 
 function CalendarioHeader({data, calendarioTipo}) {
-    
-    const diasDaSemana = ['DOMINGO', 'SEGUNDA', 'TERÇA', 'QUARTA', 'QUINTA', 'SEXTA', 'SÁBADO'];
+
+    const diasSemana = data.localeData().weekdays()
 
     function dias() {
-        if(calendarioTipo==='day') {
+        if(calendarioTipo === 'day') {
             return <DiaDaSemana>{data.format('dddd')}</DiaDaSemana>
         }else {
             return(
-                diasDaSemana.map(
+                diasSemana.map(
                     (d) => <DiasDaSemana key={d}>{d}</DiasDaSemana>
                 )
             )

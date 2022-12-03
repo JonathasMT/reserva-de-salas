@@ -13,32 +13,35 @@ import Carregamento from '../../components/Carregando';
 function Calendario() {
     //tradução do moment para PT-BR;
     moment.updateLocale('pt-br', {
-                months : ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-                'Julho','Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-        weekdays: ['DOMINGO', 'SEGUNDA', 'TERÇA', 'QUARTA', 'QUINTA', 'SEXTA', 'SÁBADO']});
+            months : ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+            'Julho','Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+            weekdays: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+            weekdaysMin: ['Do', 'Se', 'Te', 'Qa', 'Qi', 'Sx', 'Sa'],
+            weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb']});
     moment.locale('pt-br');
 
     const [carregando, setCarregando] = useState(false)
     const {listarReservas} = useAuth();
 
-    const [data, setData] = useState(moment());
+    const [data, setData] = useState(moment().locale('pt-br'));
     const [calendarioTipo, setCalendarioTipo] = useState('month');
     const [reservas, setReservas] = useState([]);
 
-    const buscarReservas = async() => {
-        setCarregando(true);
-        const resposta = await listarReservas();
-        if (!resposta.erro) {
-            setReservas(resposta.reservas);
-            setCarregando(false);
-            return;
-        };
-        if (resposta.erro) {
-            alert(resposta.msg);
-            return;
-        };
-    };
     useEffect(() => {
+        const buscarReservas = async() => {
+            setCarregando(true);
+            const resposta = await listarReservas();
+            if (!resposta.erro) {
+                setReservas(resposta.reservas);
+                setCarregando(false);
+                return;
+            };
+            if (resposta.erro) {
+                alert(resposta.msg);
+                return;
+            };
+        };
         buscarReservas();
     }, []);
 

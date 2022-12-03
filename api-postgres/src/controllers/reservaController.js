@@ -1,5 +1,6 @@
 const dataBase = require('../connection');
 const Categoria = require('../models/Categoria');
+const Grupo = require('../models/Grupo');
 const Repete = require('../models/Repete');
 const Reserva = require('../models/Reserva');
 const Sala = require('../models/Sala');
@@ -60,6 +61,13 @@ const readVarias = async (_req, res) => {
     return res.status(200).json({erro: false, msg: 'Sucesso', reservas: reservas})
 };
 
+const readMinhasVarias = async (req, res) => {
+    await dataBase.sync();
+    const {usuario_id} = req.usuario;
+    const reservas = await Reserva.findAll({include: Categoria});
+    return res.status(200).json({erro: false, msg: 'Sucesso', minhasReservas: reservas})
+};
+
 const update= async (req, res) => {
     await dataBase.sync();
     const {
@@ -96,5 +104,6 @@ module.exports = {
     create,
     read,
     readVarias,
+    readMinhasVarias,
     update
 };

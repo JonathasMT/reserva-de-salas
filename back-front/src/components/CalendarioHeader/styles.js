@@ -24,10 +24,11 @@ export const DiasDaSemana = styled.div`
     font-weight: 600;
     letter-spacing: 1px;
     color: ${Theme.terciaria};
+    text-transform: uppercase;
 `;
 
 export const DiaDaSemana = styled.div`
-    width: calc(100%);
+    width: 100%;
     text-align: center;
     font-size: 0.9rem;
     font-weight: bold;

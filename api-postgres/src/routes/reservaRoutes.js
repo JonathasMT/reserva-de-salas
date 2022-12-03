@@ -14,10 +14,17 @@ router.post('/novareserva',
     reservaValidacoes.create,
     reservaController.create
 );
-//LER VARIAS
+
+//LISTAR VARIAS RESERVAS
 router.get('/listarreservas',
     usuarioValidacoes.credenciais,
     reservaController.readVarias
+);
+
+//LISTAR MINHAS RESERVAS
+router.get('/listarminhasreservas',
+    usuarioValidacoes.credenciais,
+    reservaController.readMinhasVarias
 );
 
 //ATUALIZAR

@@ -204,6 +204,7 @@ export const AuthProvider = ({children}) => {
         var retorno;
         await api.get('/listarreservas')
         .then((resultado) => {
+            console.log('MSG = ' + resultado.data.msg);
             retorno = resultado.data;
         }).catch((erro) => {
             console.log('ERRO? ' + erro.response.data.msg);
@@ -216,6 +217,20 @@ export const AuthProvider = ({children}) => {
         var retorno;
         await api.get('/listarusuarios')
         .then((resultado) => {
+            console.log('MSG = ' + resultado.data.msg);
+            retorno = resultado.data;
+        }).catch((erro) => {
+            console.log('ERRO? ' + erro.response.data.msg);
+            retorno = erro.response.data;
+        });
+        return retorno;
+    };
+
+    async function listarMinhasReservas(id) {
+        var retorno;
+        await api.get('/listarminhasreservas')
+        .then((resultado) => {
+            console.log('MSG = ' + resultado.data.msg);
             retorno = resultado.data;
         }).catch((erro) => {
             console.log('ERRO? ' + erro.response.data.msg);
@@ -245,6 +260,7 @@ export const AuthProvider = ({children}) => {
                 listarReservas,
                 novaReserva,
                 listarUsuarios,
+                listarMinhasReservas
             }}
         >
         {children}
