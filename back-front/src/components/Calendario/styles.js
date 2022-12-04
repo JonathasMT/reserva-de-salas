@@ -10,7 +10,7 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    padding-top: 50px;
+    padding: 50px 20px;
     padding-left: 5%;
     padding-right: 5%;
     user-select: none;

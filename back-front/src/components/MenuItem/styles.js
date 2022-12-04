@@ -9,7 +9,7 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    color: ${props => props.local ? Theme.acentuada : Theme.secundaria};
+    color: ${props => props.status ? Theme.acentuada : Theme.secundaria};
     font-weight: 500;
     font-size: 17px;
     margin: 0;
@@ -28,7 +28,7 @@ export const Container = styled.div`
         width: 4px;
         height: 100%;
         border-radius: 15px;
-        background-color: ${props => props.local && Theme.acentuada};
+        background-color: ${props => props.status && Theme.acentuada};
 
     }
 

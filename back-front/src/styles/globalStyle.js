@@ -14,7 +14,7 @@ const GlobalStyle = createGlobalStyle `
     body {
         min-height: 100vh;
         background-color: ${Theme.fundoGeral};
-        overflow-y: auto;
+        overflow-y: scroll;
     }
 `;
 

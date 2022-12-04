@@ -46,8 +46,8 @@ function Calendario() {
     }, []);
 
     return(
+        carregando ? <Carregamento/> :
         <Container>
-            {carregando && <Carregamento/>}
             <CalendarioOpcoes 
                 setData={setData} 
                 calendarioTipo={calendarioTipo}

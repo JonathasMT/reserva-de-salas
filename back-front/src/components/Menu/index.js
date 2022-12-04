@@ -56,16 +56,16 @@ const Menu = () => {
                 </ContainerPerfil>
                 <Content>
                     <NavLink to='/' onClick={() => fecharMenu()}>
-                        <MenuItem Icone={<BsCalendar2Event/>} Texto='INÍCIO' Status={true} local={pathname==='/'}/>
+                        <MenuItem Icone={<BsCalendar2Event/>} Texto='INÍCIO' Status={true} status={pathname==='/'}/>
                     </NavLink>
                     <NavLink to='/minhasreservas' onClick={() => fecharMenu()}>
-                        <MenuItem Icone={<BsCalendar2Check/>} Texto='MINHAS RESERVAS' local={pathname==='/minhasreservas'}/>
+                        <MenuItem Icone={<BsCalendar2Check/>} Texto='MINHAS RESERVAS' status={pathname==='/minhasreservas'}/>
                     </NavLink>
                     <NavLink to='/usuarios' onClick={() => fecharMenu()}>
-                        <MenuItem Icone={<BsPersonLinesFill/>} Texto='USUÁRIOS' local={pathname==='/usuarios'}/>
+                        <MenuItem Icone={<BsPersonLinesFill/>} Texto='USUÁRIOS' status={pathname==='/usuarios'}/>
                         </NavLink>
                     <NavLink to='/configuracoes' onClick={() => fecharMenu()}>
-                        <MenuItem Icone={<BsGear/>} Texto='CONFIGURAÇÕES' local={pathname==='/configuracoes'}/>
+                        <MenuItem Icone={<BsGear/>} Texto='CONFIGURAÇÕES' status={pathname==='/configuracoes'}/>
                     </NavLink>
                     <NavLink to='/' onClick={() => [sair() , fecharMenu()]}>
                         <MenuItem Icone={<BsBoxArrowInLeft/>} Texto='SAIR'/>

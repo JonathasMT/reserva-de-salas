@@ -13,6 +13,7 @@ export const Container = styled.div`
     justify-content: flex-start;
     background-color: ${Theme.fundoGeral};
     padding: 70px 20px;
+    font-weight: normal;
 `;
 export const SubContainer = styled.div`
     display: flex;
@@ -25,7 +26,7 @@ export const SubContainer = styled.div`
     overflow: hidden;
     //text
     text-align: center;
-    font-size: 15px;
+    font-size: 12px;
     font-weight: 500;
     color: ${Theme.terciaria};
     word-wrap: break-word;
@@ -43,7 +44,6 @@ export const SubContainer = styled.div`
     thead > tr {
         text-transform: uppercase;
         border-bottom: 2px solid ${Theme.borderCalendario};
-
     };
     tbody > tr {
         //cor diferente ao passar o mouse sobre a linha

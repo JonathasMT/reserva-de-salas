@@ -34,7 +34,23 @@ const MinhasReservas = () => {
         buscarReservas();
     }, []);
 
+
+    function renderiza(v, p, r) {
+        if(p==='categoria_id') {
+            const {Categorium} = reservas[r];
+            return(Categorium.titulo);
+        }
+        if(p==='sala_id') {
+            const {Sala} = reservas[r];
+            return(Sala.titulo);
+        }
+        return v[p]
+    }
+
+console.log(reservas);
+
     return(
+        carregando ? <Carregamento/> :
         <Container>
             <h2>MinhasReservas</h2>
             {/* {console.log(reservas[0].Categorium['titulo'])} */}
@@ -48,10 +64,9 @@ const MinhasReservas = () => {
                     <tbody>
                         {reservas.map((reserva, r) => (
                             <tr key={r}>
-                            {propriedades.map((p) => (
+                            {propriedades.map((p, i) => (
                                 <td key={p}>
-                                    {console.log(r)}
-                                    {reserva[p]}
+                                    {renderiza(reserva, p, r)}
                                 </td>
                             ))}
                             </tr>

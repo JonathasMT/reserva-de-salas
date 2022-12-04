@@ -61,10 +61,14 @@ const readVarias = async (_req, res) => {
     return res.status(200).json({erro: false, msg: 'Sucesso', reservas: reservas})
 };
 
+// await Ship.findAll({include: {model: Captain, as: 'leader'}})
+
 const readMinhasVarias = async (req, res) => {
     await dataBase.sync();
-    const {usuario_id} = req.usuario;
-    const reservas = await Reserva.findAll({include: Categoria});
+    // const {usuario_id} = req.usuario;
+    const reservas = await Reserva.findAll({include: [ {model: Categoria, required: true},{model: Sala, include: [{model: Grupo}]} ]});
+    // const reservas = await Reserva.findAll({include: [{model: Categoria, required: true},{model: Sala, include: {model: Grupo, required: true}}]});
+
     return res.status(200).json({erro: false, msg: 'Sucesso', minhasReservas: reservas})
 };
 
