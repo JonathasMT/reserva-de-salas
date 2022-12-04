@@ -29,13 +29,15 @@ const Configuracoes = () => {
     const [carregando, setCarregando] = useState(false)
     const {instituicao, listarGrupos, listarSalas, listarCategorias} = useAuth();
 
-    const {nome_instituicao} = JSON.parse(instituicao);
+    const [instituicaoNome, setInstituicaoNome] = useState();
     const [grupos, setGrupos] = useState([]);
     const [salas, setSalas] = useState([]);
     const [categorias, setCategorias] = useState([]);
 
 
     useEffect(() => {
+        const {instituicao_nome} = JSON.parse(instituicao);
+        setInstituicaoNome(instituicao_nome)
         const buscarGrupos = async() => {
             setCarregando(true);
             const resposta = await listarGrupos();
@@ -89,14 +91,14 @@ const Configuracoes = () => {
     const formInstituicao = () => {
         return (
             <Form>
-                <BotaoFlutuante onClick={(e) => [e.preventDefault(), navegar('/editarinstituicao')]}>
+                <BotaoFlutuante title='Editar esta instituição' onClick={(e) => [e.preventDefault(), navegar('/editarinstituicao')]}>
                     <BiEdit/>
                 </BotaoFlutuante>
                 <h3>Instituição</h3>
                 <ContainerInput> 
                     Nome da instituição:
                     <List>
-                        {nome_instituicao}
+                        {instituicaoNome}
                     </List>
                 </ContainerInput>
                 {/* <ContainerInput> 
@@ -115,26 +117,41 @@ const Configuracoes = () => {
     const formGrupos = () => {
         return (
             <Form>
-                <BotaoFlutuante onClick={(e) => [e.preventDefault(), navegar('/novogrupo')]}>
+                <BotaoFlutuante title='Adicionar um novo grupo de salas' onClick={(e) => [e.preventDefault(), navegar('/novogrupo')]}>
                     <BiPlus/>
                 </BotaoFlutuante>
-                <h3>Grupos de sala</h3>
+                <h3>Grupos</h3>
                 {   
                     grupos.length > 0 ?
                         grupos.map((grupo, i) =>
                             <ContainerListGrupo key={i}>
                                 <ListGrupo>
                                     {grupo.titulo}
-                                    <BiEdit onClick={(e) => [e.preventDefault(), navegar('/instituicao')]}/>
+                                    <div>
+                                        <BiPlus
+                                            title='Adicionar uma nova sala a este grupo'
+                                            onClick={(e) => [
+                                                e.preventDefault(),
+                                                navegar('/novasala', {state: {grupoId: grupo.grupo_id, grupoNome: grupo.titulo}})
+                                            ]}/>
+                                        <BiEdit title='Editar este grupo' onClick={(e) => [e.preventDefault(), navegar('/editargrupo')]}/>
+                                    </div>
+
                                 </ListGrupo>
                                 {
-                                    salas.map((sala, i) =>
-                                        sala.grupo_id===grupo.grupo_id &&
-                                            <ListSala key={i}>
-                                                <p>{sala.titulo}</p>
-                                                <BiEdit onClick={(e) => [e.preventDefault(), navegar('/instituicao')]}/>
-                                            </ListSala>
-                                    )
+                                    salas.length > 0 ?
+                                        salas.map((sala, i) =>
+                                            sala.grupo_id===grupo.grupo_id &&
+                                                <ListSala key={i}>
+                                                    <p>{sala.titulo}</p>
+                                                    <BiEdit title='Editar esta sala' onClick={(e) => [e.preventDefault(), navegar('/editarsala')]}/>
+                                                </ListSala>
+                                        )
+                                    :
+                                    <ListSala>
+                                        Não há salas neste grupo
+                                    </ListSala>
+
                                 }
                             </ContainerListGrupo>
                         )
@@ -150,10 +167,10 @@ const Configuracoes = () => {
     const formCategorias = () => {
         return (
             <Form>
-                <BotaoFlutuante onClick={(e) => [e.preventDefault(), navegar('/novacategoria')]}>
+                <BotaoFlutuante title='Adicionar uma nova categoria de reservas' onClick={(e) => [e.preventDefault(), navegar('/novacategoria')]}>
                     <BiPlus/>
                 </BotaoFlutuante>
-                <h3>Categorias de reserva</h3>
+                <h3>Categorias</h3>
                 {   
                     categorias.length > 0 ?
                     categorias.map((categoria, i) =>
@@ -163,7 +180,7 @@ const Configuracoes = () => {
                                         <Circulo cor={categoria.cor}/>
                                         {categoria.titulo}
                                     </ContainerTitulo>
-                                    <BiEdit onClick={(e) => [e.preventDefault(), navegar('/categoria')]}/>
+                                    <BiEdit title='Editar esta categoria de reservas' onClick={(e) => [e.preventDefault(), navegar('/editarcategoria')]}/>
                                 </List>
                             </ContainerListGrupo>
                         )

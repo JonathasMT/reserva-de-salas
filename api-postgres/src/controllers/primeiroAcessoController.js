@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const dataBase = require('../connection');
+const baseDados = require('../connection');
 
 const Instituicao = require('../models/Instituicao');
 const Usuario = require('../models/Usuario');
@@ -8,7 +8,7 @@ const msgErro = 'Ocorreu um erro, tente novamente ou contacte o administrador! '
 
 const tamanhoBd= async (_req, res) => {
     try {
-        await dataBase.sync();
+        await baseDados.sync();
         
         const i = await Instituicao.findAndCountAll();
         const u = await Usuario.findAndCountAll();
@@ -19,7 +19,7 @@ const tamanhoBd= async (_req, res) => {
         console.log('I > ' + instituicao);
         console.log('U > ' + usuario);
 
-        await dataBase.sync();
+        await baseDados.sync();
 
         if(instituicao > 0 || usuario > 0) {
         //o banco de dados já possui registros
@@ -40,13 +40,13 @@ const cadastro = async (req, res) => {
         var instituicao;
         var usuario;
     
-        await dataBase.sync();
+        await baseDados.sync();
         req.body.nivel = 2;
         const {
-            instituicaoNome,
+            instituicao_nome,
             logo,
             imagem,
-            nome,
+            usuario_nome,
             email,
             nivel,
             senha
@@ -55,7 +55,7 @@ const cadastro = async (req, res) => {
         //-----------------------------------------------------------------------------------------------------
         //criar instituição com os dados recebidos
         await Instituicao.create({
-            nome_instituicao: instituicaoNome,
+            instituicao_nome: instituicao_nome,
             logo: logo
         }).then((result) => {
             instituicao = true;
@@ -69,7 +69,7 @@ const cadastro = async (req, res) => {
         const senhaHash = await bcrypt.hash(senha, salt);
         //criar o usuario com os dados recebidos
         await Usuario.create({
-            nome: nome,
+            usuario_nome: usuario_nome,
             email: email,
             senha: senhaHash,
             imagem: imagem,

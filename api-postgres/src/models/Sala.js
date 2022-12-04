@@ -1,25 +1,16 @@
 const Sequelize = require('sequelize');
-const dataBase = require('../connection');
+const baseDados = require('../connection');
 
 const Grupo = require('./Grupo');
 
-const Sala = dataBase.define('Sala', {
+const Sala = baseDados.define('Sala', {
     sala_id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
         allowNull: false
     },
-    grupo_id: {
-        type: Sequelize.INTEGER,
-        references: {
-            model: Grupo,
-            key: 'grupo_id',
-            deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
-        },
-        allowNull: false
-    },
-    titulo: {
+    sala_nome: {
         type: Sequelize.STRING,
         allowNull: false,
          unique: true
@@ -34,6 +25,15 @@ const Sala = dataBase.define('Sala', {
     tableName: 'Salas',
     createdAt: 'criado_em',
     updatedAt: 'atualizado_em'
+});
+
+Sala.belongsTo(Grupo, {
+    constraint: true,
+    foreignKey: 'grupo_id'
+});
+
+Grupo.hasMany(Sala, {
+    foreignKey: 'grupo_id'
 });
 
 module.exports = Sala;

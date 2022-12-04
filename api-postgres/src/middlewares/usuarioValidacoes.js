@@ -1,8 +1,9 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
-const dataBase = require('../connection');
+const baseDados = require('../connection');
 const Usuario = require('../models/Usuario');
+const Instituicao = require('../models/Instituicao');
 
 const novoCadastro = async (req, res, next) => {
     const {nome, email, senha, confirma_senha, nivel} = req.body;
@@ -17,7 +18,7 @@ const novoCadastro = async (req, res, next) => {
         return res.status(400).json({erro: true, msg: 'O campo "Email" deve ser preeenchido!'});
     };
     //cria tabela caso não exista 
-    await dataBase.sync();
+    await baseDados.sync();
     //verifica se o e-mail informado já existe
     const existeEmail = await Usuario.findOne({where : {email: email}});
     if (existeEmail) {
@@ -69,7 +70,14 @@ const login = async (req, res, next) => {
     if(!verificaSenha) {
         return res.status(422).json({erro: true, msg: 'Senha incorreta!'});
     };
-    //pra não precisar buscar o usuario novamente, já incluo esses dados no BODY;
+    //verifica se existe instituição no banco de dados
+    const instituicao = await Instituicao.findOne({where: {instituicao_id: 1}});
+    //verifica se existe a instituição buscada
+    if (!instituicao) {
+        return res.status(200).json({erro: true, msg: 'Instituição não encontrada!'});
+    };
+    //Incluo a instituiçao e usuario na requisição para não precisar buscar novamente.
+    req.body.instituicao = instituicao;
     req.body.usuario = usuario;
     next();
 

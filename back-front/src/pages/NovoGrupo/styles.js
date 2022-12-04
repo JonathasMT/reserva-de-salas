@@ -98,6 +98,7 @@ export const SubContainerCheckBox = styled.div`
     align-items: center;
     justify-content: flex-start;
     color: ${Theme.secundaria};
+    gap: 5px;
 `;
 
 export const Checkbox = styled.input.attrs({type: 'checkbox'})`

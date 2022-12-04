@@ -8,14 +8,12 @@ const usuarioValidacoes = require('../middlewares/usuarioValidacoes');
 //controllers
 const salaController = require('../controllers/salaController');
 
-//NOVA SALA
+//NOVO
 router.post('/novasala',
     usuarioValidacoes.credenciais,
-    salaValidacoes.validarGrupoId,
-    salaValidacoes.validarTitulo,
-    salaValidacoes.validarCapacidade,
+    salaValidacoes.create,
     //cria a sala
-    salaController.createSala
+    salaController.create
 );
 
 //LER VARIAS

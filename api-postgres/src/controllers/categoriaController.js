@@ -1,13 +1,13 @@
-const dataBase = require('../connection');
+const baseDados = require('../connection');
 const Categoria = require('../models/Categoria');
 
 const create = async (req, res) => {
-    await dataBase.sync();
-    const {titulo, descricao, cor} = req.body;
+    await baseDados.sync();
+    const {categoria_nome, descricao, cor} = req.body;
 
     //criar o usuario com os dados recebidos
     await Categoria.create({
-        titulo: titulo,
+        categoria_nome: categoria_nome,
         descricao: descricao,
         cor: cor
     }).then((result) => {
@@ -18,7 +18,7 @@ const create = async (req, res) => {
 };
 
 const readVarias = async (_req, res) => {
-    await dataBase.sync();
+    await baseDados.sync();
     const categorias = await Categoria.findAll();
     console.log(categorias)
     return res.status(200).json({erro: false, msg: 'Sucesso', categorias: categorias})

@@ -1,12 +1,13 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const moment = require('moment');
+moment.locale('pt-br');
 
-const dataBase = require('../connection');
+const baseDados = require('../connection');
 const Usuario = require('../models/Usuario');
-const Instituicao = require('../models/Instituicao');
 
 const create= async (req, res) => {
-    await dataBase.sync();
+    await baseDados.sync();
     const {nome, email, senha, imagem, nivel} = req.body;
 
     //criar hash para a senha
@@ -28,45 +29,51 @@ const create= async (req, res) => {
 };
 
 const read = async (req, res) => {
-    await dataBase.sync();
+    await baseDados.sync();
     const usuario = Usuario.findByPk();
     return res.status(200).json('Listar todos os usuarios.'+usuario)
 };
 
 const readVarios = async (_req, res) => {
-    await dataBase.sync();
+    await baseDados.sync();
     const usuarios = await Usuario.findAll();
     return res.status(200).json({erro: false, msg: 'Sucesso', usuarios: usuarios})
 };
 
 const update = async (req, res) => {
-    await dataBase.sync();
+    await baseDados.sync();
     const usuario = Usuario.findAll();
     return res.status(200).json('Listar todos os usuarios.'+usuario)
 };
 
 const deleteUsuario = async (req, res) => {
-    await dataBase.sync();
+    await baseDados.sync();
     Usuario.findAll();
     return res.status(200).json({erro: false, msg: 'Todos os usuários foram deletados'})
 };
 
 const login = async (req, res) => {
     try {
-        await dataBase.sync();
-        const usuario = req.body.usuario;
-        const {usuario_id, nome, email} = usuario;
+        await baseDados.sync();
+        const {usuario, instituicao} = req.body;
+        const {usuario_id, usuario_nome, email} = usuario;
         const secret = process.env.SECRET;
         const token = jwt.sign({usuario_id: usuario_id}, secret,);
-
-        const instituicao = await Instituicao.findOne({where : {instituicao_id: 1}});
-
-        res.status(200).json({
+        //seta o tempo atual para ultimo_login
+        const agora = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
+        usuario.ultimo_login = agora;
+        //tenta salvar as modificações
+        await usuario.save({silent: true})
+        .then((_result) => {
+            return res.status(200).json({
             erro: false,
             msg: 'Usuário autenticado com sucesso',
-            usuario: {usuario_id, nome, email, token},
-            instituicao
+            usuario: {usuario_id, usuario_nome, email, token},
+            instituicao: instituicao
         });
+        }).catch((_err) => {
+            return res.status(200).json({erro: true, msg: 'Erro ao fazer login!'})
+        });        
     } catch (_error) {
         console.log(erro);
         res.status(500).json({erro: true, msg: 'Ocorreu um erro, tente novamente ou contacte o administrador!'});

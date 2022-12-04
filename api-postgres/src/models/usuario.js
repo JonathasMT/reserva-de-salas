@@ -1,14 +1,14 @@
 const Sequelize = require('sequelize');
-const dataBase = require('../connection');
+const baseDados = require('../connection');
 
-const Usuario = dataBase.define('Usuario', {
+const Usuario = baseDados.define('Usuario', {
     usuario_id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
         allowNull: false
     },
-    nome: {
+    usuario_nome: {
         type: Sequelize.STRING,
         allowNull: false
     },

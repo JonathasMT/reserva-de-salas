@@ -1,14 +1,14 @@
 const Sequelize = require('sequelize');
-const dataBase = require('../connection');
+const baseDados = require('../connection');
 
-const Instituicao = dataBase.define('Instituicao', {
+const Instituicao = baseDados.define('Instituicao', {
     instituicao_id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
         allowNull: false
     },
-    nome_instituicao: {
+    instituicao_nome: {
         type: Sequelize.STRING,
         allowNull: false
     },

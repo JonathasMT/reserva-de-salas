@@ -1,27 +1,27 @@
-const dataBase = require('../connection');
+const baseDados = require('../connection');
 const Grupo = require('../models/Grupo');
 
 const create = async (req, res) => {
-    await dataBase.sync();
+    await baseDados.sync();
     const {
-        titulo,
+        grupo_nome,
         descricao,
-        diasSemana,
-        horaInicio,
-        horaFim,
-        tempoAntecedencia
+        dias_semana,
+        hora_inicio,
+        hora_fim,
+        antecedencia_minima
     } = req.body;
 
-    console.log(JSON.stringify(diasSemana));
+    console.log(JSON.stringify(dias_semana));
 
     //criar o usuario com os dados recebidos
     await Grupo.create({
-        titulo: titulo,
+        grupo_nome: grupo_nome,
         descricao: descricao,
-        dias_semana: diasSemana,
-        hora_inicio: horaInicio,
-        hora_fim: horaFim,
-        tempo_antecedencia: tempoAntecedencia
+        dias_semana: dias_semana,
+        hora_inicio: hora_inicio,
+        hora_fim: hora_fim,
+        antecedencia_minima: antecedencia_minima
     }).then((result) => {
         return res.status(200).json({erro: false, msg: 'Grupo cadastrado'});
     }).catch((erro) => {
@@ -31,12 +31,12 @@ const create = async (req, res) => {
 
 const read = async (req, res) => {
     try {
-        await dataBase.sync();
+        await baseDados.sync();
 
-        const {grupoId} = req.body
+        const {grupo_id} = req.body
 
         //busca a instituição
-        const grupo = await Grupo.findOne({where: {grupo_id: grupoId}});
+        const grupo = await Grupo.findOne({where: {grupo_id: grupo_id}});
         //verifica se existe a instituição buscada
         if (!grupo) {
             return res.status(200).json({erro: true, msg: 'Grupo não encontrada!'});
@@ -49,7 +49,7 @@ const read = async (req, res) => {
 };
 
 const readVarios = async (_req, res) => {
-    await dataBase.sync();
+    await baseDados.sync();
     const grupos = await Grupo.findAll();
     console.log(grupos)
     return res.status(200).json({erro: false, msg: 'Sucesso', grupos: grupos})
@@ -57,16 +57,16 @@ const readVarios = async (_req, res) => {
 
 const update = async (req, res) => {
     try {
-        const {grupoId} = req.body;
-        await dataBase.sync();
+        const {grupo_id} = req.body;
+        await baseDados.sync();
         //busca a instituição
-        const grupo = await Grupo.findOne({where: {grupo_id: GrupoId}});
+        const grupo = await Grupo.findOne({where: {grupo_id: grupo_id}});
         //verifica se existe a instituição buscada
         if (!grupo) {
             return res.status(200).json({erro: true, msg: 'Grupo não encontrado!'});
         };
         //seta o novo nome para a instituição
-        grupo.titulo = titulo;
+        grupo.grupo_nome = grupo_nome;
         //tenta salvar as modificações
         await grupo.save()
         .then((_result) => {

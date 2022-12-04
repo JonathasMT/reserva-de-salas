@@ -1,14 +1,14 @@
 const Sequelize = require('sequelize');
-const dataBase = require('../connection');
+const baseDados = require('../connection');
 
-const Grupo = dataBase.define('Grupo', {
+const Grupo = baseDados.define('Grupo', {
     grupo_id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
         allowNull: false
     },
-    titulo: {
+    grupo_nome: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true
@@ -25,7 +25,7 @@ const Grupo = dataBase.define('Grupo', {
     hora_fim: {
         type: Sequelize.STRING(5)
     },
-    tempo_antecedencia: {
+    antecedencia_minima: {
         type: Sequelize.INTEGER
     }
 }, {

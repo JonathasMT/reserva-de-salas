@@ -1,12 +1,12 @@
 const Sequelize = require('sequelize');
-const dataBase = require('../connection');
+const baseDados = require('../connection');
 
 const Usuario = require('./Usuario');
 const Sala = require('./Sala');
 const Categoria = require('./Categoria');
-const Repete = require('./Repete');
+const Recorrencia = require('./Recorrencia');
 
-const Reserva = dataBase.define('Reserva', {
+const Reserva = baseDados.define('Reserva', {
     reserva_id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -66,13 +66,13 @@ Categoria.hasMany(Reserva, {
     
 });
 //------------------------------
-Reserva.belongsTo(Repete, {
+Reserva.belongsTo(Recorrencia, {
     constraint: true,
-    foreignKey: 'repete_id'
+    foreignKey: 'recorrencia_id'
 });
 
-Repete.hasOne(Reserva, {
-    foreignKey: 'repete_id'
+Recorrencia.hasOne(Reserva, {
+    foreignKey: 'recorrencia_id'
 });
 
 module.exports = Reserva;

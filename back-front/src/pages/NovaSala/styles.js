@@ -10,6 +10,7 @@ export const Container = styled.div`
     align-items: center;
     justify-content: flex-start;
     background-color: ${Theme.fundoSecundario};
+    user-select: none;
 `;
 
 export const SubContainer = styled.div`
@@ -56,15 +57,32 @@ export const Input = styled.input`
     border: none;
     border-radius: 7px;
     padding: 10px;
-    background-color: #fff;
+    background-color: ${Theme.fundoCalendarioBloco};
 
         ::placeholder {
             color: ${Theme.secundaria};
+            font-size: 12px;
         }
         :focus {
             color: ${Theme.primaria};
             outline: 1px ${Theme.acentuada};
         }
+`;
+
+export const List = styled.div`
+    width: 300px;
+    min-height: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 7px;
+    padding: 0 10px;
+    background-color: ${Theme.fundoCalendarioBloco};
+    color: ${Theme.terciaria};
+    font-size: 12px;
 `;
 
 export const ContainerHora = styled.time`
@@ -113,10 +131,11 @@ export const InputTextArea= styled.textarea`
     border-radius: 7px;
     padding: 10px;
     resize: none;
-    background-color: #fff;
+    background-color: ${Theme.fundoCalendarioBloco};
 
         ::placeholder {
             color: ${Theme.secundaria};
+            font-size: 12px;
         }
         :focus {
             color: ${Theme.primaria};
@@ -131,8 +150,8 @@ export const Select = styled.select`
     border: none;
     border-radius: 7px;
     padding: 5px;
-    font-size: 14px;
-    background-color: #fff;
+    font-size: 15px;
+    background-color: ${Theme.fundoCalendarioBloco};
 
     option {
         color: black;
@@ -144,6 +163,7 @@ export const Select = styled.select`
     }
     ::placeholder {
         color: ${Theme.secundaria};
+        font-size: 12px;
     }
     :focus {
         color: ${Theme.primaria};
@@ -158,7 +178,7 @@ export const Button = styled.button`
     border: none;
     border-radius: 7px;
     padding: 5px;
-    background-color: ${Theme.acentuada};
+    background-color: ${props => props.tipo? Theme.acentuada: Theme.secundaria};
     color: white;
     font-size: 20px;
     font-weight: bold;

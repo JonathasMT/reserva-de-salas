@@ -1,5 +1,4 @@
-import { useLocation } from 'react-router-dom';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useLocation} from 'react-router-dom';
 
 import {
     Button,
@@ -18,7 +17,7 @@ import useAuth from '../../hooks/useAuth';
 import { useState } from 'react';
 
 
-const NovaReserva = ({navigation}) => {
+const NovaReserva = () => {
 
     const navegar = useNavigate();
     const {usuario, novaReserva} = useAuth();

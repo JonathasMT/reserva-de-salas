@@ -16,7 +16,7 @@ const PrimeiroAcesso = () => {
     const [logo, setLogo] = useState('');
 
     const [img, setImg] = useState('');
-    const [nome, setNome] = useState('');
+    const [usuarioNome, setUsuarioNome] = useState('');
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [confirmaSenha, setConfirmaSenha] = useState('');
@@ -38,10 +38,10 @@ const PrimeiroAcesso = () => {
         e.preventDefault();
 
         const dados = {
-            instituicaoNome, 
+            instituicao_nome: instituicaoNome, 
             logo,
             img,
-            nome,
+            usuario_nome: usuarioNome,
             email,
             senha,
             confirmaSenha
@@ -104,8 +104,8 @@ const PrimeiroAcesso = () => {
                                     name='nome'
                                     placeholder='Digite seu nome completo'
                                     required
-                                    value={nome}
-                                    onChange={(e) => [setNome(e.target.value), setMsg('')]}
+                                    value={usuarioNome}
+                                    onChange={(e) => [setUsuarioNome(e.target.value), setMsg('')]}
                                 />
                             </ContainerInput>
                             <ContainerInput> 

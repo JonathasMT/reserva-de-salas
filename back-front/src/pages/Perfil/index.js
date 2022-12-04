@@ -20,7 +20,7 @@ const Perfil = () => {
     const [desativado, setDesativado] = useState(true);
 
 
-    const {nome, email} = JSON.parse(usuario);
+    const {usuario_nome, email} = JSON.parse(usuario);
 
     const submeterAtualizar = async() => {
       const resposta = await entrar(email, senha);
@@ -38,7 +38,7 @@ const Perfil = () => {
             <SubContainer>
                 <Form>
                     <h3>Perfil</h3>
-                    <BotaoFlutuante onClick={(e) => [e.preventDefault(), setDesativado(false)]}>
+                    <BotaoFlutuante title='Editar perfil' onClick={(e) => [e.preventDefault(), setDesativado(false)]}>
                         <BsPencilSquare/>
                     </BotaoFlutuante>
                     <ContainerInput> 
@@ -47,7 +47,7 @@ const Perfil = () => {
                             type='nome'
                             name='nome'
                             placeholder='Digite seu nome completo'
-                            defaultValue={nome}
+                            defaultValue={usuario_nome}
                             disabled={desativado}
                             // onChange={(evento) => [setEmail(evento.target.value), setMsg('')]}
                         />

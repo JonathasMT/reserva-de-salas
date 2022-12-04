@@ -19,9 +19,9 @@ export const AuthProvider = ({children}) => {
         if (usuarioAutenticado) {
             setUsuario(usuarioAutenticado);
         };
-        const instituicao = localStorage.getItem('instituicao');
-        if (instituicao) {
-            setInstituicao(instituicao);
+        const i = localStorage.getItem('instituicao');
+        if (i) {
+            setInstituicao(i);
         };
     }, [usuario]);
 
@@ -94,8 +94,8 @@ export const AuthProvider = ({children}) => {
         await api.get('/listarinstituicao')
         .then((resultado) => {
             console.log('MSG = ' + resultado.data.msg);
-            const {nome_instituicao} = resultado.data.instituicao;
-            console.log(nome_instituicao);
+            const {instituicao_nome} = resultado.data.instituicao;
+            console.log(instituicao_nome);
             retorno = resultado.data;
         }).catch((erro) => {
             console.log('ERRO? ' + erro.response.data.msg);
@@ -148,6 +148,20 @@ export const AuthProvider = ({children}) => {
         var retorno;
         console.log(dados);
         await api.post('/novogrupo', dados)
+        .then((resultado) => {
+            console.log('MSG = ' + resultado.data.msg);
+            retorno = resultado.data;
+        }).catch((erro) => {
+            console.log('ERRO = ' + erro.response.data.msg);
+            retorno = erro.response.data;
+        });
+        return retorno;
+    };
+
+    async function novaSala(dados) {
+        var retorno;
+        console.log(dados);
+        await api.post('/novasala', dados)
         .then((resultado) => {
             console.log('MSG = ' + resultado.data.msg);
             retorno = resultado.data;
@@ -255,6 +269,7 @@ export const AuthProvider = ({children}) => {
                 atualizarInstituicao,
                 novoGrupo,
                 listarGrupos,
+                novaSala,
                 listarSalas,
                 listarCategorias,
                 listarReservas,

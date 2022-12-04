@@ -157,14 +157,9 @@ export const List = styled.div`
     border: none;
     border-radius: 7px;
     padding: 0 10px;
-    background-color: #fff;
-    color: ${Theme.secundaria};
+    background-color: ${Theme.fundoCalendarioBloco};
+    color: ${Theme.terciaria};
     font-size: 12px;
-
-    >svg {
-        cursor: pointer;
-        color: ${Theme.primaria};
-    }
 `;
 
 export const ContainerList = styled.div`
@@ -190,7 +185,7 @@ export const ContainerListGrupo = styled.div`
     border: none;
     border-radius: 7px;
     padding: 2px 10px;
-    background-color: #fff;
+    background-color: ${Theme.fundoCalendarioBloco};
     color: ${Theme.primaria};
     font-size: 15px;
     >svg {
@@ -210,6 +205,17 @@ export const ListGrupo = styled.div`
     justify-content: center;
     justify-content: space-between;
     padding: 0 10px;
+
+    > div {
+        display:flex;
+        flex-direction: row;
+        gap: 5px;
+
+        >svg {
+        cursor: pointer;
+        }
+    };
+
 `;
 
 export const ListSala = styled.div`

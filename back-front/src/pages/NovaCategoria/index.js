@@ -14,7 +14,7 @@ const NovaCategoria = () => {
       <Container>
         <SubContainer>
             <Form>
-                <span>Nova categoria de reservas</span>
+                <h3>Nova categoria de reservas</h3>
                 <ContainerInput> 
                     Título:
                     <Input
@@ -28,6 +28,7 @@ const NovaCategoria = () => {
                     <InputCor
                         type='color'
                         name='cor'
+                        value='#3DEB65'
                         placeholder='Selecione a cor'
                     />
                 </ContainerInput>

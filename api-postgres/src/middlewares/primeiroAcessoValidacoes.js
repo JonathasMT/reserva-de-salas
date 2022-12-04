@@ -1,4 +1,4 @@
-const dataBase = require('../connection');
+const baseDados = require('../connection');
 
 
 const Instituicao = require('../models/Instituicao');
@@ -9,7 +9,7 @@ const msgErro = 'Ocorreu um erro, tente novamente ou contacte o administrador! '
 
 const tamanhoBd= async (_req, res, next) => {
     try {
-        await dataBase.sync();
+        await baseDados.sync();
         
         const i = await Instituicao.findAndCountAll();
         const u = await Usuario.findAndCountAll();
@@ -18,9 +18,9 @@ const tamanhoBd= async (_req, res, next) => {
         const usuario = u.count;
 
         console.log('Inst > ' + instituicao);
-        console.log('Usua > ' + usuario);
+        console.log('Usu > ' + usuario);
 
-        await dataBase.sync();
+        await baseDados.sync();
 
         if(instituicao > 0 || usuario > 0) {
         //o banco de dados já possui registros
@@ -38,17 +38,17 @@ const tamanhoBd= async (_req, res, next) => {
 
 const cadastro = async (req, res, next) => {
     try {
-        const {instituicaoNome, nome, email, nivel, status, senha, confirmaSenha} = req.body;
+        const {instituicao_nome, usuario_nome, email, nivel, status, senha, confirmaSenha} = req.body;
 
         //-----------------------------------------------------------------------------------------------------
         //validações instituição
-        if (!instituicaoNome) {
+        if (!instituicao_nome) {
             return res.status(200).json({erro: true, msg: 'O campo "Nome da intituição" deve ser preeenchido!' });
         };
         //-----------------------------------------------------------------------------------------------------
         //validações usuario
         //validar nome
-        if (!nome) {
+        if (!usuario_nome) {
             return res.status(200).json({erro: true, msg: 'O campo "Nome do usuário" deve ser preeenchido!' });
         };
         //validar email
@@ -56,7 +56,7 @@ const cadastro = async (req, res, next) => {
             return res.status(200).json({erro: true, msg: 'O campo "E-mail" deve ser preeenchido!'});
         };
         //cria tabela caso não exista 
-        await dataBase.sync();
+        await baseDados.sync();
         //verifica se o e-mail informado já existe
         const existeEmail = await Usuario.findOne({where : {email: email}});
         if (existeEmail) {

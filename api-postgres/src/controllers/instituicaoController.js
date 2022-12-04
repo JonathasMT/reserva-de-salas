@@ -1,11 +1,11 @@
-const dataBase = require('../connection');
+const baseDados = require('../connection');
 const Instituicao = require('../models/Instituicao');
 
 const msgErro = 'Ocorreu um erro, tente novamente ou contacte o administrador! ';
 
 const read = async (req, res) => {
     try {
-        await dataBase.sync();
+        await baseDados.sync();
         //busca a instituição
         const instituicao = await Instituicao.findOne({where: {instituicao_id: 1}});
         //verifica se existe a instituição buscada
@@ -21,16 +21,9 @@ const read = async (req, res) => {
 
 const update = async (req, res) => {
     try {
-        const {instituicaoNome} = req.body;
-        await dataBase.sync();
-        //busca a instituição
-        const instituicao = await Instituicao.findOne({where: {instituicao_id: 1}});
-        //verifica se existe a instituição buscada
-        if (!instituicao) {
-            return res.status(200).json({erro: true, msg: 'Instituição não encontrada!'});
-        };
+        const {instituicao, instituicao_nome} = req.body;
         //seta o novo nome para a instituição
-        instituicao.nome_instituicao = instituicaoNome;
+        instituicao.nome_instituicao = instituicao_nome;
         //tenta salvar as modificações
         await instituicao.save()
         .then((_result) => {

@@ -1,38 +1,38 @@
-const dataBase = require("../connection");
+const baseDados = require("../connection");
 const Grupo = require("../models/Grupo");
 
 const msgErro = 'Ocorreu um erro, tente novamente ou contacte o administrador! ';
 
 const create = async (req, res, next) => {
     try {
-        const {titulo, diasSemana, horaInicio, horaFim, tempoAntecedencia} = req.body;
-        //verifica  se o titulo está vazio
-        if (!titulo) {
+        const {grupo_nome, diasSemana, hora_inicio, hora_fim, tempoAntecedencia} = req.body;
+        //verifica  se o nome está vazio
+        if (!grupo_nome) {
             return res.status(200).json({erro: true, msg: 'O campo "Título" deve ser preeenchido!'});
         };
         //cria tabela caso não exista 
-        await dataBase.sync();
-        //verifica se o titulo informado já existe
-        const existeTitulo = await Grupo.findOne({where : {titulo: titulo}});
+        await baseDados.sync();
+        //verifica se o nome informado já existe
+        const existeTitulo = await Grupo.findOne({where : {grupo_nome: grupo_nome}});
         if (existeTitulo) {
-            return res.status(200).json({erro: true, msg: 'O titulo "' + titulo + '" já existe!'});
+            return res.status(200).json({erro: true, msg: 'O nome "' + grupo_nome + '" já existe!'});
         };
         //verifica  se o dias da semana está vazio
         if (!diasSemana.dias || diasSemana.dias.length < 1) {
             return res.status(200).json({erro: true, msg: 'O campo "Dias da semana reserváveis" deve ser preeenchido!'});
         };
         //verifica  se a hora de inicio está vazio
-        if (!horaInicio) {
+        if (!hora_inicio) {
             return res.status(200).json({erro: true, msg: 'O campo "Hora inicial" deve ser preechido!'});
         };
-        // if (!dataValida(new Date(horaInicio))) {
+        // if (!dataValida(new Date(hora_inicio))) {
         //     return res.status(200).json({erro: true, msg: 'O campo "Hora inicial" está em um formato invalido!'});
         // };
         //verifica  se a hora de fim está vazio
-        if (!horaFim) {
+        if (!hora_fim) {
             return res.status(200).json({erro: true, msg: 'O campo "Hora final" deve ser preechido!'});
         };
-        // if (!dataValida(new Date(horaFim))) {
+        // if (!dataValida(new Date(hora_fim))) {
         //     return res.status(200).json({erro: true, msg: 'O campo "Hora final" está em um formato invalido!'});
         // };
         //verifica  se o tempo de antecedencia está vazio
@@ -51,34 +51,34 @@ const create = async (req, res, next) => {
 
 const update = async (req, res, next) => {
     try {
-        const {titulo, diasSemana, horaInicio, horaFim, tempoAntecedencia} = req.body;
-        //verifica  se o titulo está vazio
-        if (!titulo) {
+        const {grupo_nome, diasSemana, hora_inicio, hora_fim, tempoAntecedencia} = req.body;
+        //verifica  se o nome está vazio
+        if (!grupo_nome) {
             return res.status(200).json({erro: true, msg: 'O campo "Título" deve ser preeenchido!'});
         };
         //cria tabela caso não exista 
-        await dataBase.sync();
-        //verifica se o titulo informado já existe
-        const existeTitulo = await Grupo.findOne({where : {titulo: titulo}});
+        await baseDados.sync();
+        //verifica se o nome informado já existe
+        const existeTitulo = await Grupo.findOne({where : {grupo_nome: grupo_nome}});
         if (existeTitulo) {
-            return res.status(200).json({erro: true, msg: 'O titulo "' + titulo + '" já existe!'});
+            return res.status(200).json({erro: true, msg: 'O nome "' + grupo_nome + '" já existe!'});
         };
         //verifica  se o dias da semana está vazio
         if (!diasSemana) {
             return res.status(200).json({erro: true, msg: 'O campo "Dias da Semana" deve ser preeenchido!'});
         };
         //verifica  se a hora de inicio está vazio
-        if (!horaInicio) {
+        if (!hora_inicio) {
             return res.status(200).json({erro: true, msg: 'O campo "Hora inicial" deve ser preechido!'});
         };
-        // if (!dataValida(new Date(horaInicio))) {
+        // if (!dataValida(new Date(hora_inicio))) {
         //     return res.status(200).json({erro: true, msg: 'O campo "Hora inicial" está em um formato invalido!'});
         // };
         //verifica  se a hora de fim está vazio
-        if (!horaFim) {
+        if (!hora_fim) {
             return res.status(200).json({erro: true, msg: 'O campo "Hora final" deve ser preechido!'});
         };
-        // if (!dataValida(new Date(horaFim))) {
+        // if (!dataValida(new Date(hora_fim))) {
         //     return res.status(200).json({erro: true, msg: 'O campo "Hora final" está em um formato invalido!'});
         // };
         //verifica  se o tempo de antecedencia está vazio

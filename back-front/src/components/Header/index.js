@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {FaBars} from 'react-icons/fa';
 import {NavLink} from 'react-router-dom';
 
@@ -11,8 +11,21 @@ import useContexto from '../../hooks/useContexto';
 
 const Header = () => {
     console.log('Passou no arquivo Header.js');
-    const {usuario} = useAuth();
+    const {usuario, instituicao} = useAuth();
     const {menu, alterarMenu} = useContexto();
+
+    const [nome, setNome] = useState('Não encontrada');
+
+    useEffect(() => {
+        console.log(instituicao);
+        if(instituicao) {
+            const {instituicao_nome} = JSON.parse(instituicao);
+            if(instituicao_nome) {
+                setNome(instituicao_nome);
+            };
+        }
+
+        }, []);
 
     const mostrarMenu = (e) => {
         e.preventDefault();
@@ -29,7 +42,7 @@ const Header = () => {
                         <ContainerInstituicao>
                             <img src={logo} alt='Instituiçao' />
                             <SubContainerInstituicao>
-                                <Titulo>Faculdade Delta</Titulo>
+                                <Titulo>{nome}</Titulo>
                                 <SubTitulo>Reserva de salas</SubTitulo>
                             </SubContainerInstituicao>
                         </ContainerInstituicao>

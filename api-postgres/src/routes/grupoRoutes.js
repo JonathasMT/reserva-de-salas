@@ -16,13 +16,13 @@ router.post('/novogrupo',
     grupoController.create
 );
 
-//LER UM
+//LISTAR UM
 router.get('/listargrupo',
     usuarioValidacoes.credenciais,
     grupoController.read
 );
 
-//LER VARIOS
+//LISTAR VARIOS
 router.get('/listargrupos',
     usuarioValidacoes.credenciais,
     grupoController.readVarios

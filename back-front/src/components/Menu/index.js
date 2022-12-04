@@ -36,8 +36,8 @@ const Menu = () => {
     const [nome, setNome] = useState('Nome não encontrado');
 
     useEffect(() => {
-    const {nome} = JSON.parse(usuario);
-    setNome(nome);
+    const {usuario_nome} = JSON.parse(usuario);
+    setNome(usuario_nome);
     }, []);
 
     const {pathname} = useLocation();

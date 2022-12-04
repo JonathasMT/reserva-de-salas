@@ -1,36 +1,38 @@
-const dataBase = require("../connection");
+const moment = require('moment');
+moment.locale('pt-br');
+const baseDados = require("../connection");
 const Reserva = require("../models/reserva");
 
 const msgErro = 'Ocorreu um erro, tente novamente ou contacte o administrador! ';
 
 const create = async (req, res, next) => {
     try {
-        const {usuarioId, salaId, categoriaId, repeteId, titulo, horaInicio, horaFim} = req.body;
+        const {sala_id, categoria_id, recorrencia_id, titulo, data, hora_inicio, hora_fim} = req.body;
+        const {usuario_id} = req.usuario;
         //verifica ID do usuario
-        console.log(Number.isInteger(usuarioId));
-        if (!usuarioId) {
+        if (!usuario_id) {
             return res.status(200).json({erro: true, msg: 'O "ID" do usuário deve ser informado!'});
         };
-        if (!Number.isInteger(usuarioId)) {
+        if (!Number.isInteger(usuario_id)) {
             return res.status(200).json({erro: true, msg: 'O "ID" do usuário deve ser um número inteiro!'});
         };
         //verifica ID da sala
-        if (!salaId) {
+        if (!sala_id) {
             return res.status(200).json({erro: true, msg: 'A "Sala" deve ser informada!'});
         };
-        if (!Number.isInteger(salaId)) {
+        if (!Number.isInteger(sala_id)) {
             return res.status(200).json({erro: true, msg: 'O ID do campo "Sala" deve ser um número inteiro!'});
         };
         //verifica ID da categoria
-        if (!categoriaId) {
+        if (!categoria_id) {
             return res.status(200).json({erro: true, msg: 'O ID do campo "Categoria" da reserva deve ser informada!'});
         };
-        if (!Number.isInteger(categoriaId)) {
+        if (!Number.isInteger(categoria_id)) {
             return res.status(200).json({erro: true, msg: 'O ID do campo "Categoria" da reserva deve ser um número inteiro!'});
         };
         //verifica ID da repetição
-        if (repeteId) {
-            if (Number.isInteger(repeteId)) {
+        if (recorrencia_id) {
+            if (Number.isInteger(recorrencia_id)) {
                 return res.status(200).json({erro: true, msg: 'O ID do campo "Repetir" deve ser um número inteiro!'});
             };
         };
@@ -38,12 +40,24 @@ const create = async (req, res, next) => {
         if (!titulo) {
             return res.status(200).json({erro: true, msg: 'O campo "Titulo" deve ser preeenchido!'});
         };
+        //verifica Data
+        if (!'data') {
+            return res.status(200).json({erro: true, msg: 'O campo "Data" deve ser preeenchido!'});
+        };
+        if (!checarData(data, hora_inicio)) {
+            return res.status(200).json({erro: true, msg: 'O campo "Data" está em um formato inválido!'});
+        };
+
+        
+        return res.status(200).json({erro: true, msg: 'Os campos "Horário de inicio e fim da reserva" devem ser preechido!'});
+
+
         //verifica Hora de inicio
-        if (!horaInicio) {
+        if (!hora_inicio) {
             return res.status(200).json({erro: true, msg: 'Os campos "Horário de inicio e fim da reserva" devem ser preechido!'});
         };
         //verifica Hora de encerramento
-        if (!horaFim) {
+        if (!hora_fim) {
             return res.status(200).json({erro: true, msg: 'Os campos "Horário de inicio e fim da reserva" devem ser preechido!'});
         };
         next();
@@ -54,31 +68,31 @@ const create = async (req, res, next) => {
 
 const update = async (req, res, next) => {
     try {
-        const {usuarioId, salaId, categoriaId, repeteId, titulo, horaInicio, horaFim} = req.body;
+        const {usuario_id, sala_id, categoria_id, recorrencia_id, titulo, hora_inicio, hora_fim} = req.body;
         //verifica ID do usuario
-        if (!usuarioId) {
+        if (!usuario_id) {
             return res.status(200).json({erro: true, msg: 'O Usuário deve ser informado!'});
         };
-        if (Number.isInteger(usuarioId)) {
+        if (Number.isInteger(usuario_id)) {
             return res.status(200).json({erro: true, msg: 'O campo Usuário deve ser um número inteiro!'});
         };
         //verifica ID da sala
-        if (!salaId) {
+        if (!sala_id) {
             return res.status(200).json({erro: true, msg: 'A Sala deve ser informada!'});
         };
-        if (Number.isInteger(salaId)) {
+        if (Number.isInteger(sala_id)) {
             return res.status(200).json({erro: true, msg: 'O campo Sala deve ser um número inteiro!'});
         };
         //verifica ID da categoria
-        if (!categoriaId) {
+        if (!categoria_id) {
             return res.status(200).json({erro: true, msg: 'A Categoria da reserva deve ser informada!'});
         };
-        if (Number.isInteger(categoriaId)) {
+        if (Number.isInteger(categoria_id)) {
             return res.status(200).json({erro: true, msg: 'O campo Categoria da reserva deve ser um número inteiro!'});
         };
         //verifica ID da repetição
-        if (repeteId) {
-            if (Number.isInteger(repeteId)) {
+        if (recorrencia_id) {
+            if (Number.isInteger(recorrencia_id)) {
                 return res.status(200).json({erro: true, msg: 'O campo Repetir deve ser um número inteiro!'});
             };
         };
@@ -87,17 +101,17 @@ const update = async (req, res, next) => {
             return res.status(200).json({erro: true, msg: 'O campo Titulo deve ser preeenchido!'});
         };
         //verifica Hora de inicio
-        if (!horaInicio) {
+        if (!hora_inicio) {
             return res.status(200).json({erro: true, msg: 'Os campos "Horário de inicio e fim da reserva" devem ser preechido!'});
         };
-        if (!dataValida(horaInicio)) {
+        if (!dataValida(hora_inicio)) {
             return res.status(200).json({erro: true, msg: 'O campo Hora inicial está em um formato invalido!'});
         }
         //verifica Hora de encerramento
-        if (!horaFim) {
+        if (!hora_fim) {
             return res.status(200).json({erro: true, msg: 'Os campos "Horário de inicio e fim da reserva" devem ser preechido!'});
         };
-        if (!dataValida(horaFim)) {
+        if (!dataValida(hora_fim)) {
             return res.status(200).json({erro: true, msg: 'O campo Hora final está em um formato invalido!'});
         }
         next();
@@ -105,6 +119,18 @@ const update = async (req, res, next) => {
         return res.status(500).json({erro: true, msg: msgErro})
     }
 };
+
+//FUNÇÕES
+function checarData(data, hora_inicio) {
+    const agora = new Date();
+    const dt = moment(data+' '+hora_inicio).format('YYYY-MM-DD HH:mm:ss');
+    console.log(data);
+    console.log(dt);
+    console.log(moment.locale());
+    console.log(dt instanceof Date && !isNaN(dt));
+    console.log(moment());
+    return dt instanceof Date && !isNaN(dt);
+  }
 
 module.exports = {
     create,

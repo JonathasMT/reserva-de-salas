@@ -103,7 +103,7 @@ export const Select = styled.select`
     border-radius: 7px;
     padding: 5px;
     font-size: 14px;
-    background-color: #fff;
+    background-color: ${Theme.fundoCalendarioBloco};
 
     option {
         color: black;
@@ -129,13 +129,13 @@ export const Input = styled.input`
     border: none;
     border-radius: 7px;
     padding: 10px;
-    background-color: #fff;
+    background-color: ${Theme.fundoCalendarioBloco};
 
         ::placeholder {
             color: ${Theme.secundaria};
         }
         :focus {
             color: ${Theme.primaria};
-        }
+        };
 `;
 

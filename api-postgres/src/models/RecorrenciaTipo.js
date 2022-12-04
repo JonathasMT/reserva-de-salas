@@ -1,14 +1,14 @@
 const Sequelize = require('sequelize');
-const dataBase = require('../connection');
+const baseDados = require('../connection');
 
-const RepeteTipo = dataBase.define('Repete_tipo', {
-    repete_tipo_id: {
+const RecorrenciaTipo = baseDados.define('Recorrencia_tipos', {
+    recorrencia_tipo_id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
         allowNull: false
     },
-    titulo: {
+    recorrencia_tipo_nome: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true
@@ -18,4 +18,4 @@ const RepeteTipo = dataBase.define('Repete_tipo', {
     timestamps: false
 });
 
-module.exports = RepeteTipo;
+module.exports = RecorrenciaTipo;

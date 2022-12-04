@@ -3,13 +3,15 @@ import styled from 'styled-components';
 import {Theme} from '../../components/Theme'
 
 export const Container = styled.div`
-    height: calc(100vh - 50px);
+    height: 100%;
+    min-height: 100vh;
     display: flex;
     box-sizing: border-box;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     background-color: ${Theme.fundoSecundario};
+    padding: 70px 20px;
 `;
 
 export const SubContainer = styled.div`
@@ -70,18 +72,21 @@ export const Input = styled.input`
 export const InputCor = styled.input.attrs({type: 'color'})`
     width: 100%;
     height: 30px;
+    display: flex;
     box-sizing: border-box;
     border: none;
     border-radius: 7px;
     background-color: #fff;
+    padding-left: 3px;
+    padding-right: 3px;
 
         ::placeholder {
             color: ${Theme.secundaria};
-        }
+        };
         :focus {
             color: ${Theme.primaria};
             outline: 1px ${Theme.acentuada};
-        }
+        };
 `;
 
 

@@ -1,14 +1,14 @@
 const Sequelize = require('sequelize');
-const dataBase = require('../connection');
+const baseDados = require('../connection');
 
-const Categoria = dataBase.define('Categoria', {
+const Categoria = baseDados.define('Categoria', {
     categoria_id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
         allowNull: false
     },
-    titulo: {
+    categoria_nome: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true
