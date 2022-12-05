@@ -41,10 +41,10 @@ const create = async (req, res, next) => {
             return res.status(200).json({erro: true, msg: 'O campo "Titulo" deve ser preeenchido!'});
         };
         //verifica Data
-        if (!'data') {
+        if (!data) {
             return res.status(200).json({erro: true, msg: 'O campo "Data" deve ser preeenchido!'});
         };
-        if (!checarData(data, hora_inicio)) {
+        if (!dataValida(data)) {
             return res.status(200).json({erro: true, msg: 'O campo "Data" está em um formato inválido!'});
         };
 
@@ -121,16 +121,9 @@ const update = async (req, res, next) => {
 };
 
 //FUNÇÕES
-function checarData(data, hora_inicio) {
-    const agora = new Date();
-    const dt = moment(data+' '+hora_inicio).format('YYYY-MM-DD HH:mm:ss');
-    console.log(data);
-    console.log(dt);
-    console.log(moment.locale());
-    console.log(dt instanceof Date && !isNaN(dt));
-    console.log(moment());
-    return dt instanceof Date && !isNaN(dt);
-  }
+function dataValida(data) {
+    return moment(data).isValid();
+};
 
 module.exports = {
     create,

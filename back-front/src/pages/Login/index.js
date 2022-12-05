@@ -20,13 +20,13 @@ const Login = () => {
         setCarregando(true);
         const resposta = await login(email, senha);
         setCarregando(false);
+        if (!resposta.erro) {
+            navegar('/');
+        };
         if (resposta.erro) {
             setMsg(resposta.msg);
             return;
         };
-        if (!resposta.erro) {
-            navegar('/');
-        }
     };
 
     return(

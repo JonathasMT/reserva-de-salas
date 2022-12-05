@@ -42,7 +42,7 @@ const Menu = () => {
                 setNome(usuario_nome);
             };
         };
-    }, []);
+    }, [usuario]);
 
     const {pathname} = useLocation();
 

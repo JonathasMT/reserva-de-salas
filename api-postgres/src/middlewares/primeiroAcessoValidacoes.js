@@ -2,6 +2,7 @@ const baseDados = require('../connection');
 
 
 const Instituicao = require('../models/Instituicao');
+const RecorrenciaTipo = require('../models/RecorrenciaTipo');
 const Usuario = require('../models/Usuario');
 
 const msgErro = 'Ocorreu um erro, tente novamente ou contacte o administrador! ';
@@ -13,16 +14,19 @@ const tamanhoBd= async (_req, res, next) => {
         
         const i = await Instituicao.findAndCountAll();
         const u = await Usuario.findAndCountAll();
+        const r = await RecorrenciaTipo.findAndCountAll();
 
         const instituicao = i.count;
         const usuario = u.count;
+        const recorrenciaTipo = r.count;
 
         console.log('Inst > ' + instituicao);
         console.log('Usu > ' + usuario);
+        console.log('RecTip > ' + recorrenciaTipo);
 
         await baseDados.sync();
 
-        if(instituicao > 0 || usuario > 0) {
+        if(instituicao > 0 || usuario > 0 || recorrenciaTipo > 0) {
         //o banco de dados já possui registros
             return res.status(200).json({erro: true, msg: 'Não autorizado. O banco de dados já possui cadastros.'});
         }else {

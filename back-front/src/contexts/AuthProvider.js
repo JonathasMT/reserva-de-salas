@@ -7,34 +7,38 @@ export const AuthContext = createContext({});
 export const AuthProvider = ({children}) => {
 
     console.log('Passou no arquivo auth.js');
-    const [usuario, setUsuario] = useState(null);
-    const [instituicao, setInstituicao] = useState(null);
+    const [usuario, setUsuario] = useState(false);
+    const [instituicao, setInstituicao] = useState(false);
 
 
     useEffect(() => {
         console.log('Passou no arquivo auth.js >> useEffect');
-        const usuarioAutenticado = localStorage.getItem('usuarioAutenticado');
+        const u = localStorage.getItem('usuarioAutenticado');
         console.log('USUARIO AUTENTICADO >');
-        console.log(usuarioAutenticado);
-        if (usuarioAutenticado) {
-            setUsuario(usuarioAutenticado);
+        console.log(u);
+        if (u) {
+            setUsuario(u);
         };
         const i = localStorage.getItem('instituicao');
+        console.log(i);
         if (i) {
             setInstituicao(i);
         };
-    }, [usuario]);
+    }, [usuario, instituicao]);
 
     async function login (email, senha) {
         var resposta;
         const dadosLogin = {email:email,senha:senha};
         await api.post('/login', dadosLogin)
         .then((resultado) => {
-            console.log(resultado.data.usuario);
-            localStorage.setItem('usuarioAutenticado', JSON.stringify(resultado.data.usuario));
-            localStorage.setItem('instituicao', JSON.stringify(resultado.data.instituicao));
-            setUsuario(localStorage.getItem('usuarioAutenticado'));
-            resposta = resultado.data;
+            if(!resultado.erro) {
+                console.log(resultado.data.usuario);
+                localStorage.setItem('usuarioAutenticado', JSON.stringify(resultado.data.usuario));
+                localStorage.setItem('instituicao', JSON.stringify(resultado.data.instituicao));
+                setUsuario(localStorage.getItem('usuarioAutenticado'));
+                setInstituicao(localStorage.getItem('instituicao'));
+                resposta = resultado.data;
+            };
         }).catch((erro) => {
             console.log('ERRO >>'+erro)
             resposta = erro.response.data;
@@ -76,7 +80,7 @@ export const AuthProvider = ({children}) => {
         return retorno;
     };
 
-    async function primeiroAcesso (dados) {
+    async function primeiroAcesso(dados) {
         var retorno;
         await api.post('/primeiroacesso', dados)
         .then((resultado) => {
@@ -105,8 +109,7 @@ export const AuthProvider = ({children}) => {
         return retorno;
     };
 
-    async function atualizarInstituicao (instituicaoNome, logo) {
-
+    async function atualizarInstituicao(instituicaoNome, logo) {
         var retorno;
         const {token} = JSON.parse(usuario);
         console.log('token ');
@@ -261,6 +264,7 @@ export const AuthProvider = ({children}) => {
                 instituicao: instituicao,
                 //funções
                 setUsuario,
+                setInstituicao,
                 login,
                 sair,
                 tamanhoBd,

@@ -29,8 +29,7 @@ const Header = () => {
                 setNome(instituicao_nome);
             };
         };
-
-        }, []);
+        }, [instituicao]);
 
     const mostrarMenu = (e) => {
         e.preventDefault();
@@ -39,7 +38,7 @@ const Header = () => {
 
     return(
         <>  
-            {usuario && (
+            {(usuario && instituicao) && (
                 <Container>
                     <FaBars onClick={mostrarMenu}/>
                     {menu && <Menu/>}

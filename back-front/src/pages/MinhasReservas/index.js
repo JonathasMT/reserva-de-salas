@@ -38,12 +38,12 @@ const MinhasReservas = () => {
     function renderiza(v, p, r) {
         if(p==='categoria_id') {
             const {Categorium} = reservas[r];
-            return(Categorium.titulo);
-        }
+            return(Categorium.categoria_nome);
+        };
         if(p==='sala_id') {
             const {Sala} = reservas[r];
-            return(Sala.titulo);
-        }
+            return(Sala.sala_nome);
+        };
         return v[p]
     }
 
@@ -64,7 +64,7 @@ console.log(reservas);
                     <tbody>
                         {reservas.map((reserva, r) => (
                             <tr key={r}>
-                            {propriedades.map((p, i) => (
+                            {propriedades.map((p) => (
                                 <td key={p}>
                                     {renderiza(reserva, p, r)}
                                 </td>

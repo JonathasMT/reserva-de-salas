@@ -3,6 +3,7 @@ const baseDados = require('../connection');
 
 const Instituicao = require('../models/Instituicao');
 const Usuario = require('../models/Usuario');
+const RecorrenciaTipo = require('../models/RecorrenciaTipo');
 
 const msgErro = 'Ocorreu um erro, tente novamente ou contacte o administrador! ';
 
@@ -39,6 +40,7 @@ const cadastro = async (req, res) => {
     try {
         var instituicao;
         var usuario;
+        var recorrenciaTipos = 0;
     
         await baseDados.sync();
         req.body.nivel = 2;
@@ -64,10 +66,12 @@ const cadastro = async (req, res) => {
             return res.status(200).json({erro: true, msg: 'Erro ao cadastrar instituição!'});
         });
         //-----------------------------------------------------------------------------------------------------
+        //criar usuario com os dados recebidos
         //criar hash para a senha do usuario
         const salt = await bcrypt.genSalt(12);
         const senhaHash = await bcrypt.hash(senha, salt);
-        //criar o usuario com os dados recebidos
+        //criar o usuario
+
         await Usuario.create({
             usuario_nome: usuario_nome,
             email: email,
@@ -82,10 +86,26 @@ const cadastro = async (req, res) => {
             return res.status(200).json({erro: true, msg: 'Erro ao cadastrar usuário!'});
         });
         //-----------------------------------------------------------------------------------------------------
+        //criar tipos de recoorencia pré-definidos
+        //criar hash para a senha do usuario
+        const tipos = ['Diariamente', 'Semanalmente', 'Mensalmente', 'Anualmente'];
+        for (let i = 0; i < tipos.length; i++) {
+            await RecorrenciaTipo.create({
+                recorrencia_tipo_nome: tipos[i],
+            }).then((result) => {
+                recorrenciaTipos++;
+                console.log('Recorrencia tipo: '+ tipos[i] + ' cadastrada');
+            }).catch((erro) => {
+                return res.status(200).json({erro: true, msg: 'Erro ao cadastrar recorrencia tipo ' + tipos[i]});
+            });
+        };
+
+        //-----------------------------------------------------------------------------------------------------
         console.log(instituicao);
         console.log(usuario);
-        if(instituicao && usuario) {
-            return res.status(200).json({erro: false, msg: 'Instituição e usuario cadastrado no primeiro acesso.'});
+        console.log(recorrenciaTipos);
+        if(instituicao && usuario && recorrenciaTipos === 4) {
+            return res.status(200).json({erro: false, msg: 'Instituição e usuario cadastrados no primeiro acesso.'});
         }else {
             return res.status(200).json({erro: true, msg: 'Erro ao cadastrar!'});
         };
