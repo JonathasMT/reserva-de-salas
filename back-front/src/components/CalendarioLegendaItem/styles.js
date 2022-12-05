@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import {Theme} from '../Theme';
+import Color from '../../assets/styles/colors';
 
 export const Container = styled.div`
     width: auto;
@@ -22,5 +22,5 @@ export const Circulo = styled.div`
 
 export const Titulo = styled.div`
     font-size: 15px;
-    color: ${Theme.secundaria};
+    color: ${Color.secundaria};
 `;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import {Theme} from '../../components/Theme'
+import Color from '../../assets/styles/colors';
 
 export const Container = styled.div`
     height: 100%;
@@ -10,7 +10,7 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    background-color: ${Theme.fundoSecundario};
+    background-color: ${Color.fundoSecundario};
     padding-top: 70px;
     padding-bottom: 20px;
 `;
@@ -23,7 +23,7 @@ export const SubContainer = styled.div`
     align-items: center;
     justify-content: center;
     background-color: red;
-    background-color: ${Theme.fundoSecundario};
+    background-color: ${Color.fundoSecundario};
     gap: 20px
 `;
 
@@ -40,7 +40,7 @@ export const BotaoEditar = styled.button`
     padding: 5px;
     border: none;
     border-radius: 5px;
-    background-color: ${Theme.acentuada};
+    background-color: ${Color.acentuada};
     color: white;
     font-size: 10px;
     font-weight: 500;
@@ -57,7 +57,7 @@ export const Form = styled.form`
     border: 1px solid white;
     border-radius: 20px;
     padding: 20px;
-    background-color: ${Theme.fundoSecundario};
+    background-color: ${Color.fundoSecundario};
 
     h2{
         margin: 0;
@@ -79,7 +79,7 @@ export const ContainerInput = styled.div`
     align-items: flex-start;
     justify-content: flex-start;
     text-align: start;
-    color: ${Theme.primaria};
+    color: ${Color.primaria};
     gap: 3px;
 `;
 
@@ -98,7 +98,7 @@ export const Select = styled.select`
     border-radius: 7px;
     padding: 5px;
     font-size: 14px;
-    background-color: #fff;
+    background-color: ${Color.fundoCalendarioBloco};
 
     option {
         color: black;
@@ -109,10 +109,10 @@ export const Select = styled.select`
         padding: 5px;
     }
     ::placeholder {
-        color: ${Theme.secundaria};
+        color: ${Color.secundaria};
     }
     :focus {
-        color: ${Theme.primaria};
+        color: ${Color.primaria};
     }
 `;
 
@@ -124,13 +124,13 @@ export const Input = styled.input`
     border: none;
     border-radius: 7px;
     padding: 10px;
-    background-color: #fff;
+    background-color: ${Color.fundoCalendarioBloco};
 
         ::placeholder {
-            color: ${Theme.secundaria};
+            color: ${Color.secundaria};
         }
         :focus {
-            color: ${Theme.primaria};
+            color: ${Color.primaria};
         }
 `;
 
@@ -141,10 +141,10 @@ export const Button = styled.button`
     border: none;
     border-radius: 7px;
     padding: 5px;
-    background-color: ${props => props.tipo? Theme.acentuada: Theme.secundaria};
+    background-color: ${props => props.tipo? Color.acentuada: Color.secundaria};
     color: white;
     font-size: 20px;
-    font-weight: bold;
+    font-weight: 600;
     cursor: pointer;
 `;
 

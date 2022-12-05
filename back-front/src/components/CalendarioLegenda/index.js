@@ -1,15 +1,15 @@
 import {Container} from './styles';
 
 import Legenda from '../CalendarioLegendaItem';
-import {Theme} from '../Theme';
+import Color from '../../assets/styles/colors';
 
 function CalendarioLegenda() {
     return(
         <Container>
-            <Legenda cor={Theme.aula} texto={'Aula'}/>
-            <Legenda cor={Theme.reuniao} texto={'Reunião'}/>
-            <Legenda cor={Theme.curso} texto={'Curso'}/>
-            <Legenda cor={Theme.outro} texto={'Outro'}/>
+            <Legenda cor={Color.aula} texto={'Aula'}/>
+            <Legenda cor={Color.reuniao} texto={'Reunião'}/>
+            <Legenda cor={Color.curso} texto={'Curso'}/>
+            <Legenda cor={Color.outro} texto={'Outro'}/>
         </Container>
     );
 };

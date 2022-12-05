@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import {NavLink} from 'react-router-dom';
 
-import {Theme} from '../Theme';
+import Color from '../../assets/styles/colors';
 
 export const Container = styled.div`
     width: 100%;
@@ -9,8 +9,8 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    color: ${props => props.status ? Theme.acentuada : Theme.secundaria};
-    font-weight: 500;
+    color: ${props => props.status ? Color.acentuada : Color.secundaria};
+    font-weight: 400;
     font-size: 17px;
     margin: 0;
     padding: 0px;
@@ -28,12 +28,12 @@ export const Container = styled.div`
         width: 4px;
         height: 100%;
         border-radius: 15px;
-        background-color: ${props => props.status && Theme.acentuada};
+        background-color: ${props => props.status && Color.acentuada};
 
     }
 
     &:hover {
-        background: ${Theme.hoverFundo};
+        background: ${Color.hoverFundo};
         backdrop-filter: blur( 13.5px );
         -webkit-backdrop-filter: blur( 13.5px );
     }

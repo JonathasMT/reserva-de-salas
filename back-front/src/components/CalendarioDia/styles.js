@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import {Theme} from '../Theme';
+import Color from '../../assets/styles/colors';
 
 export const Container = styled.div`
     width: 100%;
@@ -23,8 +23,8 @@ export const Body = styled.div`
     justify-content: flex-start;
     white-space: nowrap;
     position:relative;
-    background-color: ${Theme.fundoCalendarioBloco};
-    border: 1px solid ${Theme.borderCalendario};
+    background-color: ${Color.fundoCalendarioBloco};
+    border: 1px solid ${Color.borderCalendario};
     padding: 50px 10px;
     gap: 5px;
     cursor: pointer;
@@ -32,8 +32,8 @@ export const Body = styled.div`
 
 export const Dia = styled.div`
     box-sizing: border-box;
-    color: ${Theme.secundaria};
-    font-weight: bold;
+    color: ${Color.secundaria};
+    font-weight: 600;
     font-size: 1.5rem;
     top: 0;
     right: 0;
@@ -52,12 +52,12 @@ export const DiaCorrente = styled.div`
     position:absolute;
     top: 0;
     right: 0;
-    background-color: ${Theme.secundaria};
+    background-color: ${Color.secundaria};
     border-radius: 50%;
     margin: 10px;
     padding: 3px;
     //fonte
     font-size: 1.3rem;
-    font-weight: bold;
-    color: ${Theme.fundoCalendarioBloco};
+    font-weight: 600;
+    color: ${Color.fundoCalendarioBloco};
 `;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import {Theme} from "../Theme";
+import Color from "../../assets/styles/colors";
 
 export const Container = styled.div`
     width: 100%;
@@ -11,7 +11,7 @@ export const Container = styled.div`
     justify-content: flex-start;
     position: fixed;
     top: 0;
-    background-color: ${Theme.fundoGeral};
+    background-color: ${Color.fundoGeral};
     box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.2);
     gap: 30px;
     user-select: none;
@@ -21,7 +21,7 @@ export const Container = styled.div`
         width: 30px;
         height: 30px;
         margin-left: 10px;
-        color: ${Theme.primaria};
+        color: ${Color.primaria};
         cursor: pointer;
     }
     a {
@@ -33,7 +33,7 @@ export const Container = styled.div`
 export const ContainerInstituicao = styled.div`
     width: auto;
     height: 100%;
-    color: ${Theme.primaria};
+    color: ${Color.primaria};
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -48,7 +48,7 @@ export const ContainerInstituicao = styled.div`
 export const SubContainerInstituicao = styled.div`
     width: auto;
     height: 100%;
-    color: ${Theme.primaria};
+    color: ${Color.primaria};
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -58,7 +58,7 @@ export const SubContainerInstituicao = styled.div`
 
 export const Titulo = styled.div`
     font-size: 20px;
-    font-weight: bold;
+    font-weight: 600;
 `;
 
 export const SubTitulo = styled.div`

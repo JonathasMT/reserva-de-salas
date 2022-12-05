@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {Theme} from './components/Theme';
+import Color from './assets/styles/colors';
 
 export const Container = styled.div`
     margin: 0 auto;
@@ -13,5 +13,5 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: left;
     justify-content: start;
-    background-color: ${Theme.fundoGeral};
+    background-color: ${Color.fundoGeral};
 `;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import {Theme} from '../Theme';
+import Color from '../../assets/styles/colors';
 
 export const Container = styled.div`
     width: 30%;
@@ -27,9 +27,9 @@ export const Grupo = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    font-weight: 700;
+    font-weight: 600;
     font-size: 18px;
-    color: ${Theme.primaria};
+    color: ${Color.primaria};
     gap: 7px;
     cursor: pointer;
 
@@ -52,7 +52,7 @@ export const Sala = styled.div`
     margin-bottom: -3px;
     font-weight: 600;
     font-size: 14px;
-    color: ${Theme.secundaria};
+    color: ${Color.secundaria};
     cursor: pointer;
 
     > svg {

@@ -1,3 +1,4 @@
+import {useState} from 'react';
 import {useNavigate, useLocation} from 'react-router-dom';
 
 import {
@@ -7,14 +8,14 @@ import {
     Form,
     Input,
     SubContainer,
-    InputTextArea,
     ContainerHora,
     Select
 } from './styles';
 
 import Carregamento from '../../components/Carregando';
 import useAuth from '../../hooks/useAuth';
-import { useState } from 'react';
+
+import { InputArea, Label } from '../../assets/styles/styles';
 
 
 const NovaReserva = () => {
@@ -34,7 +35,7 @@ const NovaReserva = () => {
     const [horaInicio, setHoraInicio] = useState('08:00');
     const [horaFim, setHoraFim] = useState('12:00');
     const [categoriaId, setCategoriaId] = useState(1);
-    const [repete, setRepete] = useState('0');
+    const [recorrencia, setRecorrencia] = useState('0');
     const [msg, setMsg] = useState('');
 
     const {usuario_id} = JSON.parse(usuario);
@@ -42,15 +43,15 @@ const NovaReserva = () => {
         e.preventDefault();
 
         const dados = {
+            usuarioId: usuario_id,
+            sala_id: salaId,
+            categoria_id: categoriaId,
+            recorrrencia_id: recorrencia,
             titulo,
             descricao,
-            salaId,
             data,
             horaInicio,
             horaFim,
-            categoriaId,
-            repete,
-            usuarioId: usuario_id,
         };
         setCarregando(true);
         const resposta = await novaReserva(dados);
@@ -81,10 +82,9 @@ const NovaReserva = () => {
                         onChange={(e) => setTitulo(e.target.value)}
                     />
                 </ContainerInput>
-                <ContainerInput> 
-                    Descrição:
-                    <InputTextArea
-                        type='textarea'
+                <ContainerInput>
+                    <Label></Label>
+                    <InputArea
                         name='descricao'
                         placeholder='Digite uma descrição sobre esta reserva.'
                         value={descricao}

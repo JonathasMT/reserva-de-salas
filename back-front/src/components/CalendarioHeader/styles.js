@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import {Theme} from '../Theme';
+import Color from '../../assets/styles/colors';
 
 export const Container = styled.div`
     width: 100%;
@@ -8,11 +8,11 @@ export const Container = styled.div`
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
-    border-top: 2px solid ${Theme.borderCalendario};
-    border-left: 2px solid ${Theme.borderCalendario};
-    border-right: 2px solid ${Theme.borderCalendario};
-    border-bottom: 1px solid ${Theme.borderCalendario};
-    background-color: ${Theme.fundoCalendarioHeader};
+    border-top: 2px solid ${Color.borderCalendario};
+    border-left: 2px solid ${Color.borderCalendario};
+    border-right: 2px solid ${Color.borderCalendario};
+    border-bottom: 1px solid ${Color.borderCalendario};
+    background-color: ${Color.fundoCalendarioHeader};
     border-radius: 10px 10px 0px 0px;
     align-items: center;
 `;
@@ -23,7 +23,7 @@ export const DiasDaSemana = styled.div`
     font-size: 0.9rem;
     font-weight: 600;
     letter-spacing: 1px;
-    color: ${Theme.terciaria};
+    color: ${Color.terciaria};
     text-transform: uppercase;
 `;
 
@@ -31,6 +31,6 @@ export const DiaDaSemana = styled.div`
     width: 100%;
     text-align: center;
     font-size: 0.9rem;
-    font-weight: bold;
-    color: ${Theme.terciaria};
+    font-weight: 600;
+    color: ${Color.terciaria};
 `;

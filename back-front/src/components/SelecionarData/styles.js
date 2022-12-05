@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import {Theme} from '../Theme';
+import Color from '../../assets/styles/colors';
 
 export const Container = styled.div`
     width: 30%;
@@ -27,7 +27,7 @@ export const Seletor = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    color: ${Theme.primaria};
+    color: ${Color.primaria};
     gap: 7px;
 
     > svg {
@@ -38,7 +38,7 @@ export const Seletor = styled.div`
 `;
 
 export const Corrente = styled.div`
-    font-weight: 700;
+    font-weight: 600;
     font-size: 18px;
     margin-left: 18px;
     margin-right: 18px;
@@ -55,6 +55,6 @@ export const DataHora = styled.div`
     margin-bottom: -3px;
     font-weight: 600;
     font-size: 14px;
-    color: ${Theme.secundaria};
+    color: ${Color.secundaria};
     cursor: pointer;
 `;

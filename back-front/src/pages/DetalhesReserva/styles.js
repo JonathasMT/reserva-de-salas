@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import {Theme} from '../../components/Theme'
+import Color from '../../assets/styles/colors';
 
 export const Container = styled.div`
     height: calc(100vh - 50px);
@@ -9,7 +9,7 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    background-color: ${Theme.fundoSecundario};
+    background-color: ${Color.fundoSecundario};
     padding: 20px;
 
     table {
@@ -18,27 +18,27 @@ export const Container = styled.div`
         max-width: 50%;
     };
     th {
-        border: 2px solid ${Theme.borderCalendario};
+        border: 2px solid ${Color.borderCalendario};
         padding-left: 10px;
         padding-right: 10px;
         text-align: left;
-        background-color: ${Theme.acentuada};
+        background-color: ${Color.acentuada};
         color: #000;
     };
     td {
-        border: 2px solid ${Theme.borderCalendario};
+        border: 2px solid ${Color.borderCalendario};
         padding-left: 10px;
         padding-right: 10px;
         text-align: left;
-        color: ${Theme.primaria};
+        color: ${Color.primaria};
     };
     tr {
-        background-color: ${Theme.fundoCalendarioBloco};
+        background-color: ${Color.fundoCalendarioBloco};
     }
     tbody tr {
         //cor diferente ao passar o mouse sobre a linha
         :hover {
-        background-color: ${Theme.acentuada};
+        background-color: ${Color.acentuada};
         }
     };
 `;

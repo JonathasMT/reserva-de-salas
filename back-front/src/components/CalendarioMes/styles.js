@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import {Theme} from '../Theme';
+import Color from '../../assets/styles/colors';
 
 export const Container = styled.div`
     width: 100%;
@@ -20,8 +20,8 @@ export const ContainerSemana = styled.div`
     box-sizing: border-box;
     display: flex;
     flex-direction:row;
-    border-left: 1px solid ${Theme.borderCalendario};
-    border-right: 1px solid ${Theme.borderCalendario};
+    border-left: 1px solid ${Color.borderCalendario};
+    border-right: 1px solid ${Color.borderCalendario};
 `;
 
 export const ContainerDia = styled.div`
@@ -34,8 +34,8 @@ export const ContainerDia = styled.div`
     justify-content: flex-start;
     white-space: nowrap;
     position: relative;
-    background-color: ${Theme.fundoCalendarioBloco};
-    border: 1px solid ${Theme.borderCalendario};
+    background-color: ${Color.fundoCalendarioBloco};
+    border: 1px solid ${Color.borderCalendario};
     padding: 20px 7px;
     gap: 3px;
     cursor: pointer;
@@ -48,8 +48,8 @@ export const Dia = styled.div`
     margin: 5px;
     //fonte
     font-size: 0.7rem;
-    font-weight: bold;
-    color: ${Theme.secundaria};
+    font-weight: 600;
+    color: ${Color.secundaria};
 
 
 
@@ -67,12 +67,12 @@ export const DiaCorrente = styled.div`
     position:absolute;
     top: 0;
     right: 0;
-    background-color: ${Theme.secundaria};
+    background-color: ${Color.secundaria};
     border-radius: 50%;
     margin: 3px;
     padding: 2px;
     //fonte
     font-size: 0.7rem;
-    font-weight: bold;
-    color: ${Theme.fundoCalendarioBloco};
+    font-weight: 600;
+    color: ${Color.fundoCalendarioBloco};
 `;

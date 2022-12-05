@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import {Theme} from "../Theme";
+import Color from "../../assets/styles/colors";
 
 export const Container = styled.div`
     width: 100%;
@@ -13,7 +13,7 @@ export const Container = styled.div`
     position: absolute;
     user-select: none;
     
-    /* background-color: ${Theme.fundoSecundario}; */
+    /* background-color: ${Color.fundoSecundario}; */
 
     >svg {
         background-color: red;

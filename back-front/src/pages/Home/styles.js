@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-import {Theme} from '../../components/Theme'
+import Color from '../../assets/styles/colors';
 
 export const Container = styled.div`
     height: 100%;
     min-height: 100vh;
-    background-color: ${Theme.fundoGeral};
+    background-color: ${Color.fundoGeral};
 `;

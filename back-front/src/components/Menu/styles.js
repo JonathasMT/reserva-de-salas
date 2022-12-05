@@ -1,7 +1,7 @@
 import  styled, {css} from 'styled-components';
 import {NavLink} from 'react-router-dom';
 
-import {Theme} from '../Theme';
+import Color from '../../assets/styles/colors';
 
 export const Container = styled.div`
     width: 100%;
@@ -31,7 +31,7 @@ export const ContainerMenu = styled.div`
     left: 0px;
     left: ${props => props.menu ? '0' : '-100%'};
     animation: mostrarMenu .4s;
-    background-color: ${Theme.fundoSecundario};
+    background-color: ${Color.fundoSecundario};
     user-select: none;
     display: flex;
     flex-direction: column;
@@ -46,7 +46,7 @@ export const ContainerMenu = styled.div`
 
     > svg {
         position: fixed;
-        color: ${Theme.secundaria};
+        color: ${Color.secundaria};
         width: 25px;
         height: 25px;
         margin-top: 15px;
@@ -79,7 +79,7 @@ export const ContainerPerfil = styled.div`
         height: 100px;
         width: 100px;
         border-radius: 100%;
-        border: 5px solid ${Theme.borderGeral};
+        border: 5px solid ${Color.borderGeral};
     };
 `;
 
@@ -94,7 +94,7 @@ export const ContainerNome = styled.div`
     flex-direction:row;
     font-weight: 600;
     font-size: 16px;
-    color: ${Theme.primaria};
+    color: ${Color.primaria};
     padding-left: 10px;
     padding-right: 10px;
     a {

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import {Theme} from '../../components/Theme'
+import Color from '../../assets/styles/colors';
 
 export const Container = styled.div`
     height: 100%;
@@ -11,7 +11,7 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
     padding-top: 50px;
-    background-color: ${Theme.fundoSecundario};
+    background-color: ${Color.fundoSecundario};
 `;
 
 export const SubContainer = styled.div`
@@ -23,7 +23,7 @@ export const SubContainer = styled.div`
     gap: 20px;
     border-radius: 20px;
     padding: 20px;
-    background-color: ${Theme.fundoSecundario};
+    background-color: ${Color.fundoSecundario};
 
     >h3 {
         margin:0;
@@ -42,10 +42,10 @@ export const Button = styled.button`
     border: none;
     border-radius: 7px;
     padding: 5px;
-    background-color: ${Theme.acentuada};
+    background-color: ${Color.acentuada};
     color: white;
     font-size: 20px;
-    font-weight: bold;
+    font-weight: 600;
     cursor: pointer;
 `;
 
@@ -62,7 +62,7 @@ export const Form = styled.div`
     border: 1px solid white;
     border-radius: 20px;
     padding: 20px;
-    background-color: ${Theme.fundoSecundario};
+    background-color: ${Color.fundoSecundario};
 
     >h2 {
         margin: 0;
@@ -84,7 +84,7 @@ export const ContainerInput = styled.div`
     align-items: flex-start;
     justify-content: flex-start;
     text-align: start;
-    color: ${Theme.primaria};
+    color: ${Color.primaria};
     gap: 3px;
 `;
 
@@ -103,7 +103,7 @@ export const Select = styled.select`
     border-radius: 7px;
     padding: 5px;
     font-size: 14px;
-    background-color: ${Theme.fundoCalendarioBloco};
+    background-color: ${Color.fundoCalendarioBloco};
 
     option {
         color: black;
@@ -114,10 +114,10 @@ export const Select = styled.select`
         padding: 5px;
     }
     ::placeholder {
-        color: ${Theme.secundaria};
+        color: ${Color.secundaria};
     }
     :focus {
-        color: ${Theme.primaria};
+        color: ${Color.primaria};
     }
 `;
 
@@ -129,13 +129,13 @@ export const Input = styled.input`
     border: none;
     border-radius: 7px;
     padding: 10px;
-    background-color: ${Theme.fundoCalendarioBloco};
+    background-color: ${Color.fundoCalendarioBloco};
 
         ::placeholder {
-            color: ${Theme.secundaria};
+            color: ${Color.secundaria};
         }
         :focus {
-            color: ${Theme.primaria};
+            color: ${Color.primaria};
         };
 `;
 

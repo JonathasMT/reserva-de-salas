@@ -1,5 +1,5 @@
 import {createGlobalStyle} from 'styled-components';
-import {Theme} from '../components/Theme';
+import Color from '../../assets/styles/colors';
 
 const GlobalStyle = createGlobalStyle `
     * {
@@ -13,7 +13,7 @@ const GlobalStyle = createGlobalStyle `
     }
     body {
         min-height: 100vh;
-        background-color: ${Theme.fundoGeral};
+        background-color: ${Color.fundoGeral};
         overflow-y: scroll;
     }
 `;

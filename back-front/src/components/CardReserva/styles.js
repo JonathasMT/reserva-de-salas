@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import {Theme} from '../Theme';
+import Color from '../../assets/styles/colors';
 
 export const Container = styled.div`
     width: 100%;
@@ -26,13 +26,13 @@ export const Container = styled.div`
     background-color: ${props => {
         switch (props.cor) {
         case 1:
-            return Theme.aula
+            return Color.aula
         case 2:
-            return Theme.reuniao
+            return Color.reuniao
         case 3:
-            return Theme.curso
+            return Color.curso
         default:
-            return Theme.outro;
+            return Color.outro;
         }}
     };
     gap: 5px;
@@ -48,8 +48,8 @@ export const Container = styled.div`
 export const Hora = styled.div`
     width: auto;
     font-size: 9px;
-    font-weight: bold;
-    color: ${Theme.primaria};
+    font-weight: 600;
+    color: ${Color.primaria};
 `;
 
 export const Titulo = styled.div`
@@ -57,7 +57,7 @@ export const Titulo = styled.div`
     align-items: flex-end;
     justify-content: flex-end;
     font-size: 9px;
-    color: ${Theme.fundoGeral};
+    color: ${Color.fundoGeral};
     letter-spacing: 0.3px;
     overflow: hidden;
     text-overflow: ellipsis;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import {Theme} from '../../components/Theme'
+import Color from '../../assets/styles/colors';
 
 export const Container = styled.div`
     height: 100%;
@@ -11,7 +11,7 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    background-color: ${Theme.fundoGeral};
+    background-color: ${Color.fundoGeral};
     padding: 70px 20px;
     font-weight: normal;
 `;
@@ -20,15 +20,15 @@ export const SubContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: ${Theme.fundoCalendarioBloco};
-    border: 2px solid ${Theme.borderCalendario};
+    background-color: ${Color.fundoCalendarioBloco};
+    border: 2px solid ${Color.borderCalendario};
     border-radius: 10px;
     overflow: hidden;
     //text
     text-align: center;
     font-size: 12px;
     font-weight: 500;
-    color: ${Theme.terciaria};
+    color: ${Color.terciaria};
     word-wrap: break-word;
 
     > table {
@@ -43,13 +43,13 @@ export const SubContainer = styled.div`
     };
     thead > tr {
         text-transform: uppercase;
-        border-bottom: 2px solid ${Theme.borderCalendario};
+        border-bottom: 2px solid ${Color.borderCalendario};
     };
     tbody > tr {
         //cor diferente ao passar o mouse sobre a linha
         :hover {
-            background-color: ${Theme.acentuada};
-            color: ${Theme.borderGeral};
+            background-color: ${Color.acentuada};
+            color: ${Color.borderGeral};
         }
     };
 `;
@@ -57,7 +57,7 @@ export const SubContainer = styled.div`
 
 // import styled from 'styled-components';
 
-// import {Theme} from '../../components/Theme'
+// import Color from '../../assets/styles/colors';
 
 // export const Container = styled.div`
 //     height: 100%;
@@ -68,7 +68,7 @@ export const SubContainer = styled.div`
 //     flex-direction: row;
 //     align-items: flex-start;
 //     justify-content: flex-start;
-//     background-color: ${Theme.fundoGeral};
+//     background-color: ${Color.fundoGeral};
 //     padding: 70px 20px;
 // `;
 
@@ -77,8 +77,8 @@ export const SubContainer = styled.div`
 //     flex-direction: row;
 //     align-items: center;
 //     justify-content: center;
-//     background-color: ${Theme.fundoCalendarioBloco};
-//     border: 2px solid ${Theme.borderCalendario};
+//     background-color: ${Color.fundoCalendarioBloco};
+//     border: 2px solid ${Color.borderCalendario};
 //     border-radius: 10px;
 //     overflow: hidden;
 // `;
@@ -100,12 +100,12 @@ export const SubContainer = styled.div`
 //     justify-content: center;
 //     padding-left: 10px;
 //     padding-right: 10px;
-//     border-bottom: 2px solid ${Theme.borderCalendario};
+//     border-bottom: 2px solid ${Color.borderCalendario};
 //     //text
 //     text-align: center;
 //     font-size: 12px;
 //     font-weight: 600;
-//     color: ${Theme.terciaria};
+//     color: ${Color.terciaria};
 //     word-wrap: break-word;
 // `;
 
@@ -122,10 +122,10 @@ export const SubContainer = styled.div`
 //     text-align: center;
 //     font-size: 12px;
 //     font-weight: 600;
-//     color: ${Theme.terciaria};
+//     color: ${Color.terciaria};
 //     word-wrap: break-word;
 //     :hover {
-//             background-color: ${Theme.acentuada};
-//             color: ${Theme.borderGeral};
+//             background-color: ${Color.acentuada};
+//             color: ${Color.borderGeral};
 //         }
 // `;

@@ -7,7 +7,7 @@ const msgErro = 'Ocorreu um erro, tente novamente ou contacte o administrador! '
 
 const create = async (req, res, next) => {
     try {
-        const {sala_id, categoria_id, recorrencia_id, titulo, data, hora_inicio, hora_fim} = req.body;
+        const {sala_id, categoria_id, recorrencia_id, titulo, descricao, data, hora_inicio, hora_fim} = req.body;
         const {usuario_id} = req.usuario;
         //verifica ID do usuario
         if (!usuario_id) {

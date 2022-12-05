@@ -33,11 +33,15 @@ const Menu = () => {
     const {menu, alterarMenu} = useContexto();
     const fecharMenu = () => alterarMenu();
     const {sair, usuario} = useAuth();
-    const [nome, setNome] = useState('Nome não encontrado');
+    const [nome, setNome] = useState('Usuário não encontrado');
 
     useEffect(() => {
-    const {usuario_nome} = JSON.parse(usuario);
-    setNome(usuario_nome);
+        if(usuario) {
+            const {usuario_nome} = JSON.parse(usuario);
+            if(usuario_nome) {
+                setNome(usuario_nome);
+            };
+        };
     }, []);
 
     const {pathname} = useLocation();

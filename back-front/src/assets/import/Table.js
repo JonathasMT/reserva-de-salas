@@ -27,7 +27,7 @@ const StyledTable = styled.table`
     caption {
         font-size: 0.9em;
         padding: 5px;
-        font-weight: bold;
+        font-weight: 600;
     };
 `;
 export default ({data}) => (

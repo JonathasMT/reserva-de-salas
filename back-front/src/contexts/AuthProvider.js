@@ -112,7 +112,7 @@ export const AuthProvider = ({children}) => {
         console.log('token ');
         console.log(token);
         const dadosInstituicao = {
-            instituicaoNome: instituicaoNome,
+            instituicao_nome: instituicaoNome,
             logo: logo,
         };
         await api.put('/atualizarinstituicao', dadosInstituicao)

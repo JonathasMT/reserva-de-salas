@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import {Theme} from '../../components/Theme'
+import Color from '../../assets/styles/colors';
 
 export const Container = styled.div`
     height: 100%;
@@ -11,7 +11,7 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: ${Theme.fundoSecundario};
+    background-color: ${Color.fundoSecundario};
     padding-top: 50px;
 `;
 
@@ -22,10 +22,10 @@ export const Button = styled.button`
     border: none;
     border-radius: 7px;
     padding: 5px;
-    background-color: ${Theme.acentuada};
+    background-color: ${Color.acentuada};
     color: white;
     font-size: 20px;
-    font-weight: bold;
+    font-weight: 600;
     cursor: pointer;
 `;
 

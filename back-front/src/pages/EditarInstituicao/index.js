@@ -29,8 +29,8 @@ const ConfiguracaoInicial = () => {
             const resposta = await listarInstituicao();
             setCarregando(false);
             if (!resposta.erro) {
-                const {nome_instituicao} = resposta.instituicao;
-                setInstituicaoNome(nome_instituicao);
+                const {instituicao_nome} = resposta.instituicao;
+                setInstituicaoNome(instituicao_nome);
             };
             if (resposta.erro) {
                 alert(resposta.msg);

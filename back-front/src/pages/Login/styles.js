@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import {Theme} from '../../components/Theme'
+import Color from '../../assets/styles/colors';
 
 export const Container = styled.div`
     height: 100vh;
@@ -9,7 +9,7 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    background-color: ${Theme.fundoSecundario};
+    background-color: ${Color.fundoSecundario};
 `;
 
 export const SubContainer = styled.div`
@@ -38,7 +38,7 @@ export const Form = styled.div`
         align-items: flex-start;
         justify-content: flex-start;
         text-align: start;
-        color: ${Theme.primaria};
+        color: ${Color.primaria};
         gap: 5px;
     }
 `;
@@ -52,10 +52,10 @@ export const Input = styled.input`
     padding: 10px;
 
     ::placeholder {
-        color: ${Theme.secundaria};
+        color: ${Color.secundaria};
     }
     :focus {
-        color: ${Theme.primaria};
+        color: ${Color.primaria};
     }
 `;
 
@@ -66,10 +66,10 @@ export const Button = styled.button`
     border: none;
     border-radius: 7px;
     padding: 5px;
-    background-color: ${Theme.acentuada};
+    background-color: ${Color.acentuada};
     color: white;
     font-size: 20px;
-    font-weight: bold;
+    font-weight: 600;
     cursor: pointer;
 `;
 
