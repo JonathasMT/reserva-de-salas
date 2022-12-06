@@ -4,7 +4,7 @@ const baseDados = require('../connection');
 const RecorrenciaTipo = baseDados.define('Recorrencia_tipos', {
     recorrencia_tipo_id: {
         type: Sequelize.INTEGER,
-        autoIncrement: true,
+        autoIncrement: false,
         primaryKey: true,
         allowNull: false
     },

@@ -4,7 +4,7 @@ const baseDados = require('../connection');
 const Instituicao = baseDados.define('Instituicao', {
     instituicao_id: {
         type: Sequelize.INTEGER,
-        autoIncrement: true,
+        autoIncrement: false,
         primaryKey: true,
         allowNull: false
     },

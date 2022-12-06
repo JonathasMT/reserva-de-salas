@@ -57,6 +57,7 @@ const cadastro = async (req, res) => {
             
             //criar instituição com os dados recebidos
             await Instituicao.create({
+                instituicao_id: 1,
                 instituicao_nome: instituicao_nome,
                 logo: logo
             }, {transaction: transacao});
@@ -79,6 +80,7 @@ const cadastro = async (req, res) => {
             const tipos = ['Diariamente', 'Semanalmente', 'Mensalmente', 'Anualmente'];
             for (let i = 0; i < tipos.length; i++) {
                 await RecorrenciaTipo.create({
+                    recorrencia_tipo_id: i+1,
                     recorrencia_tipo_nome: tipos[i],
                 }, {transaction: transacao});
             };
