@@ -33,6 +33,7 @@ export const AuthProvider = ({children}) => {
         .then((resultado) => {
             if(!resultado.erro) {
                 console.log(resultado.data.usuario);
+                console.log(resultado.data.instituicao);
                 localStorage.setItem('usuarioAutenticado', JSON.stringify(resultado.data.usuario));
                 localStorage.setItem('instituicao', JSON.stringify(resultado.data.instituicao));
                 setUsuario(localStorage.getItem('usuarioAutenticado'));

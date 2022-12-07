@@ -34,6 +34,7 @@ const create= async (req, res) => {
     }).then((_result) => {
         return res.status(200).json({erro: false, msg: 'Reserva cadastrada'});
     }).catch((erro) => {
+        console.log(erro);
         res.status(500).json({erro: true, msg: 'Ocorreu um erro, tente novamente ou contacte o administrador! '});
     });
 };

@@ -62,6 +62,8 @@ console.log(reservas);
                         </tr>
                     </thead>
                     <tbody>
+                        {console.log('RESERVAS')}
+                        {console.log(reservas[0]?'SIM':'NÃO')}
                         {reservas.map((reserva, r) => (
                             <tr key={r}>
                             {propriedades.map((p) => (

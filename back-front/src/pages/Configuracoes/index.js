@@ -4,11 +4,6 @@ import {useNavigate} from 'react-router-dom';
 import {
     Container,
     SubContainer,
-    Form,
-    ContainerInput,
-    Button,
-    BotaoFlutuante,
-    List,
     ContainerListGrupo,
     ListGrupo,
     ListSala,
@@ -21,6 +16,12 @@ import useAuth from '../../hooks/useAuth';
 import {BiEdit, BiPlus} from 'react-icons/bi';
 
 import Carregamento from '../../components/Carregando';
+import {
+    ContainerFormulario,
+    Label,
+    BotaoFlutuante,
+    Listagem
+} from '../../assets/styles';
 
 const Configuracoes = () => {
     
@@ -90,33 +91,22 @@ const Configuracoes = () => {
 
     const formInstituicao = () => {
         return (
-            <Form>
+            <ContainerFormulario>
                 <BotaoFlutuante title='Editar esta instituição' onClick={(e) => [e.preventDefault(), navegar('/editarinstituicao')]}>
                     <BiEdit/>
                 </BotaoFlutuante>
                 <h3>Instituição</h3>
-                <ContainerInput> 
-                    Nome da instituição:
-                    <List>
+                    <Label>Nome da instituição:</Label>
+                    <Listagem>
                         {instituicaoNome}
-                    </List>
-                </ContainerInput>
-                {/* <ContainerInput> 
-                    Logo:
-                    <InputImage
-                        type='file'
-                        name='logo'
-                        disabled={desativado}
-                        placeholder='Selecione sua imagem de logo'
-                    />
-                </ContainerInput> */}
-            </Form>
+                    </Listagem>
+            </ContainerFormulario>
         );
     };
 
     const formGrupos = () => {
         return (
-            <Form>
+            <ContainerFormulario>
                 <BotaoFlutuante title='Adicionar um novo grupo de salas' onClick={(e) => [e.preventDefault(), navegar('/novogrupo')]}>
                     <BiPlus/>
                 </BotaoFlutuante>
@@ -156,17 +146,17 @@ const Configuracoes = () => {
                             </ContainerListGrupo>
                         )
                     :
-                    <List>
+                    <Listagem>
                         Não há grupos
-                    </List>
+                    </Listagem>
                 }
-            </Form>
+            </ContainerFormulario>
         );
     };
 
     const formCategorias = () => {
         return (
-            <Form>
+            <ContainerFormulario>
                 <BotaoFlutuante title='Adicionar uma nova categoria de reservas' onClick={(e) => [e.preventDefault(), navegar('/novacategoria')]}>
                     <BiPlus/>
                 </BotaoFlutuante>
@@ -175,21 +165,21 @@ const Configuracoes = () => {
                     categorias.length > 0 ?
                     categorias.map((categoria, i) =>
                             <ContainerListGrupo key={i}>
-                                <List>
+                                <Listagem>
                                     <ContainerTitulo>
                                         <Circulo cor={categoria.cor}/>
                                         {categoria.titulo}
                                     </ContainerTitulo>
                                     <BiEdit title='Editar esta categoria de reservas' onClick={(e) => [e.preventDefault(), navegar('/editarcategoria')]}/>
-                                </List>
+                                </Listagem>
                             </ContainerListGrupo>
                         )
                     :
-                    <List>
+                    <Listagem>
                         Não há categorias
-                    </List>
+                    </Listagem>
                 }
-            </Form>
+            </ContainerFormulario>
         );
     };
 

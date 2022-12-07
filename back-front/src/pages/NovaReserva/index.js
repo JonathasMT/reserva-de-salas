@@ -2,20 +2,22 @@ import {useState} from 'react';
 import {useNavigate, useLocation} from 'react-router-dom';
 
 import {
-    Button,
     Container,
-    ContainerInput,
-    Form,
-    Input,
-    SubContainer,
-    ContainerHora,
-    Select
+    SubContainer
 } from './styles';
 
 import Carregamento from '../../components/Carregando';
 import useAuth from '../../hooks/useAuth';
 
-import { InputArea, Label } from '../../assets/styles/styles';
+import {
+    ContainerFormulario,
+    ContainerHora,
+    Label,
+    InputArea,
+    Input,
+    InputSelect,
+    Botao
+} from '../../assets/styles';
 
 
 const NovaReserva = () => {
@@ -50,8 +52,8 @@ const NovaReserva = () => {
             titulo,
             descricao,
             data,
-            horaInicio,
-            horaFim,
+            hora_inicio: horaInicio,
+            hora_fim: horaFim,
         };
         setCarregando(true);
         const resposta = await novaReserva(dados);
@@ -70,30 +72,27 @@ const NovaReserva = () => {
       <Container>
         {carregando && <Carregamento/>}
         <SubContainer>
-            <Form onSubmit={aoSubmeter}>
-                <span>Nova reserva</span>
-                <ContainerInput> 
-                    Título:
+            <ContainerFormulario onSubmit={aoSubmeter}>
+                <h3>Nova reserva</h3>
+                    <Label>Título:</Label>
                     <Input
                         type='text'
                         name='titulo'
                         placeholder='Digite o título da reserva'
+                        required
                         value={titulo}
                         onChange={(e) => setTitulo(e.target.value)}
                     />
-                </ContainerInput>
-                <ContainerInput>
-                    <Label></Label>
+                    <Label>Descrição:</Label>
                     <InputArea
                         name='descricao'
                         placeholder='Digite uma descrição sobre esta reserva.'
                         value={descricao}
                         onChange={(e) => setDescricao(e.target.value)}
                     />
-                </ContainerInput>
-                <ContainerInput>
-                    Sala:
-                    <Select
+
+                    <Label>Sala:</Label>
+                    <InputSelect
                         disabled
                         value={salaId}
                         onChange={(e) => setSalaId(parseInt(e.target.value))}
@@ -102,37 +101,35 @@ const NovaReserva = () => {
                         <option value='2'>Sala 02</option>
                         <option value='3'>Sala 03</option>
                         <option value='4'>Sala 04</option>
-                    </Select>
-                </ContainerInput>
-                <ContainerInput>
-                    Grupo:
-                    <Select 
+                    </InputSelect>
+
+                    <Label>Grupo:</Label>
+                    <InputSelect 
                         disabled
                         value={grupoId}
                         onChange={(e) => setGrupoId(parseInt(e.target.value))}
                     >
                         <option value='1'>Salas de aula</option>
                         <option value='2'>Laboratórios de informática</option>
-                    </Select>
-                </ContainerInput>
-                <ContainerInput> 
-                    Data:
+                    </InputSelect>
+
+                    <Label>Data:</Label>
                     <Input
                         type='date'
                         name='data'
                         placeholder='Digite a data para esta resera'
+                        required
                         value={data}
                         onChange={(e) => setData(e.target.value)}
                     />
-                </ContainerInput>
-                <ContainerInput>
-                    Horário de inicio e fim desta reserva:
+
+                    <Label>Horário de inicio e fim desta reserva:</Label>
                     <ContainerHora>
                         <Input
                             type='time'
                             id='hora-inicio'
                             name='hora-inicio'
-                            min='00:01'
+                            min='00:00'
                             max='23:59'
                             required
                             value={horaInicio}
@@ -142,17 +139,17 @@ const NovaReserva = () => {
                             type='time'
                             id='hora-fim'
                             name='hora-fim'
-                            min='00:01'
+                            min='00:00'
                             max='23:59'
                             required
                             value={horaFim}
                             onChange={(e) => setHoraFim(e.target.value)}
                         />
                     </ContainerHora>
-                </ContainerInput>
-                <ContainerInput>
-                    Categoria:
-                    <Select 
+
+                    <Label>Categoria:</Label>
+                    <InputSelect 
+                        required
                         value={categoriaId}
                         onChange={(e) => setCategoriaId(parseInt(e.target.value))}
                     >
@@ -160,23 +157,21 @@ const NovaReserva = () => {
                         <option value='2'>Reunião</option>
                         <option value='3'>Curso</option>
                         <option value='4'>Outro</option>
-                    </Select>
-                </ContainerInput>
-                <ContainerInput>
-                    Repetir:
-                    <Select defaultValue='1' disabled>
+                    </InputSelect>
+
+                    <Label>Repetir:</Label>
+                    <InputSelect defaultValue='1' disabled>
                         <option value='1' >Não</option>
                         <option value='2'>Diarimante</option>
                         <option value='3'>Semanalmente</option>
                         <option value='4'>Mensalmente</option>
                         <option value='4'>Anualmente</option>
-                    </Select>
-                </ContainerInput>
-                <Button tipo={true} type='submit'>CADASTRAR  </Button>
-                <Button
+                    </InputSelect>
+                <Botao tipo={true} type='submit'>CADASTRAR  </Botao>
+                <Botao
                     onClick={(e) => [e.preventDefault(), navegar(-1)]}
-                >CANCELAR</Button>
-            </Form>
+                >CANCELAR</Botao>
+            </ContainerFormulario>
             <p>{msg}</p>
         </SubContainer>
       </Container>

@@ -26,6 +26,8 @@ const Header = () => {
         if(instituicao) {
             const {instituicao_nome} = JSON.parse(instituicao);
             if(instituicao_nome) {
+                console.log('instituicao_nome');
+                console.log(instituicao_nome);
                 setNome(instituicao_nome);
             };
         };

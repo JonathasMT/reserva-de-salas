@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import Color from '../../assets/styles/colors';
 
+
 export const Container = styled.div`
     height: 100%;
     min-height: 100vh;
@@ -57,34 +58,6 @@ export const BotaoFlutuante = styled.button`
 
 `;
 
-export const Form = styled.div`
-    position:relative;
-    white-space: nowrap;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    border: 1px solid white;
-    border-radius: 20px;
-    padding: 20px;
-    background-color: ${Color.fundoSecundario};
-
-    h3{
-        margin: 0;
-        padding: 0;
-        width: 300px;
-        text-align: center;
-    }
-    p {
-        margin: 0;
-        padding: 0;
-        width: 300px;
-        text-align: left;
-    }
-`;
-
 export const ContainerInput = styled.div`
     display: flex;
     flex-direction: column;
@@ -100,32 +73,6 @@ export const InputImage = styled.input.attrs({type: 'file'})`
     height: 30px;
     box-sizing: border-box;
     border: none;
-`;
-
-export const Select = styled.select`
-    width: 300px;
-    height: 30px;
-    box-sizing: border-box;
-    border: none;
-    border-radius: 7px;
-    padding: 5px;
-    font-size: 14px;
-    background-color: ${Color.fundoCalendarioBloco};
-
-    option {
-        color: black;
-        font-weight: small;
-        display: flex;
-        white-space: pre;
-        min-height: 20px;
-        padding: 5px;
-    }
-    ::placeholder {
-        color: ${Color.secundaria};
-    }
-    :focus {
-        color: ${Color.primaria};
-    }
 `;
 
 
@@ -144,22 +91,6 @@ export const Input = styled.input`
         :focus {
             color: ${Color.primaria};
         }
-`;
-
-export const List = styled.div`
-    width: 300px;
-    min-height: 30px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    box-sizing: border-box;
-    border: none;
-    border-radius: 7px;
-    padding: 0 10px;
-    background-color: ${Color.fundoCalendarioBloco};
-    color: ${Color.terciaria};
-    font-size: 12px;
 `;
 
 export const ContainerList = styled.div`
@@ -188,10 +119,11 @@ export const ContainerListGrupo = styled.div`
     background-color: ${Color.fundoCalendarioBloco};
     color: ${Color.primaria};
     font-size: 15px;
-    >svg {
+
+    > svg {
         cursor: pointer;
         color: ${Color.primaria};
-    }
+    };
 `;
 
 
