@@ -18,11 +18,12 @@ export const Container = styled.div`
 
 export const SubContainer = styled.div`
     height:100%;
+    width: 300px;
     display: flex;
     box-sizing: border-box;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     background-color: ${Color.fundoSecundario};
     gap: 20px
 `;

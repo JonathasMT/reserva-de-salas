@@ -1,29 +1,38 @@
 import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 
-import {Button, Container, Form, BotaoFlutuante, ContainerInput, Input, SubContainer, ContainerSenhas} from './styles';
+import {
+    ContainerFormulario,
+    SubContainerFormulario,
+    Formulario,
+    ContainerSenhas,
+    Label,
+    Input,
+    Botao,
+    BotaoFlutuante
+} from '../../assets/styles';
+
+import {BsPencilSquare} from 'react-icons/bs';
 import useAuth from '../../hooks/useAuth';
 
-import {
-    BsPencilSquare
-} from 'react-icons/bs';
-
 const Perfil = () => {
-    const {entrar, usuario} = useAuth();
+    const {editarPerfil, usuario} = useAuth();
     const navegar = useNavigate();
 
     console.log('USUARIO >>>'+usuario);
 
-    // const [email, setEmail] = useState('');
+   const {usuario_nome, email} = JSON.parse(usuario);
+
+    const [nome, setNome] = useState(usuario_nome);
+    const [mail, setMail] = useState(email);
     const [senha, setSenha] = useState('');
     const [msg, setMsg] = useState('');
     const [desativado, setDesativado] = useState(true);
 
-
-    const {usuario_nome, email} = JSON.parse(usuario);
+ 
 
     const submeterAtualizar = async() => {
-      const resposta = await entrar(email, senha);
+      const resposta = await editarPerfil(email, senha);
       if (resposta) {
         setMsg(resposta);
       }else {
@@ -34,89 +43,71 @@ const Perfil = () => {
     };
 
     return(
-        <Container>
-            <SubContainer>
-                <Form>
+        <ContainerFormulario>
+            <SubContainerFormulario>
+                <Formulario>
                     <h3>Perfil</h3>
                     <BotaoFlutuante title='Editar perfil' onClick={(e) => [e.preventDefault(), setDesativado(false)]}>
                         <BsPencilSquare/>
                     </BotaoFlutuante>
-                    <ContainerInput> 
-                        Nome:
+                        <Label>Nome:</Label>
                         <Input
                             type='nome'
                             name='nome'
                             placeholder='Digite seu nome completo'
-                            defaultValue={usuario_nome}
+                            value={nome}
                             disabled={desativado}
-                            // onChange={(evento) => [setEmail(evento.target.value), setMsg('')]}
+                            onChange={(evento) => [setMail(evento.target.value), setMsg('')]}
                         />
-                    </ContainerInput>
-                    <ContainerInput> 
-                        E-mail:
+                        <Label>E-mail:</Label>
                         <Input
                             type='email'
                             name='email'
                             placeholder='Digite seu e-mail'
-                            defaultValue={email}
+                            value={email}
                             disabled={desativado}
-                            // onChange={(evento) => [setEmail(evento.target.value), setMsg('')]}
+                            onChange={(evento) => [setMail(evento.target.value), setMsg('')]}
                         />
-                    </ContainerInput>
-                    {
-                        !desativado && 
-                        <ContainerSenhas>
-                            <p>Para alterar a sua senha preencha os campos a abaixo, senão deixe em branco.</p>
-                            <ContainerInput>
-                                Senha atual:
-                                <Input
-                                    type='password'
-                                    name='senha'
-                                    placeholder='Digite sua senha atual'
-                                    value={senha}
-                                    onChange={(evento) => [setSenha(evento.target.value), setMsg('')]}
-                                />
-                            </ContainerInput>
-                            <ContainerInput>
-                                Nova senha:
-                                <Input
-                                    type='password'
-                                    name='senha'
-                                    placeholder='Digite uma nova senha'
-                                    value={senha}
-                                    onChange={(evento) => [setSenha(evento.target.value), setMsg('')]}
-                                />
-                            </ContainerInput>
-                            <ContainerInput>
-                                Repita a nova senha:
-                                <Input
-                                    type='password'
-                                    name='senha'
-                                    placeholder='Repita a nova senha'
-                                    value={senha}
-                                    onChange={(evento) => [setSenha(evento.target.value), setMsg('')]}
-                                />
-                            </ContainerInput>
-                            <Button
-                                onClick={submeterAtualizar}
-                                tipo={true}
-                            >ATUALIZAR
-                            </Button>
-                            <Button
-                                onClick={setDesativado(true)}
-                                tipo={true}
-                            >CANCELAR
-                            </Button>
-                        </ContainerSenhas>
-                    }
-                    <Button
-                        onClick={(e) => [e.preventDefault(), navegar(-1)]}
-                    >VOLTAR
-                    </Button>
+                        {
+                            !desativado && 
+                            <ContainerSenhas>
+                                <p>Para alterar a sua senha preencha os campos a abaixo, senão deixe em branco.</p>
+                                    <Label>Senha atual:</Label>
+                                    <Input
+                                        type='password'
+                                        name='senha'
+                                        placeholder='Digite sua senha atual'
+                                        value={senha}
+                                        onChange={(evento) => [setSenha(evento.target.value), setMsg('')]}
+                                    />
+                                    <Label>Nova senha:</Label>
+                                    <Input
+                                        type='password'
+                                        name='senha'
+                                        placeholder='Digite uma nova senha'
+                                        value={senha}
+                                        onChange={(evento) => [setSenha(evento.target.value), setMsg('')]}
+                                    />
+                                    <Label>Repita a nova senha:</Label>
+                                    <Input
+                                        type='password'
+                                        name='senha'
+                                        placeholder='Repita a nova senha'
+                                        value={senha}
+                                        onChange={(evento) => [setSenha(evento.target.value), setMsg('')]}
+                                    />
+                                <Botao onClick={submeterAtualizar} tipo={true}>
+                                    ATUALIZAR
+                                </Botao>
+                            </ContainerSenhas>
+                        }
+                    <Botao onClick={(e) => [e.preventDefault(), desativado? navegar(-1) : setDesativado(true)]}>
+                        {desativado? 'VOLTAR': 'CANCELAR'}
+                    </Botao>
                     {msg}
-                </Form>
-            </SubContainer>
-      </Container>
+                </Formulario>
+            </SubContainerFormulario>
+      </ContainerFormulario>
     );
 };
 

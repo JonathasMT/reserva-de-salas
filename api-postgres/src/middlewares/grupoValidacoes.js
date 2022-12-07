@@ -5,7 +5,7 @@ const msgErro = 'Ocorreu um erro, tente novamente ou contacte o administrador! '
 
 const create = async (req, res, next) => {
     try {
-        const {grupo_nome, diasSemana, hora_inicio, hora_fim, tempoAntecedencia} = req.body;
+        const {grupo_nome, diasSemana, hora_inicio, hora_fim, antecedencia_minima} = req.body;
         //verifica  se o nome está vazio
         if (!grupo_nome) {
             return res.status(200).json({erro: true, msg: 'O campo "Título" deve ser preeenchido!'});
@@ -36,10 +36,10 @@ const create = async (req, res, next) => {
         //     return res.status(200).json({erro: true, msg: 'O campo "Hora final" está em um formato invalido!'});
         // };
         //verifica  se o tempo de antecedencia está vazio
-        if (!tempoAntecedencia) {
+        if (!antecedencia_minima) {
             return res.status(200).json({erro: true, msg: 'O campo "Mínimo de antecedencia para reservas" deve ser preechido!'});
         };
-        if (Number.isInteger(tempoAntecedencia)) {
+        if (Number.isInteger(antecedencia_minima)) {
             return res.status(200).json({erro: true, msg: 'O campo "Mínimo de antecedencia para reservas" deve ser um número inteiro!'});
         };
         next();

@@ -2,16 +2,18 @@ import { useEffect, useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 
 import {
-    Container,
-    SubContainer,
-    Form,
-    ContainerInput,
+    ContainerFormulario,
+    SubContainerFormulario,
+    Formulario,
+    Label,
     Input,
-    // InputImage,
-    Button
-} from './styles';
+    Botao
+    
+} from '../../assets/styles';
+
 import Carregamento from '../../components/Carregando';
 import useAuth from '../../hooks/useAuth';
+
 
 const ConfiguracaoInicial = () => {
 
@@ -55,13 +57,12 @@ const ConfiguracaoInicial = () => {
     };
 
     return(
-      <Container>
+      <ContainerFormulario>
         {carregando && <Carregamento/>}
-        <SubContainer>
-            <Form>
-                <h2>Instituição</h2>
-                <ContainerInput> 
-                    Nome da instituição:
+        <SubContainerFormulario>
+            <Formulario>
+                <h3>INSTITUIÇÃO</h3> 
+                    <Label>Nome da instituição:</Label>
                     <Input
                         type='text'
                         name='nome'
@@ -69,7 +70,6 @@ const ConfiguracaoInicial = () => {
                         value={instituicaoNome}
                         onChange={(e) => setInstituicaoNome(e.target.value)}
                     />
-                </ContainerInput>
                 {/* <ContainerInput> 
                     Logo:
                     <InputImage
@@ -79,18 +79,19 @@ const ConfiguracaoInicial = () => {
 
                     />
                 </ContainerInput> */}
-                <Button
+                <Botao
                     onClick={submeterAtualizar}
-                    tipo={true}
-                >ATUALIZAR</Button>
-                <Button
-                    onClick={(e) => [e.preventDefault(), navegar(-1)]}
-                >CANCELAR
-                </Button>
+                    tipo={true}>
+                        ATUALIZAR
+                </Botao>
+                <Botao
+                    onClick={(e) => [e.preventDefault(), navegar(-1)]}>
+                        CANCELAR
+                </Botao>
                 {msg}
-            </Form>
-        </SubContainer>
-      </Container>
+            </Formulario>
+        </SubContainerFormulario>
+      </ContainerFormulario>
     );
 };
 

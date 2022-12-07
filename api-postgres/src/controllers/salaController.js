@@ -12,9 +12,9 @@ const create = async (req, res) => {
         descricao: descricao,
         capacidade: capacidade
     }).then((result) => {
-        return res.status(200).json('Sala cadastrada');
+        return res.status(200).json({erro: false, msg: 'Sala cadastrada com sucesso.'});
     }).catch((erro) => {
-        res.status(500).json({msg: 'Ocorreu um erro, tente novamente ou contacte o administrador! '});
+        res.status(500).json({erro: true, msg: 'Ocorreu um erro, tente novamente ou contacte o administrador! '});
     });
 };
 

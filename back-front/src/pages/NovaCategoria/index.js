@@ -1,42 +1,84 @@
+import {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
+
 import {
-    Button,
-    Container,
-    ContainerInput,
-    Form,
+    ContainerFormulario,
+    SubContainerFormulario,
+    Formulario,
+    Label,
     Input,
     InputCor,
-    SubContainer} from './styles';
+    Botao
+} from '../../assets/styles';
+
+import Carregamento from '../../components/Carregando';
+import useAuth from '../../hooks/useAuth';
+
 
 const NovaCategoria = () => {
 
+    const navegar = useNavigate();
+    const {novaCategoria} = useAuth();
+
+    const [carregando, setCarregando] = useState(false);
+    const [categoriaNome, setCategoriaNome] = useState('');
+    const [cor, setCor] = useState('#3DEB65');
+    const [msg, setMsg] = useState('');
+
+    const submeterCadastrar = async() => {
+        setCarregando(true);
+        const dados = {
+            categoria_nome:  categoriaNome,
+            cor
+        }
+        const resposta = await novaCategoria(dados);
+        setCarregando(false);
+        if (!resposta.erro) {
+            alert(resposta.msg);
+            navegar(-1);
+        };
+        if (resposta.erro) {
+            setMsg(resposta.msg);
+            return;
+        };
+
+    };
+
 
     return(
-      <Container>
-        <SubContainer>
-            <Form>
-                <h3>Nova categoria de reservas</h3>
-                <ContainerInput> 
-                    Título:
-                    <Input
-                        type='text'
-                        name='titulo'
-                        placeholder='Digite o título da categoria'
-                    />
-                </ContainerInput>
-                <ContainerInput>
-                    Cor:
-                    <InputCor
-                        type='color'
-                        name='cor'
-                        value='#3DEB65'
-                        placeholder='Selecione a cor'
-                    />
-                </ContainerInput>
-                <Button>CADASTRAR</Button>
-                <Button>CANCELAR</Button>
-            </Form>
-        </SubContainer>
-      </Container>
+      <ContainerFormulario>
+        {
+            carregando ? <Carregamento/>:
+            <SubContainerFormulario>
+                <Formulario>
+                    <h3>NOVA CATEGORIA DE RESERVAS</h3>
+                        <Label>Título:</Label>
+                        <Input
+                            type='text'
+                            placeholder='Digite um nome para a categoria'
+                            name={categoriaNome}
+                            value={categoriaNome}
+                            onChange={(e) => setCategoriaNome(e.target.value)}
+                        />
+                        <Label>Cor:</Label>
+                        <InputCor
+                            type='color'
+                            placeholder='Selecione a cor'
+                            name={cor}
+                            value={cor}
+                            onChange={(e) => setCor(e.target.value)}
+                        />
+                    <Botao onClick={submeterCadastrar} tipo={true}>
+                        CADASTRAR
+                    </Botao>
+                    <Botao onClick={(e) => [e.preventDefault(), navegar(-1)]}>
+                        CANCELAR
+                    </Botao>
+                </Formulario>
+                {msg}
+            </SubContainerFormulario>
+        }
+      </ContainerFormulario>
     );
 };
 

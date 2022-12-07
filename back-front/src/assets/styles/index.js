@@ -3,7 +3,7 @@ import Color from './colors'
 
 
 //CONTAINERS
-export const Container = styled.div`
+export const ContainerFormulario = styled.div`
     height: 100%;
     min-height: 100vh;
     display: flex;
@@ -16,7 +16,7 @@ export const Container = styled.div`
     padding-bottom: 20px;
 `;
 
-export const SubContainer = styled.div`
+export const SubContainerFormulario = styled.div`
     height:100%;
     width: 300px;
     display: flex;
@@ -25,9 +25,11 @@ export const SubContainer = styled.div`
     align-items: center;
     justify-content: flex-start;
     background-color: ${Color.fundoSecundario};
+    gap: 20px
 `;
 
-export const ContainerFormulario = styled.form`
+export const Formulario = styled.form`
+    padding-top: 20px;
     position:relative;
     white-space: nowrap;
     box-sizing: border-box;
@@ -53,21 +55,6 @@ export const ContainerFormulario = styled.form`
         width: 300px;
         text-align: left;
     }; */
-`;
-
-export const Form = styled.div`
-    position:relative;
-    white-space: nowrap;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    border: 1px solid white;
-    border-radius: 20px;
-    padding: 20px;
-    background-color: ${Color.fundoSecundario};
 `;
 
 export const ContainerHora = styled.time`
@@ -99,6 +86,27 @@ export const SubContainerCheckBox = styled.div`
     align-items: center;
     justify-content: flex-start;
     color: ${Color.secundaria};
+    gap: 5px;
+`;
+
+export const ContainerSenhas = styled.div`
+    position:relative;
+    white-space: nowrap;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background-color: ${Color.fundoSecundario};
+
+    > p {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        font-size: 7px;
+    }
+
 `;
 
 export const Label = styled.div`
@@ -113,6 +121,25 @@ export const Label = styled.div`
 `;
 
 //INPUTS
+export const Input = styled.input`
+    width: 100%;
+    height: 30px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 7px;
+    padding: 10px;
+    background-color: ${Color.fundoCalendarioBloco};
+
+        ::placeholder {
+            font-size: 12px;
+            color: ${Color.secundaria};
+        };
+        :focus {
+            color: ${Color.primaria};
+            outline: 1px solid ${Color.acentuada};
+        };
+`;
+
 export const InputArea = styled.textarea`
     width: 300px;
     height: 100px;
@@ -124,23 +151,7 @@ export const InputArea = styled.textarea`
     background-color: ${Color.fundoCalendarioBloco};
 
         ::placeholder {
-            color: ${Color.secundaria};
-        };
-        :focus {
-            color: ${Color.primaria};
-            outline: 1px solid ${Color.acentuada};
-        };
-`;
-
-export const Input = styled.input`
-    width: 100%;
-    height: 30px;
-    box-sizing: border-box;
-    border: none;
-    border-radius: 7px;
-    padding: 10px;
-    background-color: ${Color.fundoCalendarioBloco};
-        ::placeholder {
+            font-size: 12px;
             color: ${Color.secundaria};
         };
         :focus {
@@ -176,11 +187,31 @@ export const InputSelect = styled.select`
     }
 `;
 
-export const InputCheckbox = styled.input.attrs({type: 'radio'})`
+export const InputCheckbox = styled.input.attrs({type: 'checkbox'})`
     width: 15px;
     height: 15px;
     border: none;
     font-size: 14px;
+`;
+
+export const InputCor = styled.input.attrs({type: 'color'})`
+    width: 100%;
+    height: 30px;
+    display: flex;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 7px;
+    background-color: ${Color.fundoCalendarioBloco};
+    padding-left: 3px;
+    padding-right: 3px;
+
+        ::placeholder {
+            color: ${Color.secundaria};
+        };
+        :focus {
+            color: ${Color.primaria};
+            outline: 1px ${Color.acentuada};
+        };
 `;
 
 //BUTTONS

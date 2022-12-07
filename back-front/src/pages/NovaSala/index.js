@@ -1,17 +1,20 @@
-import { useState } from 'react';
-import {useLocation, useNavigate} from 'react-router';
+import {useState} from 'react';
+import {useLocation, useNavigate} from 'react-router-dom';
+
 import {
-    Button,
-    Container,
-    ContainerInput,
-    Form,
+    ContainerFormulario,
+    SubContainerFormulario,
+    Formulario,
+    Label,
     Input,
-    SubContainer,
-    InputTextArea,
-    Select
-} from './styles';
+    InputArea,
+    InputSelect,
+    Botao,
+} from '../../assets/styles';
+
 import Carregamento from '../../components/Carregando';
 import useAuth from '../../hooks/useAuth';
+
 
 const NovaSala = () => {
 
@@ -21,7 +24,7 @@ const NovaSala = () => {
     const {novaSala} = useAuth();
 
     const [carregando, setCarregando] = useState(false);
-    const [nome, setNome] = useState('');
+    const [salaNome, setSalaNome] = useState('');
     const [descricao, setDescricao] = useState('');
     const [capacidade, setCapacidade] = useState();
     const [msg, setMsg] = useState('');
@@ -29,57 +32,52 @@ const NovaSala = () => {
     const submeterCadastrar = async() => {
         setCarregando(true);
         const dados = {
-            grupoId,
-            nome,
+            grupo_id: grupoId,
+            sala_nome: salaNome,
             descricao,
             capacidade
         }
         const resposta = await novaSala(dados);
         setCarregando(false);
+        if (!resposta.erro) {
+            alert(resposta.msg);
+            navegar(-1);
+        };
         if (resposta.erro) {
             setMsg(resposta.msg);
             return;
         };
-        if (!resposta.erro) {
-            alert(resposta.msg);
-        };
+
     };
 
     return(
-      <Container>
+      <ContainerFormulario>
         {
             carregando ? <Carregamento/>:
-            <SubContainer>
-                <Form>
-                    <h3>Nova sala</h3>
-                    <ContainerInput>
-                        Grupo:
-                        <Select defaultValue={grupoId} disabled>
+            <SubContainerFormulario>
+                <Formulario>
+                    <h3>NOVA SALA</h3>
+                        <Label>Grupo:</Label>
+                        <InputSelect defaultValue={grupoId} disabled>
                             <option value={grupoId}>{grupoNome}</option>
-                        </Select>
-                    </ContainerInput>
-                    <ContainerInput> 
-                        Nome:
+                        </InputSelect>
+                        <Label>Nome:</Label>
                         <Input
                             type='text'
-                            name='nome'
                             placeholder='Digite um nome para identificação'
-                            value={nome}
-                            onChange={(e) => setNome(e.target.value)}
+                            name={salaNome}
+                            value={salaNome}
+                            onChange={(e) => setSalaNome(e.target.value)}
                         />
-                    </ContainerInput>
-                    <ContainerInput> 
-                        Descrição:
-                        <InputTextArea
+                        <Label>Descrição:</Label>
+                        <InputArea
                             type='textarea'
                             name='descricao'
                             placeholder='Digite uma descrição sobre esta sala'
                             value={descricao}
                             onChange={(e) => setDescricao(e.target.value)}
                         />
-                    </ContainerInput>
-                    <ContainerInput>
-                        Capacidade:
+                        <Label>Capacidade:</Label>
                         <Input
                             type='number'
                             name='capacidade'
@@ -87,17 +85,17 @@ const NovaSala = () => {
                             value={capacidade}
                             onChange={(e) => setCapacidade(e.target.value)}
                         />
-                    </ContainerInput>
-                    <Button
-                        onClick={submeterCadastrar}
-                        tipo={true}
-                    >CADASTRAR</Button>
-                    <Button onClick={(e) => [e.preventDefault(), navegar(-1)]}>CANCELAR</Button>
-                </Form>
+                    <Botao onClick={submeterCadastrar} tipo={true}>
+                        CADASTRAR
+                    </Botao>
+                    <Botao onClick={(e) => [e.preventDefault(), navegar(-1)]}>
+                        CANCELAR
+                    </Botao>
+                </Formulario>
                 <p>{msg}</p>
-            </SubContainer>
+            </SubContainerFormulario>
         }
-      </Container>
+      </ContainerFormulario>
     );
 };
 

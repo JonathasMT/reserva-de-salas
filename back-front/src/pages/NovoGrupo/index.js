@@ -2,20 +2,22 @@ import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 
 import {
-    Button,
-    Container,
-    ContainerInput,
-    ContainerCheckBox,
-    Form,
+    ContainerFormulario,
+    SubContainerFormulario,
+    Formulario,
+    Label,
     Input,
-    SubContainer,
-    InputTextArea,
-    Checkbox,
+    InputArea,
+    ContainerCheckBox,
     SubContainerCheckBox,
-    ContainerHora
-} from './styles';
+    InputCheckbox,
+    ContainerHora,
+    Botao
+} from '../../assets/styles';
+
 import Carregamento from '../../components/Carregando';
 import useAuth from '../../hooks/useAuth';
+
 
 const NovoGrupo = () => {
 
@@ -23,12 +25,12 @@ const NovoGrupo = () => {
     const {novoGrupo} = useAuth();
 
     const [carregando, setCarregando] = useState(false);
-    const [titulo, setTitulo] = useState('');
+    const [grupoNome, setGrupoNome] = useState('');
     const [descricao, setDescricao] = useState('');
     const [diasSemana, setDiasSemana] = useState({dias: []});
     const [horaInicio, setHoraInicio] = useState('07:00');
     const [horaFim, setHoraFim] = useState('22:00');
-    const [tempoAntecedencia, setTempoAntecedencia] = useState('');
+    const [antecedencia, setAntecedencia] = useState('');
     const [msg, setMsg] = useState('');
 
     const aoMudar = (e) => {
@@ -46,104 +48,100 @@ const NovoGrupo = () => {
     const submeterCadastrar = async() => {
         setCarregando(true);
         const dados = {
-            titulo,
+            grupo_nome: grupoNome,
             descricao,
             diasSemana,
-            horaInicio,
-            horaFim,
-            tempoAntecedencia
+            hora_inicio: horaInicio,
+            hora_fim: horaFim,
+            antecedencia_minima: antecedencia
         };
         const resposta = await novoGrupo(dados);
         setCarregando(false);
+        if (!resposta.erro) {
+            alert(resposta.msg);
+            navegar(-1)
+        };
         if (resposta.erro) {
             setMsg(resposta.msg);
             return;
         };
-        if (!resposta.erro) {
-            alert(resposta.msg);
-        };
     };
 
     return(
-      <Container>
+      <ContainerFormulario>
         {carregando && <Carregamento/>}
-        <SubContainer>
-            <Form>
-                <h3>Novo grupo de salas</h3>
-                <ContainerInput> 
-                    Título:
+        <SubContainerFormulario>
+            <Formulario>
+                <h3>NOVO GRUPO DE SALAS</h3>
+                    <Label>Nome:</Label>
                     <Input
                         type='text'
                         name='titulo'
-                        placeholder='Digite o título do grupo de salas'
-                        value={titulo}
-                        onChange={(e) => setTitulo(e.target.value)}
+                        placeholder='Digite um nome para este grupo de salas'
+                        value={grupoNome}
+                        onChange={(e) => setGrupoNome(e.target.value)}
                     />
-                </ContainerInput>
-                <ContainerInput> 
-                    Descrição:
-                    <InputTextArea
+                    <Label>Descrição:</Label>
+                    <InputArea
                         type='textarea'
                         name='descricao'
                         placeholder='Digite uma descrição sobre este grupo'
                         value={descricao}
                         onChange={(e) => setDescricao(e.target.value)}
                     />
-                </ContainerInput>
                 <ContainerCheckBox>
                     Dias da semana reserváveis:
                     <SubContainerCheckBox>
-                        <Checkbox
+                        <InputCheckbox
                             value='1'
                             onChange={aoMudar}
                         />
                         Domingo
                     </SubContainerCheckBox>
                     <SubContainerCheckBox>
-                        <Checkbox
+                        <InputCheckbox
                             value='2'
                             onChange={aoMudar}
                         />
                         Segunda
                     </SubContainerCheckBox>
                     <SubContainerCheckBox>
-                        <Checkbox
+                        <InputCheckbox
                             value='3'
                             onChange={aoMudar}
                         />
                         Terça
                     </SubContainerCheckBox>
                     <SubContainerCheckBox>
-                        <Checkbox
+                        <InputCheckbox
                             value='4'
                             onChange={aoMudar}
                         />
                         Quarta
                     </SubContainerCheckBox>
                     <SubContainerCheckBox>
-                        <Checkbox
+                        <InputCheckbox
                             value='5'
                             onChange={aoMudar}
                         />
                         Quinta
                     </SubContainerCheckBox>
                     <SubContainerCheckBox>
-                        <Checkbox
+                        <InputCheckbox
                             value='6'
                             onChange={aoMudar}
                         />
                         Sexta
                     </SubContainerCheckBox>
                     <SubContainerCheckBox>
-                        <Checkbox
+                        <InputCheckbox
                             value='7'
                             onChange={aoMudar}
                         />
                         Sábado
                     </SubContainerCheckBox>
                 </ContainerCheckBox>
-                <ContainerInput>
-                    Horário inicial e final de reservas no dia:
+                <Label>Horário inicial e final de reservas no dia:</Label>
                     <ContainerHora>
                         <Input
                             type='time'
@@ -167,26 +165,24 @@ const NovoGrupo = () => {
 
                         />
                     </ContainerHora>
-                </ContainerInput>
-                <ContainerInput>
-                    Mínimo de antecedencia para reservas:
+                    <Label>Mínimo de antecedencia para reservas:</Label>
                     <Input
                         type='number'
                         name='antecedencia'
                         placeholder='Tempo em minutos'
-                        value={tempoAntecedencia}
-                        onChange={(e) => setTempoAntecedencia(e.target.value)}
+                        value={antecedencia}
+                        onChange={(e) => setAntecedencia(e.target.value)}
                     />
-                </ContainerInput>
-                <Button
-                    onClick={submeterCadastrar}
-                    tipo={true}
-                >CADASTRAR</Button>
-                <Button onClick={(e) => [e.preventDefault(), navegar(-1)]}>CANCELAR</Button>
-            </Form>
+                <Botao onClick={submeterCadastrar} tipo={true}>
+                    CADASTRAR
+                </Botao>
+                <Botao onClick={(e) => [e.preventDefault(), navegar(-1)]}>
+                    CANCELAR
+                </Botao>
+            </Formulario>
             <p>{msg}</p>
-        </SubContainer>
-      </Container>
+        </SubContainerFormulario>
+      </ContainerFormulario>
     );
 };
 

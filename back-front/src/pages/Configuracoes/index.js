@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 
 import {
-    Container,
-    SubContainer,
     ContainerListGrupo,
     ListGrupo,
     ListSala,
@@ -18,6 +16,8 @@ import {BiEdit, BiPlus} from 'react-icons/bi';
 import Carregamento from '../../components/Carregando';
 import {
     ContainerFormulario,
+    SubContainerFormulario,
+    Formulario,
     Label,
     BotaoFlutuante,
     Listagem
@@ -91,38 +91,38 @@ const Configuracoes = () => {
 
     const formInstituicao = () => {
         return (
-            <ContainerFormulario>
+            <Formulario>
                 <BotaoFlutuante title='Editar esta instituição' onClick={(e) => [e.preventDefault(), navegar('/editarinstituicao')]}>
                     <BiEdit/>
                 </BotaoFlutuante>
-                <h3>Instituição</h3>
+                <h3>INSTITUIÇÃO</h3>
                     <Label>Nome da instituição:</Label>
                     <Listagem>
                         {instituicaoNome}
                     </Listagem>
-            </ContainerFormulario>
+            </Formulario>
         );
     };
 
     const formGrupos = () => {
         return (
-            <ContainerFormulario>
+            <Formulario>
                 <BotaoFlutuante title='Adicionar um novo grupo de salas' onClick={(e) => [e.preventDefault(), navegar('/novogrupo')]}>
                     <BiPlus/>
                 </BotaoFlutuante>
-                <h3>Grupos</h3>
+                <h3>GRUPOS E SALAS</h3>
                 {   
                     grupos.length > 0 ?
                         grupos.map((grupo, i) =>
                             <ContainerListGrupo key={i}>
                                 <ListGrupo>
-                                    {grupo.titulo}
+                                    {grupo.grupo_nome}
                                     <div>
                                         <BiPlus
                                             title='Adicionar uma nova sala a este grupo'
                                             onClick={(e) => [
                                                 e.preventDefault(),
-                                                navegar('/novasala', {state: {grupoId: grupo.grupo_id, grupoNome: grupo.titulo}})
+                                                navegar('/novasala', {state: {grupoId: grupo.grupo_id, grupoNome: grupo.grupo_nome}})
                                             ]}/>
                                         <BiEdit title='Editar este grupo' onClick={(e) => [e.preventDefault(), navegar('/editargrupo')]}/>
                                     </div>
@@ -133,7 +133,7 @@ const Configuracoes = () => {
                                         salas.map((sala, i) =>
                                             sala.grupo_id===grupo.grupo_id &&
                                                 <ListSala key={i}>
-                                                    <p>{sala.titulo}</p>
+                                                    <p>{sala.sala_nome}</p>
                                                     <BiEdit title='Editar esta sala' onClick={(e) => [e.preventDefault(), navegar('/editarsala')]}/>
                                                 </ListSala>
                                         )
@@ -150,17 +150,17 @@ const Configuracoes = () => {
                         Não há grupos
                     </Listagem>
                 }
-            </ContainerFormulario>
+            </Formulario>
         );
     };
 
     const formCategorias = () => {
         return (
-            <ContainerFormulario>
+            <Formulario>
                 <BotaoFlutuante title='Adicionar uma nova categoria de reservas' onClick={(e) => [e.preventDefault(), navegar('/novacategoria')]}>
                     <BiPlus/>
                 </BotaoFlutuante>
-                <h3>Categorias</h3>
+                <h3>CATEGORIAS</h3>
                 {   
                     categorias.length > 0 ?
                     categorias.map((categoria, i) =>
@@ -168,7 +168,7 @@ const Configuracoes = () => {
                                 <Listagem>
                                     <ContainerTitulo>
                                         <Circulo cor={categoria.cor}/>
-                                        {categoria.titulo}
+                                        {categoria.categoria_nome}
                                     </ContainerTitulo>
                                     <BiEdit title='Editar esta categoria de reservas' onClick={(e) => [e.preventDefault(), navegar('/editarcategoria')]}/>
                                 </Listagem>
@@ -179,20 +179,20 @@ const Configuracoes = () => {
                         Não há categorias
                     </Listagem>
                 }
-            </ContainerFormulario>
+            </Formulario>
         );
     };
 
     return(
         <>
             {carregando && <Carregamento/>}
-            <Container>
-                <SubContainer>
+            <ContainerFormulario>
+                <SubContainerFormulario>
                     {formInstituicao()}
                     {formGrupos()}
                     {formCategorias()}
-                </SubContainer>
-            </Container>
+                </SubContainerFormulario>
+            </ContainerFormulario>
         </>
     );
 };

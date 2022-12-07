@@ -1,22 +1,19 @@
 import {useState} from 'react';
 import {useNavigate, useLocation} from 'react-router-dom';
 
-import {
-    Container,
-    SubContainer
-} from './styles';
-
 import Carregamento from '../../components/Carregando';
 import useAuth from '../../hooks/useAuth';
 
 import {
-    ContainerFormulario,
+    Formulario,
     ContainerHora,
     Label,
     InputArea,
     Input,
     InputSelect,
-    Botao
+    Botao,
+    ContainerFormulario,
+    SubContainerFormulario
 } from '../../assets/styles';
 
 
@@ -69,11 +66,11 @@ const NovaReserva = () => {
     }
 
     return(
-      <Container>
+      <ContainerFormulario>
         {carregando && <Carregamento/>}
-        <SubContainer>
-            <ContainerFormulario onSubmit={aoSubmeter}>
-                <h3>Nova reserva</h3>
+        <SubContainerFormulario>
+            <Formulario onSubmit={aoSubmeter}>
+                <h3>NOVA RESERVA</h3>
                     <Label>Título:</Label>
                     <Input
                         type='text'
@@ -168,13 +165,13 @@ const NovaReserva = () => {
                         <option value='4'>Anualmente</option>
                     </InputSelect>
                 <Botao tipo={true} type='submit'>CADASTRAR  </Botao>
-                <Botao
-                    onClick={(e) => [e.preventDefault(), navegar(-1)]}
-                >CANCELAR</Botao>
-            </ContainerFormulario>
+                <Botao onClick={(e) => [e.preventDefault(), navegar(-1)]}>
+                    CANCELAR
+                </Botao>
+            </Formulario>
             <p>{msg}</p>
-        </SubContainer>
-      </Container>
+        </SubContainerFormulario>
+      </ContainerFormulario>
     );
 };
 
