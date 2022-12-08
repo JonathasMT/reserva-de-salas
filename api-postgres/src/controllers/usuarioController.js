@@ -34,13 +34,32 @@ const read = async (req, res) => {
     return res.status(200).json('Listar todos os usuarios.'+usuario)
 };
 
+const readPerfil = async (req, res) => {
+    try {
+        const {usuario_id} = req.usuario
+        await baseDados.sync();
+        const usuario = await Usuario.findOne({where: {usuario_id: usuario_id}});
+        if (!usuario) {
+            return res.status(200).json({erro: true, msg: 'Usuario não encontrado!'});
+        }else {
+            const {usuario_nome, email} = usuario;
+            const token = req.token;
+            return res.status(200).json({erro: false, msg: 'Sucesso', usuario: {usuario_id, usuario_nome, email, token}});
+        }
+
+    } catch (error) {
+        res.status(500).json({msg: 'Ocorreu um erro, tente novamente ou contacte o administrador!'+error});
+    };
+
+};
+
 const readVarios = async (_req, res) => {
     await baseDados.sync();
     const usuarios = await Usuario.findAll();
     return res.status(200).json({erro: false, msg: 'Sucesso', usuarios: usuarios})
 };
 
-const update = async (req, res) => {
+const updatePerfil = async (req, res) => {
     await baseDados.sync();
     const usuario = Usuario.findAll();
     return res.status(200).json('Listar todos os usuarios.'+usuario)
@@ -83,8 +102,9 @@ const login = async (req, res) => {
 module.exports = {
     create,
     read,
+    readPerfil,
     readVarios,
-    update,
+    updatePerfil,
     deleteUsuario,
     login
 };

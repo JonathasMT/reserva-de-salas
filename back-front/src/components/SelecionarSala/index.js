@@ -15,7 +15,7 @@ function SelecionarSala() {
                 </Sala> */}
                 <Grupo>
                     <InputSelect>
-                    <option value='FaAngleDown'>Salas de aula <FaAngleDown/> </option>                        
+                    <option value='FaAngleDown'>Salas de aula</option>
                     <option value='2'>Salas de informática</option>
                     <option value='3'>Salas de reuniões</option>
                     </InputSelect>

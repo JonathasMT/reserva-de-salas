@@ -60,7 +60,6 @@ const Configuracoes = () => {
             setCarregando(false);
             if (!resposta.erro) {
                 setSalas(resposta.salas)
-                console.log(resposta.salas);
             };
             if (resposta.erro) {
                 alert(resposta.msg);
@@ -75,7 +74,6 @@ const Configuracoes = () => {
             setCarregando(false);
             if (!resposta.erro) {
                 setCategorias(resposta.categorias)
-                console.log(resposta.categorias);
             };
             if (resposta.erro) {
                 alert(resposta.msg);

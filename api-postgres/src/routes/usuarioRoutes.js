@@ -14,6 +14,12 @@ router.post('/login',
     usuarioControler.login
 );
 
+//LISTAR PERFIL
+router.get('/listarperfil',
+    usuarioValidacoes.credenciais,
+    usuarioControler.readPerfil
+);
+
 //LISTAR VARIOS USUÁRIOS
 router.get('/listarusuarios',
     usuarioValidacoes.credenciais,
@@ -23,20 +29,21 @@ router.get('/listarusuarios',
 //NOVO USUÁRIO
 router.post('/novousuario',
     usuarioValidacoes.credenciais,
-    usuarioValidacoes.novoCadastro,
+    usuarioValidacoes.create,
     //cria o usuario
     usuarioControler.create
 );
 
-//ATUALIZAR USUÁRIO
-router.put('/usuario/:id',
+//ATUALIZAR PERFIL
+router.put('/atualizarperfil',
     usuarioValidacoes.credenciais,
+    usuarioValidacoes.updatePerfil,
     //atuliza o usuario
-    usuarioControler.update
+    usuarioControler.updatePerfil
 );
 
 //LER UM USUÁRIO
-router.get('/usuario/:id',
+router.get('/usuario',
     usuarioValidacoes.credenciais,
     usuarioControler.read
 );

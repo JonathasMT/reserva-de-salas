@@ -28,7 +28,6 @@ const PrimeiroAcesso = () => {
         const verificaBd = async () => {
             const resposta = await tamanhoBd();
             setCarregando(false);
-            console.log('ERRO? ' + resposta.erro);
             if (resposta.erro) {
                 navegar('/');
             };
@@ -75,7 +74,7 @@ const PrimeiroAcesso = () => {
                                         placeholder='Digite o nome da sua instituição'
                                         value={instituicaoNome}
                                         required
-                                        onChange={(e) => [setInstituicaoNome(e.target.value), setMsg(''), console.log(e.target.value)]}
+                                        onChange={(e) => [setInstituicaoNome(e.target.value), setMsg('')]}
                                     />
                             <h3>USUÁRIO</h3>
                                 <Label>Nome do usuário:</Label>

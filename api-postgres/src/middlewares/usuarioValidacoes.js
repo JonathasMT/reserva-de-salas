@@ -5,7 +5,7 @@ const baseDados = require('../connection');
 const Usuario = require('../models/Usuario');
 const Instituicao = require('../models/Instituicao');
 
-const novoCadastro = async (req, res, next) => {
+const create = async (req, res, next) => {
     try {
         const {nome, email, senha, confirma_senha, nivel} = req.body;
 
@@ -46,9 +46,50 @@ const novoCadastro = async (req, res, next) => {
 
     } catch (error) {
         res.status(500).json({msg: 'Ocorreu um erro, tente novamente ou contacte o administrador!'+error});
-    }
+    };
+};
 
+const updatePerfil = async (req, res, next) => {
+    try {
+        const {nome, email, alterar_senha, senha, nova_senha, confirma_nova_senha} = req.body;
+        const {usuario_id} = req.usuario;
 
+        //validar nome
+        if (!nome) {
+            return res.status(400).json({erro: true, msg: 'O campo "Nome" deve ser preeenchido!' });
+        };
+        //validar email
+        if (!email) {
+            return res.status(400).json({erro: true, msg: 'O campo "Email" deve ser preeenchido!'});
+        };
+        //busca o usuario
+        await baseDados.sync();
+        const usuario = await Usuario.findOne({where : {usuario_id: usuario_id}});
+        if (!usuario) {
+            return res.status(400).json({erro: true, msg: 'Usuário não foi encontrado!'});
+        };
+        //validar senhas
+        if (alterar_senha) {
+            const verificaSenha = await bcrypt.compare(senha, usuario.senha);
+            if(!verificaSenha) {
+                return res.status(422).json({erro: true, msg: 'Senha atual incorreta!'});
+            };
+            if (!nova_senha) {
+                return res.status(400).json({erro: true, msg: 'O campo "Nova senha" deve ser preeenchido!'});
+            };
+            if (!confirma_nova_senha) {
+                return res.status(400).json({erro: true, msg: 'O campo "Repita a nova senha" deve ser preeenchido!'});
+            };
+            if (confirma_nova_senha != senha ) {
+                return res.status(400).json({erro: true, msg: 'O campo "Nova senha e Repita a nova senha" devem ser iguais!'});
+            };
+        };
+
+        next();
+
+    } catch (error) {
+        res.status(500).json({msg: 'Ocorreu um erro, tente novamente ou contacte o administrador!'+error});
+    };
 };
 
 const login = async (req, res, next) => {
@@ -99,6 +140,7 @@ const credenciais = (req, res, next) => {
         const token = req.headers.authorization.split(' ')[1];
         const decodificado = jwt.verify(token, process.env.SECRET);
         req.usuario = decodificado;
+        req.token = token;
         next();
     } catch (_error) {
         return res.status(401).send({erro: true, msg: 'Não autorizado!'});
@@ -107,7 +149,8 @@ const credenciais = (req, res, next) => {
 };
 
 module.exports = {
-    novoCadastro,
+    create,
+    updatePerfil,
     login,
     credenciais
 };

@@ -48,13 +48,11 @@ const MinhasReservas = () => {
         return v[p]
     }
 
-console.log(reservas);
 
     return(
         carregando ? <Carregamento/> :
         <ContainerTabela>
             <h2>MINHAS RESERVAS</h2>
-            {/* {console.log(reservas[0].Categorium['titulo'])} */}
             <SubContainerTabela>
                 <table>
                     <thead>
@@ -63,8 +61,6 @@ console.log(reservas);
                         </tr>
                     </thead>
                     <tbody>
-                        {console.log('RESERVAS')}
-                        {console.log(reservas[0]?'SIM':'NÃO')}
                         {reservas.map((reserva, r) => (
                             <tr key={r}>
                             {propriedades.map((p) => (

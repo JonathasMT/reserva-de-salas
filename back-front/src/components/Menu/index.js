@@ -8,7 +8,6 @@ import {
     Content,
     ContainerPerfil,
     ContainerNome,
-    ItemLink
 } from './styles';
 
 
@@ -29,7 +28,6 @@ import useContexto from '../../hooks/useContexto';
 
 
 const Menu = () => {
-    console.log('Passou no arquivo menu.js');
     const {menu, alterarMenu} = useContexto();
     const fecharMenu = () => alterarMenu();
     const {sair, usuario} = useAuth();
@@ -46,7 +44,6 @@ const Menu = () => {
 
     const {pathname} = useLocation();
 
-    console.log(pathname);
     return (
         <Container>
             <ContainerMenu menu={menu}>

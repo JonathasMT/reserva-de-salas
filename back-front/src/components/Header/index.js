@@ -16,7 +16,6 @@ import useContexto from '../../hooks/useContexto';
 
 
 const Header = () => {
-    console.log('Passou no arquivo Header.js');
     const {usuario, instituicao} = useAuth();
     const {menu, alterarMenu} = useContexto();
 
@@ -26,8 +25,6 @@ const Header = () => {
         if(instituicao) {
             const {instituicao_nome} = JSON.parse(instituicao);
             if(instituicao_nome) {
-                console.log('instituicao_nome');
-                console.log(instituicao_nome);
                 setNome(instituicao_nome);
             };
         };

@@ -18,14 +18,10 @@ function CalendarioDia({data, setData, calendarioTipo, reservas}) {
 
     useEffect(() => {
         setDia(data.format('D'));
-        console.log('atualizou '+ data.format('D'));
     }, [data])
 
     function isAtual(dia) {
-        console.log('DIA');
-        console.log(dia);
-        console.log(new Date(), 'day');
-        if (data.isSame(new Date(), 'day'))
+        if (data.isSame(Date.now(), 'day'))
             return <DiaCorrente>{dia}</DiaCorrente>
         else
             return <Dia> {dia}</Dia>

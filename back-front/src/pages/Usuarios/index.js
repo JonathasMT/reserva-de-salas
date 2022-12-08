@@ -11,22 +11,16 @@ import Carregamento from '../../components/Carregando';
 
 const Usuarios = () => {
 
-    // const header = Object.keys(usuarios[0]);
-    // console.log('NOMES >>'+header)
+    moment.locale('pt-br');
 
     const navegar = useNavigate();
-    const [carregando, setCarregando] = useState(false)
+    const [carregando, setCarregando] = useState(false);
     const {listarUsuarios} = useAuth();
     const [usuarios, setUsuarios] = useState([]);
 
     const titulos = ['Id', 'Nome', 'E-mail', 'Nível', 'Status', 'Login', 'Criado', 'Atualizado', 'Opções'];
     const propriedades = ['usuario_id', 'usuario_nome', 'email', 'nivel','status', 'ultimo_login', 'criado_em', 'atualizado_em', 'opcoes'];
     const nivelUsuario = ['Usuário', 'Administrador']
-
-    const formatar = (data) => {
-        const novaData = new Date(data);
-        return novaData.toLocaleString('pt-br')
-    };
 
     useEffect(() => {
         const buscarUsuarios = async() => {
@@ -47,7 +41,7 @@ const Usuarios = () => {
     }, []);
 
     function renderiza(usuario, p) {
-        const d = (moment(usuario[p]).format('DD/MM/YYYY - hh:mm:ss A'));
+        var d;
 
         switch (p) {
             case 'nivel':
@@ -55,10 +49,13 @@ const Usuarios = () => {
             case 'status':
                 return (p? 'Ativo' : 'Desativado');
             case 'ultimo_login':
+                d = (moment(usuario[p]).format('L - LTS'));
                 return d;
             case 'criado_em':
+                d = (moment(usuario[p]).format('L - LTS'));
                 return d;
             case 'atualizado_em':
+                d = (moment(usuario[p]).format('L - LTS'));
                 return d;
             case 'opcoes':
                 return (

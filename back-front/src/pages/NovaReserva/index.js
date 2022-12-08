@@ -48,7 +48,6 @@ const NovaReserva = () => {
             setCarregando(false);
             if (!resposta.erro) {
                 setCategorias(resposta.categorias)
-                console.log(resposta.categorias);
             };
             if (resposta.erro) {
                 alert(resposta.msg);

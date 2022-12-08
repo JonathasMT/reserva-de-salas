@@ -13,6 +13,7 @@ import Perfil from './pages/Perfil';
 import NotFound from './pages/NotFound';
 import NovoUsuario from './pages/NovoUsuario';
 import NovoGrupo from './pages/NovoGrupo';
+import EditarGrupo from './pages/EditarGrupo';
 import NovaSala from './pages/NovaSala';
 import NovaCategoria from './pages/NovaCategoria';
 import NovaReserva from './pages/NovaReserva';
@@ -24,8 +25,6 @@ import EditarInstituicao from './pages/EditarInstituicao';
 
 
 const RoutesApp = () => {
-
-    console.log('Passou no arquivo routes.js');
     const {usuario} = useAuth();
 
     // eslint-disable-next-line
@@ -43,6 +42,7 @@ const RoutesApp = () => {
                     <Route path='/perfil' element={<Privada Destino={Perfil} />}/>
                     <Route path='/novousuario' element={<Privada Destino={NovoUsuario} />}/>
                     <Route path='/novogrupo' element={<Privada Destino={NovoGrupo} />}/>
+                    <Route path='/editargrupo' element={<Privada Destino={EditarGrupo} />}/>
                     <Route path='/novasala' element={<Privada Destino={NovaSala} />}/>
                     <Route path='/novacategoria' element={<Privada Destino={NovaCategoria} />}/>
                     <Route path='/novareserva' element={<Privada Destino={NovaReserva} />}/>

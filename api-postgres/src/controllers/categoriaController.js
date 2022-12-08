@@ -27,7 +27,6 @@ const create = async (req, res) => {
 const readVarias = async (_req, res) => {
     await baseDados.sync();
     const categorias = await Categoria.findAll();
-    console.log(categorias)
     return res.status(200).json({erro: false, msg: 'Sucesso', categorias: categorias})
 };
 

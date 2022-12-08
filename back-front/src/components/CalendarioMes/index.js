@@ -25,7 +25,7 @@ function CalendarioMes({data, setData, reservas, calendarioTipo}) {
     //verifica se o dia é o dia atual
     function isAtual(dia) {
         const getData = dia.format('D').toString();
-        if (dia.isSame(new Date(), 'day'))
+        if (dia.isSame(Date.now(), 'day'))
             return <DiaCorrente>{getData}</DiaCorrente>
         else
             return <Dia> {getData}</Dia>

@@ -8,13 +8,10 @@ export const Contexto = createContext({});
 
 export const ContextoProvider = ({children}) => {
 
-    console.log('Passou no arquivo ContextoProvider.js');
-
     const [menu, setMenu] = useState(false);
 
     const alterarMenu = () => {
         setMenu(!menu);
-        console.log('MENU > ' + menu);
     }
 
 

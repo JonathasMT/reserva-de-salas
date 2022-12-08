@@ -40,16 +40,15 @@ const create = async (req, res) => {
 const read = async (req, res) => {
     try {
         await baseDados.sync();
-
         const {grupo_id} = req.body
-
         //busca a instituição
         const grupo = await Grupo.findOne({where: {grupo_id: grupo_id}});
         //verifica se existe a instituição buscada
+        console.log(grupo);
         if (!grupo) {
-            return res.status(200).json({erro: true, msg: 'Grupo não encontrada!'});
+            return res.status(200).json({erro: true, msg: 'Grupo não encontrado!'});
         }else {
-            return res.status(200).json({erro: false, msg: grupo})
+            return res.status(200).json({erro: false, msg: 'Sucesso', grupo: grupo})
         }
     } catch (error) {
         return res.status(500).json({erro: true, msg: msgErro})
@@ -59,7 +58,6 @@ const read = async (req, res) => {
 const readVarios = async (_req, res) => {
     await baseDados.sync();
     const grupos = await Grupo.findAll();
-    console.log(grupos)
     return res.status(200).json({erro: false, msg: 'Sucesso', grupos: grupos})
 };
 

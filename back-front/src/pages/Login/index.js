@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 
 import {
@@ -21,7 +21,7 @@ const Login = () => {
 
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
-    const [msg, setMsg] = useState(' ');
+    const [msg, setMsg] = useState('');
     const [carregando, setCarregando] = useState(false)
 
     const submeterLogin = async() => {
@@ -71,7 +71,7 @@ const Login = () => {
                         </Botao>
                         <span>Esqueceu a senha?</span>
                     </Formulario>
-                    {msg}
+                    <p>{msg}</p>
                 </SubContainerFormulario>
         }
       </ContainerFormulario>

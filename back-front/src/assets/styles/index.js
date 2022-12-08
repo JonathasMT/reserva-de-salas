@@ -25,6 +25,7 @@ export const SubContainerFormulario = styled.div`
     justify-content: flex-start;
     background-color: ${Color.fundoSecundario};
     gap: 20px;
+    background-color: red;
 `;
 
 export const Formulario = styled.form`
@@ -34,10 +35,10 @@ export const Formulario = styled.form`
     align-items: center;
     justify-content: center;
     position:relative;
-    white-space: nowrap;
+    white-space: pre-line;
     border: 1px solid ${Color.borderGeral};
     border-radius: 20px;
-    /* background-color: ${Color.fundoSecundario}; */
+    background-color: ${Color.fundoSecundario};
     padding-top: 20px;
     padding: 20px;
     gap: 20px;
@@ -79,7 +80,6 @@ export const ContainerCheckBox = styled.div`
     align-items: flex-start;
     justify-content: flex-start;
     text-align: start;
-    color: ${Color.primaria};
     gap: 3px;
 `;
 
@@ -89,13 +89,14 @@ export const SubContainerCheckBox = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    color: ${Color.secundaria};
+    color: ${Color.primaria};
     gap: 5px;
 `;
 
 export const ContainerSenhas = styled.div`
+    width: 300px;
+    height: auto;
     position:relative;
-    white-space: nowrap;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -103,12 +104,15 @@ export const ContainerSenhas = styled.div`
     justify-content: center;
     gap: 20px;
     background-color: ${Color.fundoSecundario};
+    white-space: pre-line;
 
     > p {
+        text-align: left;
+        font-size: 12px;
+        border: 1px solid white;
+        border-radius: 7px;
+        padding: 5px;
         margin: 0;
-        padding: 0;
-        text-align: center;
-        font-size: 7px;
     }
 
 `;
@@ -121,7 +125,9 @@ export const Label = styled.div`
     justify-content: flex-start;
     text-align: start;
     margin-bottom: -17px;
+    //font
     color: ${Color.primaria};
+
 `;
 
 //INPUTS DE FORMULARIO

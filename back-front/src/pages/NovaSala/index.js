@@ -47,16 +47,15 @@ const NovaSala = () => {
             setMsg(resposta.msg);
             return;
         };
-
     };
 
     return(
-      <ContainerFormulario>
-        {
-            carregando ? <Carregamento/>:
-            <SubContainerFormulario>
-                <Formulario>
-                    <h3>NOVA SALA</h3>
+        <ContainerFormulario>
+            {
+                carregando ? <Carregamento/> :
+                <SubContainerFormulario>
+                    <Formulario onSubmit={submeterCadastrar}>
+                        <h3>NOVA SALA</h3>
                         <Label>Grupo:</Label>
                         <InputSelect defaultValue={grupoId} disabled>
                             <option value={grupoId}>{grupoNome}</option>
@@ -85,17 +84,17 @@ const NovaSala = () => {
                             value={capacidade}
                             onChange={(e) => setCapacidade(e.target.value)}
                         />
-                    <Botao onClick={submeterCadastrar} tipo={true}>
-                        CADASTRAR
-                    </Botao>
-                    <Botao onClick={(e) => [e.preventDefault(), navegar(-1)]}>
-                        CANCELAR
-                    </Botao>
-                </Formulario>
-                <p>{msg}</p>
-            </SubContainerFormulario>
-        }
-      </ContainerFormulario>
+                        <Botao tipo={true} type='submit'>
+                            CADASTRAR
+                        </Botao>
+                        <Botao onClick={(e) => [e.preventDefault(), navegar(-1)]}>
+                            CANCELAR
+                        </Botao>
+                    </Formulario>
+                    <p>{msg}</p>
+                </SubContainerFormulario>
+            }
+        </ContainerFormulario>
     );
 };
 
