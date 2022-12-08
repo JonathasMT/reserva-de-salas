@@ -20,7 +20,7 @@ function CalendarioMes({data, setData, reservas, calendarioTipo}) {
             );
         };
         setCalendario(calendario)
-    }, [data])
+    }, [data]);
 
     //verifica se o dia é o dia atual
     function isAtual(dia) {

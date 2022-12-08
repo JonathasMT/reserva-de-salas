@@ -5,7 +5,7 @@ const msgErro = 'Ocorreu um erro, tente novamente ou contacte o administrador! '
 
 const create = async (req, res, next) => {
     try {
-        const {grupo_nome, diasSemana, hora_inicio, hora_fim, antecedencia_minima} = req.body;
+        const {grupo_nome, dias_semana, hora_inicio, hora_fim, antecedencia_minima} = req.body;
         //verifica  se o nome está vazio
         if (!grupo_nome) {
             return res.status(200).json({erro: true, msg: 'O campo "Título" deve ser preeenchido!'});
@@ -18,7 +18,7 @@ const create = async (req, res, next) => {
             return res.status(200).json({erro: true, msg: 'O nome "' + grupo_nome + '" já existe!'});
         };
         //verifica  se o dias da semana está vazio
-        if (!diasSemana.dias || diasSemana.dias.length < 1) {
+        if (!dias_semana.dias || dias_semana.dias.length < 1) {
             return res.status(200).json({erro: true, msg: 'O campo "Dias da semana reserváveis" deve ser preeenchido!'});
         };
         //verifica  se a hora de inicio está vazio

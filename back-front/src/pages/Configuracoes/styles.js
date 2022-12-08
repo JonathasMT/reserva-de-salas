@@ -45,7 +45,7 @@ export const BotaoFlutuante = styled.button`
     border: none;
     border-radius: 9px;
     background-color: ${Color.acentuada};
-    color: white;
+    color: ${Color.fundoCalendarioBloco};
     font-size: 10px;
     font-weight: 500;
     cursor: pointer;
@@ -209,7 +209,7 @@ export const Button = styled.button`
     border-radius: 7px;
     padding: 5px;
     background-color: ${Color.acentuada};
-    color: white;
+    color: ${Color.fundoCalendarioBloco};
     font-size: 20px;
     font-weight: 600;
     cursor: pointer;

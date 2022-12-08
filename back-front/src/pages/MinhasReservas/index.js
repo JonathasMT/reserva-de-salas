@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 
-import {Container, SubContainer} from './styles';
+import { ContainerTabela, SubContainerTabela } from '../../assets/styles';
+
 import useAuth from '../../hooks/useAuth';
 import {BsPencilSquare, BsPersonDash} from 'react-icons/bs';
 import Carregamento from '../../components/Carregando';
@@ -51,10 +52,10 @@ console.log(reservas);
 
     return(
         carregando ? <Carregamento/> :
-        <Container>
-            <h2>MinhasReservas</h2>
+        <ContainerTabela>
+            <h2>MINHAS RESERVAS</h2>
             {/* {console.log(reservas[0].Categorium['titulo'])} */}
-            <SubContainer>
+            <SubContainerTabela>
                 <table>
                     <thead>
                         <tr>
@@ -75,8 +76,8 @@ console.log(reservas);
                         ))}
                     </tbody>
                 </table>
-            </SubContainer>
-        </Container>
+            </SubContainerTabela>
+        </ContainerTabela>
     );
 };
 

@@ -141,7 +141,6 @@ const Configuracoes = () => {
                                     <ListSala>
                                         Não há salas neste grupo
                                     </ListSala>
-
                                 }
                             </ContainerListGrupo>
                         )

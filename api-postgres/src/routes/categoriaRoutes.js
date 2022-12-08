@@ -8,15 +8,13 @@ const usuarioValidacoes = require('../middlewares/usuarioValidacoes');
 //controllers
 const categoriaController = require('../controllers/categoriaController');
 
-// //NOVA CATEGORIA
-// router.post('/novacategoria',
-//     usuarioValidacoes.credenciais,
-//     categoriaValidacoes.validarGrupoId,
-//     salaValidacoes.validarTitulo,
-//     salaValidacoes.validarCapacidade,
-//     //cria a sala
-//     salaController.createSala
-// );
+//NOVA CATEGORIA
+router.post('/novacategoria',
+    usuarioValidacoes.credenciais,
+    categoriaValidacoes.create,
+    //cria a sala
+    categoriaController.create
+);
 
 //LER VARIAS
 router.get('/listarcategorias',

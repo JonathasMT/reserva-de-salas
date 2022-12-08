@@ -2,9 +2,11 @@
 import {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 
-import {Container, SubContainer, Button, Form, ContainerInput, Input, InputImage} from './styles';
+import  {ContainerFormulario, SubContainerFormulario, Formulario, Label, Input, Botao} from '../../assets/styles';
+
 import Carregando from '../../components/Carregando';
 import useAuth from '../../hooks/useAuth';
+
 
 const PrimeiroAcesso = () => {
 
@@ -62,12 +64,11 @@ const PrimeiroAcesso = () => {
     return(
         <>
             {carregando? <Carregando/> :
-            <Container>
-                <SubContainer>
-                        <Form>
-                            <h2>Instituição</h2>
-                                <ContainerInput> 
-                                    Nome da instituição:
+            <ContainerFormulario>
+                <SubContainerFormulario>
+                        <Formulario onSubmit={submeterPrimeiroAcesso}>
+                            <h3>INSTITUIÇÃO</h3>
+                                    <Label>Nome da instituição:</Label>
                                     <Input
                                         type='text'
                                         name='instituicao'
@@ -76,29 +77,8 @@ const PrimeiroAcesso = () => {
                                         required
                                         onChange={(e) => [setInstituicaoNome(e.target.value), setMsg(''), console.log(e.target.value)]}
                                     />
-                                </ContainerInput>
-                                {/* <ContainerInput> 
-                                    Logo:
-                                    <InputImage
-                                        type='file'
-                                        name='logo'
-                                        placeholder='Selecione sua imagem de logo'
-                                        onChange={(e) => setLogo(e.target.files[0])}
-                                    />
-                                </ContainerInput> */}
-                            <h2>Usuário</h2>
-                            {/* <ContainerInput> 
-                                Imagem de perfil:
-                                <InputImage
-                                    type='text'
-                                    name='img'
-                                    placeholder='Selecione sua imagem de perfil'
-                                    value={img}
-                                    onChange={(e) => [setImg(e.target.value), setMsg('')]}
-                                />
-                            </ContainerInput> */}
-                            <ContainerInput> 
-                                Nome do usuário:
+                            <h3>USUÁRIO</h3>
+                                <Label>Nome do usuário:</Label>
                                 <Input
                                     type='text'
                                     name='nome'
@@ -107,9 +87,7 @@ const PrimeiroAcesso = () => {
                                     value={usuarioNome}
                                     onChange={(e) => [setUsuarioNome(e.target.value), setMsg('')]}
                                 />
-                            </ContainerInput>
-                            <ContainerInput> 
-                                E-mail:
+                                <Label>E-mail:</Label>
                                 <Input
                                     type='email'
                                     name='email'
@@ -118,9 +96,7 @@ const PrimeiroAcesso = () => {
                                     value={email}
                                     onChange={(e) => [setEmail(e.target.value), setMsg('')]}
                                 />
-                            </ContainerInput>
-                            <ContainerInput>
-                                Senha:
+                                <Label>Senha:</Label>
                                 <Input
                                     type='password'
                                     name='senha'
@@ -129,9 +105,7 @@ const PrimeiroAcesso = () => {
                                     value={senha}
                                     onChange={(e) => [setSenha(e.target.value), setMsg('')]}
                                 />
-                            </ContainerInput>
-                            <ContainerInput>
-                                Repita a senha:
+                                <Label>Repita a senha:</Label>
                                 <Input
                                     type='password'
                                     name='confirmaSenha'
@@ -140,12 +114,13 @@ const PrimeiroAcesso = () => {
                                     value={confirmaSenha}
                                     onChange={(e) => [setConfirmaSenha(e.target.value), setMsg('')]}
                                 />
-                            </ContainerInput>
-                        </Form>
-                        <Button onClick={submeterPrimeiroAcesso}>CADASTRAR</Button>
-                        <p>{msg}</p>
-                </SubContainer>
-            </Container>
+                                <Botao type='submit' tipo={true}>
+                                    CADASTRAR
+                                </Botao>
+                                <p>{msg}</p>
+                        </Formulario>
+                </SubContainerFormulario>
+            </ContainerFormulario>
             }
         </>
     );

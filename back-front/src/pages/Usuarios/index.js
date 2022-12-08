@@ -1,18 +1,13 @@
 import { useEffect, useState } from 'react';
 import {useNavigate} from 'react-router-dom';
+import moment from 'moment';
 
-import {
-    Container,
-    SubContainer,
-} from './styles';
-
-// import {usuarios} from "../../assets/import/bancoFake";
+import {ContainerTabela, SubContainerTabela, BotaoTabela, ContainerTituloTabela} from '../../assets/styles';
 
 import useAuth from '../../hooks/useAuth';
 import {BsPencilSquare, BsPersonDash} from 'react-icons/bs';
+import {BiEdit, BiPlus} from 'react-icons/bi';
 import Carregamento from '../../components/Carregando';
-import { getDefaultNormalizer } from '@testing-library/react';
-import { FaConfluence } from 'react-icons/fa';
 
 const Usuarios = () => {
 
@@ -25,7 +20,8 @@ const Usuarios = () => {
     const [usuarios, setUsuarios] = useState([]);
 
     const titulos = ['Id', 'Nome', 'E-mail', 'Nível', 'Status', 'Login', 'Criado', 'Atualizado', 'Opções'];
-    const propriedades = ['usuario_id', 'nome', 'email', 'nivel','status', 'ultimo_login', 'criado_em', 'atualizado_em', 'Opções'];
+    const propriedades = ['usuario_id', 'usuario_nome', 'email', 'nivel','status', 'ultimo_login', 'criado_em', 'atualizado_em', 'opcoes'];
+    const nivelUsuario = ['Usuário', 'Administrador']
 
     const formatar = (data) => {
         const novaData = new Date(data);
@@ -50,12 +46,45 @@ const Usuarios = () => {
         buscarUsuarios();
     }, []);
 
+    function renderiza(usuario, p) {
+        const d = (moment(usuario[p]).format('DD/MM/YYYY - hh:mm:ss A'));
+
+        switch (p) {
+            case 'nivel':
+                return (nivelUsuario[usuario[p]-1]);
+            case 'status':
+                return (p? 'Ativo' : 'Desativado');
+            case 'ultimo_login':
+                return d;
+            case 'criado_em':
+                return d;
+            case 'atualizado_em':
+                return d;
+            case 'opcoes':
+                return (
+                    <BsPencilSquare
+                        title='Editar este usuário'
+                        onClick={(e) => [
+                            e.preventDefault(),
+                            navegar('/editarusuario', {state: {usuarioId: usuario.usuario_id}})
+                        ]}/>
+                )
+            default:
+                return usuario[p];
+        };
+    };
+
     return(
         carregando ? <Carregamento/> : 
-        <Container>
-            <h3>Usuários</h3>
-            {/* {console.log(reservas[0].Categorium['titulo'])} */}
-            <SubContainer>
+        <ContainerTabela>
+            <ContainerTituloTabela>
+                <h3>USUÁRIOS</h3>
+                <BotaoTabela title='Adicionar novo usuário' onClick={(e) => [e.preventDefault(), navegar('/novousuario')]}>
+                    <BiPlus/>
+                </BotaoTabela>
+            </ContainerTituloTabela>
+
+            <SubContainerTabela>
                 <table>
                     <thead>
                         <tr>
@@ -63,116 +92,19 @@ const Usuarios = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {usuarios.map((reserva, r) => (
-                            <tr key={r}>
+                        {usuarios.map((usuario, u) => (
+                            <tr key={u}>
                             {propriedades.map((p) => (
                                 <td key={p}>
-                                    {reserva[p]}
+                                    {renderiza(usuario, p)}
                                 </td>
                             ))}
                             </tr>
                         ))}
                     </tbody>
                 </table>
-            </SubContainer>
-        </Container>
-        // <Container>
-        //     {carregando && <Carregamento/>}
-        //     <SubContainer>
-        //         <Coluna>
-        //             <LinhaHeader>ID</LinhaHeader>
-        //             {
-        //                 usuarios.map((usuario, i) => (
-        //                     <Linha>
-        //                         {usuario.usuario_id}
-        //                         {console.log('usuario')}
-        //                         {console.log(usuario)}
-        //                     </Linha>
-        //                 ))
-        //             }
-        //         </Coluna>
-        //         <Coluna>
-        //             <LinhaHeader>NOME</LinhaHeader>
-        //             {
-        //                 usuarios.map((usuario, i) => (
-        //                     <Linha>
-        //                         {usuario.nome}
-        //                     </Linha>
-        //                 ))
-        //             }
-        //         </Coluna>
-        //         <Coluna>
-        //             <LinhaHeader>EMAIL</LinhaHeader>
-        //             {
-        //                 usuarios.map((usuario, i) => (
-        //                     <Linha>
-        //                         {usuario.email}
-        //                     </Linha>
-        //                 ))
-        //             }
-        //         </Coluna>
-        //         <Coluna>
-        //             <LinhaHeader>NÍVEL</LinhaHeader>
-        //             {
-        //                 usuarios.map((usuario, i) => (
-        //                     <Linha>
-        //                         {usuario.nivel}
-        //                     </Linha>
-        //                 ))
-        //             }
-        //         </Coluna>
-        //         <Coluna>
-        //             <LinhaHeader>STATUS</LinhaHeader>
-        //             {
-        //                 usuarios.map((usuario, i) => (
-        //                     <Linha>
-        //                         {usuario.status? 'Ativo':'Desativado'}
-        //                     </Linha>
-        //                 ))
-        //             }
-        //         </Coluna>
-        //         <Coluna>
-        //             <LinhaHeader>LOGIN</LinhaHeader>
-        //             {
-        //                 usuarios.map((usuario, i) => (
-        //                     <Linha>
-        //                         {usuario.criacao}
-        //                     </Linha>
-        //                 ))
-        //             }
-        //         </Coluna>
-        //         <Coluna>
-        //             <LinhaHeader>CRIADO</LinhaHeader>
-        //             {
-        //                 usuarios.map((usuario, i) => (
-        //                     <Linha>
-        //                         {formatar(usuario.criado_em)}
-        //                     </Linha>
-        //                 ))
-        //             }
-        //         </Coluna>
-        //         <Coluna>
-        //             <LinhaHeader>ATUALIZADO</LinhaHeader>
-        //             {
-        //                 usuarios.map((usuario, i) => (
-        //                     <Linha>
-        //                         {formatar(usuario.atualizado_em)}
-        //                     </Linha>
-        //                 ))
-        //             }
-        //         </Coluna>
-        //         <Coluna>
-        //             <LinhaHeader>OPÇÕES</LinhaHeader>
-        //             {
-        //                 usuarios.map((usuario, i) => (
-        //                     <Linha>
-        //                         <BsPencilSquare/>
-        //                     </Linha>
-        //                 ))
-        //             }
-        //         </Coluna>
-        //     </SubContainer>
-        // </Container>
+            </SubContainerTabela>
+        </ContainerTabela>
     );
 };
 

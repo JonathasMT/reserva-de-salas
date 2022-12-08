@@ -50,7 +50,7 @@ const NovoGrupo = () => {
         const dados = {
             grupo_nome: grupoNome,
             descricao,
-            diasSemana,
+            dias_semana: diasSemana,
             hora_inicio: horaInicio,
             hora_fim: horaFim,
             antecedencia_minima: antecedencia
@@ -59,7 +59,7 @@ const NovoGrupo = () => {
         setCarregando(false);
         if (!resposta.erro) {
             alert(resposta.msg);
-            navegar(-1)
+            navegar(-1);
         };
         if (resposta.erro) {
             setMsg(resposta.msg);
@@ -71,13 +71,14 @@ const NovoGrupo = () => {
       <ContainerFormulario>
         {carregando && <Carregamento/>}
         <SubContainerFormulario>
-            <Formulario>
+            <Formulario onSubmit={submeterCadastrar}>
                 <h3>NOVO GRUPO DE SALAS</h3>
                     <Label>Nome:</Label>
                     <Input
                         type='text'
                         name='titulo'
                         placeholder='Digite um nome para este grupo de salas'
+                        required
                         value={grupoNome}
                         onChange={(e) => setGrupoNome(e.target.value)}
                     />
@@ -89,59 +90,59 @@ const NovoGrupo = () => {
                         value={descricao}
                         onChange={(e) => setDescricao(e.target.value)}
                     />
-                <ContainerCheckBox>
-                    Dias da semana reserváveis:
-                    <SubContainerCheckBox>
-                        <InputCheckbox
-                            value='1'
-                            onChange={aoMudar}
-                        />
-                        Domingo
-                    </SubContainerCheckBox>
-                    <SubContainerCheckBox>
-                        <InputCheckbox
-                            value='2'
-                            onChange={aoMudar}
-                        />
-                        Segunda
-                    </SubContainerCheckBox>
-                    <SubContainerCheckBox>
-                        <InputCheckbox
-                            value='3'
-                            onChange={aoMudar}
-                        />
-                        Terça
-                    </SubContainerCheckBox>
-                    <SubContainerCheckBox>
-                        <InputCheckbox
-                            value='4'
-                            onChange={aoMudar}
-                        />
-                        Quarta
-                    </SubContainerCheckBox>
-                    <SubContainerCheckBox>
-                        <InputCheckbox
-                            value='5'
-                            onChange={aoMudar}
-                        />
-                        Quinta
-                    </SubContainerCheckBox>
-                    <SubContainerCheckBox>
-                        <InputCheckbox
-                            value='6'
-                            onChange={aoMudar}
-                        />
-                        Sexta
-                    </SubContainerCheckBox>
-                    <SubContainerCheckBox>
-                        <InputCheckbox
-                            value='7'
-                            onChange={aoMudar}
-                        />
-                        Sábado
-                    </SubContainerCheckBox>
-                </ContainerCheckBox>
-                <Label>Horário inicial e final de reservas no dia:</Label>
+                    <Label>Dias da semana reserváveis:</Label>
+                    <ContainerCheckBox>
+                        <SubContainerCheckBox>
+                            <InputCheckbox
+                                value='1'
+                                onChange={aoMudar}
+                            />
+                            Domingo
+                        </SubContainerCheckBox>
+                        <SubContainerCheckBox>
+                            <InputCheckbox
+                                value='2'
+                                onChange={aoMudar}
+                            />
+                            Segunda
+                        </SubContainerCheckBox>
+                        <SubContainerCheckBox>
+                            <InputCheckbox
+                                value='3'
+                                onChange={aoMudar}
+                            />
+                            Terça
+                        </SubContainerCheckBox>
+                        <SubContainerCheckBox>
+                            <InputCheckbox
+                                value='4'
+                                onChange={aoMudar}
+                            />
+                            Quarta
+                        </SubContainerCheckBox>
+                        <SubContainerCheckBox>
+                            <InputCheckbox
+                                value='5'
+                                onChange={aoMudar}
+                            />
+                            Quinta
+                        </SubContainerCheckBox>
+                        <SubContainerCheckBox>
+                            <InputCheckbox
+                                value='6'
+                                onChange={aoMudar}
+                            />
+                            Sexta
+                        </SubContainerCheckBox>
+                        <SubContainerCheckBox>
+                            <InputCheckbox
+                                value='7'
+                                onChange={aoMudar}
+                            />
+                            Sábado
+                        </SubContainerCheckBox>
+                    </ContainerCheckBox>
+                    <Label>Horário inicial e final de reservas no dia:</Label>
                     <ContainerHora>
                         <Input
                             type='time'
@@ -171,9 +172,10 @@ const NovoGrupo = () => {
                         name='antecedencia'
                         placeholder='Tempo em minutos'
                         value={antecedencia}
+                        required
                         onChange={(e) => setAntecedencia(e.target.value)}
                     />
-                <Botao onClick={submeterCadastrar} tipo={true}>
+                <Botao type='submit' tipo={true}>
                     CADASTRAR
                 </Botao>
                 <Botao onClick={(e) => [e.preventDefault(), navegar(-1)]}>

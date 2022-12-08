@@ -1,32 +1,40 @@
 const baseDados = require('../connection');
 const Grupo = require('../models/Grupo');
 
+const msgErro = 'Ocorreu um erro, tente novamente ou contacte o administrador! ';
+
 const create = async (req, res) => {
-    await baseDados.sync();
-    const {
-        grupo_nome,
-        descricao,
-        dias_semana,
-        hora_inicio,
-        hora_fim,
-        antecedencia_minima
-    } = req.body;
+    try {
+        await baseDados.sync();
+        const {
+            grupo_nome,
+            descricao,
+            dias_semana,
+            hora_inicio,
+            hora_fim,
+            antecedencia_minima
+        } = req.body;
 
-    console.log(JSON.stringify(dias_semana));
+        console.log(JSON.stringify(dias_semana));
 
-    //criar o usuario com os dados recebidos
-    await Grupo.create({
-        grupo_nome: grupo_nome,
-        descricao: descricao,
-        dias_semana: dias_semana,
-        hora_inicio: hora_inicio,
-        hora_fim: hora_fim,
-        antecedencia_minima: antecedencia_minima
-    }).then((result) => {
-        return res.status(200).json({erro: false, msg: 'Grupo cadastrado'});
-    }).catch((erro) => {
-        res.status(500).json({erro: true, msg: 'Ocorreu um erro, tente novamente ou contacte o administrador! '});
-    });
+        //criar o usuario com os dados recebidos
+        await Grupo.create({
+            grupo_nome: grupo_nome,
+            descricao: descricao,
+            dias_semana: dias_semana,
+            hora_inicio: hora_inicio,
+            hora_fim: hora_fim,
+            antecedencia_minima: antecedencia_minima
+        }).then((result) => {
+            return res.status(200).json({erro: false, msg: 'Grupo cadastrado'});
+        }).catch((erro) => {
+            res.status(500).json({erro: true, msg: 'Ocorreu um erro, tente novamente ou contacte o administrador! '});
+        });
+    } catch (_error) {
+        console.log(erro);
+        res.status(500).json({erro: true, msg: 'Ocorreu um erro, tente novamente ou contacte o administrador!'});
+    };
+
 };
 
 const read = async (req, res) => {

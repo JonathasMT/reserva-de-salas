@@ -65,6 +65,7 @@ const login = async (req, res, next) => {
             return res.status(400).json({erro: true, msg: 'O campo "Senha" deve ser preeenchido!'});
         };
         //verifica se o e-mail informado existe
+        await baseDados.sync();
         const usuario = await Usuario.findOne({where : {email: email}});
         if (!usuario) {
             return res.status(400).json({erro: true, msg: 'E-mail "' + email + '" não foi encontrado!'});

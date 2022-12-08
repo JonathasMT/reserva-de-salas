@@ -1,39 +1,33 @@
 const Categoria = require("../models/Categoria");
 const baseDados = require("../connection");
 
-const validarTitulo = async (req, res, next) => {
-    const {categria_nome} = req.body;
+const create = async (req, res, next) => {
+    const {categoria_nome, cor} = req.body;
+    console.log(categoria_nome);
+    console.log(cor);
 
-    if (!categria_nome) {
-        return res.status(400).json({msg: 'O campo Titulo deve ser preeenchido!'});
+    if (!categoria_nome) {
+        return res.status(400).json({erro: true, msg: 'O campo "Nome da categoria" deve ser preeenchido!'});
     };
     //cria tabela caso não exista 
     await baseDados.sync();
     //verifica se o nome informado já existe
-    const existeTitulo = await Categoria.findOne({where : {categria_nome: categria_nome}});
-    if (existeTitulo) {
-        return res.status(400).json({msg: 'O nome ' + categria_nome + ' já existe!'});
+    const existeNome = await Categoria.findOne({where : {categria_nome: categoria_nome}});
+    if (existeNome) {
+        return res.status(400).json({erro: true, msg: 'A categoria' + categoria_nome + ' já existe!'});
     };
-    next();
-};
-
-const validarCor = async (req, res, next) => {
-    const {cor} = req.body;
-
+    //validar cor
     if (!cor) {
-        return res.status(400).json({msg: 'O campo Cor deve ser preenchido!'});
+        return res.status(400).json({erro: true, msg: 'O campo "Cor" deve ser preenchido!'});
     };
-    //cria tabela caso não exista 
-    await baseDados.sync();
-    //verifica se o nome informado já existe
+    //verifica se a cor informada já existe
     const existeCor = await Categoria.findOne({where : {cor: cor}});
     if (existeCor) {
-        return res.status(400).json({msg: 'A cor ' + cor + ' já existe!'});
+        return res.status(400).json({erro: true, msg: 'A cor ' + cor + ' já existe!'});
     };
     next();
 };
 
 module.exports = {
-    validarTitulo,
-    validarCor
+    create
 };

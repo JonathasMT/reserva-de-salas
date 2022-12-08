@@ -44,7 +44,7 @@ export const ContainerDiaSelecionado = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    background-color: white;
+    background-color: ${Color.fundoCalendarioBloco};
     border-radius: 25px;
     /* border: 2px solid ${Color.borderCalendario}; */
     color: ${Color.acentuada};
@@ -76,7 +76,7 @@ export const ContainerSemanaSelecionada = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    background-color: white;
+    background-color: ${Color.fundoCalendarioBloco};
     border-radius: 25px;
     /* border: 2px solid ${Color.borderCalendario}; */
     color: ${Color.acentuada};
@@ -108,7 +108,7 @@ export const ContainerMesSelecionado = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    background-color: white;
+    background-color: ${Color.fundoCalendarioBloco};
     border-radius: 25px;
     /* border: 2px solid ${Color.borderCalendario}; */
     color: ${Color.acentuada};

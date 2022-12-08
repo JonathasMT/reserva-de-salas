@@ -1,20 +1,27 @@
 const baseDados = require('../connection');
 const Categoria = require('../models/Categoria');
 
-const create = async (req, res) => {
-    await baseDados.sync();
-    const {categoria_nome, descricao, cor} = req.body;
+const msgErro = 'Ocorreu um erro, tente novamente ou contacte o administrador! ';
 
-    //criar o usuario com os dados recebidos
-    await Categoria.create({
-        categoria_nome: categoria_nome,
-        descricao: descricao,
-        cor: cor
-    }).then((result) => {
-        return res.status(200).json('Categoria de reserva cadastrada');
-    }).catch((erro) => {
-        res.status(500).json({msg: 'Ocorreu um erro, tente novamente ou contacte o administrador! '+erro});
-    });
+const create = async (req, res) => {
+    try {
+        const {categoria_nome, descricao, cor} = req.body;
+         await baseDados.sync();
+
+        //criar o usuario com os dados recebidos
+        await Categoria.create({
+            categoria_nome: categoria_nome,
+            descricao: descricao,
+            cor: cor
+        }).then((result) => {
+            return res.status(200).json({erro: false, msg: 'Categoria de reserva cadastrada'});
+        }).catch((erro) => {
+            res.status(500).json({erro: true, msg: 'Ocorreu um erro, tente novamente ou contacte o administrador!'});
+        });
+        
+    } catch (error) {
+        return res.status(500).json({erro: true, msg: msgErro})
+    };
 };
 
 const readVarias = async (_req, res) => {

@@ -26,14 +26,12 @@ export const AuthProvider = ({children}) => {
         };
     }, [usuario, instituicao]);
 
-    async function login (email, senha) {
+    async function login (dados) {
         var resposta;
-        const dadosLogin = {email:email,senha:senha};
-        await api.post('/login', dadosLogin)
+        await api.post('/login', dados)
         .then((resultado) => {
             if(!resultado.erro) {
-                console.log(resultado.data.usuario);
-                console.log(resultado.data.instituicao);
+                console.log('MSG = ' + resultado.data.msg);
                 localStorage.setItem('usuarioAutenticado', JSON.stringify(resultado.data.usuario));
                 localStorage.setItem('instituicao', JSON.stringify(resultado.data.instituicao));
                 setUsuario(localStorage.getItem('usuarioAutenticado'));
@@ -41,12 +39,11 @@ export const AuthProvider = ({children}) => {
                 resposta = resultado.data;
             };
         }).catch((erro) => {
-            console.log('ERRO >>'+erro)
+            console.log('ERRO? ' + erro.response.data.msg);
             resposta = erro.response.data;
         });
         return resposta;
     };
-
     // const cadastrarUsuario = (email, senha) => {
     //     const armazenamentoUsuario = JSON.parse(localStorage.getItem('users_bd'));
     //     const temUsuario = armazenamentoUsuario?.filter((usuario) => usuario.email === email);
@@ -142,7 +139,6 @@ export const AuthProvider = ({children}) => {
             retorno = resultado.data;
         }).catch((erro) => {
             console.log('ERRO? ' + erro.response.data.msg);
-            
             retorno = erro.response.data;
         });
         return retorno;
@@ -185,6 +181,21 @@ export const AuthProvider = ({children}) => {
         }).catch((erro) => {
             console.log('ERRO? ' + erro.response.data.msg);
             
+            retorno = erro.response.data;
+        });
+        return retorno;
+    };
+
+    async function novaCategoria(dados) {
+        var retorno;
+        console.log('DADOS');
+        console.log(dados);
+        await api.post('/novacategoria', dados)
+        .then((resultado) => {
+            console.log('MSG = ' + resultado.data.msg);
+            retorno = resultado.data;
+        }).catch((erro) => {
+            console.log('ERRO = ' + erro.response.data.msg);
             retorno = erro.response.data;
         });
         return retorno;
@@ -276,6 +287,7 @@ export const AuthProvider = ({children}) => {
                 listarGrupos,
                 novaSala,
                 listarSalas,
+                novaCategoria,
                 listarCategorias,
                 listarReservas,
                 novaReserva,

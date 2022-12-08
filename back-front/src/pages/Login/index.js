@@ -1,7 +1,15 @@
 import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 
-import {Button, Container, Form, Input, SubContainer} from './styles';
+import {
+    ContainerFormulario,
+    SubContainerFormulario,
+    Formulario,
+    Label,
+    Input,
+    Botao
+} from '../../assets/styles';
+
 import useAuth from '../../hooks/useAuth';
 import Carregamento from '../../components/Carregando';
 
@@ -13,12 +21,16 @@ const Login = () => {
 
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
-    const [msg, setMsg] = useState('');
+    const [msg, setMsg] = useState(' ');
     const [carregando, setCarregando] = useState(false)
 
     const submeterLogin = async() => {
+        const dados = {
+            email,
+            senha
+        };
         setCarregando(true);
-        const resposta = await login(email, senha);
+        const resposta = await login(dados);
         setCarregando(false);
         if (!resposta.erro) {
             navegar('/');
@@ -30,40 +42,39 @@ const Login = () => {
     };
 
     return(
-      <Container>
-        {carregando && <Carregamento/>}
-        <SubContainer>
-            <h2>Login</h2>
-            <Form type='post'>
-                <span> 
-                E-mail:
-                <Input
-                    type='email'
-                    name='email'
-                    placeholder='Digite o seu e-mail'
-                    value={email}
-                    required
-                    onChange={(evento) => [setEmail(evento.target.value), setMsg('')]}
-                />
-                </span>
-                <span>
-                Senha:
-                <Input
-                    type='password'
-                    name='senha'
-                    placeholder='Digite sua senha'
-                    value={senha}
-                    required
-                    onChange={(evento) => [setSenha(evento.target.value), setMsg('')]}
-                />
-                </span>
-                <Button onClick={submeterLogin}>ENTRAR</Button>
-                {msg}
-            </Form>
-            <br/>
-            <span>Esqueceu a senha?</span>
-        </SubContainer>
-      </Container>
+      <ContainerFormulario tipo={'true'}>
+        {
+            carregando ? <Carregamento/> :
+                <SubContainerFormulario>
+                    <Formulario onSubmit={submeterLogin}>
+                        <h3>LOGIN</h3>
+                        <Label>E-mail:</Label>
+                        <Input
+                            type='email'
+                            name='email'
+                            placeholder='Digite o seu e-mail'
+                            value={email}
+                            required 
+                            onChange={(evento) => [setEmail(evento.target.value), setMsg('')]}
+                        />
+                        <Label>Senha:</Label>
+                        <Input
+                            type='password'
+                            name='senha'
+                            placeholder='Digite sua senha'
+                            value={senha}
+                            required
+                            onChange={(evento) => [setSenha(evento.target.value), setMsg('')]}
+                        />
+                        <Botao tipo={true} type='submit'>
+                            ENTRAR
+                        </Botao>
+                        <span>Esqueceu a senha?</span>
+                    </Formulario>
+                    {msg}
+                </SubContainerFormulario>
+        }
+      </ContainerFormulario>
     );
 };
 

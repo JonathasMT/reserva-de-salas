@@ -35,7 +35,8 @@ const Reserva = baseDados.define('Reserva', {
 }, {
     tableName: 'Reservas',
     createdAt: 'criado_em',
-    updatedAt: 'atualizado_em'
+    updatedAt: 'atualizado_em',
+    freezeTableName: true
 });
 
 Reserva.belongsTo(Usuario, {

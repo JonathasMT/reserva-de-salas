@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const baseDados = require('../connection');
 const RecorrenciaTipo = require('./RecorrenciaTipo');
 
-const Recorrencia = baseDados.define('Recorrencias', {
+const Recorrencia = baseDados.define('Recorrencia', {
     recorrencia_id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -14,8 +14,9 @@ const Recorrencia = baseDados.define('Recorrencias', {
         allowNull: false
     }
 }, {
-    freezeTableName: true,
-    timestamps: false
+tableName: 'Recorrencias',
+timestamps: false,
+freezeTableName: true
 });
 
 Recorrencia.belongsTo(RecorrenciaTipo, {

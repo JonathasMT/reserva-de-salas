@@ -104,7 +104,7 @@ export const Button = styled.button`
     border-radius: 7px;
     padding: 5px;
     background-color: ${Color.acentuada};
-    color: white;
+    color: ${Color.fundoCalendarioBloco};
     font-size: 20px;
     font-weight: 600;
     cursor: pointer;
