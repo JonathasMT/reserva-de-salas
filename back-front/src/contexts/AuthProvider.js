@@ -230,6 +230,7 @@ export const AuthProvider = ({children}) => {
     };
 
     async function novaReserva(dados) {
+        console.log(dados);
         var retorno;
         await api.post('/novareserva', dados)
         .then((resultado) => {

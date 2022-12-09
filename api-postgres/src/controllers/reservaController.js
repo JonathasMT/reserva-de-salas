@@ -52,14 +52,18 @@ const read = async (req, res) => {
             return res.status(200).json({erro: false, msg: reserva})
         }
     } catch (_error) {
-        return res.status(500).json({erro: true, msg: msgErro})
+        return res.status(500).json({erro: true, msg: 'Ocorreu um erro, tente novamente ou contacte o administrador! '})
     }
 };
 
 const readVarias = async (_req, res) => {
-    await baseDados.sync();
-    const reservas = await Reserva.findAll();
-    return res.status(200).json({erro: false, msg: 'Sucesso', reservas: reservas})
+    try {
+        await baseDados.sync();
+        const reservas = await Reserva.findAll();
+        return res.status(200).json({erro: false, msg: 'Sucesso', reservas: reservas});
+    } catch (_error) {
+        return res.status(500).json({erro: true, msg: 'Ocorreu um erro, tente novamente ou contacte o administrador!'})
+    };
 };
 
 // await Ship.findAll({include: {model: Captain, as: 'leader'}})

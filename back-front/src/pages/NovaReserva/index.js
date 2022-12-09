@@ -1,8 +1,10 @@
 import {useEffect, useState} from 'react';
 import {useNavigate, useLocation} from 'react-router-dom';
 
+import api from '../../services/api';
 import Loading from '../../components/Loading';
 import useAuth from '../../hooks/useAuth';
+import useContexto from '../../hooks/useContexto';
 
 import {
     Formulario,
@@ -20,15 +22,14 @@ import {
 const NovaReserva = () => {
 
     const navegar = useNavigate();
-    const {usuario, novaReserva} = useAuth();
-
+    const {usuario, novaReserva, listarCategorias} = useAuth();
     const location = useLocation();
     const dia = location.state.dia;
 
     const [loading, setLoading] = useState(false);
     const [titulo, setTitulo] = useState('');
     const [descricao, setDescricao] = useState('');
-    const [grupoId, setGrupoId] = useState('1');
+    const [grupoId, setGrupoId] = useState(1);
     const [salaId, setSalaId] = useState(4);
     const [data, setData] = useState(dia);
     const [horaInicio, setHoraInicio] = useState('08:00');
@@ -39,29 +40,52 @@ const NovaReserva = () => {
     const [msg, setMsg] = useState('');
 
     const {usuario_id} = JSON.parse(usuario);
-    const {listarGrupos, listarSalas, listarCategorias} = useAuth();
-
 
     useEffect(() => {
         const buscarCategorias = async() => {
-            setLoading(true);
             const resposta = await listarCategorias();
-            setLoading(false);
             if (!resposta.erro) {
                 if(resposta.categorias.length < 1) {
                     alert('Você deve cadastrar uma categoria de reservas primeiro!');
-                    navegar('/novacategoria');
+                    navegar('/novareserva')
                 }else{
                     setCategorias(resposta.categorias);
-                }
+                    setCategoriaId(resposta.categorias[0].categoria_id);
+                    return
+                };
+                return;
             };
-            if (resposta.erro) {
+            if(resposta.erro) {
                 alert(resposta.msg);
                 return;
             };
-            setLoading(false);
         };
         buscarCategorias();
+        console.log(categoriaId);
+
+        // const listarCategorias = async() => {
+        //     setLoading(true);
+        //     await api.get('/listarcategorias')
+        //     .then((resultado) => {
+        //         if(!resultado.data.erro) {
+        //             if(resultado.data.categorias.length < 1) {
+        //                 alert('Você deve cadastrar uma categoria de reservas primeiro!');
+        //                 navegar('/novacategoria')
+        //             }else{
+        //                 console.log(resultado.data.categorias);
+        //                 setCategorias(resultado.data.categorias);
+        //                 setCategoriaId(resultado.data.categorias[0].categoria_id)
+        //                 return;
+        //             };
+        //         };
+        //     }).catch((error) => {
+        //         console.log('ERRO AO BUSCAR CATEGORIAS!');
+        //         console.log(error);
+        //     });
+        //     setLoading(false);
+        // };
+        // listarCategorias();
+        // console.log(categoriaId);
     }, []);
 
     const aoSubmeter = async (e) => {
@@ -77,6 +101,7 @@ const NovaReserva = () => {
             hora_inicio: horaInicio,
             hora_fim: horaFim,
         };
+        console.log(categoriaId);
         setLoading(true);
         const resposta = await novaReserva(dados);
         setLoading(false);
@@ -160,11 +185,11 @@ const NovaReserva = () => {
                         <Label>Categoria:</Label>
                         <InputSelect 
                             required
-                            value={1}
+                            onChange={(e) => setCategoriaId(Number.parseInt(e.target.value))}
                             >
                                 {
                                     categorias.map((categoria, i) => (
-                                        <option value={categoria.categoria_id}>{categoria.categoria_nome}</option>
+                                        <option key={i} value={categoria.categoria_id}>{categoria.categoria_nome}</option>
                                     ))
                                 }
                         </InputSelect>

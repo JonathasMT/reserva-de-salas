@@ -23,7 +23,6 @@ const NovaCategoria = () => {
 
     const [loading, setLoading] = useState(false);
     const [categoriaNome, setCategoriaNome] = useState('');
-    const [descricao, setDescricao] = useState('');
     const [cor, setCor] = useState('#3DEB65');
     const [msg, setMsg] = useState('');
 
@@ -31,7 +30,6 @@ const NovaCategoria = () => {
         setLoading(true);
         const dados = {
             categoria_nome:  categoriaNome,
-            descricao,
             cor
         };
         const resposta = await novaCategoria(dados);
@@ -61,14 +59,6 @@ const NovaCategoria = () => {
                                 name={categoriaNome}
                                 value={categoriaNome}
                                 onChange={(e) => setCategoriaNome(e.target.value)}
-                            />
-                            <Label>Descrição:</Label>
-                            <InputArea
-                                type='text'
-                                placeholder='Digite uma descrição pra esta categoria.'
-                                name={descricao}
-                                value={descricao}
-                                onChange={(e) => setDescricao(e.target.value)}
                             />
                             <Label>Cor:</Label>
                             <InputCor

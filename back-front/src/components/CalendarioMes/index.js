@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import {Container, ContainerSemana, ContainerDia, Dia, DiaCorrente} from './styles';
 import CardReserva from '../CardReserva';
 
-function CalendarioMes({data, setData, reservas, calendarioTipo}) {
+function CalendarioMes({data, reservas, calendarioTipo, categorias}) {
 
     const navegar = useNavigate();
     const [calendario, setCalendario] = useState([]);
@@ -19,7 +19,7 @@ function CalendarioMes({data, setData, reservas, calendarioTipo}) {
                 Array(7).fill(0).map(() => dia.add(1, 'day').clone())
             );
         };
-        setCalendario(calendario)
+        setCalendario(calendario);
     }, [data]);
 
     //verifica se o dia é o dia atual
@@ -29,6 +29,20 @@ function CalendarioMes({data, setData, reservas, calendarioTipo}) {
             return <DiaCorrente>{getData}</DiaCorrente>
         else
             return <Dia> {getData}</Dia>
+    };
+
+    function renderizaCard(reserva, i) {
+        const {cor} = categorias.find((categoria) => reserva.categoria_id == categoria.categoria_id);
+        return(
+            <CardReserva
+                key={i}
+                tipo={calendarioTipo}
+                horaInicio={reserva.hora_inicio}
+                horaFim={reserva.hora_fim}
+                titulo={reserva.titulo}
+                cor={cor}
+            />
+        )
     };
 
     return(
@@ -42,14 +56,15 @@ function CalendarioMes({data, setData, reservas, calendarioTipo}) {
                                 reservas.map((reserva, i) => 
                                     reserva.data === dia.format('YYYY-MM-DD') 
                                     && 
-                                    <CardReserva
-                                        key={i}
-                                        tipo={calendarioTipo}
-                                        horaInicio={reserva.hora_inicio}
-                                        horaFim={reserva.hora_fim}
-                                        titulo={reserva.titulo}
-                                        cor={reserva.categoria_id}
-                                    />
+                                    renderizaCard(reserva, i)
+                                    // <CardReserva
+                                    //     key={i}
+                                    //     tipo={calendarioTipo}
+                                    //     horaInicio={reserva.hora_inicio}
+                                    //     horaFim={reserva.hora_fim}
+                                    //     titulo={reserva.titulo}
+                                    //     cor={reserva.categoria_id}
+                                    // />
                                 )
                             }
                         </ContainerDia>

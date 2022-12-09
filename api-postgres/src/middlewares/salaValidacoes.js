@@ -3,9 +3,6 @@ const Sala = require("../models/Sala");
 
 const create = async (req, res, next) => {
     const {grupo_id, sala_nome, capacidade} = req.body;
-    console.log('grupo_id');
-    console.log(grupo_id);
-    console.log(Number.isInteger(grupo_id));
 
     //vefifica se o id do grupo não está vazio
     if (!grupo_id) {

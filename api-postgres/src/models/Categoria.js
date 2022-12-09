@@ -13,9 +13,6 @@ const Categoria = baseDados.define('Categoria', {
         allowNull: false,
         unique: true
     },
-    descricao: {
-        type: Sequelize.STRING,
-    },
     cor: {
         type: Sequelize.STRING,
         allowNull: false,

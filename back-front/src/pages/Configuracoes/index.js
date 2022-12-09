@@ -44,25 +44,12 @@ const Configuracoes = () => {
             const resposta = await listarGrupos();
             setLoading(false);
             if (!resposta.erro) {
+                console.log(resposta.grupos);
                 setGrupos(resposta.grupos)
             };
             if (resposta.erro) {
                 alert(resposta.msg);
                 
-                return;
-            };
-            setLoading(false);
-        };
-
-        const buscarSalas = async() => {
-            setLoading(true);
-            const resposta = await listarSalas();
-            setLoading(false);
-            if (!resposta.erro) {
-                setSalas(resposta.salas)
-            };
-            if (resposta.erro) {
-                alert(resposta.msg);
                 return;
             };
             setLoading(false);
@@ -83,7 +70,6 @@ const Configuracoes = () => {
         };
 
         buscarGrupos();
-        buscarSalas();
         buscarCategorias();
     }, []);
 
@@ -127,8 +113,8 @@ const Configuracoes = () => {
 
                                 </ListGrupo>
                                 {
-                                    salas.length > 0 ?
-                                        salas.map((sala, i) =>
+                                    grupo.Salas.length > 0 ?
+                                        grupo.Salas.map((sala, i) =>
                                             sala.grupo_id===grupo.grupo_id &&
                                                 <ListSala key={i}>
                                                     <p>{sala.sala_nome}</p>

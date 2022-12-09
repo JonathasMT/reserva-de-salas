@@ -57,7 +57,7 @@ const read = async (req, res) => {
 
 const readVarios = async (_req, res) => {
     await baseDados.sync();
-    const grupos = await Grupo.findAll();
+    const grupos = await Grupo.findAll({ include: { all: true, nested: true }});
     return res.status(200).json({erro: false, msg: 'Sucesso', grupos: grupos})
 };
 

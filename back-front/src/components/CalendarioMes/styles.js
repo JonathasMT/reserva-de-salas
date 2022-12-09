@@ -32,13 +32,16 @@ export const ContainerDia = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    white-space: nowrap;
     position: relative;
     background-color: ${Color.fundoCalendarioBloco};
     border: 1px solid ${Color.borderCalendario};
     padding: 20px 7px;
     gap: 3px;
+    overflow: auto;
     cursor: pointer;
+    ::-webkit-scrollbar {
+        width: 0px;
+    }
 `;
 
 export const Dia = styled.div`

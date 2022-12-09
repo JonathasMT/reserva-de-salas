@@ -56,8 +56,9 @@ function Calendario() {
             };
             setLoading(false);
         };
-        buscarReservas();
         buscarCategorias();
+        buscarReservas();
+
     }, []);
 
     return(
@@ -75,7 +76,8 @@ function Calendario() {
                 calendarioTipo={calendarioTipo}
                 data={data}
                 setData={setData}
-                reservas={reservas}/>
+                reservas={reservas}
+                categorias={categorias}/>
             <CalendarioLegenda categorias={categorias}/>
         </Container>
 )

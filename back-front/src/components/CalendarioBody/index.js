@@ -4,8 +4,7 @@ import CalendarioDia from '../CalendarioDia';
 import CalendarioSemana from '../CalendarioSemana';
 import CalendarioMes from '../CalendarioMes';
 
-function CalendarioBody({data, setData, calendarioTipo, reservas}) {
-
+function CalendarioBody({data, setData, calendarioTipo, reservas, categorias}) {
 
     const Body = () => {
         switch (calendarioTipo) {
@@ -16,6 +15,7 @@ function CalendarioBody({data, setData, calendarioTipo, reservas}) {
                     data={data}
                     setData={setData}
                     reservas={reservas}
+                    categorias={categorias}
                 />
             );
         case 'week':
@@ -25,7 +25,7 @@ function CalendarioBody({data, setData, calendarioTipo, reservas}) {
                     data={data}
                     setData={setData}
                     reservas={reservas}
-
+                    categorias={categorias}
                 />
             );
             
@@ -36,6 +36,7 @@ function CalendarioBody({data, setData, calendarioTipo, reservas}) {
                     data={data}
                     setData={setData}
                     reservas={reservas}
+                    categorias={categorias}
                 />
             );
         };

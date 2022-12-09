@@ -5,36 +5,14 @@ import Color from '../../assets/styles/colors';
 export const Container = styled.div`
     width: 100%;
     min-height: 25px;
-    height: ${props => {
-        switch (props.tipo) {
-        case 'day':
-            return '80px'
-        case 'week':
-            return '40px'
-        case 'month':
-            return '20px'
-        default:
-            return '20px';
-        }}
-    };
+    height: ${props => props.altura};
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     justify-content: flex-start;
     position: relative;
-    background-color: ${props => {
-        switch (props.cor) {
-        case 1:
-            return Color.aula
-        case 2:
-            return Color.reuniao
-        case 3:
-            return Color.curso
-        default:
-            return Color.outro;
-        }}
-    };
+    background-color: ${props => props.cor};
     gap: 5px;
     border-radius: 5px;
     padding-top: 1px;

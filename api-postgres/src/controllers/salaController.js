@@ -20,7 +20,7 @@ const create = async (req, res) => {
 
 const readVarias = async (_req, res) => {
     await baseDados.sync();
-    const salas = await Sala.findAll();
+    const salas = await Sala.findAll({ include: { all: true, nested: true }});
     return res.status(200).json({erro: false, msg: 'Sucesso', salas: salas})
 };
 

@@ -5,14 +5,13 @@ const msgErro = 'Ocorreu um erro, tente novamente ou contacte o administrador! '
 
 const create = async (req, res) => {
     try {
-        const {categoria_nome, descricao, cor} = req.body;
+        const {categoria_nome, cor} = req.body;
         console.log(categoria_nome);
         console.log(cor);
          await baseDados.sync();
         //criar o usuario com os dados recebidos
         await Categoria.create({
             categoria_nome: categoria_nome,
-            descricao: descricao,
             cor: cor
         }).then((result) => {
             return res.status(200).json({erro: false, msg: 'Categoria de reserva cadastrada'});
