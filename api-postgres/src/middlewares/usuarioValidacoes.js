@@ -51,11 +51,11 @@ const create = async (req, res, next) => {
 
 const updatePerfil = async (req, res, next) => {
     try {
-        const {nome, email, alterar_senha, senha, nova_senha, confirma_nova_senha} = req.body;
+        const {usuario_nome, email, alterar_senha, senha, nova_senha, confirma_nova_senha} = req.body;
         const {usuario_id} = req.usuario;
 
         //validar nome
-        if (!nome) {
+        if (!usuario_nome) {
             return res.status(400).json({erro: true, msg: 'O campo "Nome" deve ser preeenchido!' });
         };
         //validar email
@@ -80,10 +80,11 @@ const updatePerfil = async (req, res, next) => {
             if (!confirma_nova_senha) {
                 return res.status(400).json({erro: true, msg: 'O campo "Repita a nova senha" deve ser preeenchido!'});
             };
-            if (confirma_nova_senha != senha ) {
+            if (nova_senha != confirma_nova_senha ) {
                 return res.status(400).json({erro: true, msg: 'O campo "Nova senha e Repita a nova senha" devem ser iguais!'});
             };
         };
+        req.usuario = usuario;
 
         next();
 

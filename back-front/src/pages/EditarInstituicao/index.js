@@ -11,14 +11,14 @@ import {
     
 } from '../../assets/styles';
 
-import Carregamento from '../../components/Carregando';
+import Loading from '../../components/Loading';
 import useAuth from '../../hooks/useAuth';
 
 
 const ConfiguracaoInicial = () => {
 
     const navegar = useNavigate();
-    const [carregando, setCarregando] = useState(false)
+    const [loading, setLoading] = useState(false)
     const {listarInstituicao, atualizarInstituicao} = useAuth();
 
     const [instituicaoNome, setInstituicaoNome] = useState('');
@@ -27,9 +27,9 @@ const ConfiguracaoInicial = () => {
 
     useEffect(() => {
         const buscarInstituicao = async() => {
-            setCarregando(true);
+            setLoading(true);
             const resposta = await listarInstituicao();
-            setCarregando(false);
+            setLoading(false);
             if (!resposta.erro) {
                 const {instituicao_nome} = resposta.instituicao;
                 setInstituicaoNome(instituicao_nome);
@@ -38,15 +38,15 @@ const ConfiguracaoInicial = () => {
                 alert(resposta.msg);
                 return;
             };
-            setCarregando(false);
+            setLoading(false);
         };
         buscarInstituicao();
     }, []);
 
     const submeterAtualizar = async() => {
-        setCarregando(true);
+        setLoading(true);
         const resposta = await atualizarInstituicao(instituicaoNome, logo);
-        setCarregando(false);
+        setLoading(false);
         if (!resposta.erro) {
             alert(resposta.msg);
         };
@@ -58,7 +58,7 @@ const ConfiguracaoInicial = () => {
 
     return(
       <ContainerFormulario>
-        {carregando && <Carregamento/>}
+        {loading && <Loading/>}
         <SubContainerFormulario>
             <Formulario>
                 <h3>INSTITUIÇÃO</h3> 

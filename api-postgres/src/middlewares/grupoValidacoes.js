@@ -95,12 +95,6 @@ const update = async (req, res, next) => {
 
 };
 
-// function dataValida(dataHora) {
-//     const x = dataHora instanceof Date && !isNaN(dataHora);
-//     console.log(dataHora);
-//     return x;
-// };
-
 module.exports = {
     create,
     update

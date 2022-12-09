@@ -11,18 +11,17 @@ import {
     Botao,
     BotaoFlutuante,
     InputCheckbox,
-    ContainerCheckBox,
     SubContainerCheckBox
 } from '../../assets/styles';
 
 import {BsPencilSquare} from 'react-icons/bs';
 import useAuth from '../../hooks/useAuth';
-import Carregamento from '../../components/Carregando';
+import Loading from '../../components/Loading';
 
 
 const Perfil = () => {
 
-    const [carregando, setCarregando] = useState(false);
+    const [loading, setLoading] = useState(false);
     const {listarPerfil, atualizarPerfil, usuario} = useAuth();
     const navegar = useNavigate();
 
@@ -40,9 +39,9 @@ const Perfil = () => {
         setNome(usuario_nome);
         setMail(email);
         const buscarPerfil = async() => {
-            setCarregando(true);
+            setLoading(true);
             const resposta = await listarPerfil();
-            setCarregando(false);
+            setLoading(false);
             if(resposta.erro) {
                 alert(resposta.msg);
                 navegar(-1)
@@ -54,9 +53,9 @@ const Perfil = () => {
     }, []);
 
     const submeterAtualizar = async() => {
-        setCarregando(true);
+        setLoading(true);
         const dados = {
-            nome,
+            usuario_nome: nome,
             email: mail,
             alterar_senha: alterarSenha,
             senha,
@@ -64,7 +63,7 @@ const Perfil = () => {
             confirma_nova_senha: confirmaNovaSenha
         };
         const resposta = await atualizarPerfil(dados);
-        setCarregando(false);
+        setLoading(false);
         if (!resposta.erro) {
             alert(resposta.msg);
             navegar(-1);
@@ -81,7 +80,7 @@ const Perfil = () => {
     };
 
     return(
-        carregando ?  <Carregamento/> :
+        loading ?  <Loading/> :
         <ContainerFormulario>
             <SubContainerFormulario>
                 <Formulario onSubmit={submeterAtualizar}>

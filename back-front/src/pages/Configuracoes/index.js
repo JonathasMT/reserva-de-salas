@@ -13,7 +13,7 @@ import useAuth from '../../hooks/useAuth';
 
 import {BiEdit, BiPlus} from 'react-icons/bi';
 
-import Carregamento from '../../components/Carregando';
+import Loading from '../../components/Loading';
 import {
     ContainerFormulario,
     SubContainerFormulario,
@@ -27,7 +27,7 @@ const Configuracoes = () => {
     
     const navegar = useNavigate();
 
-    const [carregando, setCarregando] = useState(false)
+    const [loading, setLoading] = useState(false)
     const {instituicao, listarGrupos, listarSalas, listarCategorias} = useAuth();
 
     const [instituicaoNome, setInstituicaoNome] = useState();
@@ -40,9 +40,9 @@ const Configuracoes = () => {
         const {instituicao_nome} = JSON.parse(instituicao);
         setInstituicaoNome(instituicao_nome)
         const buscarGrupos = async() => {
-            setCarregando(true);
+            setLoading(true);
             const resposta = await listarGrupos();
-            setCarregando(false);
+            setLoading(false);
             if (!resposta.erro) {
                 setGrupos(resposta.grupos)
             };
@@ -51,13 +51,13 @@ const Configuracoes = () => {
                 
                 return;
             };
-            setCarregando(false);
+            setLoading(false);
         };
 
         const buscarSalas = async() => {
-            setCarregando(true);
+            setLoading(true);
             const resposta = await listarSalas();
-            setCarregando(false);
+            setLoading(false);
             if (!resposta.erro) {
                 setSalas(resposta.salas)
             };
@@ -65,13 +65,13 @@ const Configuracoes = () => {
                 alert(resposta.msg);
                 return;
             };
-            setCarregando(false);
+            setLoading(false);
         };
 
         const buscarCategorias = async() => {
-            setCarregando(true);
+            setLoading(true);
             const resposta = await listarCategorias();
-            setCarregando(false);
+            setLoading(false);
             if (!resposta.erro) {
                 setCategorias(resposta.categorias)
             };
@@ -79,7 +79,7 @@ const Configuracoes = () => {
                 alert(resposta.msg);
                 return;
             };
-            setCarregando(false);
+            setLoading(false);
         };
 
         buscarGrupos();
@@ -182,7 +182,7 @@ const Configuracoes = () => {
 
     return(
         <>
-            {carregando && <Carregamento/>}
+            {loading && <Loading/>}
             <ContainerFormulario>
                 <SubContainerFormulario>
                     {formInstituicao()}

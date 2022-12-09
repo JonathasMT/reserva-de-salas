@@ -13,6 +13,7 @@ export const ContainerFormulario = styled.div`
     background-color: ${Color.fundoSecundario};
     padding-top: 70px;
     padding-bottom: 20px;
+    user-select: none;
 `;
 
 export const SubContainerFormulario = styled.div`
@@ -25,7 +26,6 @@ export const SubContainerFormulario = styled.div`
     justify-content: flex-start;
     background-color: ${Color.fundoSecundario};
     gap: 20px;
-    background-color: red;
 `;
 
 export const Formulario = styled.form`
@@ -142,10 +142,10 @@ export const Input = styled.input`
 
         ::placeholder {
             font-size: 12px;
-            color: ${Color.secundaria};
+            color: ${Color.primaria};
         };
         :focus {
-            color: ${Color.primaria};
+            color: ${Color.secundaria};
             outline: 1px solid ${Color.acentuada};
         };
 `;
@@ -162,10 +162,10 @@ export const InputArea = styled.textarea`
 
         ::placeholder {
             font-size: 12px;
-            color: ${Color.secundaria};
+            color: ${Color.primaria};
         };
         :focus {
-            color: ${Color.primaria};
+            color: ${Color.secundaria};
             outline: 1px solid ${Color.acentuada};
         };
 `;
@@ -233,10 +233,12 @@ export const Botao = styled.button`
     border-radius: 7px;
     padding: 5px;
     background-color: ${props => props.tipo? Color.acentuada: Color.secundaria};
+    cursor: pointer;
+    //text
     color: ${Color.fundoCalendarioBloco};
     font-size: 20px;
     font-weight: 600;
-    cursor: pointer;
+   
 `;
 
 export const BotaoFlutuante = styled.button`
@@ -256,11 +258,12 @@ export const BotaoFlutuante = styled.button`
     border: none;
     border-radius: 9px;
     background-color: ${Color.acentuada};
+    box-shadow: 2px 0px 8px 0px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    //text
     color: ${Color.fundoCalendarioBloco};
     font-size: 10px;
     font-weight: 500;
-    cursor: pointer;
-    box-shadow: 2px 0px 8px 0px rgba(0, 0, 0, 0.2);
 
     >svg {
         box-sizing: border-box;

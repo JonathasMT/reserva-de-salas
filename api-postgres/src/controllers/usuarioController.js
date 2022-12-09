@@ -45,7 +45,7 @@ const readPerfil = async (req, res) => {
             const {usuario_nome, email} = usuario;
             const token = req.token;
             return res.status(200).json({erro: false, msg: 'Sucesso', usuario: {usuario_id, usuario_nome, email, token}});
-        }
+        };
 
     } catch (error) {
         res.status(500).json({msg: 'Ocorreu um erro, tente novamente ou contacte o administrador!'+error});
@@ -60,9 +60,29 @@ const readVarios = async (_req, res) => {
 };
 
 const updatePerfil = async (req, res) => {
-    await baseDados.sync();
-    const usuario = Usuario.findAll();
-    return res.status(200).json('Listar todos os usuarios.'+usuario)
+    try {
+        const {usuario_id, usuario_nome, email, alterar_senha, nova_senha} = req.body;
+        const usuario = req.usuario;
+        const token = req.token;
+        usuario.usuario_nome = usuario_nome;
+        usuario.email = email;
+        if(alterar_senha) {
+            //criar hash para a senha
+            const salt = await bcrypt.genSalt(12);
+            const senhaHash = await bcrypt.hash(nova_senha, salt);
+            
+            usuario.senha = senhaHash;
+        };
+        //tenta salvar as modificações
+        await usuario.save()
+        .then((_result) => {
+            return res.status(200).json({erro: false, msg: 'Usuário atualizado.', usuario: {usuario_id, usuario_nome, email, token}})
+        }).catch((_err) => {
+            return res.status(200).json({erro: true, msg: 'Erro ao atualizar!'})
+        });
+    } catch (error) {
+        res.status(500).json({msg: 'Ocorreu um erro, tente novamente ou contacte o administrador!'+error});
+    };
 };
 
 const deleteUsuario = async (req, res) => {

@@ -2,25 +2,26 @@ import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 
 import {
-    Button,
-    Container,
-    ContainerInput,
+    ContainerFormulario,
+    SubContainerFormulario,
+    Formulario,
     ContainerCheckBox,
-    Form,
-    Input,
-    SubContainer,
-    InputTextArea,
-    Checkbox,
     SubContainerCheckBox,
-    ContainerHora
-} from './styles';
-import Carregamento from '../../components/Carregando';
+    ContainerHora,
+    Label,
+    Input,
+    InputArea,
+    InputCheckbox,
+    Botao
+} from '../../assets/styles';
+
+import Loading from '../../components/Loading';
 import useAuth from '../../hooks/useAuth';
 
 const NovoGrupo = () => {
 
     const navegar = useNavigate();
-    const [carregando, setCarregando] = useState(false)
+    const [loading, setLoading] = useState(false)
     const {cadastrarGrupo} = useAuth();
 
     const [titulo, setTitulo] = useState('');
@@ -45,7 +46,7 @@ const NovoGrupo = () => {
     };
 
     const submeterCadastrar = async() => {
-        setCarregando(true);
+        setLoading(true);
         const resposta = await cadastrarGrupo(
             titulo,
             descricao,
@@ -58,7 +59,7 @@ const NovoGrupo = () => {
             alert(resposta.msg);
             navegar(-1)
         };
-        setCarregando(false);
+        setLoading(false);
         if (resposta.erro) {
             setMsg(resposta.msg);
             return;
@@ -66,85 +67,82 @@ const NovoGrupo = () => {
     };
 
     return(
-        carregando ? <Carregamento/> :
-        <Container>
-            <SubContainer>
-                <Form>
+        loading ? <Loading/> :
+        <ContainerFormulario>
+            <SubContainerFormulario>
+                <Formulario onSubmit={submeterCadastrar}>
                     <h3>EDITAR GRUPO</h3>
-                    <ContainerInput> 
-                        Título:
+                        <Label>Nome do grupo:</Label>
                         <Input
                             type='text'
                             name='titulo'
-                            placeholder='Digite o título do grupo de salas'
+                            placeholder='Digite um nome para este grupo de salas'
+                            required
                             value={titulo}
                             onChange={(e) => setTitulo(e.target.value)}
                         />
-                    </ContainerInput>
-                    <ContainerInput> 
-                        Descrição:
-                        <InputTextArea
+                        <Label>Descrição:</Label>
+                        <InputArea
                             type='textarea'
                             name='descricao'
                             placeholder='Digite uma descrição sobre este grupo'
                             value={descricao}
                             onChange={(e) => setDescricao(e.target.value)}
                         />
-                    </ContainerInput>
+                    <Label>Dias da semana reserváveis:</Label>
                     <ContainerCheckBox>
-                        Dias da semana reserváveis:
+                        
                         <SubContainerCheckBox>
-                            <Checkbox
+                            <InputCheckbox
                                 value='1'
                                 onChange={aoMudar}
                             />
                             Domingo
                         </SubContainerCheckBox>
                         <SubContainerCheckBox>
-                            <Checkbox
+                            <InputCheckbox
                                 value='2'
                                 onChange={aoMudar}
                             />
                             Segunda
                         </SubContainerCheckBox>
                         <SubContainerCheckBox>
-                            <Checkbox
+                            <InputCheckbox
                                 value='3'
                                 onChange={aoMudar}
                             />
                             Terça
                         </SubContainerCheckBox>
                         <SubContainerCheckBox>
-                            <Checkbox
+                            <InputCheckbox
                                 value='4'
                                 onChange={aoMudar}
                             />
                             Quarta
                         </SubContainerCheckBox>
                         <SubContainerCheckBox>
-                            <Checkbox
+                            <InputCheckbox
                                 value='5'
                                 onChange={aoMudar}
                             />
                             Quinta
                         </SubContainerCheckBox>
                         <SubContainerCheckBox>
-                            <Checkbox
+                            <InputCheckbox
                                 value='6'
                                 onChange={aoMudar}
                             />
                             Sexta
                         </SubContainerCheckBox>
                         <SubContainerCheckBox>
-                            <Checkbox
+                            <InputCheckbox
                                 value='7'
                                 onChange={aoMudar}
                             />
                             Sábado
                         </SubContainerCheckBox>
                     </ContainerCheckBox>
-                    <ContainerInput>
-                        Horário inicial e final de reservas no dia:
+                        <Label>Horário inicial e final de reservas no dia:</Label>
                         <ContainerHora>
                             <Input
                                 type='time'
@@ -152,8 +150,8 @@ const NovoGrupo = () => {
                                 name='hora-inicio'
                                 min='00:01'
                                 max='23:59'
-                                value={horaInicio}
                                 required
+                                value={horaInicio}
                                 onChange={(e) => setHoraInicio(e.target.value)}
                             />
                             <Input
@@ -162,32 +160,33 @@ const NovoGrupo = () => {
                                 name='hora-fim'
                                 min='00:01'
                                 max='23:59'
-                                value={horaFim}
                                 required
+                                value={horaFim}
                                 onChange={(e) => setHoraFim(e.target.value)}
 
                             />
                         </ContainerHora>
-                    </ContainerInput>
-                    <ContainerInput>
-                        Mínimo de antecedencia para reservas:
+                        <Label>Mínimo de antecedencia para reservas:</Label>
                         <Input
                             type='number'
                             name='antecedencia'
                             placeholder='Tempo em minutos'
+                            required
                             value={tempoAntecedencia}
                             onChange={(e) => setTempoAntecedencia(e.target.value)}
                         />
-                    </ContainerInput>
-                    <Button
-                        onClick={submeterCadastrar}
-                        tipo={true}
-                    >CADASTRAR</Button>
-                    <Button onClick={(e) => [e.preventDefault(), navegar(-1)]}>CANCELAR</Button>
-                </Form>
+                    <Botao
+                        type='submit'
+                        tipo={true}>
+                        CADASTRAR
+                    </Botao>
+                    <Botao onClick={(e) => [e.preventDefault(), navegar(-1)]}>
+                        CANCELAR
+                    </Botao>
+                </Formulario>
                 <p>{msg}</p>
-            </SubContainer>
-        </Container>
+            </SubContainerFormulario>
+        </ContainerFormulario>
     );
 };
 

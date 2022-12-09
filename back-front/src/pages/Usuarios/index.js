@@ -7,14 +7,14 @@ import {ContainerTabela, SubContainerTabela, BotaoTabela, ContainerTituloTabela}
 import useAuth from '../../hooks/useAuth';
 import {BsPencilSquare, BsPersonDash} from 'react-icons/bs';
 import {BiEdit, BiPlus} from 'react-icons/bi';
-import Carregamento from '../../components/Carregando';
+import Loading from '../../components/Loading';
 
 const Usuarios = () => {
 
     moment.locale('pt-br');
 
     const navegar = useNavigate();
-    const [carregando, setCarregando] = useState(false);
+    const [loading, setLoading] = useState(false);
     const {listarUsuarios} = useAuth();
     const [usuarios, setUsuarios] = useState([]);
 
@@ -24,9 +24,9 @@ const Usuarios = () => {
 
     useEffect(() => {
         const buscarUsuarios = async() => {
-            setCarregando(true);
+            setLoading(true);
             const resposta = await listarUsuarios();
-            setCarregando(false);
+            setLoading(false);
             if (!resposta.erro) {
                 setUsuarios(resposta.usuarios)
             };
@@ -34,7 +34,7 @@ const Usuarios = () => {
                 alert(resposta.msg);
                 return;
             };
-            setCarregando(false);
+            setLoading(false);
         };
 
         buscarUsuarios();
@@ -72,7 +72,7 @@ const Usuarios = () => {
     };
 
     return(
-        carregando ? <Carregamento/> : 
+        loading ? <Loading/> : 
         <ContainerTabela>
             <ContainerTituloTabela>
                 <h3>USUÁRIOS</h3>

@@ -15,7 +15,7 @@ import {
     Botao
 } from '../../assets/styles';
 
-import Carregamento from '../../components/Carregando';
+import Loading from '../../components/Loading';
 import useAuth from '../../hooks/useAuth';
 
 
@@ -24,7 +24,7 @@ const NovoGrupo = () => {
     const navegar = useNavigate();
     const {novoGrupo} = useAuth();
 
-    const [carregando, setCarregando] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [grupoNome, setGrupoNome] = useState('');
     const [descricao, setDescricao] = useState('');
     const [diasSemana, setDiasSemana] = useState({dias: []});
@@ -46,7 +46,7 @@ const NovoGrupo = () => {
     };
 
     const submeterCadastrar = async() => {
-        setCarregando(true);
+        setLoading(true);
         const dados = {
             grupo_nome: grupoNome,
             descricao,
@@ -56,7 +56,7 @@ const NovoGrupo = () => {
             antecedencia_minima: antecedencia
         };
         const resposta = await novoGrupo(dados);
-        setCarregando(false);
+        setLoading(false);
         if (!resposta.erro) {
             alert(resposta.msg);
             navegar(-1);
@@ -70,7 +70,7 @@ const NovoGrupo = () => {
     return(
         <ContainerFormulario>
             {
-                carregando ? <Carregamento/> :
+                loading ? <Loading/> :
                 <SubContainerFormulario>
                     <Formulario onSubmit={submeterCadastrar}>
                         <h3>NOVO GRUPO DE SALAS</h3>

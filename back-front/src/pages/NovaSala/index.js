@@ -12,7 +12,7 @@ import {
     Botao,
 } from '../../assets/styles';
 
-import Carregamento from '../../components/Carregando';
+import Loading from '../../components/Loading';
 import useAuth from '../../hooks/useAuth';
 
 
@@ -23,14 +23,14 @@ const NovaSala = () => {
     const navegar = useNavigate();
     const {novaSala} = useAuth();
 
-    const [carregando, setCarregando] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [salaNome, setSalaNome] = useState('');
     const [descricao, setDescricao] = useState('');
     const [capacidade, setCapacidade] = useState();
     const [msg, setMsg] = useState('');
 
     const submeterCadastrar = async() => {
-        setCarregando(true);
+        setLoading(true);
         const dados = {
             grupo_id: grupoId,
             sala_nome: salaNome,
@@ -38,7 +38,7 @@ const NovaSala = () => {
             capacidade
         }
         const resposta = await novaSala(dados);
-        setCarregando(false);
+        setLoading(false);
         if (!resposta.erro) {
             alert(resposta.msg);
             navegar(-1);
@@ -52,7 +52,7 @@ const NovaSala = () => {
     return(
         <ContainerFormulario>
             {
-                carregando ? <Carregamento/> :
+                loading ? <Loading/> :
                 <SubContainerFormulario>
                     <Formulario onSubmit={submeterCadastrar}>
                         <h3>NOVA SALA</h3>

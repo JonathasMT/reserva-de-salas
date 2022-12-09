@@ -8,7 +8,7 @@ import CalendarioOpcoes from "../CalendarioOpcoes";
 import CalendarioLegenda from "../CalendarioLegenda";
 
 import useAuth from '../../hooks/useAuth';
-import Carregamento from '../../components/Carregando';
+import Loading from '../../components/Loading';
 
 function Calendario() {
     //tradução do moment para PT-BR;
@@ -21,20 +21,21 @@ function Calendario() {
             weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb']});
     moment.locale('pt-br');
 
-    const [carregando, setCarregando] = useState(false)
-    const {listarReservas} = useAuth();
+    const [loading, setLoading] = useState(false)
+    const {listarReservas, listarCategorias} = useAuth();
 
     const [data, setData] = useState(moment().locale('pt-br'));
     const [calendarioTipo, setCalendarioTipo] = useState('month');
     const [reservas, setReservas] = useState([]);
+    const [categorias, setCategorias] = useState([]);
 
     useEffect(() => {
         const buscarReservas = async() => {
-            setCarregando(true);
+            setLoading(true);
             const resposta = await listarReservas();
             if (!resposta.erro) {
                 setReservas(resposta.reservas);
-                setCarregando(false);
+                setLoading(false);
                 return;
             };
             if (resposta.erro) {
@@ -42,11 +43,25 @@ function Calendario() {
                 return;
             };
         };
+        const buscarCategorias = async() => {
+            setLoading(true);
+            const resposta = await listarCategorias();
+            setLoading(false);
+            if (!resposta.erro) {
+                setCategorias(resposta.categorias)
+            };
+            if (resposta.erro) {
+                alert(resposta.msg);
+                return;
+            };
+            setLoading(false);
+        };
         buscarReservas();
+        buscarCategorias();
     }, []);
 
     return(
-        carregando ? <Carregamento/> :
+        loading ? <Loading/> :
         <Container>
             <CalendarioOpcoes 
                 setData={setData} 
@@ -61,7 +76,7 @@ function Calendario() {
                 data={data}
                 setData={setData}
                 reservas={reservas}/>
-            <CalendarioLegenda/>
+            <CalendarioLegenda categorias={categorias}/>
         </Container>
 )
 };

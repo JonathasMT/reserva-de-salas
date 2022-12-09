@@ -5,7 +5,7 @@ import { ContainerTabela, SubContainerTabela } from '../../assets/styles';
 
 import useAuth from '../../hooks/useAuth';
 import {BsPencilSquare, BsPersonDash} from 'react-icons/bs';
-import Carregamento from '../../components/Carregando';
+import Loading from '../../components/Loading';
 
 
 const MinhasReservas = () => {
@@ -13,15 +13,15 @@ const MinhasReservas = () => {
     const propriedades = ['titulo', 'descricao', 'categoria_id', 'grupo_id', 'sala_id', 'data', 'hora_inicio', 'hora_fim', 'repete_id', 'Opções'];
 
     const navegar = useNavigate();
-    const [carregando, setCarregando] = useState(false)
+    const [loading, setLoading] = useState(false)
     const {listarMinhasReservas} = useAuth();
     const [reservas, setReservas] = useState([]);
 
     useEffect(() => {
         const buscarReservas = async() => {
-            setCarregando(true);
+            setLoading(true);
             const resposta = await listarMinhasReservas();
-            setCarregando(false);
+            setLoading(false);
             if (!resposta.erro) {
                 setReservas(resposta.minhasReservas)
             };
@@ -29,7 +29,7 @@ const MinhasReservas = () => {
                 alert(resposta.msg);
                 return;
             };
-            setCarregando(false);
+            setLoading(false);
         };
 
         buscarReservas();
@@ -50,7 +50,7 @@ const MinhasReservas = () => {
 
 
     return(
-        carregando ? <Carregamento/> :
+        loading ? <Loading/> :
         <ContainerTabela>
             <h2>MINHAS RESERVAS</h2>
             <SubContainerTabela>

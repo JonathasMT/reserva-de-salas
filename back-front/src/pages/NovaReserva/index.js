@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useNavigate, useLocation} from 'react-router-dom';
 
-import Carregamento from '../../components/Carregando';
+import Loading from '../../components/Loading';
 import useAuth from '../../hooks/useAuth';
 
 import {
@@ -25,7 +25,7 @@ const NovaReserva = () => {
     const location = useLocation();
     const dia = location.state.dia;
 
-    const [carregando, setCarregando] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [titulo, setTitulo] = useState('');
     const [descricao, setDescricao] = useState('');
     const [grupoId, setGrupoId] = useState('1');
@@ -33,31 +33,35 @@ const NovaReserva = () => {
     const [data, setData] = useState(dia);
     const [horaInicio, setHoraInicio] = useState('08:00');
     const [horaFim, setHoraFim] = useState('12:00');
-    const [categoriaId, setCategoriaId] = useState(1);
-    const [categorias, setCategorias] = useState(1);
+    const [categorias, setCategorias] = useState([]);
+    const [categoriaId, setCategoriaId] = useState();
     const [recorrencia, setRecorrencia] = useState('0');
     const [msg, setMsg] = useState('');
 
     const {usuario_id} = JSON.parse(usuario);
     const {listarGrupos, listarSalas, listarCategorias} = useAuth();
 
+
     useEffect(() => {
         const buscarCategorias = async() => {
-            setCarregando(true);
+            setLoading(true);
             const resposta = await listarCategorias();
-            setCarregando(false);
+            setLoading(false);
             if (!resposta.erro) {
-                setCategorias(resposta.categorias)
+                if(resposta.categorias.length < 1) {
+                    alert('Você deve cadastrar uma categoria de reservas primeiro!');
+                    navegar('/novacategoria');
+                }else{
+                    setCategorias(resposta.categorias);
+                }
             };
             if (resposta.erro) {
                 alert(resposta.msg);
                 return;
             };
-            setCarregando(false);
+            setLoading(false);
         };
-
         buscarCategorias();
-
     }, []);
 
     const aoSubmeter = async (e) => {
@@ -73,9 +77,9 @@ const NovaReserva = () => {
             hora_inicio: horaInicio,
             hora_fim: horaFim,
         };
-        setCarregando(true);
+        setLoading(true);
         const resposta = await novaReserva(dados);
-        setCarregando(false);
+        setLoading(false);
         if (!resposta.erro) {
             alert(resposta.msg);
             navegar('/')
@@ -88,7 +92,7 @@ const NovaReserva = () => {
 
     return(
       <ContainerFormulario>
-        {carregando ? <Carregamento/> :
+        {loading ? <Loading/> :
             <SubContainerFormulario>
                 <Formulario onSubmit={aoSubmeter}>
                     <h3>NOVA RESERVA</h3>
@@ -156,12 +160,11 @@ const NovaReserva = () => {
                         <Label>Categoria:</Label>
                         <InputSelect 
                             required
-                            value={categorias[0]}
-                            // onChange={(e) => setCategoriaId(parseInt(e.target.value))}
+                            value={1}
                             >
                                 {
-                                    categorias.map((c, i) => (
-                                        <option value={c.categoria_id}>{c.categoria_nome}</option>
+                                    categorias.map((categoria, i) => (
+                                        <option value={categoria.categoria_id}>{categoria.categoria_nome}</option>
                                     ))
                                 }
                         </InputSelect>

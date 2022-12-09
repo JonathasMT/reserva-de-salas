@@ -133,7 +133,6 @@ export const AuthProvider = ({children}) => {
         var retorno;
         await api.get('/listarinstituicao')
         .then((resultado) => {
-            const {instituicao_nome} = resultado.data.instituicao;
             retorno = resultado.data;
         }).catch((erro) => {
             

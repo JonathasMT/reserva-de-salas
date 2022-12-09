@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom';
 
 import  {ContainerFormulario, SubContainerFormulario, Formulario, Label, Input, Botao} from '../../assets/styles';
 
-import Carregando from '../../components/Carregando';
+import Loading from '../../components/Loading';
 import useAuth from '../../hooks/useAuth';
 
 
@@ -12,7 +12,7 @@ const PrimeiroAcesso = () => {
 
     const navegar = useNavigate();
     const {tamanhoBd, primeiroAcesso} = useAuth();
-    const [carregando, setCarregando] = useState(true);
+    const [loading, setLoading] = useState(true);
 
     const [instituicaoNome, setInstituicaoNome] = useState('');
     const [logo, setLogo] = useState('');
@@ -27,7 +27,7 @@ const PrimeiroAcesso = () => {
     useEffect(() => {
         const verificaBd = async () => {
             const resposta = await tamanhoBd();
-            setCarregando(false);
+            setLoading(false);
             if (resposta.erro) {
                 navegar('/');
             };
@@ -47,9 +47,9 @@ const PrimeiroAcesso = () => {
             senha,
             confirmaSenha
         };
-        setCarregando(true);
+        setLoading(true);
         const resposta = await primeiroAcesso(dados);
-        setCarregando(false);
+        setLoading(false);
         if (!resposta.erro) {
             alert(resposta.msg);
             navegar('/')
@@ -62,7 +62,7 @@ const PrimeiroAcesso = () => {
 
     return(
         <>
-            {carregando? <Carregando/> :
+            {loading? <Loading/> :
             <ContainerFormulario>
                 <SubContainerFormulario>
                         <Formulario onSubmit={submeterPrimeiroAcesso}>
