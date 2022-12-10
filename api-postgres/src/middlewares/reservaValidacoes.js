@@ -2,6 +2,7 @@ const moment = require('moment');
 moment.locale('pt-br');
 const baseDados = require("../connection");
 const Categoria = require('../models/Categoria');
+const Grupo = require('../models/Grupo');
 const Recorrencia = require('../models/Recorrencia');
 const Reserva = require("../models/reserva");
 const Sala = require('../models/Sala');
@@ -11,7 +12,7 @@ const msgErro = 'Ocorreu um erro, tente novamente ou contacte o administrador! '
 
 const create = async (req, res, next) => {
     try {
-        const {sala_id, categoria_id, recorrencia_id, titulo, descricao, data, hora_inicio, hora_fim} = req.body;
+        const {sala_id, categoria_id, recorrencia_id, titulo, data, hora_inicio, hora_fim} = req.body;
         const {usuario_id} = req.usuario;
         //verifica ID do usuario
         if (!usuario_id) {
@@ -32,8 +33,13 @@ const create = async (req, res, next) => {
         if (!Number.isInteger(sala_id)) {
             return res.status(200).json({erro: true, msg: 'O ID do campo "Sala" deve ser um número inteiro!'});
         };
+        //consulta banco de dados
+        const sala = await Sala.findOne({where: {sala_id: sala_id}, include: Grupo});
+        //busca regras de negocio do Grupo
+        const antecedencia = sala.Grupo.antecedencia_minima;
+        const inicio = sala.Grupo.hora_inicio;
+        const fim = sala.Grupo.hora_fim;
         //verifica se a sala existe
-        const sala = await Sala.findOne({where : {sala_id: sala_id}});
         if (!sala) {
             return res.status(200).json({erro: true, msg: 'A sala não foi encontrada!'});
         };
@@ -71,18 +77,24 @@ const create = async (req, res, next) => {
         if (!dataValida(data)) {
             return res.status(200).json({erro: true, msg: 'O campo "Data" está em um formato inválido!'});
         };
-
-        
-        // return res.status(200).json({erro: true, msg: 'Os campos "Horário de inicio e fim da reserva" devem ser preechido!'});
-
-
+        if (!dataAtual(data)) {
+            return res.status(200).json({erro: true, msg: 'A "Data" não pode ser anterior ao dia atual.'});
+        };
         //verifica Hora de inicio
         if (!hora_inicio) {
             return res.status(200).json({erro: true, msg: 'Os campos "Horário de inicio e fim da reserva" devem ser preechidos!'});
         };
+        if (tempoAntecedencia(data, hora_inicio) < antecedencia) {
+            return res.status(200).json({erro: true, msg: 'O horario de inicio da reserva deve ter no minimo "' + 60 + ' minutos de antecedência".'
+            });
+        };
         //verifica Hora de encerramento
         if (!hora_fim) {
             return res.status(200).json({erro: true, msg: 'Os campos "Horário de inicio e fim da reserva" devem ser preechidos!'});
+        };
+        if (inicioFimValido(data, hora_inicio, hora_fim) < 1) {
+            return res.status(200).json({erro: true, msg: 'O horario de termino da reserva deve ser posterior ao inicio.'
+            });
         };
         next();
     } catch (_error) {
@@ -147,6 +159,20 @@ const update = async (req, res, next) => {
 //FUNÇÕES
 function dataValida(data) {
     return moment(data).isValid();
+};
+function dataAtual(data) {
+        const atual = moment().format('YYYY-MM-DD');
+    return moment(data).isSameOrAfter(atual);
+};
+function tempoAntecedencia(data, hora_inicio) {
+        const atual = moment().format('YYYY-MM-DD HH:mm');
+        const outro = moment(data + ' ' + hora_inicio).diff(atual, 'minutes');
+    return outro;
+};
+function inicioFimValido(data, hora_inicio, hora_fim) {
+    const inicio = moment(data + ' ' + hora_inicio);
+    const diferenca = moment(data + ' ' + hora_fim).diff(inicio, 'minutes');
+return diferenca;
 };
 
 module.exports = {
