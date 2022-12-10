@@ -11,24 +11,24 @@ import {
 } from './styles';
 import Menu from '../Menu';
 import logo from '../../assets/img/logo.png';
-import useAuth from '../../hooks/useAuth';
 import useContexto from '../../hooks/useContexto';
 
-
 const Header = () => {
-    const {usuario, instituicao} = useAuth();
     const {menu, alterarMenu} = useContexto();
 
     const [nome, setNome] = useState('Instituição não encontrada');
+    const usuario = localStorage.getItem('usuarioAutenticado');
+    const instituicao = localStorage.getItem('instituicao');
 
     useEffect(() => {
+        
         if(instituicao) {
             const {instituicao_nome} = JSON.parse(instituicao);
             if(instituicao_nome) {
                 setNome(instituicao_nome);
             };
         };
-        }, [instituicao]);
+        }, []);
 
     const mostrarMenu = (e) => {
         e.preventDefault();

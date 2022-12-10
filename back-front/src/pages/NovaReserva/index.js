@@ -3,7 +3,6 @@ import {useNavigate, useLocation} from 'react-router-dom';
 
 import api from '../../services/api';
 import Loading from '../../components/Loading';
-import useAuth from '../../hooks/useAuth';
 import useContexto from '../../hooks/useContexto';
 
 import {
@@ -22,7 +21,7 @@ import {
 const NovaReserva = () => {
 
     const navegar = useNavigate();
-    const {usuario, novaReserva, listarCategorias} = useAuth();
+    const {novaReserva, listarCategorias} = useContexto();
     const location = useLocation();
     const dia = location.state.dia;
 
@@ -38,58 +37,34 @@ const NovaReserva = () => {
     const [categoriaId, setCategoriaId] = useState();
     const [recorrencia, setRecorrencia] = useState('0');
     const [msg, setMsg] = useState('');
+    const usuario = localStorage.getItem('usuarioAutenticado');
 
     const {usuario_id} = JSON.parse(usuario);
 
     useEffect(() => {
         const buscarCategorias = async() => {
+            setLoading(true);
             const resposta = await listarCategorias();
             if (!resposta.erro) {
-                if(resposta.categorias.length < 1) {
-                    alert('Você deve cadastrar uma categoria de reservas primeiro!');
-                    navegar('/novareserva')
-                }else{
+                if(resposta.categorias.length > 0) {
                     setCategorias(resposta.categorias);
                     setCategoriaId(resposta.categorias[0].categoria_id);
-                    return
+                }else {
+                    alert('Você deve cadastrar pelo menos uma categoria!');
+                    navegar('/novacategoria');
                 };
-                return;
-            };
-            if(resposta.erro) {
+            }else {
                 alert(resposta.msg);
-                return;
             };
+            setLoading(false);
+            return;
         };
         buscarCategorias();
-        console.log(categoriaId);
-
-        // const listarCategorias = async() => {
-        //     setLoading(true);
-        //     await api.get('/listarcategorias')
-        //     .then((resultado) => {
-        //         if(!resultado.data.erro) {
-        //             if(resultado.data.categorias.length < 1) {
-        //                 alert('Você deve cadastrar uma categoria de reservas primeiro!');
-        //                 navegar('/novacategoria')
-        //             }else{
-        //                 console.log(resultado.data.categorias);
-        //                 setCategorias(resultado.data.categorias);
-        //                 setCategoriaId(resultado.data.categorias[0].categoria_id)
-        //                 return;
-        //             };
-        //         };
-        //     }).catch((error) => {
-        //         console.log('ERRO AO BUSCAR CATEGORIAS!');
-        //         console.log(error);
-        //     });
-        //     setLoading(false);
-        // };
-        // listarCategorias();
-        // console.log(categoriaId);
     }, []);
 
     const aoSubmeter = async (e) => {
         e.preventDefault();
+        setLoading(true);
         const dados = {
             usuarioId: usuario_id,
             sala_id: salaId,
@@ -102,17 +77,15 @@ const NovaReserva = () => {
             hora_fim: horaFim,
         };
         console.log(categoriaId);
-        setLoading(true);
         const resposta = await novaReserva(dados);
-        setLoading(false);
         if (!resposta.erro) {
             alert(resposta.msg);
             navegar('/')
-        };
-        if (resposta.erro) {
+        }else {
             setMsg(resposta.msg);
-            return;
         };
+        setLoading(false);
+        return;
     };
 
     return(

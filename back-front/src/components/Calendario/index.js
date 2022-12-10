@@ -7,7 +7,7 @@ import CalendarioHeader from "../CalendarioHeader";
 import CalendarioOpcoes from "../CalendarioOpcoes";
 import CalendarioLegenda from "../CalendarioLegenda";
 
-import useAuth from '../../hooks/useAuth';
+import useContexto from '../../hooks/useContexto';
 import Loading from '../../components/Loading';
 
 function Calendario() {
@@ -22,43 +22,25 @@ function Calendario() {
     moment.locale('pt-br');
 
     const [loading, setLoading] = useState(false)
-    const {listarReservas, listarCategorias} = useAuth();
+    const {listarReservas} = useContexto();
 
     const [data, setData] = useState(moment().locale('pt-br'));
     const [calendarioTipo, setCalendarioTipo] = useState('month');
     const [reservas, setReservas] = useState([]);
-    const [categorias, setCategorias] = useState([]);
 
     useEffect(() => {
+        setLoading(true);
         const buscarReservas = async() => {
-            setLoading(true);
             const resposta = await listarReservas();
             if (!resposta.erro) {
                 setReservas(resposta.reservas);
-                setLoading(false);
-                return;
-            };
-            if (resposta.erro) {
+            }else{
                 alert(resposta.msg);
-                return;
-            };
-        };
-        const buscarCategorias = async() => {
-            setLoading(true);
-            const resposta = await listarCategorias();
-            setLoading(false);
-            if (!resposta.erro) {
-                setCategorias(resposta.categorias)
-            };
-            if (resposta.erro) {
-                alert(resposta.msg);
-                return;
             };
             setLoading(false);
+            return;
         };
-        buscarCategorias();
         buscarReservas();
-
     }, []);
 
     return(
@@ -76,9 +58,7 @@ function Calendario() {
                 calendarioTipo={calendarioTipo}
                 data={data}
                 setData={setData}
-                reservas={reservas}
-                categorias={categorias}/>
-            <CalendarioLegenda categorias={categorias}/>
+                reservas={reservas}/>
         </Container>
 )
 };

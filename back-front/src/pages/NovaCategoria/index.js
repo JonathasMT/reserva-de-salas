@@ -13,13 +13,13 @@ import {
 } from '../../assets/styles';
 
 import Loading from '../../components/Loading';
-import useAuth from '../../hooks/useAuth';
+import useContexto from '../../hooks/useContexto';
 
 
 const NovaCategoria = () => {
     
     const navegar = useNavigate();
-    const {novaCategoria} = useAuth();
+    const {novaCategoria} = useContexto();
 
     const [loading, setLoading] = useState(false);
     const [categoriaNome, setCategoriaNome] = useState('');

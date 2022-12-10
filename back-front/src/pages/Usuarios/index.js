@@ -4,7 +4,7 @@ import moment from 'moment';
 
 import {ContainerTabela, SubContainerTabela, BotaoTabela, ContainerTituloTabela} from '../../assets/styles';
 
-import useAuth from '../../hooks/useAuth';
+import useContexto from '../../hooks/useContexto';
 import {BsPencilSquare, BsPersonDash} from 'react-icons/bs';
 import {BiEdit, BiPlus} from 'react-icons/bi';
 import Loading from '../../components/Loading';
@@ -15,7 +15,7 @@ const Usuarios = () => {
 
     const navegar = useNavigate();
     const [loading, setLoading] = useState(false);
-    const {listarUsuarios} = useAuth();
+    const {listarUsuarios} = useContexto();
     const [usuarios, setUsuarios] = useState([]);
 
     const titulos = ['Id', 'Nome', 'E-mail', 'Nível', 'Status', 'Login', 'Criado', 'Atualizado', 'Opções'];

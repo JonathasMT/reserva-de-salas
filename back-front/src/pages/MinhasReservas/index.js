@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom';
 
 import { ContainerTabela, SubContainerTabela } from '../../assets/styles';
 
-import useAuth from '../../hooks/useAuth';
+import useContexto from '../../hooks/useContexto';
 import {BsPencilSquare, BsPersonDash} from 'react-icons/bs';
 import Loading from '../../components/Loading';
 
@@ -14,7 +14,7 @@ const MinhasReservas = () => {
 
     const navegar = useNavigate();
     const [loading, setLoading] = useState(false)
-    const {listarMinhasReservas} = useAuth();
+    const {listarMinhasReservas} = useContexto();
     const [reservas, setReservas] = useState([]);
 
     useEffect(() => {

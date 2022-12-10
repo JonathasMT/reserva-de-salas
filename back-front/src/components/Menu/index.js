@@ -10,7 +10,6 @@ import {
     ContainerNome,
 } from './styles';
 
-
 import {
     BsCalendar2Event,
     BsCalendar2Check,
@@ -20,18 +19,15 @@ import {
 } from 'react-icons/bs';
 import {FaAngleDown} from 'react-icons/fa';
 
-
 import MenuItem from '../MenuItem';
 // import imgPerfil from '../../assets/img/person.jpg';
-import useAuth from '../../hooks/useAuth';
 import useContexto from '../../hooks/useContexto';
-
 
 const Menu = () => {
     const {menu, alterarMenu} = useContexto();
     const fecharMenu = () => alterarMenu();
-    const {sair, usuario} = useAuth();
     const [nome, setNome] = useState('Usuário não encontrado');
+    const usuario = localStorage.getItem('usuarioAutenticado');
 
     useEffect(() => {
         if(usuario) {
@@ -40,7 +36,12 @@ const Menu = () => {
                 setNome(usuario_nome);
             };
         };
-    }, [usuario]);
+    }, []);
+    
+    const sair = () => {
+        // setUsuario(null);
+        localStorage.clear();
+    };
 
     const {pathname} = useLocation();
 

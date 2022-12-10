@@ -13,7 +13,7 @@ import {
 } from '../../assets/styles';
 
 import Loading from '../../components/Loading';
-import useAuth from '../../hooks/useAuth';
+import useContexto from '../../hooks/useContexto';
 
 
 const NovaSala = () => {
@@ -21,7 +21,7 @@ const NovaSala = () => {
     const location = useLocation();
     const {grupoId, grupoNome} = location.state;
     const navegar = useNavigate();
-    const {novaSala} = useAuth();
+    const {novaSala} = useContexto();
 
     const [loading, setLoading] = useState(false);
     const [salaNome, setSalaNome] = useState('');

@@ -14,6 +14,15 @@ const create = async (req, res, next) => {
     try {
         const {sala_id, categoria_id, recorrencia_id, titulo, data, hora_inicio, hora_fim} = req.body;
         const {usuario_id} = req.usuario;
+        //----------------------------------------------------------------------------------------------------------------
+        //consulta banco de dados
+        const sala = await Sala.findOne({where: {sala_id: sala_id}, include: Grupo});
+        //busca regras de negocio do Grupo
+        const antecedencia = sala.Grupo.antecedencia_minima;
+        const inicio = sala.Grupo.hora_inicio;
+        const fim = sala.Grupo.hora_fim;
+        //----------------------------------------------------------------------------------------------------------------
+
         //verifica ID do usuario
         if (!usuario_id) {
             return res.status(200).json({erro: true, msg: 'O "ID" do usuário deve ser informado!'});
@@ -33,12 +42,6 @@ const create = async (req, res, next) => {
         if (!Number.isInteger(sala_id)) {
             return res.status(200).json({erro: true, msg: 'O ID do campo "Sala" deve ser um número inteiro!'});
         };
-        //consulta banco de dados
-        const sala = await Sala.findOne({where: {sala_id: sala_id}, include: Grupo});
-        //busca regras de negocio do Grupo
-        const antecedencia = sala.Grupo.antecedencia_minima;
-        const inicio = sala.Grupo.hora_inicio;
-        const fim = sala.Grupo.hora_fim;
         //verifica se a sala existe
         if (!sala) {
             return res.status(200).json({erro: true, msg: 'A sala não foi encontrada!'});
@@ -88,6 +91,10 @@ const create = async (req, res, next) => {
             return res.status(200).json({erro: true, msg: 'O horario de inicio da reserva deve ter no minimo "' + 60 + ' minutos de antecedência".'
             });
         };
+        if (inicioValido(data, inicio, hora_inicio)) {
+            return res.status(200).json({erro: true, msg: 'O horario de inicio da reserva deve ter no minimo "' + 60 + ' minutos de antecedência".'
+            });
+        };
         //verifica Hora de encerramento
         if (!hora_fim) {
             return res.status(200).json({erro: true, msg: 'Os campos "Horário de inicio e fim da reserva" devem ser preechidos!'});
@@ -96,6 +103,9 @@ const create = async (req, res, next) => {
             return res.status(200).json({erro: true, msg: 'O horario de termino da reserva deve ser posterior ao inicio.'
             });
         };
+
+        return res.status(200).json({erro: true, msg: 'Teste interronpido'});
+
         next();
     } catch (_error) {
         return res.status(500).json({erro: true, msg: msgErro})
@@ -166,8 +176,18 @@ function dataAtual(data) {
 };
 function tempoAntecedencia(data, hora_inicio) {
         const atual = moment().format('YYYY-MM-DD HH:mm');
-        const outro = moment(data + ' ' + hora_inicio).diff(atual, 'minutes');
-    return outro;
+        const diferenca = moment(data + ' ' + hora_inicio).diff(atual, 'minutes');
+    return diferenca;
+};
+function inicioValido(data, inicio, hora_inicio) {
+    const inicioMinimo = moment(data + ' ' + inicio);
+    const diferenca = moment(data + ' ' + hora_inicio).diff(inicioMinimo, 'minutes');
+return diferenca;
+};
+function fimValido(data, hora_inicio, hora_fim) {
+    const inicio = moment(data + ' ' + hora_inicio);
+    const diferenca = moment(data + ' ' + hora_fim).diff(inicio, 'minutes');
+return diferenca;
 };
 function inicioFimValido(data, hora_inicio, hora_fim) {
     const inicio = moment(data + ' ' + hora_inicio);

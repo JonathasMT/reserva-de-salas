@@ -12,14 +12,14 @@ import {
 } from '../../assets/styles';
 
 import Loading from '../../components/Loading';
-import useAuth from '../../hooks/useAuth';
+import useContexto from '../../hooks/useContexto';
 
 
 const ConfiguracaoInicial = () => {
 
     const navegar = useNavigate();
     const [loading, setLoading] = useState(false)
-    const {listarInstituicao, atualizarInstituicao} = useAuth();
+    const {listarInstituicao, atualizarInstituicao} = useContexto();
 
     const [instituicaoNome, setInstituicaoNome] = useState('');
     const [logo, setLogo] = useState('');

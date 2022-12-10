@@ -10,14 +10,14 @@ import {
     Botao
 } from '../../assets/styles';
 
-import useAuth from '../../hooks/useAuth';
+import useContexto from '../../hooks/useContexto';
 import Loading from '../../components/Loading';
 
 
 const Login = () => {
 
     const navegar = useNavigate();
-    const {login} = useAuth();
+    const {login} = useContexto();
 
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');

@@ -9,7 +9,7 @@ import {
     Circulo,
 } from './styles';
 
-import useAuth from '../../hooks/useAuth';
+import useContexto from '../../hooks/useContexto';
 
 import {BiEdit, BiPlus} from 'react-icons/bi';
 
@@ -28,12 +28,13 @@ const Configuracoes = () => {
     const navegar = useNavigate();
 
     const [loading, setLoading] = useState(false)
-    const {instituicao, listarGrupos, listarSalas, listarCategorias} = useAuth();
+    const {listarGrupos, listarSalas, listarCategorias} = useContexto();
 
     const [instituicaoNome, setInstituicaoNome] = useState();
     const [grupos, setGrupos] = useState([]);
     const [salas, setSalas] = useState([]);
     const [categorias, setCategorias] = useState([]);
+    const instituicao = localStorage.getItem('instituicao');
 
 
     useEffect(() => {

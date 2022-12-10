@@ -16,13 +16,13 @@ import {
 } from '../../assets/styles';
 
 import Loading from '../../components/Loading';
-import useAuth from '../../hooks/useAuth';
+import useContexto from '../../hooks/useContexto';
 
 const NovoGrupo = () => {
 
     const navegar = useNavigate();
     const [loading, setLoading] = useState(false)
-    const {cadastrarGrupo} = useAuth();
+    const {cadastrarGrupo} = useContexto();
 
     const [titulo, setTitulo] = useState('');
     const [descricao, setDescricao] = useState('');

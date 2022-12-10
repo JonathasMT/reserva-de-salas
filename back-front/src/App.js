@@ -2,17 +2,14 @@ import React from 'react';
 
 import GlobalStyle from '../src/assets/styles/globalStyle';
 import RoutesApp from './routes';
-import {AuthProvider} from './contexts/AuthProvider';
 import {ContextoProvider} from './contexts/ContextoProvider';
 
 function App() {
   return (
-    <AuthProvider>
-        <ContextoProvider>
-            <GlobalStyle/>
-            <RoutesApp/>
-        </ContextoProvider>
-    </AuthProvider>
+    <ContextoProvider>
+        <GlobalStyle/>
+        <RoutesApp/>
+    </ContextoProvider>
   );
 }
 

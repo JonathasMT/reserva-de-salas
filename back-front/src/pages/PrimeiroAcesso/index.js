@@ -5,13 +5,13 @@ import {useNavigate} from 'react-router-dom';
 import  {ContainerFormulario, SubContainerFormulario, Formulario, Label, Input, Botao} from '../../assets/styles';
 
 import Loading from '../../components/Loading';
-import useAuth from '../../hooks/useAuth';
+import useContexto from '../../hooks/useContexto';
 
 
 const PrimeiroAcesso = () => {
 
     const navegar = useNavigate();
-    const {tamanhoBd, primeiroAcesso} = useAuth();
+    const {tamanhoBd, primeiroAcesso} = useContexto();
     const [loading, setLoading] = useState(true);
 
     const [instituicaoNome, setInstituicaoNome] = useState('');

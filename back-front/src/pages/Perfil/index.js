@@ -15,14 +15,14 @@ import {
 } from '../../assets/styles';
 
 import {BsPencilSquare} from 'react-icons/bs';
-import useAuth from '../../hooks/useAuth';
+import useContexto from '../../hooks/useContexto';
 import Loading from '../../components/Loading';
 
 
 const Perfil = () => {
 
     const [loading, setLoading] = useState(false);
-    const {listarPerfil, atualizarPerfil, usuario} = useAuth();
+    const {listarPerfil, atualizarPerfil} = useContexto();
     const navegar = useNavigate();
 
     const [nome, setNome] = useState('');
@@ -33,6 +33,7 @@ const Perfil = () => {
     const [msg, setMsg] = useState('');
     const [desativado, setDesativado] = useState(true);
     const [alterarSenha, setAlterarSenha] = useState(false);
+    const usuario = localStorage.getItem('usuarioAutenticado');
 
     useEffect(() => {
         const {usuario_nome, email} = JSON.parse(usuario);

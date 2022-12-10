@@ -1,9 +1,6 @@
 import {Fragment} from 'react';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 
-
-import useAuth from '../src/hooks/useAuth';
-
 import Header from './components/Header';
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -25,7 +22,7 @@ import EditarInstituicao from './pages/EditarInstituicao';
 
 
 const RoutesApp = () => {
-    const {usuario} = useAuth();
+    const usuario = localStorage.getItem('usuarioAutenticado');
 
     // eslint-disable-next-line
     const Privada = ({Destino}) => {
@@ -53,22 +50,6 @@ const RoutesApp = () => {
                 
                     <Route path='/primeiroacesso' element={<PrimeiroAcesso/>}/>
                     <Route path='*' element={<NotFound />} />
-
-                    {/* <Route path='/' element={<Home/>}/>
-                    <Route path='/minhasreservas' element={<MinhasReservas/>}/>
-                    <Route path='/configuracoes' element={<Configuracoes/>}/>
-                    <Route path='/perfil' element={<Perfil/>}/>
-                    <Route path='/novousuario' element={<NovoUsuario/>}/>
-                    <Route path='/novogrupo' element={<NovoGrupo/>}/>
-                    <Route path='/novasala' element={<NovaSala/>}/>
-                    <Route path='/novacategoria' element={<NovaCategoria/>}/>
-                    <Route path='/novareserva' element={<NovaReserva/>}/>
-                    <Route path='/editarreserva' element={<EditarReserva/>}/>
-                    <Route path='/detalhesreserva' element={<DetalhesReserva/>}/>
-                    <Route path='/usuarios' element={<Usuarios/>}/>
-                    <Route path='/primeiroacesso' element={<PrimeiroAcesso/>}/>
-                    <Route path='/login' element={<Login/>}/>
-                    <Route path='*' element={<NotFound />} /> */}
                 </Routes>
             </Fragment>
         </BrowserRouter>
