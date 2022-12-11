@@ -45,7 +45,6 @@ const Configuracoes = () => {
             const resposta = await listarGrupos();
             setLoading(false);
             if (!resposta.erro) {
-                console.log(resposta.grupos);
                 setGrupos(resposta.grupos)
             };
             if (resposta.erro) {
@@ -102,7 +101,7 @@ const Configuracoes = () => {
                             <ContainerListGrupo key={i}>
                                 <ListGrupo>
                                     {grupo.grupo_nome}
-                                    <div>
+                                    <div key={i}>
                                         <BiPlus
                                             title='Adicionar uma nova sala a este grupo'
                                             onClick={(e) => [

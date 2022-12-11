@@ -4,7 +4,7 @@ import {Container, Body, ContainerDia, Dia, DiaCorrente} from './styles';
 import CardReserva from '../CardReserva';
 import CalendarioLegenda from '../CalendarioLegenda';
 
-function CalendarioSemana({data, setData, reservas, calendarioTipo}) {
+function CalendarioSemana({data, setData, categorias, reservas, calendarioTipo}) {
     const [calendario, setCalendario] = useState([]);
 
     useEffect(() => {
@@ -29,14 +29,6 @@ function CalendarioSemana({data, setData, reservas, calendarioTipo}) {
             return <Dia> {getData}</Dia>
     };
 
-    function isReserva(dia, number) {
-        const getData = parseInt(dia.format('D'));
-        if (getData === number)
-            return <CardReserva/>
-        else
-            return''
-    };
-
     return(
         <Container >
             {calendario.map((semana) => (
@@ -45,17 +37,19 @@ function CalendarioSemana({data, setData, reservas, calendarioTipo}) {
                         <ContainerDia key={dia} onClick={() => {setData(dia)}}>
                             {isAtual(dia)}
                             {
-                                reservas.map((reserva, i) => 
-                                    reserva.data === dia.format('YYYY-MM-DD') 
-                                    && 
-                                    <CardReserva
-                                        key={i}
-                                        tipo={calendarioTipo}
-                                        horaInicio={reserva.hora_inicio}
-                                        horaFim={reserva.hora_fim}
-                                        titulo={reserva.titulo}
-                                        cor={reserva.categoria_id}
-                                    />
+                                reservas.map((reserva, index) => 
+                                    reserva.data === dia.format('YYYY-MM-DD') &&
+                                        categorias.map((categoria) => (
+                                            reserva.categoria_id == categoria.categoria_id &&
+                                                <CardReserva
+                                                    key={index}
+                                                    tipo={calendarioTipo}
+                                                    horaInicio={reserva.hora_inicio}
+                                                    horaFim={reserva.hora_fim}
+                                                    titulo={reserva.titulo}
+                                                    cor={categoria.cor}
+                                                />
+                                        ))
                                 )
                             }
                         </ContainerDia>

@@ -10,7 +10,7 @@ import CalendarioLegenda from "../CalendarioLegenda";
 import useContexto from '../../hooks/useContexto';
 import Loading from '../../components/Loading';
 
-function Calendario() {
+function Calendario({categorias, reservas}) {
     //tradução do moment para PT-BR;
     moment.updateLocale('pt-br', {
             months : ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
@@ -21,27 +21,29 @@ function Calendario() {
             weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb']});
     moment.locale('pt-br');
 
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
     const {listarReservas} = useContexto();
 
     const [data, setData] = useState(moment().locale('pt-br'));
     const [calendarioTipo, setCalendarioTipo] = useState('month');
-    const [reservas, setReservas] = useState([]);
+    // const [reservas, setReservas] = useState([]);
 
-    useEffect(() => {
-        setLoading(true);
-        const buscarReservas = async() => {
-            const resposta = await listarReservas();
-            if (!resposta.erro) {
-                setReservas(resposta.reservas);
-            }else{
-                alert(resposta.msg);
-            };
-            setLoading(false);
-            return;
-        };
-        buscarReservas();
-    }, []);
+    // useEffect(() => {
+    //     setLoading(true);
+    //     const buscarReservas = async() => {
+    //         console.log('USE EFFECT - CALENDARIO 1');
+    //         const resposta = await listarReservas();
+    //         if (!resposta.erro) {
+    //             setReservas(resposta.reservas);
+    //         }else{
+    //             alert(resposta.msg);
+    //         };
+    //         setLoading(false);
+    //         return;
+    //     };
+    //     buscarReservas();
+    //     console.log('USE EFFECT - CALENDARIO 2');
+    // }, []);
 
     return(
         loading ? <Loading/> :
@@ -58,7 +60,9 @@ function Calendario() {
                 calendarioTipo={calendarioTipo}
                 data={data}
                 setData={setData}
+                categorias={categorias}
                 reservas={reservas}/>
+            <CalendarioLegenda categorias={categorias}/>
         </Container>
 )
 };

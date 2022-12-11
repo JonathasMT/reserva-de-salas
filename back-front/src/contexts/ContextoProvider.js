@@ -185,6 +185,7 @@ export const ContextoProvider = ({children}) => {
     };
 
     async function listarCategorias() {
+        console.log('CONTEXTO - LISTAR CATEGORIAS');
         var retorno;
         await api.get('/listarcategorias')
         .then((resultado) => {
@@ -197,6 +198,7 @@ export const ContextoProvider = ({children}) => {
     };
 
     async function novaReserva(dados) {
+        console.log('CONTEXTO - NOVA RESERVA');
         console.log(dados);
         var retorno;
         await api.post('/novareserva', dados)
