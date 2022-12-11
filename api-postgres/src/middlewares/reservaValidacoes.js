@@ -21,6 +21,8 @@ const create = async (req, res, next) => {
         const antecedencia = sala.Grupo.antecedencia_minima;
         const inicio = sala.Grupo.hora_inicio;
         const fim = sala.Grupo.hora_fim;
+        //busca reservas ndeste dia
+        const reservas = await Reserva.findAll({where: {data: data}});
         //----------------------------------------------------------------------------------------------------------------
 
         //verifica ID do usuario
@@ -81,7 +83,7 @@ const create = async (req, res, next) => {
             return res.status(200).json({erro: true, msg: 'O campo "Data" está em um formato inválido!'});
         };
         if (!dataAtual(data)) {
-            return res.status(200).json({erro: true, msg: 'A "Data" não pode ser anterior ao dia atual.'});
+            return res.status(200).json({erro: true, msg: 'O campo "Data" não pode ser anterior a data atual: '+ moment().format('DD/MM/YYYY')+ '.'});
         };
         //verifica Hora de inicio
         if (!hora_inicio) {
@@ -91,24 +93,35 @@ const create = async (req, res, next) => {
             return res.status(200).json({erro: true, msg: 'O horario de inicio da reserva deve ter no minimo "' + 60 + ' minutos de antecedência".'
             });
         };
-        if (inicioValido(data, inicio, hora_inicio)) {
-            return res.status(200).json({erro: true, msg: 'O horario de inicio da reserva deve ter no minimo "' + 60 + ' minutos de antecedência".'
-            });
+        if (inicioValido(data, inicio, hora_inicio) < 0) {
+            return res.status(200).json({erro: true, msg: 'O horario mínimo para inicio de novas reservas é "' + inicio + '".'});
         };
         //verifica Hora de encerramento
         if (!hora_fim) {
             return res.status(200).json({erro: true, msg: 'Os campos "Horário de inicio e fim da reserva" devem ser preechidos!'});
         };
+        if (fimValido(data, fim, hora_fim) > 0) {
+            return res.status(200).json({erro: true, msg: 'O horario máximo para termino de novas reservas é "' + fim + '".'});
+        };
         if (inicioFimValido(data, hora_inicio, hora_fim) < 1) {
-            return res.status(200).json({erro: true, msg: 'O horario de termino da reserva deve ser posterior ao inicio.'
-            });
+            return res.status(200).json({erro: true, msg: 'O horario de termino da reserva deve ser posterior ao inicio.'});
+        };
+        if(reservas.length > 0) {
+            const conflitoInicio = conflitoInicioReserva(reservas, data, hora_inicio);
+            if (conflitoInicio) {
+                return res.status(200).json({erro: true, msg: 'Esta reserva entra em conflito com a seguinte reserva: ', conflito: conflitoInicio});
+            };
+            const conflitoFim = conflitoFimReserva(reservas, data, hora_fim);
+            if (conflitoFim) {
+                return res.status(200).json({erro: true, msg: 'Esta reserva entra em conflito com a seguinte reserva: ', conflito: conflitoFim});
+            };
         };
 
         return res.status(200).json({erro: true, msg: 'Teste interronpido'});
 
         next();
     } catch (_error) {
-        return res.status(500).json({erro: true, msg: msgErro})
+        return res.status(500).json({erro: true, msg: msgErro});
     }
 };
 
@@ -180,19 +193,65 @@ function tempoAntecedencia(data, hora_inicio) {
     return diferenca;
 };
 function inicioValido(data, inicio, hora_inicio) {
-    const inicioMinimo = moment(data + ' ' + inicio);
-    const diferenca = moment(data + ' ' + hora_inicio).diff(inicioMinimo, 'minutes');
+    const inicioPermitido = moment(data + ' ' + inicio);
+    const diferenca = moment(data + ' ' + hora_inicio).diff(inicioPermitido, 'minutes');
 return diferenca;
 };
-function fimValido(data, hora_inicio, hora_fim) {
-    const inicio = moment(data + ' ' + hora_inicio);
-    const diferenca = moment(data + ' ' + hora_fim).diff(inicio, 'minutes');
+function fimValido(data, fim, hora_fim) {
+    const fimPermitido = moment(data + ' ' + fim);
+    const diferenca = moment(data + ' ' + hora_fim).diff(fimPermitido, 'minutes');
 return diferenca;
 };
 function inicioFimValido(data, hora_inicio, hora_fim) {
     const inicio = moment(data + ' ' + hora_inicio);
     const diferenca = moment(data + ' ' + hora_fim).diff(inicio, 'minutes');
 return diferenca;
+};
+function conflitoInicioReserva(reservas, data, hora_inicio) {
+    const inicio = moment(data + ' ' + hora_inicio);
+    var inicioReserva;
+    var fimReserva;
+    var resposta = false
+    reservas.map((reserva, i) => {
+        inicioReserva = moment(reserva.data + ' ' + reserva.hora_inicio)
+        fimReserva = moment(reserva.data + ' ' + reserva.hora_fim)
+        if(inicio.isSame(inicioReserva)) {
+            console.log(1);
+            resposta =  reserva;
+        };
+        if(inicio.isSame(fimReserva)) {
+            console.log(2);
+            resposta =  reserva;
+        };
+        if(moment(inicio).isBetween(inicioReserva, fimReserva)) {
+            console.log(3);
+            resposta =  reserva;
+        };
+    });
+    return resposta;
+};
+function conflitoFimReserva(reservas, data, hora_fim) {
+    const fim = moment(data + ' ' + hora_fim);
+    var inicioReserva;
+    var fimReserva;
+    var resposta = false
+    reservas.map((reserva, i) => {
+        inicioReserva = moment(reserva.data + ' ' + reserva.hora_inicio)
+        fimReserva = moment(reserva.data + ' ' + reserva.hora_fim)
+        if(fim.isSame(inicioReserva)) {
+            console.log(4);
+            resposta =  reserva;
+        };
+        if(fim.isSame(fimReserva)) {
+            console.log(5);
+            resposta =  reserva;
+        };
+        if(moment(fim).isBetween(inicioReserva, fimReserva)) {
+            console.log(6);
+            resposta =  reserva;
+        };
+    });
+    return resposta;
 };
 
 module.exports = {

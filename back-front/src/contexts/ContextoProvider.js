@@ -1,7 +1,5 @@
-import {createContext, useEffect, useState} from 'react';
+import {createContext, useState} from 'react';
 import api from '../services/api'
-
-import useContexto from '../hooks/useContexto';
 
 export const Contexto = createContext({});
 

@@ -54,8 +54,6 @@ function CalendarioMes({data, reservas, calendarioTipo}) {
     };
 
     function renderizaCard(reserva, i) {
-        console.log('categorias');
-        console.log(categorias);
         const categoria = categorias.find((categoria) => reserva.categoria_id == categoria.categoria_id);
         const cor = categoria.cor
         return(

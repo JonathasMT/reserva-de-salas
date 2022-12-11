@@ -111,7 +111,6 @@ const Configuracoes = () => {
                                             ]}/>
                                         <BiEdit title='Editar este grupo' onClick={(e) => [e.preventDefault(), navegar('/editargrupo')]}/>
                                     </div>
-
                                 </ListGrupo>
                                 {
                                     grupo.Salas.length > 0 ?

@@ -1,7 +1,6 @@
 import {useEffect, useState} from 'react';
 import {useNavigate, useLocation} from 'react-router-dom';
 
-import api from '../../services/api';
 import Loading from '../../components/Loading';
 import useContexto from '../../hooks/useContexto';
 
@@ -14,7 +13,10 @@ import {
     InputSelect,
     Botao,
     ContainerFormulario,
-    SubContainerFormulario
+    SubContainerFormulario,
+    ListGrupo,
+    ListSala,
+    ContainerListGrupo
 } from '../../assets/styles';
 
 
@@ -37,6 +39,7 @@ const NovaReserva = () => {
     const [categoriaId, setCategoriaId] = useState();
     const [recorrencia, setRecorrencia] = useState('0');
     const [msg, setMsg] = useState('');
+    const [conflito, setConflito] = useState({});
     const usuario = localStorage.getItem('usuarioAutenticado');
 
     const {usuario_id} = JSON.parse(usuario);
@@ -83,6 +86,16 @@ const NovaReserva = () => {
             navegar('/')
         }else {
             setMsg(resposta.msg);
+            if(resposta.conflito) {
+                    setConflito(
+                        <ContainerListGrupo>
+                            <ListGrupo>
+                                {resposta.conflito.titulo}
+                            </ListGrupo>
+                                <ListSala>{resposta.conflito.data + ' ' + resposta.conflito.hora_inicio + ' - ' + resposta.conflito.hora_fim}</ListSala>
+                        </ContainerListGrupo>
+                    );
+            };
         };
         setLoading(false);
         return;
@@ -181,7 +194,7 @@ const NovaReserva = () => {
                         CANCELAR
                     </Botao>
                 </Formulario>
-                <p>{msg}</p>
+                {conflito}
             </SubContainerFormulario>
         }
       </ContainerFormulario>

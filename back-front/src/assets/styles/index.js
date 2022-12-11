@@ -400,3 +400,70 @@ export const BotaoTabela = styled.button`
         height: 15px;
     }
 `;
+
+export const ContainerListGrupo = styled.div`
+    width: 300px;
+    min-height: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 7px;
+    padding: 2px 10px;
+    background-color: ${Color.fundoCalendarioBloco};
+    color: ${Color.primaria};
+    font-size: 15px;
+
+    > svg {
+        cursor: pointer;
+        color: ${Color.primaria};
+    };
+`;
+
+export const ListGrupo = styled.div`
+    width: 300px;
+    min-height: 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-between;
+    padding: 0 10px;
+
+    > div {
+        display:flex;
+        flex-direction: row;
+        gap: 5px;
+
+        >svg {
+        cursor: pointer;
+        };
+    };
+`;
+
+export const ListSala = styled.div`
+    width: 250px;
+    min-height: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 7px;
+    padding: 0 10px;
+    background-color: ${Color.borderCalendario};
+    color: ${Color.secundaria};
+    font-size: 12px;
+    margin: 3px;
+
+    >svg {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+        color: ${Color.primaria};
+    };
+`;

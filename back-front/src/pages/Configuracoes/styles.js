@@ -55,8 +55,7 @@ export const BotaoFlutuante = styled.button`
         box-sizing: border-box;
         width: 15px;
         height: 15px;
-    }
-
+    };
 `;
 
 export const ContainerInput = styled.div`
@@ -88,10 +87,10 @@ export const Input = styled.input`
 
         ::placeholder {
             color: ${Color.secundaria};
-        }
+        };
         :focus {
             color: ${Color.primaria};
-        }
+        };
 `;
 
 export const ContainerList = styled.div`
@@ -146,9 +145,8 @@ export const ListGrupo = styled.div`
 
         >svg {
         cursor: pointer;
-        }
+        };
     };
-
 `;
 
 export const ListSala = styled.div`
@@ -198,7 +196,7 @@ export const FormSala = styled.div`
         padding: 0;
         width: 300px;
         text-align: left;
-    }
+    };
 `;
 
 export const Button = styled.button`
@@ -228,7 +226,7 @@ export const Circulo = styled.div`
     height: 15px;
     border-radius: 50%;
     background-color: ${props => props.cor};
-    /* box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2); */
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
 `;
 
 
