@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {Link, NavLink, useLocation} from 'react-router-dom';
+import {Link, NavLink, useLocation, useNavigate} from 'react-router-dom';
 
 import {
     Container,
@@ -24,6 +24,8 @@ import MenuItem from '../MenuItem';
 import useContexto from '../../hooks/useContexto';
 
 const Menu = () => {
+
+    const navegar = useNavigate();
     const {menu, alterarMenu} = useContexto();
     const fecharMenu = () => alterarMenu();
     const [nome, setNome] = useState('Usuário não encontrado');
@@ -41,6 +43,7 @@ const Menu = () => {
     const sair = () => {
         // setUsuario(null);
         localStorage.clear();
+        navegar(0);
     };
 
     const {pathname} = useLocation();
@@ -69,7 +72,7 @@ const Menu = () => {
                     <NavLink to='/configuracoes' onClick={() => fecharMenu()}>
                         <MenuItem Icone={<BsGear/>} Texto='CONFIGURAÇÕES' status={pathname==='/configuracoes'}/>
                     </NavLink>
-                    <NavLink to='/' onClick={() => [sair() , fecharMenu()]}>
+                    <NavLink onClick={() => [sair() , fecharMenu()]}>
                         <MenuItem Icone={<BsBoxArrowInLeft/>} Texto='SAIR'/>
                     </NavLink>
                 </Content>

@@ -1,52 +1,81 @@
 import { useEffect, useState } from 'react';
 import {useNavigate} from 'react-router-dom';
+import moment from 'moment';
 
-import { ContainerTabela, SubContainerTabela } from '../../assets/styles';
+import {ContainerTabela, SubContainerTabela, BotaoTabela, ContainerTituloTabela} from '../../assets/styles';
 
 import useContexto from '../../hooks/useContexto';
-import {BsPencilSquare, BsPersonDash} from 'react-icons/bs';
 import Loading from '../../components/Loading';
+
+import {BiEdit, BiPlus} from 'react-icons/bi';
+import {BsPencilSquare, BsPersonDash} from 'react-icons/bs';
 
 
 const MinhasReservas = () => {
-    const titulos = ['Título', 'Descrição', 'Categoria', 'Grupo', 'Sala', 'Data', 'Início', 'Fim', 'Repetir', 'Opções'];
-    const propriedades = ['titulo', 'descricao', 'categoria_id', 'grupo_id', 'sala_id', 'data', 'hora_inicio', 'hora_fim', 'repete_id', 'Opções'];
+    moment.locale('pt-br');
 
     const navegar = useNavigate();
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true);
+    const {listarUsuarios} = useContexto();
+    const [usuarios, setUsuarios] = useState([]);
+
+    const titulos = ['Título', 'Descrição', 'Categoria',  'Sala', 'Grupo','Data', 'Início', 'Fim', 'Recorrência', 'Opções'];
+    const propriedades = ['titulo', 'descricao', 'categoria_id', 'sala_id', 'grupo_id', 'data', 'hora_inicio', 'hora_fim', 'recorrencia_id', 'opcoes'];
+
     const {listarMinhasReservas} = useContexto();
     const [reservas, setReservas] = useState([]);
 
     useEffect(() => {
         const buscarReservas = async() => {
-            setLoading(true);
             const resposta = await listarMinhasReservas();
-            setLoading(false);
             if (!resposta.erro) {
                 setReservas(resposta.minhasReservas)
+                console.log(resposta.minhasReservas);
             };
             if (resposta.erro) {
                 alert(resposta.msg);
-                return;
             };
             setLoading(false);
+            return;
         };
-
         buscarReservas();
     }, []);
 
 
-    function renderiza(v, p, r) {
-        if(p==='categoria_id') {
-            const {Categorium} = reservas[r];
-            return(Categorium.categoria_nome);
+    function renderiza(reserva, p) {
+        var d;
+        switch (p) {
+            case 'categoria_id':
+                const {Categorium} = reserva;
+                return(Categorium.categoria_nome);
+            case 'sala_id':
+                const {Sala} = reserva;
+                return(Sala.sala_nome);
+            case 'grupo_id':
+                const {grupo_nome} = reserva.Sala.Grupo;
+               return(grupo_nome);
+            case 'data':
+                d = (moment(reserva[p]).format('DD/MM/YYYY'));
+            return d;
+            case 'recorrencia_id':
+                const {recorrencia_id} = reserva;
+                if(!recorrencia_id){
+                    return('Não');
+                };
+            case 'opcoes':
+                return (
+                    <BsPencilSquare
+                        title='Editar esta reserva'
+                        onClick={(e) => [
+                            e.preventDefault(),
+                            navegar('/editarreserva', {state: {reservaId: reserva.reserva_id}})
+                        ]}
+                    />
+                );
+            default:
+                return reserva[p]
         };
-        if(p==='sala_id') {
-            const {Sala} = reservas[r];
-            return(Sala.sala_nome);
-        };
-        return v[p]
-    }
+    };
 
 
     return(
@@ -61,11 +90,11 @@ const MinhasReservas = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {reservas.map((reserva, r) => (
-                            <tr key={r}>
+                        {reservas.map((reserva, i) => (
+                            <tr key={i}>
                             {propriedades.map((p) => (
                                 <td key={p}>
-                                    {renderiza(reserva, p, r)}
+                                    {renderiza(reserva, p)}
                                 </td>
                             ))}
                             </tr>

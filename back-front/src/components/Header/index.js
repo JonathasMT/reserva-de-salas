@@ -36,8 +36,7 @@ const Header = () => {
     };
 
     return(
-        <>  
-            {(usuario && instituicao) && (
+            (usuario && instituicao) && (
                 <Container>
                     <FaBars onClick={mostrarMenu}/>
                     {menu && <Menu/>}
@@ -51,8 +50,7 @@ const Header = () => {
                         </ContainerInstituicao>
                     </NavLink>
                 </Container>
-            )}
-        </>
+            )
     )
 }
 

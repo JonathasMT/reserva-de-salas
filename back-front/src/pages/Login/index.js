@@ -25,20 +25,19 @@ const Login = () => {
     const [loading, setLoading] = useState(false)
 
     const submeterLogin = async() => {
+        setLoading(true);
         const dados = {
             email,
             senha
         };
-        setLoading(true);
         const resposta = await login(dados);
-        setLoading(false);
         if (!resposta.erro) {
-            navegar('/');
-        };
-        if (resposta.erro) {
+            navegar(0);
+        }else {
             setMsg(resposta.msg);
-            return;
+            setLoading(false);
         };
+        return;
     };
 
     return(

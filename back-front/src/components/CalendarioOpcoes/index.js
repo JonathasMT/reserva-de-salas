@@ -6,13 +6,13 @@ import SelecionarData from '../SelecionarData';
 import SelecionarSala from '../SelecionarSala';
 import SelecionarTipo from '../SelecionarTipo';
 
-function CalendarioOpcoes({data, setData, calendarioTipo, setCalendarioTipo}) {
+function CalendarioOpcoes({momento, setMomento, calendarioTipo, setCalendarioTipo}) {
 
     return(
         <Container>
             <SelecionarData
-                data={data}
-                setData={setData}
+                momento={momento}
+                setMomento={setMomento}
                 calendarioTipo={calendarioTipo}/>
             <SelecionarSala/>
             <SelecionarTipo

@@ -33,15 +33,15 @@ const NovaCategoria = () => {
             cor
         };
         const resposta = await novaCategoria(dados);
-        setLoading(false);
         if (!resposta.erro) {
             alert(resposta.msg);
             navegar('/configuracoes');
         };
         if (resposta.erro) {
             setMsg(resposta.msg);
-            return;
         };
+        setLoading(false);
+        return;
     };
 
 

@@ -4,8 +4,8 @@ const validarRecorrenciaTipoId = async (req, res, next) => {
     if (!recorrencia_tipo_id) {
         return res.status(400).json({msg: 'O Tipo de Repetição deve ser informado!'});
     };
-    console.log(Number.isInteger(recorrencia_tipo_id));
-    if (Number.isInteger(recorrencia_tipo_id)) {
+    console.log(!Number.isInteger(recorrencia_tipo_id));
+    if (!Number.isInteger(recorrencia_tipo_id)) {
         return res.status(400).json({msg: 'O campo Tipo de Repetição deve ser um número inteiro!'});
     };
     next();
@@ -17,7 +17,7 @@ const validarQuantidade = async (req, res, next) => {
     if (!quantidade) {
         return res.status(400).json({msg: 'A Quantidade de repetições deve ser informada!'});
     };
-    if (Number.isInteger(quantidade)) {
+    if (!Number.isInteger(quantidade)) {
         return res.status(400).json({msg: 'O campo Quantidade de repetições deve ser um número inteiro!'});
     };
     next();

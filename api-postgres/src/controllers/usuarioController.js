@@ -8,14 +8,14 @@ const Usuario = require('../models/Usuario');
 
 const create= async (req, res) => {
     await baseDados.sync();
-    const {nome, email, senha, imagem, nivel} = req.body;
+    const {usuario_nome, email, nivel, senha, imagem} = req.body;
 
     //criar hash para a senha
     const salt = await bcrypt.genSalt(12);
     const senhaHash = await bcrypt.hash(senha, salt);
     //criar o usuario com os dados recebidos
     await Usuario.create({
-        nome: nome,
+        usuario_nome: usuario_nome,
         email: email,
         senha: senhaHash,
         imagem: imagem,

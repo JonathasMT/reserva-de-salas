@@ -2,13 +2,13 @@ import React, {useState, useEffect} from 'react';
 import {Container, DiaDaSemana, DiasDaSemana} from './styles';
 
 
-function CalendarioHeader({data, calendarioTipo}) {
+function CalendarioHeader({momento, calendarioTipo}) {
 
-    const diasSemana = data.localeData().weekdays()
+    const diasSemana = momento.localeData().weekdays()
 
     function dias() {
         if(calendarioTipo === 'day') {
-            return <DiaDaSemana>{data.format('dddd')}</DiaDaSemana>
+            return <DiaDaSemana>{momento.format('dddd')}</DiaDaSemana>
         }else {
             return(
                 diasSemana.map(

@@ -19,13 +19,16 @@ import EditarReserva from './pages/EditarReserva';
 import DetalhesReserva from './pages/DetalhesReserva';
 import PrimeiroAcesso from './pages/PrimeiroAcesso';
 import EditarInstituicao from './pages/EditarInstituicao';
+import useContexto from './hooks/useContexto';
 
 
 const RoutesApp = () => {
-    const usuario = localStorage.getItem('usuarioAutenticado');
-
     // eslint-disable-next-line
     const Privada = ({Destino}) => {
+        // const {usuario} = useContexto();
+        console.log('Privado?');
+        const usuario = localStorage.getItem('usuarioAutenticado');
+        console.log(usuario);
         return usuario ? <Destino/> : <Login/>;
     };
     return (
@@ -47,7 +50,6 @@ const RoutesApp = () => {
                     <Route path='/detalhesreserva' element={<Privada Destino={DetalhesReserva} />}/>
                     <Route path='/usuarios' element={<Privada Destino={Usuarios} />}/>
                     <Route path='/editarinstituicao' element={<Privada Destino={EditarInstituicao} />}/>
-                
                     <Route path='/primeiroacesso' element={<PrimeiroAcesso/>}/>
                     <Route path='*' element={<NotFound />} />
                 </Routes>

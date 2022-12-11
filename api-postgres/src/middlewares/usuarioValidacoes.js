@@ -7,10 +7,10 @@ const Instituicao = require('../models/Instituicao');
 
 const create = async (req, res, next) => {
     try {
-        const {nome, email, senha, confirma_senha, nivel} = req.body;
+        const {usuario_nome, email,nivel, senha, confirma_senha} = req.body;
 
         //validar nome
-        if (!nome) {
+        if (!usuario_nome) {
             return res.status(400).json({erro: true, msg: 'O campo "Nome" deve ser preeenchido!' });
         };
         //validar email
@@ -22,24 +22,24 @@ const create = async (req, res, next) => {
         //verifica se o e-mail informado já existe
         const existeEmail = await Usuario.findOne({where : {email: email}});
         if (existeEmail) {
-            return res.status(400).json({erro: true, msg: 'O campo e-mail "' + email + '" já existe!'});
+            return res.status(400).json({erro: true, msg: 'O e-mail "' + email + '" já existe!'});
+        };
+        //validar nivel
+        if (!nivel) {
+            return res.status(400).json({erro: true, msg: 'O campo "Nivel de permissão" deve ser preeenchido!'});
+        };
+        if (!Number.isInteger(nivel)) {
+            return res.status(400).json({erro: true, msg: 'O campo "Nível de permissão" deve ser um número inteiro!'});
         };
         //validar senhas
         if (!senha) {
             return res.status(400).json({erro: true, msg: 'O campo "Senha" deve ser preeenchido!'});
         };
         if (!confirma_senha) {
-            return res.status(400).json({erro: true, msg: 'O campo "Confirmar senha" deve ser preeenchido!'});
+            return res.status(400).json({erro: true, msg: 'O campo "Repita a senha" deve ser preeenchido!'});
         };
         if (confirma_senha != senha ) {
             return res.status(400).json({erro: true, msg: 'As senhas devem ser iguais!'});
-        };
-        //validar nivel
-        if (!nivel) {
-            return res.status(400).json({erro: true, msg: 'O campo "Nivel" deve ser preeenchido!'});
-        };
-        if (Number.isInteger(nivel)) {
-            return res.status(400).json({erro: true, msg: 'O campo "Nível" deve ser um número inteiro!'});
         };
 
         next();

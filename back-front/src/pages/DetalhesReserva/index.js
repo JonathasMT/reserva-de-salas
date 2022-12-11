@@ -1,14 +1,13 @@
 import {Container} from './styles';
 
-import {reserva} from "../../assets/import/bancoFake";
 
 const DetalhesReserva = () => {
-    const header = Object.keys(reserva[0]);
+    // const header = Object.keys(reserva[0]);
 
     return(
         <Container>
             <h2>Detalhes sobre esta reserva:</h2>
-            <table cellSpacing='1'>
+            {/* <table cellSpacing='1'>
                 <tbody>
                     {header.map((heading, i) =>
                         <tr key={i}>
@@ -21,7 +20,7 @@ const DetalhesReserva = () => {
                         </tr>
                     )}
                 </tbody>
-            </table>
+            </table> */}
         </Container>
     );
 };

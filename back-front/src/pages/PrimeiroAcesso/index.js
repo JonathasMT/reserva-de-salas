@@ -27,17 +27,18 @@ const PrimeiroAcesso = () => {
     useEffect(() => {
         const verificaBd = async () => {
             const resposta = await tamanhoBd();
-            setLoading(false);
             if (resposta.erro) {
                 navegar('/');
             };
+            setLoading(false);
+            return;
         };
         verificaBd();
     }, []);
 
     const submeterPrimeiroAcesso = async(e) => {
         e.preventDefault();
-
+        setLoading(true);
         const dados = {
             instituicao_nome: instituicaoNome, 
             logo,
@@ -47,17 +48,16 @@ const PrimeiroAcesso = () => {
             senha,
             confirmaSenha
         };
-        setLoading(true);
         const resposta = await primeiroAcesso(dados);
-        setLoading(false);
         if (!resposta.erro) {
             alert(resposta.msg);
             navegar('/')
         };
         if (resposta.erro) {
             setMsg(resposta.msg);
-            return;
         };
+        setLoading(false);
+        return;
     };
 
     return(
@@ -116,8 +116,8 @@ const PrimeiroAcesso = () => {
                                 <Botao type='submit' tipo={true}>
                                     CADASTRAR
                                 </Botao>
-                                <p>{msg}</p>
                         </Formulario>
+                        <p>{msg}</p>
                 </SubContainerFormulario>
             </ContainerFormulario>
             }

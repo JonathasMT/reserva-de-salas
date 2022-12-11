@@ -38,15 +38,15 @@ const NovaSala = () => {
             capacidade
         }
         const resposta = await novaSala(dados);
-        setLoading(false);
         if (!resposta.erro) {
             alert(resposta.msg);
             navegar(-1);
         };
         if (resposta.erro) {
             setMsg(resposta.msg);
-            return;
         };
+        setLoading(false);
+        return;
     };
 
     return(

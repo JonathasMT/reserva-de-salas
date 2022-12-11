@@ -56,15 +56,16 @@ const NovoGrupo = () => {
             antecedencia_minima: antecedencia
         };
         const resposta = await novoGrupo(dados);
-        setLoading(false);
         if (!resposta.erro) {
             alert(resposta.msg);
             navegar(-1);
         };
         if (resposta.erro) {
             setMsg(resposta.msg);
-            return;
+            
         };
+        setLoading(false);
+        return;
     };
 
     return(

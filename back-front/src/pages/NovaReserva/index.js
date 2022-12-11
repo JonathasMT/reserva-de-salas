@@ -14,9 +14,6 @@ import {
     Botao,
     ContainerFormulario,
     SubContainerFormulario,
-    ListGrupo,
-    ListSala,
-    ContainerListGrupo
 } from '../../assets/styles';
 
 const NovaReserva = () => {
@@ -46,6 +43,7 @@ const NovaReserva = () => {
     }, []);
 
     const {usuario_id} = JSON.parse(usuario);
+
     const aoSubmeter = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -164,7 +162,7 @@ const NovaReserva = () => {
                             CANCELAR
                         </Botao>
                     </Formulario>
-                    {msg}
+                    <p>{msg}</p>
                 </SubContainerFormulario>
         </ContainerFormulario>
     );

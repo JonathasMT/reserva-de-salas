@@ -1,24 +1,8 @@
-import React, {useState, useEffect} from 'react';
 import {Container, Body, ContainerDia, Dia, DiaCorrente} from './styles';
 
 import CardReserva from '../CardReserva';
-import CalendarioLegenda from '../CalendarioLegenda';
 
-function CalendarioSemana({data, setData, categorias, reservas, calendarioTipo}) {
-    const [calendario, setCalendario] = useState([]);
-
-    useEffect(() => {
-        const inicioDia = data.clone().startOf('week');
-        const fimDia = data.clone().endOf('week');
-        const dia = inicioDia.clone().subtract(1, 'day');
-        const calendario = [];
-        while (dia.isBefore(fimDia, 'day')) {
-            calendario.push(
-                Array(7).fill(0).map(() => dia.add(1, 'day').clone())
-            );
-        };
-        setCalendario(calendario)
-    }, [data])
+function CalendarioSemana({calendarioSemana, categorias, reservas, calendarioTipo}) {
 
     //verifica se o dia é o dia atual
     function isAtual(dia) {
@@ -29,12 +13,21 @@ function CalendarioSemana({data, setData, categorias, reservas, calendarioTipo})
             return <Dia> {getData}</Dia>
     };
 
+    // function novaReserva(dia) {
+    //     const atual = moment();
+    //     if (dia.isBefore(atual, 'day')) {
+    //         alert('Novas reservas só podem ser efetuadas a partir do dia atual: '+atual.format('DD/MM/YYYY'));
+    //     }else {
+    //         navegar('/novareserva', {state: {dia: dia.format('YYYY-MM-DD'), categorias: categorias}});
+    //     };
+    // };
+
     return(
         <Container >
-            {calendario.map((semana) => (
+            {calendarioSemana.map((semana) => (
                 <Body key={semana}>
                     {semana.map((dia) => (
-                        <ContainerDia key={dia} onClick={() => {setData(dia)}}>
+                        <ContainerDia key={dia}>
                             {isAtual(dia)}
                             {
                                 reservas.map((reserva, index) => 

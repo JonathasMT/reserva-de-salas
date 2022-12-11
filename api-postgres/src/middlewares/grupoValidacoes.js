@@ -39,7 +39,7 @@ const create = async (req, res, next) => {
         if (!antecedencia_minima) {
             return res.status(200).json({erro: true, msg: 'O campo "Mínimo de antecedencia para reservas" deve ser preechido!'});
         };
-        if (Number.isInteger(antecedencia_minima)) {
+        if (!Number.isInteger(antecedencia_minima)) {
             return res.status(200).json({erro: true, msg: 'O campo "Mínimo de antecedencia para reservas" deve ser um número inteiro!'});
         };
         next();
@@ -85,7 +85,7 @@ const update = async (req, res, next) => {
         if (!tempoAntecedencia) {
             return res.status(200).json({erro: true, msg: 'O campo "Mínimo de antecedencia para reservas" deve ser preechido!'});
         };
-        if (Number.isInteger(tempoAntecedencia)) {
+        if (!Number.isInteger(tempoAntecedencia)) {
             return res.status(200).json({erro: true, msg: 'O campo "Mínimo de antecedencia para reservas" deve ser um número inteiro!'});
         };
     next();

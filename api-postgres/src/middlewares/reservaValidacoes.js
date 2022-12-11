@@ -16,6 +16,7 @@ const create = async (req, res, next) => {
         const {usuario_id} = req.usuario;
         //----------------------------------------------------------------------------------------------------------------
         //consulta banco de dados
+        await baseDados.sync();
         const sala = await Sala.findOne({where: {sala_id: sala_id}, include: Grupo});
         //busca regras de negocio do Grupo
         const antecedencia = sala.Grupo.antecedencia_minima;
@@ -62,7 +63,7 @@ const create = async (req, res, next) => {
         };
         //verifica ID da recorrencia
         if (recorrencia_id) {
-            if (Number.isInteger(recorrencia_id)) {
+            if (!Number.isInteger(recorrencia_id)) {
                 return res.status(200).json({erro: true, msg: 'O ID do campo "Repetir" deve ser um número inteiro!'});
             };
             //verifica se a recorrencia existe
@@ -117,10 +118,8 @@ const create = async (req, res, next) => {
             };
         };
 
-        return res.status(200).json({erro: true, msg: 'Teste interronpido'});
-
         next();
-    } catch (_error) {
+    } catch (error) {
         return res.status(500).json({erro: true, msg: msgErro});
     }
 };
@@ -132,26 +131,26 @@ const update = async (req, res, next) => {
         if (!usuario_id) {
             return res.status(200).json({erro: true, msg: 'O Usuário deve ser informado!'});
         };
-        if (Number.isInteger(usuario_id)) {
+        if (!Number.isInteger(usuario_id)) {
             return res.status(200).json({erro: true, msg: 'O campo Usuário deve ser um número inteiro!'});
         };
         //verifica ID da sala
         if (!sala_id) {
             return res.status(200).json({erro: true, msg: 'A Sala deve ser informada!'});
         };
-        if (Number.isInteger(sala_id)) {
+        if (!Number.isInteger(sala_id)) {
             return res.status(200).json({erro: true, msg: 'O campo Sala deve ser um número inteiro!'});
         };
         //verifica ID da categoria
         if (!categoria_id) {
             return res.status(200).json({erro: true, msg: 'A Categoria da reserva deve ser informada!'});
         };
-        if (Number.isInteger(categoria_id)) {
+        if (!Number.isInteger(categoria_id)) {
             return res.status(200).json({erro: true, msg: 'O campo Categoria da reserva deve ser um número inteiro!'});
         };
         //verifica ID da repetição
         if (recorrencia_id) {
-            if (Number.isInteger(recorrencia_id)) {
+            if (!Number.isInteger(recorrencia_id)) {
                 return res.status(200).json({erro: true, msg: 'O campo Repetir deve ser um número inteiro!'});
             };
         };

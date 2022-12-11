@@ -21,7 +21,7 @@ import Loading from '../../components/Loading';
 
 const Perfil = () => {
 
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const {listarPerfil, atualizarPerfil} = useContexto();
     const navegar = useNavigate();
 
@@ -40,14 +40,13 @@ const Perfil = () => {
         setNome(usuario_nome);
         setMail(email);
         const buscarPerfil = async() => {
-            setLoading(true);
             const resposta = await listarPerfil();
-            setLoading(false);
             if(resposta.erro) {
                 alert(resposta.msg);
                 navegar(-1)
-                return;
             };
+            setLoading(false);
+            return;
         };
 
         buscarPerfil();
@@ -64,15 +63,15 @@ const Perfil = () => {
             confirma_nova_senha: confirmaNovaSenha
         };
         const resposta = await atualizarPerfil(dados);
-        setLoading(false);
         if (!resposta.erro) {
             alert(resposta.msg);
             navegar(-1);
         };
         if (resposta.erro) {
             setMsg(resposta.msg);
-            return;
         };
+        setLoading(false);
+        return;
     };
 
     const aoMudar = (e) => {
@@ -145,7 +144,6 @@ const Perfil = () => {
                                 value={confirmaNovaSenha}
                                 onChange={(evento) => [setConfirmaNovaSenha(evento.target.value), setMsg('')]}
                             />
-                            {console.log(!alterarSenha)}
                             <Botao type='submit' tipo={true}>
                                 ATUALIZAR
                             </Botao>

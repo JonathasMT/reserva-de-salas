@@ -13,7 +13,7 @@ import {
     ContainerDiaSelecionado
 } from './styles';
 
-function SelecionarTipo({calendarioTipo,setCalendarioTipo}) {
+function SelecionarTipo({calendarioTipo, setCalendarioTipo}) {
 
     const DiaSelecionado = () => {
         return(

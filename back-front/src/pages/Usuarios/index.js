@@ -14,7 +14,7 @@ const Usuarios = () => {
     moment.locale('pt-br');
 
     const navegar = useNavigate();
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const {listarUsuarios} = useContexto();
     const [usuarios, setUsuarios] = useState([]);
 
@@ -24,38 +24,39 @@ const Usuarios = () => {
 
     useEffect(() => {
         const buscarUsuarios = async() => {
-            setLoading(true);
             const resposta = await listarUsuarios();
-            setLoading(false);
             if (!resposta.erro) {
                 setUsuarios(resposta.usuarios)
             };
             if (resposta.erro) {
                 alert(resposta.msg);
-                return;
             };
             setLoading(false);
+            return;
         };
-
         buscarUsuarios();
     }, []);
 
     function renderiza(usuario, p) {
         var d;
-
         switch (p) {
             case 'nivel':
                 return (nivelUsuario[usuario[p]-1]);
             case 'status':
                 return (p? 'Ativo' : 'Desativado');
             case 'ultimo_login':
-                d = (moment(usuario[p]).format('L - LTS'));
+                console.log(usuario[p]);
+                if(usuario[p]) {
+                    d = (moment(usuario[p]).format('DD/MM/YYYY - hh:mm a'));
+                }else{
+                    d = ''
+                };
                 return d;
             case 'criado_em':
-                d = (moment(usuario[p]).format('L - LTS'));
+                d = (moment(usuario[p]).format('DD/MM/YYYY - hh:mm a'));
                 return d;
             case 'atualizado_em':
-                d = (moment(usuario[p]).format('L - LTS'));
+                d = (moment(usuario[p]).format('DD/MM/YYYY - hh:mm a'));
                 return d;
             case 'opcoes':
                 return (
@@ -65,7 +66,7 @@ const Usuarios = () => {
                             e.preventDefault(),
                             navegar('/editarusuario', {state: {usuarioId: usuario.usuario_id}})
                         ]}/>
-                )
+                );
             default:
                 return usuario[p];
         };
@@ -89,8 +90,8 @@ const Usuarios = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {usuarios.map((usuario, u) => (
-                            <tr key={u}>
+                        {usuarios.map((usuario, i) => (
+                            <tr key={i}>
                             {propriedades.map((p) => (
                                 <td key={p}>
                                     {renderiza(usuario, p)}

@@ -1,4 +1,4 @@
-import {createContext, useState} from 'react';
+import {createContext, useEffect, useState} from 'react';
 import api from '../services/api'
 
 export const Contexto = createContext({});
@@ -6,14 +6,27 @@ export const Contexto = createContext({});
 export const ContextoProvider = ({children}) => {
 
     const [menu, setMenu] = useState(false);
+    const [usuario, setUsuario] = useState(false);
+    
+    useEffect(() => {
+        console.log('Contexto');
+        setUsuario(localStorage.getItem('usuarioAutenticado'));
+    }, []);
+    
     const alterarMenu = () => {
         setMenu(!menu);
     };
+
+
+
+    
+
     //funções utilizadas para armazenar ou atualizar dados no local storage
     function localStorageUsuario(usuarioAutenticado) {
         localStorage.setItem('usuarioAutenticado', JSON.stringify(usuarioAutenticado));
         // setUsuario(localStorage.getItem('usuarioAutenticado'));
     };
+
     function localStorageInstituicao(instituicao) {
         localStorage.setItem('instituicao', JSON.stringify(instituicao));
         // setInstituicao(localStorage.getItem('instituicao'));
@@ -79,6 +92,17 @@ export const ContextoProvider = ({children}) => {
                 localStorageUsuario(resultado.data.usuario)
             };
             
+            retorno = resultado.data;
+        }).catch((erro) => {
+            retorno = erro.response.data;
+        });
+        return retorno;
+    };
+
+    async function novoUsuario(dados) {
+        var retorno;
+        await api.post('/novousuario', dados)
+        .then((resultado) => {
             retorno = resultado.data;
         }).catch((erro) => {
             retorno = erro.response.data;
@@ -185,7 +209,6 @@ export const ContextoProvider = ({children}) => {
     };
 
     async function listarCategorias() {
-        console.log('CONTEXTO - LISTAR CATEGORIAS');
         var retorno;
         await api.get('/listarcategorias')
         .then((resultado) => {
@@ -198,8 +221,6 @@ export const ContextoProvider = ({children}) => {
     };
 
     async function novaReserva(dados) {
-        console.log('CONTEXTO - NOVA RESERVA');
-        console.log(dados);
         var retorno;
         await api.post('/novareserva', dados)
         .then((resultado) => {
@@ -237,14 +258,16 @@ export const ContextoProvider = ({children}) => {
             value={{
                 //states
                 menu: menu,
-                // usuario: usuario,
+                usuario: usuario,
                 // instituicao: instituicao,
                 //funções
+                setUsuario,
                 alterarMenu,
                 login,
                 tamanhoBd,
                 primeiroAcesso,
                 atualizarPerfil,
+                novoUsuario,
                 listarPerfil,
                 listarInstituicao,
                 atualizarInstituicao,

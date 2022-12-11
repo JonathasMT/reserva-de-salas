@@ -60,6 +60,31 @@ export const Formulario = styled.form`
         font-size: 14px;
         font-weight: 400;
     };
+
+    /* input:-webkit-autofill {
+        border: 1px solid ${Color.acentuada};
+    }
+    input:autofill {
+        border: 1px solid ${Color.acentuada};
+    } */
+
+/* input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px ${Color.fundoCalendarioBloco} inset !important;
+    color: ${Color.secundaria};
+} */
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus {
+  border: none;
+  -webkit-text-fill-color: ${Color.primaria};
+  -webkit-box-shadow: 0 0 0px 1000px ${Color.fundoCalendarioBloco}  inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 `;
 
 export const ContainerHora = styled.time`
@@ -139,13 +164,14 @@ export const Input = styled.input`
     border-radius: 7px;
     padding: 10px;
     background-color: ${Color.fundoCalendarioBloco};
+    color: ${Color.primaria};
 
         ::placeholder {
             font-size: 12px;
-            color: ${Color.primaria};
+            color: ${Color.secundaria};
         };
         :focus {
-            color: ${Color.secundaria};
+            color: ${Color.primaria};
             outline: 1px solid ${Color.acentuada};
         };
 `;
@@ -159,6 +185,7 @@ export const InputArea = styled.textarea`
     padding: 10px;
     resize: none;
     background-color: ${Color.fundoCalendarioBloco};
+    color: ${Color.primaria};
 
         ::placeholder {
             font-size: 12px;
@@ -179,6 +206,7 @@ export const InputSelect = styled.select`
     padding: 5px;
     font-size: 14px;
     background-color: ${Color.fundoCalendarioBloco};
+    color: ${Color.primaria};
 
     option {
         color: black;
@@ -189,10 +217,10 @@ export const InputSelect = styled.select`
         padding: 5px;
     }
     ::placeholder {
-        color: ${Color.secundaria};
+        color: ${Color.primaria};
     }
     :focus {
-        color: ${Color.primaria};
+        color: ${Color.secundaria};
         outline: 1px solid ${Color.acentuada};
     }
 `;

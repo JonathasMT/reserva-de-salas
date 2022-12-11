@@ -1,19 +1,19 @@
 import moment from 'moment';
-import React, { useState } from 'react';
 import {FaAngleLeft, FaAngleRight} from 'react-icons/fa';
 
 import {Container, SubContainer, Seletor, DataHora, Corrente} from './styles';
 
-function SelecionarData({data, setData, calendarioTipo}) {
+function SelecionarData({momento, setMomento, calendarioTipo}) {
+    
     function nomeDiaCorrente() {
         return (
-            data.format('D [de] MMMM [de] YYYY')
+            momento.format('D [de] MMMM [de] YYYY')
         );
-    }
+    };
 
     function nomeSemanaCorrente() {
-        const inicioSemana = data.clone().startOf('week').format('DD/MM/YY');
-        const finalSemana = data.clone().endOf('week').format('DD/MM/YY');
+        const inicioSemana = momento.clone().startOf('week').format('DD/MM/YY');
+        const finalSemana = momento.clone().endOf('week').format('DD/MM/YY');
         return (
             inicioSemana + ' a ' + finalSemana
         );
@@ -21,27 +21,23 @@ function SelecionarData({data, setData, calendarioTipo}) {
 
     function nomeMesCorrente() {
         return (
-            data.format('MMMM [de] YYYY')
+            momento.format('MMMM [de] YYYY')
         );
     };
 
     function mesAnterior() {
-        return data.clone().subtract(1, calendarioTipo);
+        return momento.clone().subtract(1, calendarioTipo);
     };
 
     function mesProximo() {
-        return data.clone().add(1, calendarioTipo);
-    }
-    
-    // function mesAtual() {
-    //     return data.isSame(new Date(), 'month');
-    // }
+        return momento.clone().add(1, calendarioTipo);
+    };
 
     function mesCorrente() {
-        setData(moment())
+        setMomento(moment())
     }
 
-    function dataNome() {
+    function momentoTipo() {
         if(calendarioTipo === 'day')
             return nomeDiaCorrente();
         if(calendarioTipo === 'week')
@@ -54,12 +50,12 @@ function SelecionarData({data, setData, calendarioTipo}) {
         <Container>
             <SubContainer>
                 <Seletor>
-                    <FaAngleLeft onClick={() =>setData(mesAnterior())}/>
+                    <FaAngleLeft onClick={() =>setMomento(mesAnterior())}/>
                     <Corrente onClick={() => mesCorrente()}>Atual</Corrente>
-                    <FaAngleRight onClick={() =>setData(mesProximo())}/>
+                    <FaAngleRight onClick={() =>setMomento(mesProximo())}/>
                 </Seletor>
                 <DataHora>
-                    {dataNome()}
+                    {momentoTipo()}
                 </DataHora>
             </SubContainer>
         </Container>
