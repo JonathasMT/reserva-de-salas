@@ -4,7 +4,7 @@ const baseDados = require("../connection");
 const Categoria = require('../models/Categoria');
 const Grupo = require('../models/Grupo');
 const Recorrencia = require('../models/Recorrencia');
-const Reserva = require("../models/reserva");
+const Reserva = require("../models/Reserva");
 const Sala = require('../models/Sala');
 const Usuario = require('../models/Usuario');
 
