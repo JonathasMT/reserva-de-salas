@@ -19,24 +19,32 @@ export const Container = styled.div`
     padding-left: 5px;
     padding-right: 5px;
     box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
+    overflow: hidden;
     z-index: 10;
+    cursor: pointer;
+
+    &:hover {
+        transform: translateY(-7%);
+    }
 `;
 
 export const Hora = styled.div`
     width: auto;
+    margin-top: 2px;
     font-size: 9px;
     font-weight: 600;
     color: ${Color.primaria};
+    line-height: 100%;
 `;
 
-export const Titulo = styled.div`
+export const Titulo = styled.p`
     width: auto;
     align-items: flex-end;
     justify-content: flex-end;
+    margin-top: 2px;
+    //text
     font-size: 9px;
     color: ${Color.fundoGeral};
-    letter-spacing: 0.3px;
-    overflow: hidden;
     text-overflow: ellipsis;
+    line-height: 100%;
 `;

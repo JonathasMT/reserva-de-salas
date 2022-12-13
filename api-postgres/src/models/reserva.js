@@ -41,7 +41,10 @@ const Reserva = baseDados.define('Reserva', {
 
 Reserva.belongsTo(Usuario, {
     constraint: true,
-    foreignKey: 'usuario_id'
+    foreignKey: {
+        name: 'usuario_id',
+        allowNull: false
+    }
 });
 
 Usuario.hasMany(Reserva, {
@@ -50,7 +53,10 @@ Usuario.hasMany(Reserva, {
 //------------------------------
 Reserva.belongsTo(Sala, {
     constraint: true,
-    foreignKey: 'sala_id'
+    foreignKey: {
+        name:'sala_id',
+        allowNull: false
+    }
 });
 
 Sala.hasMany(Reserva, {
@@ -59,17 +65,22 @@ Sala.hasMany(Reserva, {
 //------------------------------
 Reserva.belongsTo(Categoria, {
     constraint: true,
-    foreignKey: 'categoria_id'
+    foreignKey: {
+        name: 'categoria_id',
+        allowNull: false
+    }
 });
 
 Categoria.hasMany(Reserva, {
     foreignKey: 'categoria_id'
-    
 });
 //------------------------------
 Reserva.belongsTo(Recorrencia, {
     constraint: true,
-    foreignKey: 'recorrencia_id'
+    foreignKey: {
+        name: 'recorrencia_id',
+        allowNull: true
+    }
 });
 
 Recorrencia.hasOne(Reserva, {

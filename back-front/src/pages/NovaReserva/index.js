@@ -36,19 +36,15 @@ const NovaReserva = () => {
     const [categoriaId, setCategoriaId] = useState();
     const [recorrencia, setRecorrencia] = useState('0');
     const [msg, setMsg] = useState('');
-    const usuario = localStorage.getItem('usuarioAutenticado');
 
     useEffect(() => {
         setCategoriaId(categorias[0].categoria_id);
     }, []);
-
-    const {usuario_id} = JSON.parse(usuario);
-
+    
     const aoSubmeter = async (e) => {
         e.preventDefault();
         setLoading(true);
         const dados = {
-            usuarioId: usuario_id,
             sala_id: salaId,
             categoria_id: categoriaId,
             recorrrencia_id: recorrencia,

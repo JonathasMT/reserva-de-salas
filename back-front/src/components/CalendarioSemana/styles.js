@@ -38,6 +38,10 @@ export const ContainerDia = styled.div`
     padding: 30px 10px;
     gap: 5px;
     cursor: pointer;
+
+    :hover {
+        background-color: ${Color.hoverFundo};
+    };    
 `;
 
 export const Dia = styled.div`

@@ -9,7 +9,6 @@ const Usuario = require('../models/Usuario');
 const create= async (req, res) => {
     await baseDados.sync();
     const {
-        usuario_id,
         sala_id,
         categoria_id,
         recorrencia_id,
@@ -19,6 +18,7 @@ const create= async (req, res) => {
         hora_inicio,
         hora_fim
     } = req.body;
+    const {usuario_id} = req.usuario;
 
     //criar o usuario com os dados recebidos
     await Reserva.create({
@@ -59,7 +59,7 @@ const read = async (req, res) => {
 const readVarias = async (_req, res) => {
     try {
         await baseDados.sync();
-        const reservas = await Reserva.findAll();
+        const reservas = await Reserva.findAll({order: [['hora_inicio', 'asc']]});
         return res.status(200).json({erro: false, msg: 'Sucesso', reservas: reservas});
     } catch (_error) {
         return res.status(500).json({erro: true, msg: 'Ocorreu um erro, tente novamente ou contacte o administrador!'})
@@ -69,9 +69,10 @@ const readVarias = async (_req, res) => {
 // await Ship.findAll({include: {model: Captain, as: 'leader'}})
 
 const readMinhasVarias = async (req, res) => {
+    const {usuario_id} = req.usuario;
     await baseDados.sync();
     // const {usuario_id} = req.usuario;
-    const reservas = await Reserva.findAll({include: [ {model: Categoria, required: true},{model: Sala, include: [{model: Grupo}]} ]});
+    const reservas = await Reserva.findAll({where: {usuario_id: usuario_id}, include: [{model: Categoria, required: true},{model: Sala, include: [{model: Grupo}]}], order: [['reserva_id', 'asc']]});
     // const reservas = await Reserva.findAll({include: [{model: Categoria, required: true},{model: Sala, include: {model: Grupo, required: true}}]});
 
     return res.status(200).json({erro: false, msg: 'Sucesso', minhasReservas: reservas})

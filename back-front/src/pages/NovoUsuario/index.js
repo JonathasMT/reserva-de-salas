@@ -29,7 +29,6 @@ const NovoUsuario = () => {
             senha,
             confirma_senha: confirmaSenha
         };
-        console.log(dados);
         const resposta = await novoUsuario(dados);
         if (!resposta.erro) {
             alert(resposta.msg);

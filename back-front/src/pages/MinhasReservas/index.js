@@ -30,7 +30,6 @@ const MinhasReservas = () => {
             const resposta = await listarMinhasReservas();
             if (!resposta.erro) {
                 setReservas(resposta.minhasReservas)
-                console.log(resposta.minhasReservas);
             };
             if (resposta.erro) {
                 alert(resposta.msg);

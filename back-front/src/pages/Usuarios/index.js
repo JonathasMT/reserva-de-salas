@@ -45,7 +45,6 @@ const Usuarios = () => {
             case 'status':
                 return (p? 'Ativo' : 'Desativado');
             case 'ultimo_login':
-                console.log(usuario[p]);
                 if(usuario[p]) {
                     d = (moment(usuario[p]).format('DD/MM/YYYY - hh:mm a'));
                 }else{

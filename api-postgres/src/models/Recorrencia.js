@@ -21,7 +21,10 @@ freezeTableName: true
 
 Recorrencia.belongsTo(RecorrenciaTipo, {
     constraint: true,
-    foreignKey: 'recorrencia_tipo_id'
+    foreignKey: {
+        name: 'recorrencia_tipo_id',
+        allowNull: false
+    }
 });
 
 RecorrenciaTipo.hasMany(Recorrencia, {

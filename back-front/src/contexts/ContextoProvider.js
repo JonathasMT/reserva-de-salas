@@ -9,7 +9,6 @@ export const ContextoProvider = ({children}) => {
     const [usuario, setUsuario] = useState(false);
     
     useEffect(() => {
-        console.log('Contexto');
         setUsuario(localStorage.getItem('usuarioAutenticado'));
     }, []);
     

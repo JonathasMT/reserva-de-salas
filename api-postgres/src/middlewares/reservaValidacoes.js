@@ -110,11 +110,11 @@ const create = async (req, res, next) => {
         if(reservas.length > 0) {
             const conflitoInicio = conflitoInicioReserva(reservas, data, hora_inicio);
             if (conflitoInicio) {
-                return res.status(200).json({erro: true, msg: 'Esta reserva entra em conflito com a seguinte reserva: ', conflito: conflitoInicio});
+                return res.status(200).json({erro: true, msg: 'Esta reserva entra em conflito com uma ou mais reservas.'});
             };
             const conflitoFim = conflitoFimReserva(reservas, data, hora_fim);
             if (conflitoFim) {
-                return res.status(200).json({erro: true, msg: 'Esta reserva entra em conflito com a seguinte reserva: ', conflito: conflitoFim});
+                return res.status(200).json({erro: true, msg: 'Esta reserva entra em conflito com uma ou mais reservas.'});
             };
         };
 

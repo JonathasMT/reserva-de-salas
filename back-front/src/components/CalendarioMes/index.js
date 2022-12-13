@@ -39,12 +39,14 @@ function CalendarioMes({calendarioMes, categorias, reservas, calendarioTipo}) {
                                             categorias.map((categoria) => (
                                                 reserva.categoria_id == categoria.categoria_id &&
                                                     <CardReserva
+                                                        onClick={(e) => [e.preventDefault(), e.stopPropagation(), console.log('FUI CLICADO')]}
                                                         key={index}
                                                         tipo={calendarioTipo}
                                                         horaInicio={reserva.hora_inicio}
                                                         horaFim={reserva.hora_fim}
                                                         titulo={reserva.titulo}
-                                                        cor={categoria.cor}
+                                                        categoria={categoria}
+                                                        reserva={reserva}
                                                     />
                                             ))
                                     ))

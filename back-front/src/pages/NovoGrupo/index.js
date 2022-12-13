@@ -30,7 +30,7 @@ const NovoGrupo = () => {
     const [diasSemana, setDiasSemana] = useState({dias: []});
     const [horaInicio, setHoraInicio] = useState('07:00');
     const [horaFim, setHoraFim] = useState('22:00');
-    const [antecedencia, setAntecedencia] = useState('');
+    const [antecedencia, setAntecedencia] = useState(0);
     const [msg, setMsg] = useState('');
 
     const aoMudar = (e) => {
@@ -168,11 +168,12 @@ const NovoGrupo = () => {
 
                             />
                         </ContainerHora>
-                        <Label>Mínimo de antecedencia para reservas:</Label>
+                        <Label>Mínimo de antecedencia para reservas (minutos):</Label>
                         <Input
                             type='number'
                             name='antecedencia'
                             placeholder='Tempo em minutos'
+                            min='0'
                             value={antecedencia}
                             required
                             onChange={(e) => setAntecedencia(e.target.value)}

@@ -64,6 +64,7 @@ const NovaSala = () => {
                         <Input
                             type='text'
                             placeholder='Digite um nome para identificação'
+                            required
                             name={salaNome}
                             value={salaNome}
                             onChange={(e) => setSalaNome(e.target.value)}
@@ -81,6 +82,7 @@ const NovaSala = () => {
                             type='number'
                             name='capacidade'
                             placeholder='Digite a capacidade de pessoas'
+                            min='0'
                             value={capacidade}
                             onChange={(e) => setCapacidade(e.target.value)}
                         />

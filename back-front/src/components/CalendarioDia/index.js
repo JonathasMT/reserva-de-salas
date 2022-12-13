@@ -48,7 +48,7 @@ function CalendarioDia({momento, categorias, reservas, calendarioTipo}) {
                                             horaInicio={reserva.hora_inicio}
                                             horaFim={reserva.hora_fim}
                                             titulo={reserva.titulo}
-                                            cor={categoria.cor}
+                                            categoria={categoria}
                                         />
                                 ))
                         )

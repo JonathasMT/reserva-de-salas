@@ -42,6 +42,9 @@ export const ContainerDia = styled.div`
     ::-webkit-scrollbar {
         width: 0px;
     }
+    :hover {
+        background-color: ${Color.hoverFundo};
+    };
 `;
 
 export const Dia = styled.div`

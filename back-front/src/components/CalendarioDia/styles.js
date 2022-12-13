@@ -27,7 +27,11 @@ export const Body = styled.div`
     border: 1px solid ${Color.borderCalendario};
     padding: 50px 10px;
     gap: 5px;
+    
     cursor: pointer;
+        :hover {
+        background-color: ${Color.hoverFundo};
+    };
 `;
 
 export const Dia = styled.div`

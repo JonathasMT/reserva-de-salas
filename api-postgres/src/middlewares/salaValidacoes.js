@@ -27,7 +27,7 @@ const create = async (req, res, next) => {
     };
 
     if (capacidade) {
-        if (!Number.isInteger(capacidade)) {
+        if (!Number.isInteger(+capacidade)) {
             return res.status(200).json({erro: true, msg: 'O campo "Capacidade" deve ser um número inteiro!'});
         };
     };

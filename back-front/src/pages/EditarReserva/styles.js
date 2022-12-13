@@ -3,13 +3,17 @@ import styled from 'styled-components';
 import Color from '../../assets/styles/colors';
 
 export const Container = styled.div`
-    height: calc(100vh - 50px);
+    height: 100%;
+    min-height: 100vh;
     display: flex;
     box-sizing: border-box;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: ${props => props.tipo? 'center': 'flex-start'};
     background-color: ${Color.fundoSecundario};
+    padding-top: 70px;
+    padding-bottom: 20px;
+    user-select: none;
 `;
 
 export const SubContainer = styled.div`

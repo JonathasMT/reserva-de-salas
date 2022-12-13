@@ -26,9 +26,7 @@ const RoutesApp = () => {
     // eslint-disable-next-line
     const Privada = ({Destino}) => {
         // const {usuario} = useContexto();
-        console.log('Privado?');
         const usuario = localStorage.getItem('usuarioAutenticado');
-        console.log(usuario);
         return usuario ? <Destino/> : <Login/>;
     };
     return (

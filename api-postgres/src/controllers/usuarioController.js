@@ -55,7 +55,7 @@ const readPerfil = async (req, res) => {
 
 const readVarios = async (_req, res) => {
     await baseDados.sync();
-    const usuarios = await Usuario.findAll();
+    const usuarios = await Usuario.findAll({order: [['usuario_id', 'asc']]});
     return res.status(200).json({erro: false, msg: 'Sucesso', usuarios: usuarios})
 };
 
